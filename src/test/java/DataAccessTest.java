@@ -1,13 +1,14 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import businessLogic.BLFacadeImplementation;
 import configuration.ConfigXML;
@@ -18,22 +19,12 @@ import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 import test.businessLogic.TestFacadeImplementation;
 
-public class BetsTest {
-	 static BLFacadeImplementation sut;
-	 static TestFacadeImplementation testBL;
+class DataAccessTest {
+
+	 static DataAccess sut=new DataAccess(ConfigXML.getInstance().getDataBaseOpenMode().equals("initialize"));;
+	 static TestFacadeImplementation testBL=new TestFacadeImplementation();;
 
 	private Event ev;
-	
-	@BeforeClass
-	public static void setUpClass() {
-		//sut= new BLFacadeImplementation();
-		
-		// you can parametrize the DataAccess used by BLFacadeImplementation
-		DataAccess da= new DataAccess(ConfigXML.getInstance().getDataBaseOpenMode().equals("initialize"));
-		sut=new BLFacadeImplementation(da);
-		
-		testBL= new TestFacadeImplementation();
-	}
 	
 	@Test
 	//sut.createQuestion:  The event has one question with a queryText. 
@@ -65,21 +56,14 @@ public class BetsTest {
 			//if the program continues fail
 		    fail();
 		   } catch (QuestionAlreadyExist e) {
-			// TODO Auto-generated catch block
 			// if the program goes to this point OK  
 			assertTrue(true);
-			} catch (EventFinished e) {
-				// if the program goes to this point fail
-			    fail();
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			} finally {
 				  //Remove the created objects in the database (cascade removing)   
 		          boolean b=testBL.removeEvent(ev);
 		           System.out.println("Finally "+b);          
 		        }
 		   }
-	
 	@Test
 	//sut.createQuestion:  The event has NOT one question with a queryText. 
 	public void test2() {
@@ -115,16 +99,10 @@ public class BetsTest {
 			// TODO Auto-generated catch block
 			// if the program goes to this point fail  
 			fail();
-			} catch (EventFinished e) {
-				// if the program goes to this point fail
-			    fail();
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			} finally {
 				  //Remove the created objects in the database (cascade removing)   
 		          boolean b=testBL.removeEvent(ev);
 		           System.out.println("Finally "+b);          
 		        }
 		   }
-	
 }
