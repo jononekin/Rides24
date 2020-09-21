@@ -1,5 +1,6 @@
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import static org.junit.Assert.assertEquals;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -30,12 +31,14 @@ public class BetsTestMock {
 	@InjectMocks
 	 BLFacade sut=new BLFacadeImplementation(dataAccess);
 	
-	//Same Test diferent alternatives
-	//sut.createQuestion:  There are not two questions with a same text 
+	//sut.createQuestion:  The event has one question with a queryText. 
 
 	@Test
 	public void test1() {
 		try {
+			//define paramaters
+			String queryText="proba galdera";
+			Float betMinimum=new Float(2);
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			Date oneDate=null;;
 			try {
@@ -45,18 +48,23 @@ public class BetsTestMock {
 				e.printStackTrace();
 			}	
 			
+			//configure Mock
 			Mockito.doReturn(oneDate).when(mockedEvent).getEventDate();
-
 			Mockito.when(dataAccess.createQuestion(Mockito.any(Event.class),Mockito.any(String.class), Mockito.any(Integer.class))).thenThrow(QuestionAlreadyExist.class);
 			
 
-			//sut: An query is created 
-			Question q=sut.createQuestion(mockedEvent, "proba galdera", 2);
+			//invoke System Under Test (sut) 
+			Question q=sut.createQuestion(mockedEvent, queryText, betMinimum);
+			
+			//if the program continues fail
 		    fail();
 		   } catch (QuestionAlreadyExist e) {
 			// TODO Auto-generated catch block
+			   
+			// if the program goes to this point OK
 			assertTrue(true);
 			} catch (EventFinished e) {
+				// if the program goes to this point fail
 			    fail();
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -66,9 +74,12 @@ public class BetsTestMock {
 	
 	
 	@Test
-	//sut.createQuestion:  There are not two questions with a same text 
+	//sut.createQuestion:  The event has NOT a question with a queryText.
 	public void test2() {
 			try {
+				//define paramaters
+				String queryText="proba galdera";
+				Float betMinimum=new Float(2);
 				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 				Date oneDate=null;;
 				try {
@@ -78,15 +89,17 @@ public class BetsTestMock {
 					e.printStackTrace();
 				}	
 				
+				//configure Mock
 				Mockito.doReturn(oneDate).when(mockedEvent).getEventDate();
-				Mockito.doReturn(new Question("proba galdera", 2,mockedEvent)).when(dataAccess).createQuestion(Mockito.any(Event.class),Mockito.any(String.class), Mockito.any(Integer.class));
+				Mockito.doReturn(new Question(queryText, betMinimum,mockedEvent)).when(dataAccess).createQuestion(Mockito.any(Event.class),Mockito.any(String.class), Mockito.any(Integer.class));
 
 				
 
-				//sut: An query is created 
-				Question q=sut.createQuestion(mockedEvent, "proba galdera", 2);
+				//invoke System Under Test (sut) 
+				Question q=sut.createQuestion(mockedEvent, queryText, betMinimum);
 				
-				Mockito.verify(dataAccess,Mockito.times(1)).createQuestion(Mockito.any(Event.class),Mockito.any(String.class), Mockito.any(Integer.class));
+				//verify the results
+				//Mockito.verify(dataAccess,Mockito.times(1)).createQuestion(Mockito.any(Event.class),Mockito.any(String.class), Mockito.any(Integer.class));
 				
 				
 				ArgumentCaptor<Event> eventCaptor = ArgumentCaptor.forClass(Event.class);
@@ -95,11 +108,10 @@ public class BetsTestMock {
 				
 				Mockito.verify(dataAccess,Mockito.times(1)).createQuestion(eventCaptor.capture(),questionStringCaptor.capture(), betMinimunCaptor.capture());
 				Float f=betMinimunCaptor.getValue();
-				System.out.println(f);
 
-				assertTrue(eventCaptor.getValue().equals(mockedEvent));
-				assertTrue(questionStringCaptor.getValue().equals("proba galdera"));
-				assertTrue(betMinimunCaptor.getValue().equals(new Float(3)));
+				assertEquals(eventCaptor.getValue(),mockedEvent);
+				assertEquals(questionStringCaptor.getValue(),queryText);
+				assertEquals(betMinimunCaptor.getValue(),betMinimum);
 
 			   } catch (QuestionAlreadyExist e) {
 				// TODO Auto-generated catch block
@@ -111,35 +123,4 @@ public class BetsTestMock {
 				}
 			   }
 		
-	
-/*	@Test
-	//sut.createQuestion:  There are not two questions with a same text 
-	public void test2() {
-		try {
-			
-			Mockito.doReturn(true).when(dataAccess).existQuestion(Mockito.any(Event.class),Mockito.any(String.class));
-
-			Mockito.doReturn(new Date()).when(mockedEvent).getEventDate();
-
-			//DatuBasearen egoera definitu: Gertaera berri bat sortu galdera batekin	
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-			Date oneDate=null;;
-			try {
-				oneDate = sdf.parse("05/10/2022");
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}	
-			sut.createQuestion(ev, "proba galdera", 2);
-			//sut: An query is created 
-			sut.createQuestion(ev, "proba galdera", 2);
-		    fail();
-		   } catch (QuestionAlreadyExist e) {
-			// TODO Auto-generated catch block
-			assertTrue(true);
-			} catch (EventFinished e) {
-			    fail();
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}} */
 }
