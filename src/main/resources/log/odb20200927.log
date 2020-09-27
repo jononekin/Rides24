@@ -238,3 +238,31 @@ Type domain.Question is not enhanced.
 [2020-09-27 17:15:13 #4 type] 
 Type domain.Event is not enhanced.
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-09-27 17:30:17 #1 store] 
+Database '/Users/iturrioz/git/Bets2021/src/main/resources/bets.temp' has been recovered (tr. 432-443)
+
+[2020-09-27 17:30:17 #2 store] 
+Database '/Users/iturrioz/git/Bets2021/src/main/resources/bets.temp' is opened by 4439@iMac-de-Jon.local
+
+[2020-09-27 17:30:17 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-09-27 17:30:17 #4 type] 
+Type domain.Event is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2020-09-27 17:30:32 #1 store] 
+Database '/Users/iturrioz/git/Bets2021/src/main/resources/bets.temp' has been recovered (tr. 444-455)
+
+[2020-09-27 17:30:32 #2 store] 
+Database '/Users/iturrioz/git/Bets2021/src/main/resources/bets.temp' is opened by 4442@iMac-de-Jon.local
+
+[2020-09-27 17:30:32 #3 type] 
+Type domain.Question is not enhanced.
+
+[2020-09-27 17:30:32 #4 type] 
+Type domain.Event is not enhanced.
+
