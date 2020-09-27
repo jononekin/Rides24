@@ -54,7 +54,7 @@ public class FacadeMockTest {
 			
 
 			//invoke System Under Test (sut) 
-			Question q=sut.createQuestion(mockedEvent, queryText, betMinimum);
+			sut.createQuestion(mockedEvent, queryText, betMinimum);
 			
 			//if the program continues fail
 		    fail();
