@@ -42,7 +42,7 @@
     <sonar.projectKey>BetsSept24</sonar.projectKey>   
     <sonar.organization>jononekin</sonar.organization>
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>  
-    <sonar.login>66f7c7957dcb055d4b55988eb92f1a34ea993fe7</sonar.login> 
+    <sonar.login>4ec878e50afb7092e57402f4a7a59e6909e03434</sonar.login> 
 </properties>
 
 <!-- https://mvnrepository.com/artifact/junit/junit -->
