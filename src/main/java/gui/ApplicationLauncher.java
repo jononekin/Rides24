@@ -13,7 +13,7 @@ import dataAccess.DataAccess;
 import businessLogic.BLFacade;
 import businessLogic.BLFacadeImplementation;
 
-public class ApplicationLauncher {
+public class ApplicationLauncher { 
 	
 	
 	
