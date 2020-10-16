@@ -54,7 +54,8 @@ public class DataAccessTest {
 		    fail();
 		   } catch (QuestionAlreadyExist e) {
 			// if the program goes to this point OK  
-			assertTrue(true);
+			fail();
+			  // assertTrue(true);
 			} finally {
 				  //Remove the created objects in the database (cascade removing)   
 		          boolean b=testBL.removeEvent(ev);

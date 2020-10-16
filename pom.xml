@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>Bets</groupId>
-  <artifactId>BetsSept24</artifactId>
+  <groupId>Bets2222</groupId>
+  <artifactId>Bets2222</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
 <build>
@@ -25,6 +25,14 @@
      		 </execution>
     	</executions>
 	</plugin>
+	<plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.19.1</version>
+          <configuration>
+               <testFailureIgnore>true</testFailureIgnore>
+            </configuration>
+        </plugin>
    </plugins>
 </build>
  <repositories>
@@ -38,11 +46,9 @@
 <properties>
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.source>1.8</maven.compiler.source>
-    
-    <sonar.projectKey>BetsSept24</sonar.projectKey>   
-    <sonar.organization>jononekin</sonar.organization>
+        <sonar.organization>jononekin</sonar.organization>
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>  
-    <sonar.login>4ec878e50afb7092e57402f4a7a59e6909e03434</sonar.login> 
+    <sonar.login>518efa8ae144b09de41d1e80a16fa8c68543e399</sonar.login> 
 </properties>
 
 <!-- https://mvnrepository.com/artifact/junit/junit -->
