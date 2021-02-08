@@ -36,7 +36,7 @@ public class MainGUI extends JFrame {
 	public static BLFacade getBusinessLogic(){
 		return appFacadeInterface;
 	}
-	
+	 
 	public static void setBussinessLogic (BLFacade afi){
 		appFacadeInterface=afi;
 	}

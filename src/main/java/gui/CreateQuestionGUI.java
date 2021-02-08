@@ -236,7 +236,7 @@ public static void paintDaysWithEvents(JCalendar jCalendar,Vector<Date> datesWit
 	 	
 	}
 	
-	
+	 
 	private void jButtonCreate_actionPerformed(ActionEvent e) {
 		domain.Event event = ((domain.Event) jComboBoxEvents.getSelectedItem());
 

@@ -116,7 +116,7 @@ public class FindQuestionsGUI extends JFrame {
 //					jCalendar1.setCalendar(calendarAct);
 					Date firstDay=UtilDate.trim(new Date(jCalendar1.getCalendar().getTime().getTime()));
 
-					
+					 
 					
 					int monthAnt = calendarAnt.get(Calendar.MONTH);
 					int monthAct = calendarAct.get(Calendar.MONTH);
