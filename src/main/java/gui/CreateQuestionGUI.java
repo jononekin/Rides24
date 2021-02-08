@@ -32,7 +32,8 @@ public class CreateQuestionGUI extends JFrame {
 	private JTextField jTextFieldQuery = new JTextField();
 	private JTextField jTextFieldPrice = new JTextField();
 	private JCalendar jCalendar = new JCalendar();
-	private Calendar calendarMio = null;
+	private Calendar calendarAct = null;
+	private Calendar calendarAnt = null;
 
 	private JScrollPane scrollPaneEvents = new JScrollPane();
 
@@ -40,6 +41,8 @@ public class CreateQuestionGUI extends JFrame {
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 	private JLabel jLabelMsg = new JLabel();
 	private JLabel jLabelError = new JLabel();
+	
+	private Vector<Date> datesWithEventsCurrentMonth = new Vector<Date>();
 
 	public CreateQuestionGUI(Vector<domain.Event> v) {
 		try {
@@ -102,11 +105,19 @@ public class CreateQuestionGUI extends JFrame {
 		this.getContentPane().add(jComboBoxEvents, null);
 
 		this.getContentPane().add(jCalendar, null);
+		
+		
+		BLFacade facade = MainGUI.getBusinessLogic();
+		datesWithEventsCurrentMonth=facade.getEventsMonth(jCalendar.getDate());
+		paintDaysWithEvents(jCalendar,datesWithEventsCurrentMonth);
+		
+		
 
 		jLabelEventDate.setBounds(new Rectangle(40, 15, 140, 25));
 		jLabelEventDate.setBounds(40, 16, 140, 25);
 		getContentPane().add(jLabelEventDate);
 
+		
 		// Code for JCalendar
 		this.jCalendar.addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent propertychangeevent) {
@@ -115,10 +126,35 @@ public class CreateQuestionGUI extends JFrame {
 				if (propertychangeevent.getPropertyName().equals("locale")) {
 					jCalendar.setLocale((Locale) propertychangeevent.getNewValue());
 				} else if (propertychangeevent.getPropertyName().equals("calendar")) {
-					calendarMio = (Calendar) propertychangeevent.getNewValue();
+					calendarAnt = (Calendar) propertychangeevent.getOldValue();
+					calendarAct = (Calendar) propertychangeevent.getNewValue();
+					System.out.println("calendarAnt: "+calendarAnt.getTime());
+					System.out.println("calendarAct: "+calendarAct.getTime());
 					DateFormat dateformat1 = DateFormat.getDateInstance(1, jCalendar.getLocale());
-					jCalendar.setCalendar(calendarMio);
-					Date firstDay = UtilDate.trim(new Date(jCalendar.getCalendar().getTime().getTime()));
+					
+					int monthAnt = calendarAnt.get(Calendar.MONTH);
+					int monthAct = calendarAct.get(Calendar.MONTH);
+					if (monthAct!=monthAnt) {
+						if (monthAct==monthAnt+2) { 
+							// Si en JCalendar estÃ¡ 30 de enero y se avanza al mes siguiente, devolverÃ­a 2 de marzo (se toma como equivalente a 30 de febrero)
+							// Con este cÃ³digo se dejarÃ¡ como 1 de febrero en el JCalendar
+							calendarAct.set(Calendar.MONTH, monthAnt+1);
+							calendarAct.set(Calendar.DAY_OF_MONTH, 1);
+						}
+						
+						jCalendar.setCalendar(calendarAct);
+						
+						BLFacade facade = MainGUI.getBusinessLogic();
+
+						datesWithEventsCurrentMonth=facade.getEventsMonth(jCalendar.getDate());
+					}
+
+
+
+					paintDaysWithEvents(jCalendar,datesWithEventsCurrentMonth);
+
+					//	Date firstDay = UtilDate.trim(new Date(jCalendar.getCalendar().getTime().getTime()));
+					Date firstDay = UtilDate.trim(calendarAct.getTime());
 
 					try {
 						BLFacade facade = MainGUI.getBusinessLogic();
@@ -127,10 +163,10 @@ public class CreateQuestionGUI extends JFrame {
 
 						if (events.isEmpty())
 							jLabelListOfEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("NoEvents")
-									+ ": " + dateformat1.format(calendarMio.getTime()));
+									+ ": " + dateformat1.format(calendarAct.getTime()));
 						else
 							jLabelListOfEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("Events") + ": "
-									+ dateformat1.format(calendarMio.getTime()));
+									+ dateformat1.format(calendarAct.getTime()));
 						jComboBoxEvents.removeAllItems();
 						System.out.println("Events " + events);
 
@@ -149,25 +185,21 @@ public class CreateQuestionGUI extends JFrame {
 					}
 
 				}
-				paintDaysWithEvents(jCalendar);
 			}
 		});
 	}
 
 	
-	public static void paintDaysWithEvents(JCalendar jCalendar) {
-		// For each day in current month, it is checked if there are events, and in that
-		// case, the background color for that day is changed.
+public static void paintDaysWithEvents(JCalendar jCalendar,Vector<Date> datesWithEventsCurrentMonth) {
+		// For each day with events in current month, the background color for that day is changed.
 
-		BLFacade facade = MainGUI.getBusinessLogic();
-
-		Vector<Date> dates=facade.getEventsMonth(jCalendar.getDate());
-			
+		
 		Calendar calendar = jCalendar.getCalendar();
 		
 		int month = calendar.get(Calendar.MONTH);
-		//int today=calendar.get(Calendar.DAY_OF_MONTH);
-
+		int today=calendar.get(Calendar.DAY_OF_MONTH);
+		int year=calendar.get(Calendar.YEAR);
+		
 		calendar.set(Calendar.DAY_OF_MONTH, 1);
 		int offset = calendar.get(Calendar.DAY_OF_WEEK);
 
@@ -177,7 +209,7 @@ public class CreateQuestionGUI extends JFrame {
 			offset += 5;
 		
 		
-	 	for (Date d:dates){
+	 	for (Date d:datesWithEventsCurrentMonth){
 
 	 		calendar.setTime(d);
 	 		System.out.println(d);
@@ -197,8 +229,10 @@ public class CreateQuestionGUI extends JFrame {
 			o.setBackground(Color.CYAN);
 	 	}
 	 	
-	 		calendar.set(Calendar.DAY_OF_MONTH, 1);
+ 			calendar.set(Calendar.DAY_OF_MONTH, today);
 	 		calendar.set(Calendar.MONTH, month);
+	 		calendar.set(Calendar.YEAR, year);
+
 	 	
 	}
 	

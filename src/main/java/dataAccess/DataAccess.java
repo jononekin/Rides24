@@ -80,10 +80,10 @@ public class DataAccess  {
 			Event ev16=new Event(16, "Las Palmas-Sevilla", UtilDate.newDate(year,month,1));
 			
 
-			Event ev17=new Event(17, "Málaga-Valencia", UtilDate.newDate(year,month,28));
-			Event ev18=new Event(18, "Girona-Leganés", UtilDate.newDate(year,month,28));
-			Event ev19=new Event(19, "Real Sociedad-Levante", UtilDate.newDate(year,month,28));
-			Event ev20=new Event(20, "Betis-Real Madrid", UtilDate.newDate(year,month,28));
+			Event ev17=new Event(17, "Málaga-Valencia", UtilDate.newDate(year,month+1,28));
+			Event ev18=new Event(18, "Girona-Leganés", UtilDate.newDate(year,month+1,28));
+			Event ev19=new Event(19, "Real Sociedad-Levante", UtilDate.newDate(year,month+1,28));
+			Event ev20=new Event(20, "Betis-Real Madrid", UtilDate.newDate(year,month+1,28));
 			
 			Question q1;
 			Question q2;

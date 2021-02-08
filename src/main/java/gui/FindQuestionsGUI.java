@@ -26,9 +26,12 @@ public class FindQuestionsGUI extends JFrame {
 
 	// Code for JCalendar
 	private JCalendar jCalendar1 = new JCalendar();
-	private Calendar calendarMio = null;
+	private Calendar calendarAnt = null;
+	private Calendar calendarAct = null;
 	private JScrollPane scrollPaneEvents = new JScrollPane();
 	private JScrollPane scrollPaneQueries = new JScrollPane();
+	
+	private Vector<Date> datesWithEventsCurrentMonth = new Vector<Date>();
 
 	private JTable tableEvents= new JTable();
 	private JTable tableQueries = new JTable();
@@ -91,6 +94,9 @@ public class FindQuestionsGUI extends JFrame {
 
 		jCalendar1.setBounds(new Rectangle(40, 50, 225, 150));
 
+		BLFacade facade = MainGUI.getBusinessLogic();
+		datesWithEventsCurrentMonth=facade.getEventsMonth(jCalendar1.getDate());
+		CreateQuestionGUI.paintDaysWithEvents(jCalendar1,datesWithEventsCurrentMonth);
 
 		// Code for JCalendar
 		this.jCalendar1.addPropertyChangeListener(new PropertyChangeListener()
@@ -104,12 +110,37 @@ public class FindQuestionsGUI extends JFrame {
 				}
 				else if (propertychangeevent.getPropertyName().equals("calendar"))
 				{
-					calendarMio = (Calendar) propertychangeevent.getNewValue();
+					calendarAnt = (Calendar) propertychangeevent.getOldValue();
+					calendarAct = (Calendar) propertychangeevent.getNewValue();
 					DateFormat dateformat1 = DateFormat.getDateInstance(1, jCalendar1.getLocale());
-					jCalendar1.setCalendar(calendarMio);
+//					jCalendar1.setCalendar(calendarAct);
 					Date firstDay=UtilDate.trim(new Date(jCalendar1.getCalendar().getTime().getTime()));
 
+					
+					
+					int monthAnt = calendarAnt.get(Calendar.MONTH);
+					int monthAct = calendarAct.get(Calendar.MONTH);
+					
+					if (monthAct!=monthAnt) {
+						if (monthAct==monthAnt+2) {
+							// Si en JCalendar está 30 de enero y se avanza al mes siguiente, devolvería 2 de marzo (se toma como equivalente a 30 de febrero)
+							// Con este código se dejará como 1 de febrero en el JCalendar
+							calendarAct.set(Calendar.MONTH, monthAnt+1);
+							calendarAct.set(Calendar.DAY_OF_MONTH, 1);
+						}						
+						
+						jCalendar1.setCalendar(calendarAct);
 
+						BLFacade facade = MainGUI.getBusinessLogic();
+
+						datesWithEventsCurrentMonth=facade.getEventsMonth(jCalendar1.getDate());
+					}
+
+
+
+					CreateQuestionGUI.paintDaysWithEvents(jCalendar1,datesWithEventsCurrentMonth);
+													
+					
 
 					try {
 						tableModelEvents.setDataVector(null, columnNamesEvents);
@@ -119,8 +150,8 @@ public class FindQuestionsGUI extends JFrame {
 
 						Vector<domain.Event> events=facade.getEvents(firstDay);
 
-						if (events.isEmpty() ) jLabelEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("NoEvents")+ ": "+dateformat1.format(calendarMio.getTime()));
-						else jLabelEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("Events")+ ": "+dateformat1.format(calendarMio.getTime()));
+						if (events.isEmpty() ) jLabelEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("NoEvents")+ ": "+dateformat1.format(calendarAct.getTime()));
+						else jLabelEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("Events")+ ": "+dateformat1.format(calendarAct.getTime()));
 						for (domain.Event ev:events){
 							Vector<Object> row = new Vector<Object>();
 
@@ -140,7 +171,6 @@ public class FindQuestionsGUI extends JFrame {
 					}
 
 				}
-				CreateQuestionGUI.paintDaysWithEvents(jCalendar1);
 			} 
 		});
 
