@@ -63,7 +63,7 @@ public class ObjectdbManagerServer extends JDialog {
 					    try {
 					    	System.out.println("Server close");
 					    	 try {
-							    	Runtime.getRuntime().exec("java -cp resources\\objectdb.jar com.objectdb.Server -port "+ c.getDatabasePort()+" stop");
+							    	Runtime.getRuntime().exec("java -cp src\\main\\resources\\objectdb.jar com.objectdb.Server -port "+ c.getDatabasePort()+" stop");
 							    } catch (Exception ioe) {
 							    	System.out.println (ioe);
 							    }
@@ -97,7 +97,7 @@ public class ObjectdbManagerServer extends JDialog {
 
 			
 			try {
-		    	Runtime.getRuntime().exec("java -cp resources\\objectdb.jar com.objectdb.Server -port "+ c.getDatabasePort()+" start");
+		    	Runtime.getRuntime().exec("java -cp src\\main\\resources\\objectdb.jar com.objectdb.Server -port "+ c.getDatabasePort()+" start");
 		    } catch (Exception ioe) {
 		    	System.out.println (ioe);
 		    }
