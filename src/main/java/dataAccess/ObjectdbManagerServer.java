@@ -27,10 +27,20 @@ public class ObjectdbManagerServer extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	JTextArea textArea;
 	ConfigXML c;
+	
+	//For windows
+    private String objectDbpath="src\\main\\resources\\objectdb.jar";
+    
+    //For mac 
+    //private String objectDbpath="src//main//resources//objectdb.jar";
+
+ 	
 
 
 	public static void main(String[] args) {
 		try {
+			
+			
 			ObjectdbManagerServer dialog = new ObjectdbManagerServer();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
@@ -41,6 +51,7 @@ public class ObjectdbManagerServer extends JDialog {
 
 
 	public ObjectdbManagerServer() {
+	    
 		setTitle("objectDBManagerServer: running the database server");
 		setBounds(100, 100, 486, 180);
 		getContentPane().setLayout(new BorderLayout());
@@ -63,7 +74,10 @@ public class ObjectdbManagerServer extends JDialog {
 					    try {
 					    	System.out.println("Server close");
 					    	 try {
-							    	Runtime.getRuntime().exec("java -cp src\\main\\resources\\objectdb.jar com.objectdb.Server -port "+ c.getDatabasePort()+" stop");
+					    		    
+					    		    
+							    	Runtime.getRuntime().exec("java -cp "+objectDbpath+" com.objectdb.Server -port "+ c.getDatabasePort()+" stop");
+							    	
 							    } catch (Exception ioe) {
 							    	System.out.println (ioe);
 							    }
@@ -97,7 +111,7 @@ public class ObjectdbManagerServer extends JDialog {
 
 			
 			try {
-		    	Runtime.getRuntime().exec("java -cp src\\main\\resources\\objectdb.jar com.objectdb.Server -port "+ c.getDatabasePort()+" start");
+		    	Runtime.getRuntime().exec("java -cp "+objectDbpath+" com.objectdb.Server -port "+ c.getDatabasePort()+" start");
 		    } catch (Exception ioe) {
 		    	System.out.println (ioe);
 		    }
