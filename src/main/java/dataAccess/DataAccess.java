@@ -40,7 +40,7 @@ public class DataAccess  {
 	}
 
 	public DataAccess()  {	
-		 new DataAccess(false);
+		 this(false);
 	}
 	
 	
