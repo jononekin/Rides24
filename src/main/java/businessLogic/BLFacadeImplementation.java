@@ -29,7 +29,7 @@ public class BLFacadeImplementation  implements BLFacade {
 		    dbManager=new DataAccess(c.getDataBaseOpenMode().equals("initialize"));
 		    dbManager.initializeDB();
 		    } else
-		     dbManager=new DataAccess());
+		     dbManager=new DataAccess();
 		dbManager.close();
 
 		
