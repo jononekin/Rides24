@@ -1,80 +1,42 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>change your data</groupId>
-	<artifactId>change your data</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>Bets21</groupId>
+  <artifactId>Bets21</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.19.1</version>
-				<configuration>
-					<testFailureIgnore>true</testFailureIgnore>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.8</version>
-				<executions>
-					<execution>
-						<id>prepare-agent</id>
-						<goals>
-							<goal>prepare-agent</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>report</id>
-						<goals>
-							<goal>report</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-         		 <groupId>org.apache.maven.plugins</groupId>
-         		 <artifactId>maven-surefire-plugin</artifactId>
-          		 <version>2.19.1</version>
-         		 <configuration>
-          		     <testFailureIgnore>true</testFailureIgnore>
-	   		    <includes>
-           		  	   <include>*Int.java</include>
-             			   <include>*INT.java</include>
-                		   <include>*DAB.java</include>
-              			   <include>*DAW.java</include>
- 			  </includes>
-           		 </configuration>
-       		        </plugin>
-		</plugins>
-	</build>
-	<repositories>
-		<repository>
-			<id>objectdb</id>
-			<name>ObjectDB Repository</name>
-			<url>https://m2.objectdb.com</url>
-		</repository>
-	</repositories>
+<build>
+    <plugins>
+	<plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.19.1</version>
+          <configuration>
+               <testFailureIgnore>true</testFailureIgnore>
+            </configuration>
+        </plugin>
+   </plugins>
+</build>
+ <repositories>
+	<repository>
+		<id>objectdb</id>
+		<name>ObjectDB Repository</name>
+		<url>https://m2.objectdb.com</url>
+	</repository>
+</repositories>
 
-	<properties>
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<maven.compiler.source>1.8</maven.compiler.source>
+<properties>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+</properties>
 
-		<sonar.organization>change your data</sonar.organization>
-		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-		<sonar.projectKey>change your data</sonar.projectKey>
-		<sonar.login>change your data</sonar.login>
-	</properties>
-
-	<!-- https://mvnrepository.com/artifact/junit/junit -->
-	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.13.2</version>
-			<scope>test</scope>
-		</dependency>
+<!-- https://mvnrepository.com/artifact/junit/junit -->
+<dependencies>
+	<dependency>
+  	  <groupId>junit</groupId>
+  	  <artifactId>junit</artifactId>
+  	  <version>4.5</version>
+ 	   <scope>test</scope>
+	</dependency> 
 		<dependency>
 			<groupId>com.toedter</groupId>
 			<artifactId>jcalendar</artifactId>
@@ -102,7 +64,7 @@
 			<artifactId>jakarta.xml.ws-api</artifactId>
 			<version>2.3.2</version>
 		</dependency>
-
+		
 		<!-- Runtime -->
 		<dependency>
 			<groupId>com.sun.xml.ws</groupId>
@@ -115,8 +77,6 @@
 			<artifactId>objectdb</artifactId>
 			<version>2.8.1</version>
 		</dependency>
-
-
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>javax.persistence</artifactId>
@@ -126,37 +86,7 @@
 			<groupId>javax.transaction</groupId>
 			<artifactId>jta</artifactId>
 			<version>1.1</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy-agent -->
-		<dependency>
-			<groupId>net.bytebuddy</groupId>
-			<artifactId>byte-buddy-agent</artifactId>
-			<version>1.10.10</version>
-			<scope>test</scope>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/net.bytebuddy/byte-buddy -->
-		<dependency>
-			<groupId>net.bytebuddy</groupId>
-			<artifactId>byte-buddy</artifactId>
-			<version>1.10.10</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.objenesis/objenesis-tck -->
-		<dependency>
-			<groupId>org.objenesis</groupId>
-			<artifactId>objenesis-tck</artifactId>
-			<version>3.0.1</version>
-		</dependency>
-
-
-		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-core</artifactId>
-			<version>3.0.0</version>
-			<scope>test</scope>
-		</dependency>
+		</dependency>		
 
 	</dependencies>
 
