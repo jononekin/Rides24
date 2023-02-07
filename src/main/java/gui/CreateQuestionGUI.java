@@ -191,7 +191,7 @@ public class CreateQuestionGUI extends JFrame {
 
 	
 public static void paintDaysWithEvents(JCalendar jCalendar,Vector<Date> datesWithEventsCurrentMonth) {
-		// For each day with events in current month, the background color for that day is changed.
+		// For each day with events in current month, the background color for that day is changed to cyan.
 
 		
 		Calendar calendar = jCalendar.getCalendar();
