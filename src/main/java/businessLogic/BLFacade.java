@@ -8,10 +8,10 @@ import java.util.Date;
 
 
 //import domain.Booking;
-import domain.Question;
-import domain.Event;
-import exceptions.EventFinished;
-import exceptions.QuestionAlreadyExist;
+import domain.Ride;
+import domain.Driver;
+import exceptions.RideMustBeLaterThanToday;
+import exceptions.RideAlreadyExist;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -24,33 +24,40 @@ public interface BLFacade  {
 	  
 
 	/**
-	 * This method creates a question for an event, with a question text and the minimum bet
+	 * This method creates a ride for a driver
 	 * 
-	 * @param event to which question is added
-	 * @param question text of the question
-	 * @param betMinimum minimum quantity of the bet
-	 * @return the created question, or null, or an exception
-	 * @throws EventFinished if current data is after data of the event
- 	 * @throws QuestionAlreadyExist if the same question already exists for the event
+	 * @param from the origin location of a ride
+	 * @param to the destination location of a ride
+	 * @param date the date of the ride 
+	 * @param nPlaces available seats
+	 * @param driver to which ride is added
+	 * 
+	 * @return the created ride, or null, or an exception
+	 * @throws RideMustBeLaterThanToday if the ride date is before today 
+ 	 * @throws RideAlreadyExist if the same ride already exists for the driver
 	 */
-	@WebMethod Question createQuestion(Event event, String question, float betMinimum) throws EventFinished, QuestionAlreadyExist;
+   @WebMethod
+   public Ride createRide( String from, String to, Date date, int nPlaces, Driver driver) throws RideMustBeLaterThanToday, RideAlreadyExist;
 	
 	
 	/**
-	 * This method retrieves the events of a given date 
+	 * This method retrieves the rides from two locations on a given date 
 	 * 
-	 * @param date in which events are retrieved
-	 * @return collection of events
+	 * @param from the origin location of a ride
+	 * @param to the destination location of a ride
+	 * @param date the date of the ride 
+	 * @return collection of rides
 	 */
-	@WebMethod public Vector<Event> getEvents(Date date);
+	@WebMethod public Vector<Ride> getRides(String from, String to, Date date);
 	
 	/**
 	 * This method retrieves from the database the dates a month for which there are events
-	 * 
-	 * @param date of the month for which days with events want to be retrieved 
-	 * @return collection of dates
+	 * @param from the origin location of a ride
+	 * @param to the destination location of a ride 
+	 * @param date of the month for which days with rides want to be retrieved 
+	 * @return collection of rides
 	 */
-	@WebMethod public Vector<Date> getEventsMonth(Date date);
+	@WebMethod public Vector<Date> getDatesWithRides(String from, String to, Date date);
 	
 	/**
 	 * This method calls the data access to initialize the database with some events and questions.

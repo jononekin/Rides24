@@ -9,10 +9,10 @@ import javax.jws.WebService;
 
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
-import domain.Question;
-import domain.Event;
-import exceptions.EventFinished;
-import exceptions.QuestionAlreadyExist;
+import domain.Ride;
+import domain.Driver;
+import exceptions.RideMustBeLaterThanToday;
+import exceptions.RideAlreadyExist;
 
 /**
  * It implements the business logic as a web service.
@@ -51,58 +51,65 @@ public class BLFacadeImplementation  implements BLFacade {
 	
 
 	/**
-	 * This method creates a question for an event, with a question text and the minimum bet
+	 * This method creates a ride for a driver
 	 * 
-	 * @param event to which question is added
-	 * @param question text of the question
-	 * @param betMinimum minimum quantity of the bet
-	 * @return the created question, or null, or an exception
-	 * @throws EventFinished if current data is after data of the event
- 	 * @throws QuestionAlreadyExist if the same question already exists for the event
+	 * @param from the origin location of a ride
+	 * @param to the destination location of a ride
+	 * @param date the date of the ride 
+	 * @param nPlaces available seats
+	 * @param driver to which ride is added
+	 * 
+	 * @return the created ride, or null, or an exception
+	 * @throws RideMustBeLaterThanToday if the ride date is before today 
+ 	 * @throws RideAlreadyExist if the same ride already exists for the driver
 	 */
    @WebMethod
-   public Question createQuestion(Event event, String question, float betMinimum) throws EventFinished, QuestionAlreadyExist{
+   public Ride createRide( String from, String to, Date date, int nPlaces, Driver driver) throws RideMustBeLaterThanToday, RideAlreadyExist{
 	   
 	    //The minimum bed must be greater than 0
 		dbManager.open(false);
-		Question qry=null;
+		Ride ride=null;
 		
 	    
-		if(new Date().compareTo(event.getEventDate())>0)
-			throw new EventFinished(ResourceBundle.getBundle("Etiquetas").getString("ErrorEventHasFinished"));
+		if(new Date().compareTo(ride.getDate())>0)
+			throw new RideMustBeLaterThanToday(ResourceBundle.getBundle("Etiquetas").getString("ErrorRideMustBeLaterThanToday"));
 				
 		
-		 qry=dbManager.createQuestion(event,question,betMinimum);		
+		 ride=dbManager.createRide(from, to, date, nPlaces, driver);		
 
 		dbManager.close();
 		
-		return qry;
+		return ride;
    };
 	
-	/**
-	 * This method invokes the data access to retrieve the events of a given date 
+   /**
+	 * This method retrieves the rides from two locations on a given date 
 	 * 
-	 * @param date in which events are retrieved
-	 * @return collection of events
+	 * @param from the origin location of a ride
+	 * @param to the destination location of a ride
+	 * @param date the date of the ride 
+	 * @return collection of rides
 	 */
-    @WebMethod	
-	public Vector<Event> getEvents(Date date)  {
+	@WebMethod 
+	public Vector<Ride> getRides(String from, String to, Date date){
 		dbManager.open(false);
-		Vector<Event>  events=dbManager.getEvents(date);
+		Vector<Ride>  rides=dbManager.getRides(from, to, date);
 		dbManager.close();
-		return events;
+		return rides;
 	}
 
     
 	/**
-	 * This method invokes the data access to retrieve the dates a month for which there are events
-	 * 
-	 * @param date of the month for which days with events want to be retrieved 
-	 * @return collection of dates
+	 * This method retrieves from the database the dates a month for which there are events
+	 * @param from the origin location of a ride
+	 * @param to the destination location of a ride 
+	 * @param date of the month for which days with rides want to be retrieved 
+	 * @return collection of rides
 	 */
-	@WebMethod public Vector<Date> getEventsMonth(Date date) {
+	@WebMethod 
+	public Vector<Date> getDatesWithRides(String from, String to, Date date){
 		dbManager.open(false);
-		Vector<Date>  dates=dbManager.getEventsMonth(date);
+		Vector<Date>  dates=dbManager.getDatesWithRides(from, to, date);
 		dbManager.close();
 		return dates;
 	}

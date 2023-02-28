@@ -4,7 +4,7 @@ import businessLogic.BLFacade;
 import configuration.UtilDate;
 
 import com.toedter.calendar.JCalendar;
-import domain.Question;
+import domain.Ride;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -96,7 +96,7 @@ public class FindQuestionsGUI extends JFrame {
 
 		BLFacade facade = MainGUI.getBusinessLogic();
 		datesWithEventsCurrentMonth=facade.getEventsMonth(jCalendar1.getDate());
-		CreateQuestionGUI.paintDaysWithEvents(jCalendar1,datesWithEventsCurrentMonth);
+		CreateRideGUI.paintDaysWithEvents(jCalendar1,datesWithEventsCurrentMonth);
 
 		// Code for JCalendar
 		this.jCalendar1.addPropertyChangeListener(new PropertyChangeListener()
@@ -138,7 +138,7 @@ public class FindQuestionsGUI extends JFrame {
 
 
 
-					CreateQuestionGUI.paintDaysWithEvents(jCalendar1,datesWithEventsCurrentMonth);
+					CreateRideGUI.paintDaysWithEvents(jCalendar1,datesWithEventsCurrentMonth);
 													
 					
 
@@ -148,11 +148,11 @@ public class FindQuestionsGUI extends JFrame {
 
 						BLFacade facade=MainGUI.getBusinessLogic();
 
-						Vector<domain.Event> events=facade.getEvents(firstDay);
+						Vector<domain.Driver> events=facade.getEvents(firstDay);
 
 						if (events.isEmpty() ) jLabelEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("NoEvents")+ ": "+dateformat1.format(calendarAct.getTime()));
 						else jLabelEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("Events")+ ": "+dateformat1.format(calendarAct.getTime()));
-						for (domain.Event ev:events){
+						for (domain.Driver ev:events){
 							Vector<Object> row = new Vector<Object>();
 
 							System.out.println("Events "+ev);
@@ -183,8 +183,8 @@ public class FindQuestionsGUI extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				int i=tableEvents.getSelectedRow();
-				domain.Event ev=(domain.Event)tableModelEvents.getValueAt(i,2); // obtain ev object
-				Vector<Question> queries=ev.getQuestions();
+				domain.Driver ev=(domain.Driver)tableModelEvents.getValueAt(i,2); // obtain ev object
+				Vector<Ride> queries=ev.getQuestions();
 
 				tableModelQueries.setDataVector(null, columnNamesQueries);
 
@@ -193,7 +193,7 @@ public class FindQuestionsGUI extends JFrame {
 				else 
 					jLabelQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("SelectedEvent")+" "+ev.getDescription());
 
-				for (domain.Question q:queries){
+				for (domain.Ride q:queries){
 					Vector<Object> row = new Vector<Object>();
 
 					row.add(q.getQuestionNumber());
