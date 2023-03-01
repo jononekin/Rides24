@@ -1,6 +1,7 @@
 package businessLogic;
 //hola
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
@@ -11,8 +12,8 @@ import configuration.ConfigXML;
 import dataAccess.DataAccess;
 import domain.Ride;
 import domain.Driver;
-import exceptions.RideMustBeLaterThanToday;
-import exceptions.RideAlreadyExist;
+import exceptions.RideMustBeLaterThanTodayException;
+import exceptions.RideAlreadyExistException;
 
 /**
  * It implements the business logic as a web service.
@@ -48,7 +49,25 @@ public class BLFacadeImplementation  implements BLFacade {
 		}
 		dbManager=da;		
 	}
-	
+    @WebMethod public List<String> getSourceLocations(){
+    	dbManager.open(false);	
+		
+		 List<String> sourceLocations=dbManager.getSourceLocations();		
+
+		dbManager.close();
+		
+		return sourceLocations;
+    	
+    }
+	@WebMethod public List<String> getDestinationLocations(String from){
+		dbManager.open(false);	
+		
+		 List<String> targetLocations=dbManager.getDestinationLocations(from);		
+
+		dbManager.close();
+		
+		return targetLocations;
+	}
 
 	/**
 	 * This method creates a ride for a driver
@@ -60,22 +79,22 @@ public class BLFacadeImplementation  implements BLFacade {
 	 * @param driver to which ride is added
 	 * 
 	 * @return the created ride, or null, or an exception
-	 * @throws RideMustBeLaterThanToday if the ride date is before today 
- 	 * @throws RideAlreadyExist if the same ride already exists for the driver
+	 * @throws RideMustBeLaterThanTodayException if the ride date is before today 
+ 	 * @throws RideAlreadyExistException if the same ride already exists for the driver
 	 */
    @WebMethod
-   public Ride createRide( String from, String to, Date date, int nPlaces, Driver driver) throws RideMustBeLaterThanToday, RideAlreadyExist{
+   public Ride createRide( String from, String to, Date date, int nPlaces, float price, Driver driver) throws RideMustBeLaterThanTodayException, RideAlreadyExistException{
 	   
 	    //The minimum bed must be greater than 0
 		dbManager.open(false);
 		Ride ride=null;
 		
 	    
-		if(new Date().compareTo(ride.getDate())>0)
-			throw new RideMustBeLaterThanToday(ResourceBundle.getBundle("Etiquetas").getString("ErrorRideMustBeLaterThanToday"));
+		if(new Date().compareTo(date)>0)
+			throw new RideMustBeLaterThanTodayException(ResourceBundle.getBundle("Etiquetas").getString("ErrorRideMustBeLaterThanToday"));
 				
 		
-		 ride=dbManager.createRide(from, to, date, nPlaces, driver);		
+		 ride=dbManager.createRide(from, to, date, nPlaces, price, driver);		
 
 		dbManager.close();
 		

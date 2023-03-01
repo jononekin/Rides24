@@ -65,8 +65,8 @@ public class Driver implements Serializable {
 	 * @param betMinimum of that question
 	 * @return Bet
 	 */
-	public Ride addRide(String from, String to, Date date, int nPlaces)  {
-        Ride q=new Ride(from,to,date,nPlaces,this);
+	public Ride addRide(String from, String to, Date date, int nPlaces, float price)  {
+        Ride q=new Ride(from,to,date,nPlaces,price, this);
         rides.add(q);
         return q;
 	}
@@ -81,7 +81,9 @@ public class Driver implements Serializable {
 	 */
 	public boolean DoesRideExists(String from, String to, Date date)  {	
 		for (Ride r:rides){
-			//if (r.getQuestion().compareTo(question)==0)
+			if ( (r.getFrom().compareTo(from)==0) &&
+				 (r.getTo().compareTo(to)==0) &&
+				 (r.getDate().compareTo(date)==0) )
 				return true;
 		}
 		return false;

@@ -1,15 +1,15 @@
 package exceptions;
-public class RideAlreadyExist extends Exception {
+public class RideAlreadyExistException extends Exception {
  private static final long serialVersionUID = 1L;
  
- public RideAlreadyExist()
+ public RideAlreadyExistException()
   {
     super();
   }
   /**This exception is triggered if the question already exists 
   *@param s String of the exception
   */
-  public RideAlreadyExist(String s)
+  public RideAlreadyExistException(String s)
   {
     super(s);
   }

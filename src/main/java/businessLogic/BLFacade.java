@@ -2,16 +2,13 @@ package businessLogic;
 
 import java.util.Vector;
 import java.util.Date;
-
-
-
-
+import java.util.List;
 
 //import domain.Booking;
 import domain.Ride;
 import domain.Driver;
-import exceptions.RideMustBeLaterThanToday;
-import exceptions.RideAlreadyExist;
+import exceptions.RideMustBeLaterThanTodayException;
+import exceptions.RideAlreadyExistException;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -23,6 +20,10 @@ import javax.jws.WebService;
 public interface BLFacade  {
 	  
 
+	@WebMethod public List<String> getSourceLocations();
+	@WebMethod public List<String> getDestinationLocations(String from);
+
+
 	/**
 	 * This method creates a ride for a driver
 	 * 
@@ -33,11 +34,11 @@ public interface BLFacade  {
 	 * @param driver to which ride is added
 	 * 
 	 * @return the created ride, or null, or an exception
-	 * @throws RideMustBeLaterThanToday if the ride date is before today 
- 	 * @throws RideAlreadyExist if the same ride already exists for the driver
+	 * @throws RideMustBeLaterThanTodayException if the ride date is before today 
+ 	 * @throws RideAlreadyExistException if the same ride already exists for the driver
 	 */
    @WebMethod
-   public Ride createRide( String from, String to, Date date, int nPlaces, Driver driver) throws RideMustBeLaterThanToday, RideAlreadyExist;
+   public Ride createRide( String from, String to, Date date, int nPlaces, float price, Driver driver) throws RideMustBeLaterThanTodayException, RideAlreadyExistException;
 	
 	
 	/**
@@ -63,6 +64,9 @@ public interface BLFacade  {
 	 * This method calls the data access to initialize the database with some events and questions.
 	 * It is invoked only when the option "initialize" is declared in the tag dataBaseOpenMode of resources/config.xml file
 	 */	
+	
+	
+	
 	@WebMethod public void initializeBD();
 
 	

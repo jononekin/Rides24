@@ -25,6 +25,8 @@ import java.awt.event.ActionEvent;
 
 public class MainGUI extends JFrame {
 	
+	private Driver fooDriver=new Driver("driver2@gmil.com","Ane Gaztañaga");
+
 	private static final long serialVersionUID = 1L;
 
 	private JPanel jContentPane = null;
@@ -113,7 +115,7 @@ public class MainGUI extends JFrame {
 			jButtonCreateQuery.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.CreateRide"));
 			jButtonCreateQuery.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					JFrame a = new CreateRideGUI(new Vector<Driver>());
+					JFrame a = new CreateRideGUI(fooDriver);
 					a.setVisible(true);
 				}
 			});
@@ -132,7 +134,7 @@ public class MainGUI extends JFrame {
 			jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.QueryRides"));
 			jButtonQueryQueries.addActionListener(new java.awt.event.ActionListener() {
 				public void actionPerformed(java.awt.event.ActionEvent e) {
-					JFrame a = new FindQuestionsGUI();
+					JFrame a = new FindRidesGUI();
 
 					a.setVisible(true);
 				}

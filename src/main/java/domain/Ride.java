@@ -23,6 +23,7 @@ public class Ride implements Serializable {
 	private String to;
 	private int nPlaces;
 	private Date date;
+	private float price;
 	@XmlIDREF
 	private Driver driver;  
 	
@@ -30,22 +31,26 @@ public class Ride implements Serializable {
 		super();
 	}
 	
-	public Ride(Integer rideNumber, String from, String to, Date date, int nPlaces, Driver driver) {
+	public Ride(Integer rideNumber, String from, String to, Date date, int nPlaces, float price, Driver driver) {
 		super();
 		this.rideNumber = rideNumber;
 		this.from = from;
 		this.to = to;
 		this.nPlaces = nPlaces;
 		this.date=date;
+		this.price=price;
 		this.driver = driver;
 	}
 
-	public Ride(String from, String to,  Date date, int nPlaces, Driver driver) {
+	
+
+	public Ride(String from, String to,  Date date, int nPlaces, float price, Driver driver) {
 		super();
 		this.from = from;
 		this.to = to;
 		this.nPlaces = nPlaces;
 		this.date=date;
+		this.price=price;
 		this.driver = driver;
 	}
 	
@@ -166,6 +171,13 @@ public class Ride implements Serializable {
 		this.driver = driver;
 	}
 
+	public float getPrice() {
+		return price;
+	}
+
+	public void setPrice(float price) {
+		this.price = price;
+	}
 
 
 

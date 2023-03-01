@@ -1,15 +1,15 @@
 package exceptions;
-public class RideMustBeLaterThanToday extends Exception {
+public class RideMustBeLaterThanTodayException extends Exception {
  private static final long serialVersionUID = 1L;
  
- public RideMustBeLaterThanToday()
+ public RideMustBeLaterThanTodayException()
   {
     super();
   }
   /**This exception is triggered if the event has already finished
   *@param s String of the exception
   */
-  public RideMustBeLaterThanToday(String s)
+  public RideMustBeLaterThanTodayException(String s)
   {
     super(s);
   }

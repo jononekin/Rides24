@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
+import javax.jws.WebMethod;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -19,7 +20,7 @@ import configuration.ConfigXML;
 import configuration.UtilDate;
 import domain.Driver;
 import domain.Ride;
-import exceptions.RideAlreadyExist;
+import exceptions.RideAlreadyExistException;
 
 /**
  * It implements the data access to the objectDb database
@@ -58,7 +59,7 @@ public class DataAccess  {
 		   int month=today.get(Calendar.MONTH);
 		   month+=1;
 		   int year=today.get(Calendar.YEAR);
-		   if (month==12) { month=0; year+=1;}  
+		   if (month==12) { month=1; year+=1;}  
 	    
 		   
 		    //Create drivers 
@@ -66,13 +67,14 @@ public class DataAccess  {
 			Driver driver2=new Driver("driver2@gmil.com","Ane Gaztañaga");
 			
 			//Create rides
-			driver1.addRide("Donostia", "Bilbo", UtilDate.newDate(year,month,5), 4);
-			driver1.addRide("Donostia", "Gazteiz", UtilDate.newDate(year,month,6), 4);
-			driver1.addRide("Donostia", "Iruña", UtilDate.newDate(year,month,7), 4);
+			driver1.addRide("Donostia", "Bilbo", UtilDate.newDate(year,month,5), 4, 7);
+			driver1.addRide("Donostia", "Gazteiz", UtilDate.newDate(year,month,6), 4, 8);
+			driver1.addRide("Donostia", "Iruña", UtilDate.newDate(year,month,7), 4, 8);
 			
-			
-			driver1.addRide("Donostia", "Bilbo", UtilDate.newDate(year,month,5), 2);
-			driver1.addRide("Donostia", "Gazteiz", UtilDate.newDate(year,month,6), 2);
+			driver2.addRide("Bilbo", "Donostia", UtilDate.newDate(year,month,5), 2, 5);
+			driver2.addRide("Eibar", "Gasteiz", UtilDate.newDate(year,month,6), 2, 5);
+
+
 			
 			//Driver ev20=new Driver(20, "Betis-Real Madrid", UtilDate.newDate(year,month+1,28));
 						
@@ -86,7 +88,20 @@ public class DataAccess  {
 			e.printStackTrace();
 		}
 	}
+	public List<String> getSourceLocations(){
+			TypedQuery<String> query = db.createQuery("SELECT DISTINCT r.from FROM Ride r ORDER BY r.from", String.class);
+			List<String> cities = query.getResultList();
+			return cities;
+		
+	}
 	
+	public List<String> getDestinationLocations(String from){
+		TypedQuery<String> query = db.createQuery("SELECT DISTINCT r.to FROM Ride r WHERE r.from=?1 ORDER BY r.to",String.class);
+		query.setParameter(1, from);
+		List<String> arrivingCities = query.getResultList(); 
+		return arrivingCities;
+		
+	}
 	/**
 	 * This method creates a question for an event, with a question text and the minimum bet
 	 * 
@@ -94,17 +109,17 @@ public class DataAccess  {
 	 * @param question text of the question
 	 * @param betMinimum minimum quantity of the bet
 	 * @return the created question, or null, or an exception
- 	 * @throws RideAlreadyExist if the same question already exists for the event
+ 	 * @throws RideAlreadyExistException if the same question already exists for the event
 	 */
-	public Ride createRide(String from, String to, Date date, int nPlaces, Driver d) throws  RideAlreadyExist {
+	public Ride createRide(String from, String to, Date date, int nPlaces, float price, Driver d) throws  RideAlreadyExistException {
 		System.out.println(">> DataAccess: createRide=> from= "+from+" to= "+to+" driver="+d.getName()+" date "+date);
 		
 			Driver driver = db.find(Driver.class, d.getEmail());
 			
-			if (driver.DoesRideExists(from, to, date)) throw new RideAlreadyExist(ResourceBundle.getBundle("Etiquetas").getString("ErrorQueryAlreadyExist"));
+			if (driver.DoesRideExists(from, to, date)) throw new RideAlreadyExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.RideAlreadyExist"));
 			
 			db.getTransaction().begin();
-			Ride ride = driver.addRide(from, to, date, nPlaces);
+			Ride ride = driver.addRide(from, to, date, nPlaces, price);
 			//db.persist(q);
 			db.persist(driver); // db.persist(q) not required when CascadeType.PERSIST is added in rides property of Driver class
 							// @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
@@ -120,7 +135,9 @@ public class DataAccess  {
 	 * @return collection of events
 	 */
 	public Vector<Ride> getRides(String from, String to, Date date) {
-		System.out.println(">> DataAccess: getEvents");
+		System.out.println(">> DataAccess: getRides");
+		System.out.println(">> DataAccess: getRides=> from= "+from+" to= "+to+" date "+date);
+
 		Vector<Ride> res = new Vector<Ride>();	
 		TypedQuery<Ride> query = db.createQuery("SELECT r FROM Ride r WHERE r.from=?1 AND r.to=?2 AND r.date=?3",Ride.class);   
 		query.setParameter(1, from);
