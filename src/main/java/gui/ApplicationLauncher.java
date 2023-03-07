@@ -10,6 +10,7 @@ import javax.xml.ws.Service;
 
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
+import domain.Driver;
 import businessLogic.BLFacade;
 import businessLogic.BLFacadeImplementation;
 
@@ -27,24 +28,20 @@ public class ApplicationLauncher {
 		
 		System.out.println("Locale: "+Locale.getDefault());
 		
-		MainGUI a=new MainGUI();
+	    Driver driver=new Driver("driver3@gmil.com","Test Driver");
+
+		
+		MainGUI a=new MainGUI(driver);
 		a.setVisible(true);
 
 
 		try {
 			
 			BLFacade appFacadeInterface;
-//			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");
-//			UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
 			UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
 			
 			if (c.isBusinessLogicLocal()) {
-				
-				//In this option the DataAccess is created by FacadeImplementationWS
-				//appFacadeInterface=new BLFacadeImplementation();
-
-				//In this option, you can parameterize the DataAccess (e.g. a Mock DataAccess object)
-
+			
 				DataAccess da= new DataAccess(c.getDataBaseOpenMode().equals("initialize"));
 				appFacadeInterface=new BLFacadeImplementation(da);
 
@@ -68,9 +65,7 @@ public class ApplicationLauncher {
 
 		         appFacadeInterface = service.getPort(BLFacade.class);
 			} 
-			/*if (c.getDataBaseOpenMode().equals("initialize")) 
-				appFacadeInterface.initializeBD();
-				*/
+			
 			MainGUI.setBussinessLogic(appFacadeInterface);
 
 		

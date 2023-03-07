@@ -49,30 +49,16 @@ public class CreateRideGUI extends JFrame {
 	private JLabel jLabelMsg = new JLabel();
 	private JLabel jLabelError = new JLabel();
 	
-	private Vector<Date> datesWithEventsCurrentMonth = new Vector<Date>();
+	private Vector<Date> datesWithEventsCurrentMonth;
 
-
-//	public CreateRideGUI(Driver driver) {
-//		try {
-//			jbInit(driver);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
 
 	public CreateRideGUI(Driver driver) {
 
 		this.driver=driver;
 		this.getContentPane().setLayout(null);
 		this.setSize(new Dimension(604, 370));
-		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("CreateQuery"));
+		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.CreateRide"));
 
-	/*	jComboBoxOrigin.setModel(originLocations);
-		jComboBoxOrigin.setBounds(new Rectangle(25, 50, 250, 20));
-		
-		jComboBoxDestination.setModel(destinationLocations);
-		jComboBoxDestination.setBounds(new Rectangle(25, 120, 250, 20));
-	*/	
 		jLabelOrigin.setBounds(new Rectangle(6, 56, 92, 20));
 		jLabelSeats.setBounds(new Rectangle(6, 119, 173, 20));
 		jTextFieldSeats.setBounds(new Rectangle(139, 119, 60, 20));
@@ -84,7 +70,6 @@ public class CreateRideGUI extends JFrame {
 		scrollPaneEvents.setBounds(new Rectangle(25, 44, 346, 116));
 
 		jButtonCreate.setBounds(new Rectangle(100, 223, 130, 30));
-		//jButtonCreate.setEnabled(false);
 
 		jButtonCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -100,7 +85,6 @@ public class CreateRideGUI extends JFrame {
 
 		jLabelMsg.setBounds(new Rectangle(275, 182, 305, 20));
 		jLabelMsg.setForeground(Color.red);
-		// jLabelMsg.setSize(new Dimension(305, 20));
 
 		jLabelError.setBounds(new Rectangle(210, 163, 73, 20));
 		jLabelError.setForeground(Color.red);
@@ -114,8 +98,7 @@ public class CreateRideGUI extends JFrame {
 
 		this.getContentPane().add(jLabelSeats, null);
 		this.getContentPane().add(jLabelOrigin, null);
-		//this.getContentPane().add(jComboBoxOrigin, null);
-		//this.getContentPane().add(jComboBoxDestination, null);
+		
 
 		
 
@@ -128,11 +111,8 @@ public class CreateRideGUI extends JFrame {
 		
 		
 		BLFacade facade = MainGUI.getBusinessLogic();
-		datesWithEventsCurrentMonth=facade.getDatesWithRides("a","b",jCalendar.getDate());
-		//paintDaysWithEvents(jCalendar,datesWithEventsCurrentMonth);
+		datesWithEventsCurrentMonth=facade.getDatesWithRides("a","b",jCalendar.getDate());		
 		
-		
-
 		jLabRideDate.setBounds(new Rectangle(40, 15, 140, 25));
 		jLabRideDate.setBounds(298, 16, 140, 25);
 		getContentPane().add(jLabRideDate);
@@ -188,82 +168,7 @@ public class CreateRideGUI extends JFrame {
 				Component o = (Component) jCalendar.getDayChooser().getDayPanel().getComponent(jCalendar.getCalendar().get(Calendar.DAY_OF_MONTH) + offset);
 				}}});
 		
-	}
-		
-////		// Code for JCalendar
-//		this.jCalendar.addPropertyChangeListener(new PropertyChangeListener() {
-//			public void propertyChange(PropertyChangeEvent propertychangeevent) {
-////				this.jCalendar.addPropertyChangeListener(new PropertyChangeListener() {
-////					public void propertyChange(PropertyChangeEvent propertychangeevent) {
-//				if (propertychangeevent.getPropertyName().equals("locale")) {
-//					jCalendar.setLocale((Locale) propertychangeevent.getNewValue());
-//				} else if (propertychangeevent.getPropertyName().equals("calendar")) {
-//					calendarAnt = (Calendar) propertychangeevent.getOldValue();
-//					calendarAct = (Calendar) propertychangeevent.getNewValue();
-//					System.out.println("calendarAnt: "+calendarAnt.getTime());
-//					System.out.println("calendarAct: "+calendarAct.getTime());
-//					DateFormat dateformat1 = DateFormat.getDateInstance(1, jCalendar.getLocale());
-//					
-//					int monthAnt = calendarAnt.get(Calendar.MONTH);
-//					int monthAct = calendarAct.get(Calendar.MONTH);
-//					if (monthAct!=monthAnt) {
-//						if (monthAct==monthAnt+2) { 
-//							// Si en JCalendar está 30 de enero y se avanza al mes siguiente, devolverá 2 de marzo (se toma como equivalente a 30 de febrero)
-//							// Con este código se dejará como 1 de febrero en el JCalendar
-//							calendarAct.set(Calendar.MONTH, monthAnt+1);
-//							calendarAct.set(Calendar.DAY_OF_MONTH, 1);
-//						}
-//						
-//						jCalendar.setCalendar(calendarAct);
-//						
-//	
-//					}
-//				});
-//
-//
-//
-//					paintDaysWithEvents(jCalendar,datesWithEventsCurrentMonth);
-//
-//					//	Date firstDay = UtilDate.trim(new Date(jCalendar.getCalendar().getTime().getTime()));
-//					Date firstDay = UtilDate.trim(calendarAct.getTime());
-//
-//					try {
-//						BLFacade facade = MainGUI.getBusinessLogic();
-//
-//						Vector<domain.Ride> rides = facade.getRides("a","b",firstDay);
-//
-//						if (rides.isEmpty())
-//							jLabelOrigin.setText(ResourceBundle.getBundle("Etiquetas").getString("NoEvents")
-//									+ ": " + dateformat1.format(calendarAct.getTime()));
-//						else
-//							jLabelOrigin.setText(ResourceBundle.getBundle("Etiquetas").getString("Events") + ": "
-//									+ dateformat1.format(calendarAct.getTime()));
-//						//jComboBoxOrigin.removeAllItems();
-//						System.out.println("Events " + rides);
-//
-//						/*for (domain.Ride ride : rides)
-//							originLocations.addElement(ride.toString());
-//						jComboBoxOrigin.repaint();
-//*/
-//						if (rides.size() == 0)
-//							jButtonCreate.setEnabled(false);
-//						else
-//							jButtonCreate.setEnabled(true);
-//
-//					} catch (Exception e1) {
-//
-//						jLabelError.setText(e1.getMessage());
-//					}
-//
-//				}
-//			}
-//		});
-
-
-	
-//
-	
-	 
+	}	 
 	private void jButtonCreate_actionPerformed(ActionEvent e) {
 		//domain.Driver event = ((domain.Driver) jComboBoxOrigin.getSelectedItem());
 
@@ -284,8 +189,6 @@ public class CreateRideGUI extends JFrame {
 				else {
 					float price = Float.parseFloat(jTextFieldPrice.getText());
 					//check price.....
-					
-					
 					
 					// Obtain the business logic from a StartWindow class (local or remote)
 					BLFacade facade = MainGUI.getBusinessLogic();

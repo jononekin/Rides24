@@ -65,23 +65,23 @@ public class DataAccess  {
 		    //Create drivers 
 			Driver driver1=new Driver("driver1@gmil.com","Aitor Fernández");
 			Driver driver2=new Driver("driver2@gmil.com","Ane Gaztañaga");
+			Driver driver3=new Driver("driver3@gmil.com","Test driver");
+
 			
 			//Create rides
-			driver1.addRide("Donostia", "Bilbo", UtilDate.newDate(year,month,5), 4, 7);
+			driver1.addRide("Donostia", "Bilbo", UtilDate.newDate(year,month,15), 4, 7);
 			driver1.addRide("Donostia", "Gazteiz", UtilDate.newDate(year,month,6), 4, 8);
 			driver1.addRide("Donostia", "Iruña", UtilDate.newDate(year,month,7), 4, 8);
 			
-			driver2.addRide("Donostia", "Bilbo", UtilDate.newDate(year,month,5), 3, 3);
-
-			driver2.addRide("Bilbo", "Donostia", UtilDate.newDate(year,month,5), 2, 5);
+			driver2.addRide("Donostia", "Bilbo", UtilDate.newDate(year,month,15), 3, 3);
+			driver2.addRide("Bilbo", "Donostia", UtilDate.newDate(year,month,15), 2, 5);
 			driver2.addRide("Eibar", "Gasteiz", UtilDate.newDate(year,month,6), 2, 5);
 
-
-			
-			//Driver ev20=new Driver(20, "Betis-Real Madrid", UtilDate.newDate(year,month+1,28));
 						
 			db.persist(driver1);
 			db.persist(driver2);
+			db.persist(driver3);
+
 	
 			db.getTransaction().commit();
 			System.out.println("Db initialized");
