@@ -19,13 +19,13 @@ import javax.swing.table.DefaultTableModel;
 public class FindRidesGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 
-	
+
 	private JComboBox<String> jComboBoxOrigin = new JComboBox<String>();
 	DefaultComboBoxModel<String> originLocations = new DefaultComboBoxModel<String>();
-	
+
 	private JComboBox<String> jComboBoxDestination = new JComboBox<String>();
 	DefaultComboBoxModel<String> destinationLocations = new DefaultComboBoxModel<String>();
-	
+
 	private JLabel jLabelOrigin = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.LeavingFrom"));
 	private JLabel jLabelDestination = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.GoingTo"));
 	private final JLabel jLabelEventDate = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("EventDate"));
@@ -38,36 +38,21 @@ public class FindRidesGUI extends JFrame {
 	private Calendar calendarAnt = null;
 	private Calendar calendarAct = null;
 	private JScrollPane scrollPaneEvents = new JScrollPane();
-	
+
 	private Vector<Date> datesWithEventsCurrentMonth = new Vector<Date>();
 
 	private JTable tableRides= new JTable();
 
 	private DefaultTableModel tableModelRides;
 
-	
+
 	private String[] columnNamesRides = new String[] {
 			ResourceBundle.getBundle("Etiquetas").getString("FindRidesGUI.Driver"), 
 			ResourceBundle.getBundle("Etiquetas").getString("FindRidesGUI.NPlaces"), 
 			ResourceBundle.getBundle("Etiquetas").getString("FindRidesGUI.Price")
 	};
 
-	
-	
 
-//	public FindRidesGUI()
-//	{
-//		try
-//		{
-//			jbInit();
-//		}
-//		catch(Exception e)
-//		{
-//			e.printStackTrace();
-//		}
-//	}
-
-	
 	public FindRidesGUI()
 	{
 
@@ -92,10 +77,8 @@ public class FindRidesGUI extends JFrame {
 		});
 		BLFacade facade = MainGUI.getBusinessLogic();
 		List<String> origins=facade.getSourceLocations();
+		
 		for(String location:origins) originLocations.addElement(location);
-		
-		
-		
 		
 		jLabelOrigin.setBounds(new Rectangle(6, 56, 92, 20));
 		jLabelDestination.setBounds(6, 81, 61, 16);
@@ -112,20 +95,20 @@ public class FindRidesGUI extends JFrame {
 				BLFacade facade = MainGUI.getBusinessLogic();
 
 				List<String> aCities=facade.getDestinationLocations((String)jComboBoxOrigin.getSelectedItem());
-			    for(String aciti:aCities) {
-			    	destinationLocations.addElement(aciti);
-			    }
-			    
-				
+				for(String aciti:aCities) {
+					destinationLocations.addElement(aciti);
+				}
+
+
 			}
 		});
-		
-		
+
+
 		jComboBoxDestination.setModel(destinationLocations);
 		jComboBoxDestination.setBounds(new Rectangle(103, 80, 172, 20));
 		jComboBoxDestination.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
-				
+
 				paintDaysWithEvents(jCalendar1,datesWithEventsCurrentMonth,Color.LIGHT_GRAY);
 
 				BLFacade facade = MainGUI.getBusinessLogic();
@@ -138,7 +121,7 @@ public class FindRidesGUI extends JFrame {
 
 		this.getContentPane().add(jButtonClose, null);
 		this.getContentPane().add(jComboBoxOrigin, null);
-		
+
 		this.getContentPane().add(jComboBoxDestination, null);
 
 
@@ -160,14 +143,14 @@ public class FindRidesGUI extends JFrame {
 					calendarAnt = (Calendar) propertychangeevent.getOldValue();
 					calendarAct = (Calendar) propertychangeevent.getNewValue();
 					DateFormat dateformat1 = DateFormat.getDateInstance(1, jCalendar1.getLocale());
-//					jCalendar1.setCalendar(calendarAct);
+					//					jCalendar1.setCalendar(calendarAct);
 					Date firstDay=UtilDate.trim(new Date(jCalendar1.getCalendar().getTime().getTime()));
 
-					 
-					
+
+
 					int monthAnt = calendarAnt.get(Calendar.MONTH);
 					int monthAct = calendarAct.get(Calendar.MONTH);
-					
+
 					if (monthAct!=monthAnt) {
 						if (monthAct==monthAnt+2) {
 							// Si en JCalendar está 30 de enero y se avanza al mes siguiente, devolvería 2 de marzo (se toma como equivalente a 30 de febrero)
@@ -175,11 +158,11 @@ public class FindRidesGUI extends JFrame {
 							calendarAct.set(Calendar.MONTH, monthAnt+1);
 							calendarAct.set(Calendar.DAY_OF_MONTH, 1);
 						}						
-						
+
 						jCalendar1.setCalendar(calendarAct);
 
 					}
-													
+
 					try {
 						tableModelRides.setDataVector(null, columnNamesRides);
 						tableModelRides.setColumnCount(4); // another column added to allocate ride objects
@@ -198,10 +181,10 @@ public class FindRidesGUI extends JFrame {
 							row.add(ride); // ev object added in order to obtain it with tableModelEvents.getValueAt(i,3)
 							tableModelRides.addRow(row);		
 						}
-						
+
 					} catch (Exception e1) {
 
-						//jLabelQueries.setText(e1.getMessage());
+						e1.printStackTrace();
 					}
 					tableRides.getColumnModel().getColumn(0).setPreferredWidth(170);
 					tableRides.getColumnModel().getColumn(1).setPreferredWidth(30);
@@ -213,17 +196,17 @@ public class FindRidesGUI extends JFrame {
 		});
 
 		this.getContentPane().add(jCalendar1, null);
-		
+
 		scrollPaneEvents.setBounds(new Rectangle(172, 257, 346, 150));
 
 		scrollPaneEvents.setViewportView(tableRides);
 		tableModelRides = new DefaultTableModel(null, columnNamesRides);
 
 		tableRides.setModel(tableModelRides);
-		
+
 		tableModelRides.setDataVector(null, columnNamesRides);
 		tableModelRides.setColumnCount(4); // another column added to allocate ride objects
-		
+
 		tableRides.getColumnModel().getColumn(0).setPreferredWidth(170);
 		tableRides.getColumnModel().getColumn(1).setPreferredWidth(30);
 		tableRides.getColumnModel().getColumn(1).setPreferredWidth(30);
@@ -234,15 +217,15 @@ public class FindRidesGUI extends JFrame {
 
 	}
 	public static void paintDaysWithEvents(JCalendar jCalendar,Vector<Date> datesWithEventsCurrentMonth, Color color) {
-//		// For each day with events in current month, the background color for that day is changed to cyan.
+		//		// For each day with events in current month, the background color for that day is changed to cyan.
 
-		
+
 		Calendar calendar = jCalendar.getCalendar();
-		
+
 		int month = calendar.get(Calendar.MONTH);
 		int today=calendar.get(Calendar.DAY_OF_MONTH);
 		int year=calendar.get(Calendar.YEAR);
-		
+
 		calendar.set(Calendar.DAY_OF_MONTH, 1);
 		int offset = calendar.get(Calendar.DAY_OF_WEEK);
 
@@ -250,15 +233,15 @@ public class FindRidesGUI extends JFrame {
 			offset += 4;
 		else
 			offset += 5;
-		
-		
-	 	for (Date d:datesWithEventsCurrentMonth){
 
-	 		calendar.setTime(d);
-	 		System.out.println(d);
-	 		
 
-			
+		for (Date d:datesWithEventsCurrentMonth){
+
+			calendar.setTime(d);
+			System.out.println(d);
+
+
+
 			// Obtain the component of the day in the panel of the DayChooser of the
 			// JCalendar.
 			// The component is located after the decorator buttons of "Sun", "Mon",... or
@@ -266,18 +249,18 @@ public class FindRidesGUI extends JFrame {
 			// the empty days before day 1 of month, and all the days previous to each day.
 			// That number of components is calculated with "offset" and is different in
 			// English and Spanish
-//			    		  Component o=(Component) jCalendar.getDayChooser().getDayPanel().getComponent(i+offset);; 
+			//			    		  Component o=(Component) jCalendar.getDayChooser().getDayPanel().getComponent(i+offset);; 
 			Component o = (Component) jCalendar.getDayChooser().getDayPanel()
 					.getComponent(calendar.get(Calendar.DAY_OF_MONTH) + offset);
 			o.setBackground(color);
-	 	}
-	 	
- 			calendar.set(Calendar.DAY_OF_MONTH, today);
-	 		calendar.set(Calendar.MONTH, month);
-	 		calendar.set(Calendar.YEAR, year);
+		}
 
- 	
-}
+		calendar.set(Calendar.DAY_OF_MONTH, today);
+		calendar.set(Calendar.MONTH, month);
+		calendar.set(Calendar.YEAR, year);
+
+
+	}
 	private void jButton2_actionPerformed(ActionEvent e) {
 		this.setVisible(false);
 	}

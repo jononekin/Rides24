@@ -1,0 +1,506 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2023-03-07 10:22:27 #1 store] 
+Database '/Users/joniturrioz/git/Ride24/src/main/resources/bets.temp' is opened by 2102@despacho.local
+
+[2023-03-07 10:22:27 #2 type.registry] 
+New type domain.Driver
+
+[2023-03-07 10:22:27 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2023-03-07 10:22:27 #4 type.registry] 
+New type domain.Ride
+
+[2023-03-07 10:22:27 #5 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2023-03-07 10:22:27 #6 type] 
+Type domain.Ride is not enhanced.
+
+[2023-03-07 10:22:27 #7 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2023-03-07 10:28:15 #1 store] 
+Database '/Users/joniturrioz/git/Ride24/src/main/resources/bets.temp' is opened by 2133@despacho.local
+
+[2023-03-07 10:28:15 #2 type.registry] 
+New type domain.Driver
+
+[2023-03-07 10:28:15 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2023-03-07 10:28:15 #4 type.registry] 
+New type domain.Ride
+
+[2023-03-07 10:28:15 #5 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2023-03-07 10:28:15 #6 type] 
+Type domain.Ride is not enhanced.
+
+[2023-03-07 10:28:15 #7 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2023-03-07 10:30:01 #1 store] 
+Database '/Users/joniturrioz/git/Ride24/src/main/resources/bets.temp' is opened by 2150@despacho.local
+
+[2023-03-07 10:30:01 #2 type.registry] 
+New type domain.Driver
+
+[2023-03-07 10:30:01 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2023-03-07 10:30:01 #4 type.registry] 
+New type domain.Ride
+
+[2023-03-07 10:30:01 #5 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2023-03-07 10:30:01 #6 type] 
+Type domain.Ride is not enhanced.
+
+[2023-03-07 10:30:01 #7 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2023-03-07 10:33:12 #1 store] 
+Database '/Users/joniturrioz/git/Ride24/src/main/resources/bets.temp' is opened by 2165@despacho.local
+
+[2023-03-07 10:33:12 #2 type.registry] 
+New type domain.Driver
+
+[2023-03-07 10:33:12 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2023-03-07 10:33:12 #4 type.registry] 
+New type domain.Ride
+
+[2023-03-07 10:33:12 #5 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2023-03-07 10:33:12 #6 type] 
+Type domain.Ride is not enhanced.
+
+[2023-03-07 10:33:12 #7 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2023-03-07 10:35:01 #1 store] 
+Database '/Users/joniturrioz/git/Ride24/src/main/resources/bets.temp' is opened by 2181@despacho.local
+
+[2023-03-07 10:35:01 #2 type.registry] 
+New type domain.Driver
+
+[2023-03-07 10:35:01 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2023-03-07 10:35:01 #4 type.registry] 
+New type domain.Ride
+
+[2023-03-07 10:35:01 #5 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2023-03-07 10:35:01 #6 type] 
+Type domain.Ride is not enhanced.
+
+[2023-03-07 10:35:01 #7 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2023-03-07 10:40:04 #1 store] 
+Database '/Users/joniturrioz/git/Ride24/src/main/resources/bets.temp' is opened by 2223@despacho.local
+
+[2023-03-07 10:40:04 #2 type.registry] 
+New type domain.Driver
+
+[2023-03-07 10:40:04 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2023-03-07 10:40:04 #4 type.registry] 
+New type domain.Ride
+
+[2023-03-07 10:40:04 #5 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2023-03-07 10:40:04 #6 type] 
+Type domain.Ride is not enhanced.
+
+[2023-03-07 10:40:04 #7 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2023-03-07 10:40:55 #1 store] 
+Database '/Users/joniturrioz/git/Ride24/src/main/resources/bets.temp' is opened by 2229@despacho.local
+
+[2023-03-07 10:40:55 #2 type.registry] 
+New type domain.Driver
+
+[2023-03-07 10:40:55 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2023-03-07 10:40:55 #4 type.registry] 
+New type domain.Ride
+
+[2023-03-07 10:40:55 #5 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2023-03-07 10:40:55 #6 type] 
+Type domain.Ride is not enhanced.
+
+[2023-03-07 10:40:55 #7 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2023-03-07 10:41:42 #1 store] 
+Database '/Users/joniturrioz/git/Ride24/src/main/resources/bets.temp' is opened by 2238@despacho.local
+
+[2023-03-07 10:41:43 #2 type.registry] 
+New type domain.Driver
+
+[2023-03-07 10:41:43 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2023-03-07 10:41:43 #4 type.registry] 
+New type domain.Ride
+
+[2023-03-07 10:41:43 #5 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2023-03-07 10:41:43 #6 type] 
+Type domain.Ride is not enhanced.
+
+[2023-03-07 10:41:43 #7 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2023-03-07 10:43:15 #1 store] 
+Database '/Users/joniturrioz/git/Ride24/src/main/resources/bets.temp' is opened by 2251@despacho.local
+
+[2023-03-07 10:43:15 #2 type.registry] 
+New type domain.Driver
+
+[2023-03-07 10:43:15 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2023-03-07 10:43:15 #4 type.registry] 
+New type domain.Ride
+
+[2023-03-07 10:43:15 #5 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2023-03-07 10:43:15 #6 type] 
+Type domain.Ride is not enhanced.
+
+[2023-03-07 10:43:15 #7 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2023-03-07 10:45:06 #1 store] 
+Database '/Users/joniturrioz/git/Ride24/src/main/resources/bets.temp' is opened by 2266@despacho.local
+
+[2023-03-07 10:45:06 #2 type.registry] 
+New type domain.Driver
+
+[2023-03-07 10:45:06 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2023-03-07 10:45:06 #4 type.registry] 
+New type domain.Ride
+
+[2023-03-07 10:45:06 #5 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2023-03-07 10:45:06 #6 type] 
+Type domain.Ride is not enhanced.
+
+[2023-03-07 10:45:06 #7 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2023-03-07 10:45:37 #1 store] 
+Database '/Users/joniturrioz/git/Ride24/src/main/resources/bets.temp' is opened by 2274@despacho.local
+
+[2023-03-07 10:45:38 #2 type.registry] 
+New type domain.Driver
+
+[2023-03-07 10:45:38 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2023-03-07 10:45:38 #4 type.registry] 
+New type domain.Ride
+
+[2023-03-07 10:45:38 #5 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2023-03-07 10:45:38 #6 type] 
+Type domain.Ride is not enhanced.
+
+[2023-03-07 10:45:38 #7 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2023-03-07 10:46:27 #1 store] 
+Database '/Users/joniturrioz/git/Ride24/src/main/resources/bets.temp' is opened by 2278@despacho.local
+
+[2023-03-07 10:46:27 #2 type.registry] 
+New type domain.Driver
+
+[2023-03-07 10:46:27 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2023-03-07 10:46:27 #4 type.registry] 
+New type domain.Ride
+
+[2023-03-07 10:46:27 #5 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2023-03-07 10:46:27 #6 type] 
+Type domain.Ride is not enhanced.
+
+[2023-03-07 10:46:27 #7 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2023-03-07 10:46:55 #1 store] 
+Database '/Users/joniturrioz/git/Ride24/src/main/resources/bets.temp' is opened by 2287@despacho.local
+
+[2023-03-07 10:46:56 #2 type.registry] 
+New type domain.Driver
+
+[2023-03-07 10:46:56 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2023-03-07 10:46:56 #4 type.registry] 
+New type domain.Ride
+
+[2023-03-07 10:46:56 #5 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2023-03-07 10:46:56 #6 type] 
+Type domain.Ride is not enhanced.
+
+[2023-03-07 10:46:56 #7 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2023-03-07 10:53:14 #1 store] 
+Database '/Users/joniturrioz/git/Ride24/src/main/resources/bets.temp' is opened by 2319@despacho.local
+
+[2023-03-07 10:53:14 #2 type.registry] 
+New type domain.Driver
+
+[2023-03-07 10:53:14 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2023-03-07 10:53:14 #4 type.registry] 
+New type domain.Ride
+
+[2023-03-07 10:53:14 #5 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2023-03-07 10:53:14 #6 type] 
+Type domain.Ride is not enhanced.
+
+[2023-03-07 10:53:14 #7 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2023-03-07 10:54:20 #1 store] 
+Database '/Users/joniturrioz/git/Ride24/src/main/resources/bets.temp' is opened by 2343@despacho.local
+
+[2023-03-07 10:54:20 #2 type.registry] 
+New type domain.Driver
+
+[2023-03-07 10:54:20 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2023-03-07 10:54:20 #4 type.registry] 
+New type domain.Ride
+
+[2023-03-07 10:54:20 #5 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2023-03-07 10:54:20 #6 type] 
+Type domain.Ride is not enhanced.
+
+[2023-03-07 10:54:20 #7 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2023-03-07 10:55:11 #1 store] 
+Database '/Users/joniturrioz/git/Ride24/src/main/resources/bets.temp' is opened by 2352@despacho.local
+
+[2023-03-07 10:55:11 #2 type.registry] 
+New type domain.Driver
+
+[2023-03-07 10:55:11 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2023-03-07 10:55:11 #4 type.registry] 
+New type domain.Ride
+
+[2023-03-07 10:55:11 #5 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2023-03-07 10:55:11 #6 type] 
+Type domain.Ride is not enhanced.
+
+[2023-03-07 10:55:11 #7 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2023-03-07 10:55:52 #1 store] 
+Database '/Users/joniturrioz/git/Ride24/src/main/resources/bets.temp' is opened by 2361@despacho.local
+
+[2023-03-07 10:55:53 #2 type.registry] 
+New type domain.Driver
+
+[2023-03-07 10:55:53 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2023-03-07 10:55:53 #4 type.registry] 
+New type domain.Ride
+
+[2023-03-07 10:55:53 #5 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2023-03-07 10:55:53 #6 type] 
+Type domain.Ride is not enhanced.
+
+[2023-03-07 10:55:53 #7 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2023-03-07 10:57:28 #1 store] 
+Database '/Users/joniturrioz/git/Ride24/src/main/resources/bets.temp' is opened by 2384@despacho.local
+
+[2023-03-07 10:57:28 #2 type.registry] 
+New type domain.Driver
+
+[2023-03-07 10:57:28 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2023-03-07 10:57:28 #4 type.registry] 
+New type domain.Ride
+
+[2023-03-07 10:57:28 #5 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2023-03-07 10:57:28 #6 type] 
+Type domain.Ride is not enhanced.
+
+[2023-03-07 10:57:28 #7 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2023-03-07 10:57:42 #1 store] 
+Database '/Users/joniturrioz/git/Ride24/src/main/resources/bets.temp' is opened by 2401@despacho.local
+
+[2023-03-07 10:57:42 #2 type.registry] 
+New type domain.Driver
+
+[2023-03-07 10:57:42 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2023-03-07 10:57:42 #4 type.registry] 
+New type domain.Ride
+
+[2023-03-07 10:57:42 #5 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2023-03-07 10:57:42 #6 type] 
+Type domain.Ride is not enhanced.
+
+[2023-03-07 10:57:42 #7 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2023-03-07 10:58:12 #1 store] 
+Database '/Users/joniturrioz/git/Ride24/src/main/resources/bets.temp' is opened by 2405@despacho.local
+
+[2023-03-07 10:58:12 #2 type.registry] 
+New type domain.Driver
+
+[2023-03-07 10:58:12 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2023-03-07 10:58:12 #4 type.registry] 
+New type domain.Ride
+
+[2023-03-07 10:58:12 #5 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2023-03-07 10:58:12 #6 type] 
+Type domain.Ride is not enhanced.
+
+[2023-03-07 10:58:12 #7 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2023-03-07 11:06:44 #1 store] 
+Database '/Users/joniturrioz/git/Ride24/src/main/resources/bets.temp' is opened by 2529@despacho.local
+
+[2023-03-07 11:06:44 #2 type.registry] 
+New type domain.Driver
+
+[2023-03-07 11:06:44 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2023-03-07 11:06:44 #4 type.registry] 
+New type domain.Ride
+
+[2023-03-07 11:06:44 #5 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2023-03-07 11:06:44 #6 type] 
+Type domain.Ride is not enhanced.
+
+[2023-03-07 11:06:44 #7 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2023-03-07 11:08:15 #1 store] 
+Database '/Users/joniturrioz/git/Ride24/src/main/resources/bets.temp' is opened by 2567@despacho.local
+
+[2023-03-07 11:08:15 #2 type.registry] 
+New type domain.Driver
+
+[2023-03-07 11:08:15 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2023-03-07 11:08:15 #4 type.registry] 
+New type domain.Ride
+
+[2023-03-07 11:08:15 #5 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2023-03-07 11:08:15 #6 type] 
+Type domain.Ride is not enhanced.
+
+[2023-03-07 11:08:15 #7 type.registry] 
+New type java.util.Vector<java.lang.Object>
+

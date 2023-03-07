@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlIDREF;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -19,10 +20,10 @@ public class Driver implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@XmlID
-	@XmlJavaTypeAdapter(IntegerAdapter.class)
 	@Id 
 	private String email;
 	private String name; 
+	@XmlIDREF
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private Vector<Ride> rides=new Vector<Ride>();
 
