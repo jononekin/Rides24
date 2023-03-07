@@ -57,7 +57,7 @@ public class DataAccess  {
 		   Calendar today = Calendar.getInstance();
 		   
 		   int month=today.get(Calendar.MONTH);
-		   month+=1;
+		   //month+=1;
 		   int year=today.get(Calendar.YEAR);
 		   if (month==12) { month=1; year+=1;}  
 	    
@@ -71,6 +71,8 @@ public class DataAccess  {
 			driver1.addRide("Donostia", "Gazteiz", UtilDate.newDate(year,month,6), 4, 8);
 			driver1.addRide("Donostia", "Iruña", UtilDate.newDate(year,month,7), 4, 8);
 			
+			driver2.addRide("Donostia", "Bilbo", UtilDate.newDate(year,month,5), 3, 3);
+
 			driver2.addRide("Bilbo", "Donostia", UtilDate.newDate(year,month,5), 2, 5);
 			driver2.addRide("Eibar", "Gasteiz", UtilDate.newDate(year,month,6), 2, 5);
 

@@ -182,7 +182,7 @@ public class Ride implements Serializable {
 
 
 	public String toString(){
-		return rideNumber+";"+driver.getName()+";"+from+";"+to+";"+date;  
+		return rideNumber+";"+";"+from+";"+to+";"+date;  
 	}
 
 

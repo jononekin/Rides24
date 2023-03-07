@@ -113,7 +113,6 @@ public class FindRidesGUI extends JFrame {
 
 				List<String> aCities=facade.getDestinationLocations((String)jComboBoxOrigin.getSelectedItem());
 			    for(String aciti:aCities) {
-			    	System.out.println(aciti);
 			    	destinationLocations.addElement(aciti);
 			    }
 			    
@@ -124,6 +123,18 @@ public class FindRidesGUI extends JFrame {
 		
 		jComboBoxDestination.setModel(destinationLocations);
 		jComboBoxDestination.setBounds(new Rectangle(103, 80, 172, 20));
+		jComboBoxDestination.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				
+				paintDaysWithEvents(jCalendar1,datesWithEventsCurrentMonth,Color.LIGHT_GRAY);
+
+				BLFacade facade = MainGUI.getBusinessLogic();
+
+				datesWithEventsCurrentMonth=facade.getDatesWithRides((String)jComboBoxOrigin.getSelectedItem(),(String)jComboBoxDestination.getSelectedItem(),jCalendar1.getDate());
+				paintDaysWithEvents(jCalendar1,datesWithEventsCurrentMonth,Color.CYAN);
+
+			}
+		});
 
 		this.getContentPane().add(jButtonClose, null);
 		this.getContentPane().add(jComboBoxOrigin, null);
@@ -133,11 +144,9 @@ public class FindRidesGUI extends JFrame {
 
 		jCalendar1.setBounds(new Rectangle(300, 50, 225, 150));
 
-		//datesWithEventsCurrentMonth=facade.getEventsMonth(jCalendar1.getDate());
-		//CreateRideGUI.paintDaysWithEvents(jCalendar1,datesWithEventsCurrentMonth);
 
 		// Code for JCalendar
-		this.jCalendar1.addPropertyChangeListener(new PropertyChangeListener()
+		jCalendar1.addPropertyChangeListener(new PropertyChangeListener()
 		{
 			public void propertyChange(PropertyChangeEvent propertychangeevent)
 			{
@@ -169,17 +178,8 @@ public class FindRidesGUI extends JFrame {
 						
 						jCalendar1.setCalendar(calendarAct);
 
-						BLFacade facade = MainGUI.getBusinessLogic();
-
-						datesWithEventsCurrentMonth=facade.getDatesWithRides((String)jComboBoxOrigin.getSelectedItem(),(String)jComboBoxDestination.getSelectedItem(),jCalendar1.getDate());
 					}
-
-
-
-					//CreateRideGUI.paintDaysWithEvents(jCalendar1,datesWithEventsCurrentMonth);
 													
-					
-
 					try {
 						tableModelRides.setDataVector(null, columnNamesRides);
 						tableModelRides.setColumnCount(4); // another column added to allocate ride objects
@@ -192,9 +192,6 @@ public class FindRidesGUI extends JFrame {
 						else jLabelEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("Events")+ ": "+dateformat1.format(calendarAct.getTime()));
 						for (domain.Ride ride:rides){
 							Vector<Object> row = new Vector<Object>();
-
-							System.out.println("Ride "+ride);
-
 							row.add(ride.getDriver().getName());
 							row.add(ride.getnPlaces());
 							row.add(ride.getPrice());
@@ -219,8 +216,6 @@ public class FindRidesGUI extends JFrame {
 		
 		scrollPaneEvents.setBounds(new Rectangle(172, 257, 346, 150));
 
-		
-
 		scrollPaneEvents.setViewportView(tableRides);
 		tableModelRides = new DefaultTableModel(null, columnNamesRides);
 
@@ -238,7 +233,51 @@ public class FindRidesGUI extends JFrame {
 		this.getContentPane().add(scrollPaneEvents, null);
 
 	}
+	public static void paintDaysWithEvents(JCalendar jCalendar,Vector<Date> datesWithEventsCurrentMonth, Color color) {
+//		// For each day with events in current month, the background color for that day is changed to cyan.
 
+		
+		Calendar calendar = jCalendar.getCalendar();
+		
+		int month = calendar.get(Calendar.MONTH);
+		int today=calendar.get(Calendar.DAY_OF_MONTH);
+		int year=calendar.get(Calendar.YEAR);
+		
+		calendar.set(Calendar.DAY_OF_MONTH, 1);
+		int offset = calendar.get(Calendar.DAY_OF_WEEK);
+
+		if (Locale.getDefault().equals(new Locale("es")))
+			offset += 4;
+		else
+			offset += 5;
+		
+		
+	 	for (Date d:datesWithEventsCurrentMonth){
+
+	 		calendar.setTime(d);
+	 		System.out.println(d);
+	 		
+
+			
+			// Obtain the component of the day in the panel of the DayChooser of the
+			// JCalendar.
+			// The component is located after the decorator buttons of "Sun", "Mon",... or
+			// "Lun", "Mar"...,
+			// the empty days before day 1 of month, and all the days previous to each day.
+			// That number of components is calculated with "offset" and is different in
+			// English and Spanish
+//			    		  Component o=(Component) jCalendar.getDayChooser().getDayPanel().getComponent(i+offset);; 
+			Component o = (Component) jCalendar.getDayChooser().getDayPanel()
+					.getComponent(calendar.get(Calendar.DAY_OF_MONTH) + offset);
+			o.setBackground(color);
+	 	}
+	 	
+ 			calendar.set(Calendar.DAY_OF_MONTH, today);
+	 		calendar.set(Calendar.MONTH, month);
+	 		calendar.set(Calendar.YEAR, year);
+
+ 	
+}
 	private void jButton2_actionPerformed(ActionEvent e) {
 		this.setVisible(false);
 	}
