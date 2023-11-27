@@ -12,7 +12,7 @@ import exceptions.RideAlreadyExistException;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
-
+ 
 /**
  * Interface that specifies the business logic.
  */
