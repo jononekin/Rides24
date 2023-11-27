@@ -5,12 +5,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
-import javax.jws.WebMethod;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -21,6 +19,7 @@ import configuration.UtilDate;
 import domain.Driver;
 import domain.Ride;
 import exceptions.RideAlreadyExistException;
+import exceptions.RideMustBeLaterThanTodayException;
 
 /**
  * It implements the data access to the objectDb database
@@ -71,10 +70,12 @@ public class DataAccess  {
 			//Create rides
 			driver1.addRide("Donostia", "Bilbo", UtilDate.newDate(year,month,15), 4, 7);
 			driver1.addRide("Donostia", "Gazteiz", UtilDate.newDate(year,month,6), 4, 8);
+			driver1.addRide("Bilbo", "Donostia", UtilDate.newDate(year,month,25), 4, 4);
+
 			driver1.addRide("Donostia", "Iruña", UtilDate.newDate(year,month,7), 4, 8);
 			
 			driver2.addRide("Donostia", "Bilbo", UtilDate.newDate(year,month,15), 3, 3);
-			driver2.addRide("Bilbo", "Donostia", UtilDate.newDate(year,month,15), 2, 5);
+			driver2.addRide("Bilbo", "Donostia", UtilDate.newDate(year,month,25), 2, 5);
 			driver2.addRide("Eibar", "Gasteiz", UtilDate.newDate(year,month,6), 2, 5);
 
 						
@@ -90,13 +91,23 @@ public class DataAccess  {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * This method returns all the cities where rides depart 
+	 * @return collection of cities
+	 */
 	public List<String> getSourceLocations(){
 			TypedQuery<String> query = db.createQuery("SELECT DISTINCT r.from FROM Ride r ORDER BY r.from", String.class);
 			List<String> cities = query.getResultList();
 			return cities;
 		
 	}
-	
+	/**
+	 * This method returns all the arrival destinations, from all rides that depart from a given city  
+	 * 
+	 * @param from the depart location of a ride
+	 * @return all the arrival destinations
+	 */
 	public List<String> getDestinationLocations(String from){
 		TypedQuery<String> query = db.createQuery("SELECT DISTINCT r.to FROM Ride r WHERE r.from=?1 ORDER BY r.to",String.class);
 		query.setParameter(1, from);
@@ -105,13 +116,17 @@ public class DataAccess  {
 		
 	}
 	/**
-	 * This method creates a question for an event, with a question text and the minimum bet
+	 * This method creates a ride for a driver
 	 * 
-	 * @param event to which question is added
-	 * @param question text of the question
-	 * @param betMinimum minimum quantity of the bet
-	 * @return the created question, or null, or an exception
- 	 * @throws RideAlreadyExistException if the same question already exists for the event
+	 * @param from the origin location of a ride
+	 * @param to the destination location of a ride
+	 * @param date the date of the ride 
+	 * @param nPlaces available seats
+	 * @param driver to which ride is added
+	 * 
+	 * @return the created ride, or null, or an exception
+	 * @throws RideMustBeLaterThanTodayException if the ride date is before today 
+ 	 * @throws RideAlreadyExistException if the same ride already exists for the driver
 	 */
 	public Ride createRide(String from, String to, Date date, int nPlaces, float price, Driver d) throws  RideAlreadyExistException {
 		System.out.println(">> DataAccess: createRide=> from= "+from+" to= "+to+" driver="+d.getName()+" date "+date);
@@ -131,10 +146,12 @@ public class DataAccess  {
 	}
 	
 	/**
-	 * This method retrieves from the database the events of a given date 
+	 * This method retrieves the rides from two locations on a given date 
 	 * 
-	 * @param date in which events are retrieved
-	 * @return collection of events
+	 * @param from the origin location of a ride
+	 * @param to the destination location of a ride
+	 * @param date the date of the ride 
+	 * @return collection of rides
 	 */
 	public Vector<Ride> getRides(String from, String to, Date date) {
 		System.out.println(">> DataAccess: getRides");
@@ -147,7 +164,6 @@ public class DataAccess  {
 		query.setParameter(3, date);
 		List<Ride> rides = query.getResultList();
 	 	 for (Ride ride:rides){
-	 	   System.out.println(ride.toString());		 
 		   res.add(ride);
 		  }
 	 	return res;
@@ -155,9 +171,10 @@ public class DataAccess  {
 	
 	/**
 	 * This method retrieves from the database the dates a month for which there are events
-	 * 
-	 * @param date of the month for which days with events want to be retrieved 
-	 * @return collection of dates
+	 * @param from the origin location of a ride
+	 * @param to the destination location of a ride 
+	 * @param date of the month for which days with rides want to be retrieved 
+	 * @return collection of rides
 	 */
 	public Vector<Date> getDatesWithRides(String from, String to, Date date) {
 		System.out.println(">> DataAccess: getEventsMonth");
@@ -175,7 +192,6 @@ public class DataAccess  {
 		query.setParameter(4, lastDayMonthDate);
 		List<Date> dates = query.getResultList();
 	 	 for (Date d:dates){
-	 	   System.out.println(d.toString());		 
 		   res.add(d);
 		  }
 	 	return res;
@@ -206,12 +222,7 @@ public void open(boolean initializeMode){
     	   }
 		
 	}
-/*public boolean existQuestion(Driver event, String question) {
-	System.out.println(">> DataAccess: existQuestion=> event= "+event+" question= "+question);
-	Driver ev = db.find(Driver.class, event.getEventNumber());
-	return ev.DoesQuestionExists(question);
-	
-}*/
+
 	public void close(){
 		db.close();
 		System.out.println("DataBase closed");

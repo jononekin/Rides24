@@ -67,7 +67,7 @@ public class MainGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Locale.setDefault(new Locale("en"));
 				System.out.println("Locale: "+Locale.getDefault());
-				redibujar();				}
+				paintAgain();				}
 		});
 		buttonGroup.add(rdbtnNewRadioButton);
 		
@@ -76,7 +76,7 @@ public class MainGUI extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				Locale.setDefault(new Locale("eus"));
 				System.out.println("Locale: "+Locale.getDefault());
-				redibujar();				}
+				paintAgain();				}
 		});
 		buttonGroup.add(rdbtnNewRadioButton_1);
 		
@@ -85,7 +85,7 @@ public class MainGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Locale.setDefault(new Locale("es"));
 				System.out.println("Locale: "+Locale.getDefault());
-				redibujar();
+				paintAgain();
 			}
 		});
 		buttonGroup.add(rdbtnNewRadioButton_2);
@@ -124,9 +124,16 @@ public class MainGUI extends JFrame {
 		
 		setContentPane(jContentPane);
 		setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.MainTitle") + " - driver :"+driver.getName());
+		
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				System.exit(1);
+			}
+		});
 	}
 	
-	private void redibujar() {
+	private void paintAgain() {
 		jLabelSelectOption.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.SelectOption"));
 		jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.QueryRides"));
 		jButtonCreateQuery.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.CreateRide"));

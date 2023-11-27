@@ -28,7 +28,7 @@ public class ApplicationLauncher {
 		
 		System.out.println("Locale: "+Locale.getDefault());
 		
-	    Driver driver=new Driver("driver3@gmil.com","Test Driver");
+	    Driver driver=new Driver("driver3@gmail.com","Test Driver");
 
 		
 		MainGUI a=new MainGUI(driver);
@@ -52,7 +52,6 @@ public class ApplicationLauncher {
 				
 				 String serviceName= "http://"+c.getBusinessLogicNode() +":"+ c.getBusinessLogicPort()+"/ws/"+c.getBusinessLogicName()+"?wsdl";
 				 
-				//URL url = new URL("http://localhost:9999/ws/ruralHouses?wsdl");
 				URL url = new URL(serviceName);
 
 		 

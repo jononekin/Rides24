@@ -49,6 +49,11 @@ public class BLFacadeImplementation  implements BLFacade {
 		}
 		dbManager=da;		
 	}
+    
+    
+    /**
+     * {@inheritDoc}
+     */
     @WebMethod public List<String> getSourceLocations(){
     	dbManager.open(false);	
 		
@@ -59,6 +64,9 @@ public class BLFacadeImplementation  implements BLFacade {
 		return sourceLocations;
     	
     }
+    /**
+     * {@inheritDoc}
+     */
 	@WebMethod public List<String> getDestinationLocations(String from){
 		dbManager.open(false);	
 		
@@ -70,17 +78,7 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	/**
-	 * This method creates a ride for a driver
-	 * 
-	 * @param from the origin location of a ride
-	 * @param to the destination location of a ride
-	 * @param date the date of the ride 
-	 * @param nPlaces available seats
-	 * @param driver to which ride is added
-	 * 
-	 * @return the created ride, or null, or an exception
-	 * @throws RideMustBeLaterThanTodayException if the ride date is before today 
- 	 * @throws RideAlreadyExistException if the same ride already exists for the driver
+	 * {@inheritDoc}
 	 */
    @WebMethod
    public Ride createRide( String from, String to, Date date, int nPlaces, float price, Driver driver) throws RideMustBeLaterThanTodayException, RideAlreadyExistException{
@@ -91,7 +89,7 @@ public class BLFacadeImplementation  implements BLFacade {
 		
 	    
 		if(new Date().compareTo(date)>0)
-			throw new RideMustBeLaterThanTodayException(ResourceBundle.getBundle("Etiquetas").getString("ErrorRideMustBeLaterThanToday"));
+			throw new RideMustBeLaterThanTodayException(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.ErrorRideMustBeLaterThanToday"));
 				
 		
 		 ride=dbManager.createRide(from, to, date, nPlaces, price, driver);		
@@ -102,13 +100,8 @@ public class BLFacadeImplementation  implements BLFacade {
    };
 	
    /**
-	 * This method retrieves the rides from two locations on a given date 
-	 * 
-	 * @param from the origin location of a ride
-	 * @param to the destination location of a ride
-	 * @param date the date of the ride 
-	 * @return collection of rides
-	 */
+    * {@inheritDoc}
+    */
 	@WebMethod 
 	public Vector<Ride> getRides(String from, String to, Date date){
 		dbManager.open(false);
@@ -119,11 +112,7 @@ public class BLFacadeImplementation  implements BLFacade {
 
     
 	/**
-	 * This method retrieves from the database the dates a month for which there are events
-	 * @param from the origin location of a ride
-	 * @param to the destination location of a ride 
-	 * @param date of the month for which days with rides want to be retrieved 
-	 * @return collection of rides
+	 * {@inheritDoc}
 	 */
 	@WebMethod 
 	public Vector<Date> getDatesWithRides(String from, String to, Date date){
@@ -142,9 +131,8 @@ public class BLFacadeImplementation  implements BLFacade {
 	}
 
 	/**
-	 * This method invokes the data access to initialize the database with some events and questions.
-	 * It is invoked only when the option "initialize" is declared in the tag dataBaseOpenMode of resources/config.xml file
-	 */	
+	 * {@inheritDoc}
+	 */
     @WebMethod	
 	 public void initializeBD(){
     	dbManager.open(false);

@@ -19,8 +19,18 @@ import javax.jws.WebService;
 @WebService
 public interface BLFacade  {
 	  
-
+	/**
+	 * This method returns all the cities where rides depart 
+	 * @return collection of cities
+	 */
 	@WebMethod public List<String> getSourceLocations();
+	
+	/**
+	 * This method returns all the arrival destinations, from all rides that depart from a given city  
+	 * 
+	 * @param from the depart location of a ride
+	 * @return all the arrival destinations
+	 */
 	@WebMethod public List<String> getDestinationLocations(String from);
 
 
@@ -64,9 +74,6 @@ public interface BLFacade  {
 	 * This method calls the data access to initialize the database with some events and questions.
 	 * It is invoked only when the option "initialize" is declared in the tag dataBaseOpenMode of resources/config.xml file
 	 */	
-	
-	
-	
 	@WebMethod public void initializeBD();
 
 	

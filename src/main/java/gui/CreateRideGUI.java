@@ -18,6 +18,7 @@ import domain.Driver;
 import domain.Ride;
 
 import exceptions.RideAlreadyExistException;
+import exceptions.RideMustBeLaterThanTodayException;
 
 public class CreateRideGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -69,24 +70,24 @@ public class CreateRideGUI extends JFrame {
 		jCalendar.setBounds(new Rectangle(300, 50, 225, 150));
 		scrollPaneEvents.setBounds(new Rectangle(25, 44, 346, 116));
 
-		jButtonCreate.setBounds(new Rectangle(100, 223, 130, 30));
+		jButtonCreate.setBounds(new Rectangle(100, 263, 130, 30));
 
 		jButtonCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				jButtonCreate_actionPerformed(e);
 			}
 		});
-		jButtonClose.setBounds(new Rectangle(285, 223, 130, 30));
+		jButtonClose.setBounds(new Rectangle(275, 263, 130, 30));
 		jButtonClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				jButtonClose_actionPerformed(e);
 			}
 		});
 
-		jLabelMsg.setBounds(new Rectangle(275, 182, 305, 20));
+		jLabelMsg.setBounds(new Rectangle(275, 214, 305, 20));
 		jLabelMsg.setForeground(Color.red);
 
-		jLabelError.setBounds(new Rectangle(210, 163, 73, 20));
+		jLabelError.setBounds(new Rectangle(6, 191, 320, 20));
 		jLabelError.setForeground(Color.red);
 
 		this.getContentPane().add(jLabelMsg, null);
@@ -170,37 +171,40 @@ public class CreateRideGUI extends JFrame {
 		
 	}	 
 	private void jButtonCreate_actionPerformed(ActionEvent e) {
-		//domain.Driver event = ((domain.Driver) jComboBoxOrigin.getSelectedItem());
-
+		jLabelError.setText("");
+		jLabelMsg.setText("");
 		try {
-			jLabelError.setText("");
-			jLabelMsg.setText("");
+			if ((fieldOrigin.getText().length()==0) || (fieldDestination.getText().length()==0) || (jTextFieldSeats.getText().length()==0) || (jTextFieldPrice.getText().length()==0))
+				jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.ErrorQuery"));
+			
+			else {
 
-			// Displays an exception if the query field is empty
-			String inputQuery = jTextFieldSeats.getText();
-
-			if (inputQuery.length() > 0) {
-
-				// It could be to trigger an exception if the introduced string is not a number
+				// trigger an exception if the introduced string is not a number
 				int inputSeats = Integer.parseInt(jTextFieldSeats.getText());
 
 				if (inputSeats <= 0)
 					jLabelError.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.SeatsMustBeGreaterThan0"));
 				else {
 					float price = Float.parseFloat(jTextFieldPrice.getText());
-					//check price.....
-					
-					// Obtain the business logic from a StartWindow class (local or remote)
-					BLFacade facade = MainGUI.getBusinessLogic();
+					if (price <= 0)
+						jLabelError.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.PriceMustBeGreaterThan0"));
+					else {
+						// Obtain the business logic from a StartWindow class (local or remote)
+						BLFacade facade = MainGUI.getBusinessLogic();
 
-					facade.createRide(fieldOrigin.getText(), fieldDestination.getText(), UtilDate.trim(jCalendar.getDate()), inputSeats, price, driver);
+						facade.createRide(fieldOrigin.getText(), fieldDestination.getText(), UtilDate.trim(jCalendar.getDate()), inputSeats, price, driver);
 
-					jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.RideCreated"));
+						jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.RideCreated"));
+					}
 				}
-			} else
-				jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("ErrorQuery"));
+			}
 		} catch (java.lang.NumberFormatException e1) {
-			jLabelError.setText(ResourceBundle.getBundle("Etiquetas").getString("ErrorNumber"));
+
+			jLabelError.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.ErrorNumber"));
+		
+		} catch (RideMustBeLaterThanTodayException e1) {
+
+			jLabelMsg.setText(e1.getMessage());
 		
 		} catch (RideAlreadyExistException e1) {
 

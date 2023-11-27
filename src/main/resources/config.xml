@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
-  <businessLogic local="true"> 
+  <businessLogic local="false"> 
 	<businessLogicNode>0.0.0.0</businessLogicNode>
 	<businessLogicPort>1099</businessLogicPort>
-	<businessLogicName>Bets</businessLogicName>
+	<businessLogicName>Rides</businessLogicName>
   </businessLogic>
   <database local="true">
 	<databaseNode>0.0.0.0</databaseNode>
-	<dbFilename>src/main/resources/bets.temp</dbFilename>
+	<dbFilename>src/main/resources/rides.temp</dbFilename>
 	<dataBaseOpenMode>initialize</dataBaseOpenMode>
 	<databasePort>6136</databasePort>
 	<user>admin</user>

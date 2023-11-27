@@ -88,6 +88,13 @@ public class FindRidesGUI extends JFrame {
 
 		jComboBoxOrigin.setModel(originLocations);
 		jComboBoxOrigin.setBounds(new Rectangle(103, 50, 172, 20));
+		
+
+		List<String> aCities=facade.getDestinationLocations((String)jComboBoxOrigin.getSelectedItem());
+		for(String aciti:aCities) {
+			destinationLocations.addElement(aciti);
+		}
+		
 		jComboBoxOrigin.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				destinationLocations.removeAllElements();
@@ -97,6 +104,10 @@ public class FindRidesGUI extends JFrame {
 				for(String aciti:aCities) {
 					destinationLocations.addElement(aciti);
 				}
+				tableModelRides.getDataVector().removeAllElements();
+				tableModelRides.fireTableDataChanged();
+
+				
 			}
 		});
 
@@ -140,10 +151,6 @@ public class FindRidesGUI extends JFrame {
 					calendarAnt = (Calendar) propertychangeevent.getOldValue();
 					calendarAct = (Calendar) propertychangeevent.getNewValue();
 					DateFormat dateformat1 = DateFormat.getDateInstance(1, jCalendar1.getLocale());
-					//					jCalendar1.setCalendar(calendarAct);
-					Date firstDay=UtilDate.trim(new Date(jCalendar1.getCalendar().getTime().getTime()));
-
-
 
 					int monthAnt = calendarAnt.get(Calendar.MONTH);
 					int monthAct = calendarAct.get(Calendar.MONTH);
@@ -190,6 +197,7 @@ public class FindRidesGUI extends JFrame {
 
 				}
 			} 
+			
 		});
 
 		this.getContentPane().add(jCalendar1, null);
@@ -211,6 +219,8 @@ public class FindRidesGUI extends JFrame {
 		tableRides.getColumnModel().removeColumn(tableRides.getColumnModel().getColumn(3)); // not shown in JTable
 
 		this.getContentPane().add(scrollPaneEvents, null);
+		datesWithEventsCurrentMonth=facade.getDatesWithRides((String)jComboBoxOrigin.getSelectedItem(),(String)jComboBoxDestination.getSelectedItem(),jCalendar1.getDate());
+		paintDaysWithEvents(jCalendar1,datesWithEventsCurrentMonth,Color.CYAN);
 
 	}
 	public static void paintDaysWithEvents(JCalendar jCalendar,Vector<Date> datesWithEventsCurrentMonth, Color color) {
