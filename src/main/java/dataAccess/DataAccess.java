@@ -1,13 +1,13 @@
 package dataAccess;
 
-//hello
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.Vector;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -25,23 +25,34 @@ import exceptions.RideMustBeLaterThanTodayException;
  * It implements the data access to the objectDb database
  */
 public class DataAccess  {
-	protected static EntityManager  db;
-	protected static EntityManagerFactory emf;
+	private  EntityManager  db;
+	private  EntityManagerFactory emf;
 
 
 	ConfigXML c=ConfigXML.getInstance();
 
-     public DataAccess(boolean initializeMode)  {
+     public DataAccess()  {
 		
-		System.out.println("Creating DataAccess instance => isDatabaseLocal: "+c.isDatabaseLocal()+" getDatabBaseOpenMode: "+c.getDataBaseOpenMode());
+		System.out.println("Creating DataAccess instance => isDatabaseLocal: "+c.isDatabaseLocal()+" isDatabaseInitialized: "+c.isDatabaseInitialized());
+		
+		if (c.isDatabaseInitialized()) {
+			String fileName=c.getDbFilename();
 
-		open(initializeMode);
+			File fileToDelete= new File(fileName);
+			if(fileToDelete.delete()){
+				File fileToDeleteTemp= new File(fileName+"$");
+				fileToDeleteTemp.delete();
+
+				  System.out.println("File deleted");
+				} else {
+				  System.out.println("Operation failed");
+				}
+		}
+		open();
+		if  (c.isDatabaseInitialized())initializeDB();
 		
 	}
 
-	public DataAccess()  {	
-		 this(false);
-	}
 	
 	
 	/**
@@ -51,20 +62,21 @@ public class DataAccess  {
 	public void initializeDB(){
 		
 		db.getTransaction().begin();
+		System.out.println("Initializing db");
+
 		try {
 
 		   Calendar today = Calendar.getInstance();
 		   
 		   int month=today.get(Calendar.MONTH);
-		   //month+=1;
 		   int year=today.get(Calendar.YEAR);
 		   if (month==12) { month=1; year+=1;}  
 	    
 		   
 		    //Create drivers 
-			Driver driver1=new Driver("driver1@gmil.com","Aitor Fernández");
-			Driver driver2=new Driver("driver2@gmil.com","Ane Gaztañaga");
-			Driver driver3=new Driver("driver3@gmil.com","Test driver");
+			Driver driver1=new Driver("driver1@gmail.com","Aitor Fernández");
+			Driver driver2=new Driver("driver2@gmail.com","Ane Gaztañaga");
+			Driver driver3=new Driver("driver3@gmail.com","Test driver");
 
 			
 			//Create rides
@@ -131,15 +143,14 @@ public class DataAccess  {
 	public Ride createRide(String from, String to, Date date, int nPlaces, float price, Driver d) throws  RideAlreadyExistException {
 		System.out.println(">> DataAccess: createRide=> from= "+from+" to= "+to+" driver="+d.getName()+" date "+date);
 		
+
 			Driver driver = db.find(Driver.class, d.getEmail());
 			
 			if (driver.DoesRideExists(from, to, date)) throw new RideAlreadyExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.RideAlreadyExist"));
 			
 			db.getTransaction().begin();
 			Ride ride = driver.addRide(from, to, date, nPlaces, price);
-			//db.persist(q);
-			db.persist(driver); // db.persist(q) not required when CascadeType.PERSIST is added in rides property of Driver class
-							// @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+			db.persist(driver); 
 			db.getTransaction().commit();
 			return ride;
 		
@@ -153,11 +164,10 @@ public class DataAccess  {
 	 * @param date the date of the ride 
 	 * @return collection of rides
 	 */
-	public Vector<Ride> getRides(String from, String to, Date date) {
-		System.out.println(">> DataAccess: getRides");
+	public List<Ride> getRides(String from, String to, Date date) {
 		System.out.println(">> DataAccess: getRides=> from= "+from+" to= "+to+" date "+date);
 
-		Vector<Ride> res = new Vector<Ride>();	
+		List<Ride> res = new ArrayList<>();	
 		TypedQuery<Ride> query = db.createQuery("SELECT r FROM Ride r WHERE r.from=?1 AND r.to=?2 AND r.date=?3",Ride.class);   
 		query.setParameter(1, from);
 		query.setParameter(2, to);
@@ -176,9 +186,9 @@ public class DataAccess  {
 	 * @param date of the month for which days with rides want to be retrieved 
 	 * @return collection of rides
 	 */
-	public Vector<Date> getDatesWithRides(String from, String to, Date date) {
+	public List<Date> getDatesWithRides(String from, String to, Date date) {
 		System.out.println(">> DataAccess: getEventsMonth");
-		Vector<Date> res = new Vector<Date>();	
+		List<Date> res = new ArrayList<>();	
 		
 		Date firstDayMonthDate= UtilDate.firstDayMonth(date);
 		Date lastDayMonthDate= UtilDate.lastDayMonth(date);
@@ -198,26 +208,20 @@ public class DataAccess  {
 	}
 	
 
-public void open(boolean initializeMode){
+public void open(){
 		
-		System.out.println("Opening DataAccess instance => isDatabaseLocal: "+c.isDatabaseLocal()+" getDatabBaseOpenMode: "+c.getDataBaseOpenMode());
+		System.out.println("Opening DataAccess instance => isDatabaseLocal: "+c.isDatabaseLocal()+" isDatabaseInitialized: "+c.isDatabaseInitialized());
 
 		String fileName=c.getDbFilename();
-		if (initializeMode) {
-			fileName=fileName+";drop";
-			System.out.println("Deleting the DataBase");
-		}
-		
 		if (c.isDatabaseLocal()) {
-			  emf = Persistence.createEntityManagerFactory("objectdb:"+fileName);
-			  db = emf.createEntityManager();
+			emf = Persistence.createEntityManagerFactory("objectdb:"+fileName);
+			db = emf.createEntityManager();
 		} else {
-			Map<String, String> properties = new HashMap<String, String>();
+			Map<String, String> properties = new HashMap<>();
 			  properties.put("javax.persistence.jdbc.user", c.getUser());
 			  properties.put("javax.persistence.jdbc.password", c.getPassword());
 
 			  emf = Persistence.createEntityManagerFactory("objectdb://"+c.getDatabaseNode()+":"+c.getDatabasePort()+"/"+fileName, properties);
-
 			  db = emf.createEntityManager();
     	   }
 		

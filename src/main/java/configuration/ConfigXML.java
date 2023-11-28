@@ -25,8 +25,8 @@ public class ConfigXML {
 	
 	private static String dbFilename;
 
-	//Two possible values: "open" or "initialize"
-	private String dataBaseOpenMode;
+	//Two possible values: true (if the database must be initialized ) or false (in other case)
+	private boolean isDatabaseInitialized;
 
 	//Two possible values: true (no instance of RemoteServer needs to be launched) or false (RemoteServer needs to be run first)
 	private boolean businessLogicLocal;
@@ -106,8 +106,9 @@ public class ConfigXML {
 			  databaseLocal=value.equals("true");
 			  
 			  
-			  //Two possible values: "open" or "initialize"
-			  dataBaseOpenMode= getTagValue("dataBaseOpenMode", config);
+				//Two possible values: true (if the database must be initialized ) or false (in other case)
+			  String dbOpenValue= ((Element)config.getElementsByTagName("database").item(0)).getAttribute("initialize");
+			  isDatabaseInitialized= dbOpenValue.equals("true");;
 
 	
 			  databaseNode = getTagValue("databaseNode", config);
@@ -121,7 +122,7 @@ public class ConfigXML {
 			  System.out.print("Read from config.xml: ");
 			  System.out.print("\t businessLogicLocal="+businessLogicLocal);
 			  System.out.print("\t databaseLocal="+databaseLocal);
-			  System.out.println("\t dataBaseOpenMode="+dataBaseOpenMode); 
+			  System.out.println("\t dataBaseInitialized="+isDatabaseInitialized); 
 					  
 		  } catch (Exception e) {
 			System.out.println("Error in ConfigXML.java: problems with "+ configFile);
@@ -159,8 +160,8 @@ public class ConfigXML {
 		return dbFilename;
 	}
 
-	public String getDataBaseOpenMode(){
-		return dataBaseOpenMode;
+	public boolean isDatabaseInitialized(){
+		return isDatabaseInitialized;
 	}
 
 	public String getDatabaseNode() {

@@ -5,10 +5,9 @@
 	<businessLogicPort>1099</businessLogicPort>
 	<businessLogicName>Rides</businessLogicName>
   </businessLogic>
-  <database local="true">
+  <database local="true" initialize="true">
 	<databaseNode>0.0.0.0</databaseNode>
 	<dbFilename>src/main/resources/rides.temp</dbFilename>
-	<dataBaseOpenMode>initialize</dataBaseOpenMode>
 	<databasePort>6136</databasePort>
 	<user>admin</user>
 	<password>admin</password>

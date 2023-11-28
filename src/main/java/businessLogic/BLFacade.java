@@ -1,6 +1,5 @@
 package businessLogic;
 
-import java.util.Vector;
 import java.util.Date;
 import java.util.List;
 
@@ -59,7 +58,7 @@ public interface BLFacade  {
 	 * @param date the date of the ride 
 	 * @return collection of rides
 	 */
-	@WebMethod public Vector<Ride> getRides(String from, String to, Date date);
+	@WebMethod public List<Ride> getRides(String from, String to, Date date);
 	
 	/**
 	 * This method retrieves from the database the dates a month for which there are events
@@ -68,7 +67,7 @@ public interface BLFacade  {
 	 * @param date of the month for which days with rides want to be retrieved 
 	 * @return collection of rides
 	 */
-	@WebMethod public Vector<Date> getDatesWithRides(String from, String to, Date date);
+	@WebMethod public List<Date> getDatesWithRides(String from, String to, Date date);
 	
 	/**
 	 * This method calls the data access to initialize the database with some events and questions.

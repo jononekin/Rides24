@@ -2,6 +2,7 @@ package gui;
 
 import java.text.DateFormat;
 import java.util.*;
+import java.util.List;
 
 import javax.swing.*;
 
@@ -15,7 +16,6 @@ import java.beans.PropertyChangeListener;
 import businessLogic.BLFacade;
 import configuration.UtilDate;
 import domain.Driver;
-import domain.Ride;
 
 import exceptions.RideAlreadyExistException;
 import exceptions.RideMustBeLaterThanTodayException;
@@ -50,7 +50,7 @@ public class CreateRideGUI extends JFrame {
 	private JLabel jLabelMsg = new JLabel();
 	private JLabel jLabelError = new JLabel();
 	
-	private Vector<Date> datesWithEventsCurrentMonth;
+	private List<Date> datesWithEventsCurrentMonth;
 
 
 	public CreateRideGUI(Driver driver) {

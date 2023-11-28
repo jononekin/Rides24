@@ -1,9 +1,7 @@
 package businessLogic;
-//hola
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Vector;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -24,13 +22,10 @@ public class BLFacadeImplementation  implements BLFacade {
 
 	public BLFacadeImplementation()  {		
 		System.out.println("Creating BLFacadeImplementation instance");
-		ConfigXML c=ConfigXML.getInstance();
 		
-		if (c.getDataBaseOpenMode().equals("initialize")) {
-		    dbManager=new DataAccess(c.getDataBaseOpenMode().equals("initialize"));
-		    dbManager.initializeDB();
-		    } else
-		     dbManager=new DataAccess();
+		
+		    dbManager=new DataAccess();
+		    
 		dbManager.close();
 
 		
@@ -41,12 +36,6 @@ public class BLFacadeImplementation  implements BLFacade {
 		System.out.println("Creating BLFacadeImplementation instance with DataAccess parameter");
 		ConfigXML c=ConfigXML.getInstance();
 		
-		if (c.getDataBaseOpenMode().equals("initialize")) {
-			da.open(true);
-			da.initializeDB();
-			da.close();
-
-		}
 		dbManager=da;		
 	}
     
@@ -55,7 +44,7 @@ public class BLFacadeImplementation  implements BLFacade {
      * {@inheritDoc}
      */
     @WebMethod public List<String> getSourceLocations(){
-    	dbManager.open(false);	
+    	dbManager.open();	
 		
 		 List<String> sourceLocations=dbManager.getSourceLocations();		
 
@@ -68,7 +57,7 @@ public class BLFacadeImplementation  implements BLFacade {
      * {@inheritDoc}
      */
 	@WebMethod public List<String> getDestinationLocations(String from){
-		dbManager.open(false);	
+		dbManager.open();	
 		
 		 List<String> targetLocations=dbManager.getDestinationLocations(from);		
 
@@ -84,7 +73,7 @@ public class BLFacadeImplementation  implements BLFacade {
    public Ride createRide( String from, String to, Date date, int nPlaces, float price, Driver driver) throws RideMustBeLaterThanTodayException, RideAlreadyExistException{
 	   
 	    //The minimum bed must be greater than 0
-		dbManager.open(false);
+		dbManager.open();
 		Ride ride=null;
 		
 	    
@@ -103,9 +92,9 @@ public class BLFacadeImplementation  implements BLFacade {
     * {@inheritDoc}
     */
 	@WebMethod 
-	public Vector<Ride> getRides(String from, String to, Date date){
-		dbManager.open(false);
-		Vector<Ride>  rides=dbManager.getRides(from, to, date);
+	public List<Ride> getRides(String from, String to, Date date){
+		dbManager.open();
+		List<Ride>  rides=dbManager.getRides(from, to, date);
 		dbManager.close();
 		return rides;
 	}
@@ -115,16 +104,16 @@ public class BLFacadeImplementation  implements BLFacade {
 	 * {@inheritDoc}
 	 */
 	@WebMethod 
-	public Vector<Date> getDatesWithRides(String from, String to, Date date){
-		dbManager.open(false);
-		Vector<Date>  dates=dbManager.getDatesWithRides(from, to, date);
+	public List<Date> getDatesWithRides(String from, String to, Date date){
+		dbManager.open();
+		List<Date>  dates=dbManager.getDatesWithRides(from, to, date);
 		dbManager.close();
 		return dates;
 	}
 	
 	
 	public void close() {
-		DataAccess dB4oManager=new DataAccess(false);
+		DataAccess dB4oManager=new DataAccess();
 
 		dB4oManager.close();
 
@@ -135,7 +124,7 @@ public class BLFacadeImplementation  implements BLFacade {
 	 */
     @WebMethod	
 	 public void initializeBD(){
-    	dbManager.open(false);
+    	dbManager.open();
 		dbManager.initializeDB();
 		dbManager.close();
 	}
