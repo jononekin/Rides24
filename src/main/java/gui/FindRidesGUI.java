@@ -117,7 +117,7 @@ public class FindRidesGUI extends JFrame {
 		jComboBoxDestination.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 
-				paintDaysWithEvents(jCalendar1,datesWithEventsCurrentMonth,Color.LIGHT_GRAY);
+				paintDaysWithEvents(jCalendar1,datesWithEventsCurrentMonth,	new Color(210,228,238));
 
 				BLFacade facade = MainGUI.getBusinessLogic();
 
@@ -185,6 +185,8 @@ public class FindRidesGUI extends JFrame {
 							row.add(ride); // ev object added in order to obtain it with tableModelEvents.getValueAt(i,3)
 							tableModelRides.addRow(row);		
 						}
+						paintDaysWithEvents(jCalendar1,datesWithEventsCurrentMonth,Color.CYAN);
+
 
 					} catch (Exception e1) {
 
@@ -245,8 +247,6 @@ public class FindRidesGUI extends JFrame {
 		for (Date d:datesWithEventsCurrentMonth){
 
 			calendar.setTime(d);
-			System.out.println(d);
-
 
 
 			// Obtain the component of the day in the panel of the DayChooser of the

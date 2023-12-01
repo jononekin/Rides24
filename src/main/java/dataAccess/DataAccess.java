@@ -90,6 +90,9 @@ public class DataAccess  {
 			driver2.addRide("Bilbo", "Donostia", UtilDate.newDate(year,month,25), 2, 5);
 			driver2.addRide("Eibar", "Gasteiz", UtilDate.newDate(year,month,6), 2, 5);
 
+			driver3.addRide("Bilbo", "Donostia", UtilDate.newDate(year,month,14), 1, 3);
+
+			
 						
 			db.persist(driver1);
 			db.persist(driver2);
