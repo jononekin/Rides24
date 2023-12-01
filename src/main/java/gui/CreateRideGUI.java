@@ -16,7 +16,7 @@ import java.beans.PropertyChangeListener;
 import businessLogic.BLFacade;
 import configuration.UtilDate;
 import domain.Driver;
-
+import domain.Ride;
 import exceptions.RideAlreadyExistException;
 import exceptions.RideMustBeLaterThanTodayException;
 
@@ -171,53 +171,67 @@ public class CreateRideGUI extends JFrame {
 		
 	}	 
 	private void jButtonCreate_actionPerformed(ActionEvent e) {
-		jLabelError.setText("");
 		jLabelMsg.setText("");
+		String error=field_Errors();
+		if (error!=null) 
+			jLabelMsg.setText(error);
+		else
+			try {
+			BLFacade facade = MainGUI.getBusinessLogic();
+			int inputSeats = Integer.parseInt(jTextFieldSeats.getText());
+			float price = Float.parseFloat(jTextFieldPrice.getText());
+
+			System.out.println("Ride sin crear");
+
+				Ride r=facade.createRide(fieldOrigin.getText(), fieldDestination.getText(), UtilDate.trim(jCalendar.getDate()), inputSeats, price, driver);
+				System.out.println("Ride "+r);
+				jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.RideCreated"));
+
+			} catch (RideMustBeLaterThanTodayException e1) {
+				// TODO Auto-generated catch block
+				jLabelMsg.setText(e1.getMessage());
+			} catch (RideAlreadyExistException e1) {
+				// TODO Auto-generated catch block
+				jLabelMsg.setText(e1.getMessage());
+			}
+
+		}
+	
+
+	private void jButtonClose_actionPerformed(ActionEvent e) {
+		this.setVisible(false);
+	}
+	private String field_Errors() {
+		
 		try {
 			if ((fieldOrigin.getText().length()==0) || (fieldDestination.getText().length()==0) || (jTextFieldSeats.getText().length()==0) || (jTextFieldPrice.getText().length()==0))
-				jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.ErrorQuery"));
-			
+				return ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.ErrorQuery");
 			else {
 
 				// trigger an exception if the introduced string is not a number
 				int inputSeats = Integer.parseInt(jTextFieldSeats.getText());
 
-				if (inputSeats <= 0)
-					jLabelError.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.SeatsMustBeGreaterThan0"));
+				if (inputSeats <= 0) {
+					return ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.SeatsMustBeGreaterThan0");
+				}
 				else {
 					float price = Float.parseFloat(jTextFieldPrice.getText());
-					if (price <= 0)
-						jLabelError.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.PriceMustBeGreaterThan0"));
-					else {
-						// Obtain the business logic from a StartWindow class (local or remote)
-						BLFacade facade = MainGUI.getBusinessLogic();
-
-						facade.createRide(fieldOrigin.getText(), fieldDestination.getText(), UtilDate.trim(jCalendar.getDate()), inputSeats, price, driver);
-
-						jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.RideCreated"));
-					}
+					if (price <= 0) 
+						return ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.PriceMustBeGreaterThan0");
+					
+					else 
+						return null;
+						
 				}
 			}
 		} catch (java.lang.NumberFormatException e1) {
 
-			jLabelError.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.ErrorNumber"));
-		
-		} catch (RideMustBeLaterThanTodayException e1) {
-
-			jLabelMsg.setText(e1.getMessage());
-		
-		} catch (RideAlreadyExistException e1) {
-
-			jLabelMsg.setText(e1.getMessage());
-		
+			return  ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.ErrorNumber");		
 		} catch (Exception e1) {
 
 			e1.printStackTrace();
+			return null;
 
 		}
-	}
-
-	private void jButtonClose_actionPerformed(ActionEvent e) {
-		this.setVisible(false);
 	}
 }
