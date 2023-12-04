@@ -111,7 +111,7 @@ public class DataAccess  {
 	 * This method returns all the cities where rides depart 
 	 * @return collection of cities
 	 */
-	public List<String> getSourceLocations(){
+	public List<String> getDepartCities(){
 			TypedQuery<String> query = db.createQuery("SELECT DISTINCT r.from FROM Ride r ORDER BY r.from", String.class);
 			List<String> cities = query.getResultList();
 			return cities;
@@ -123,7 +123,7 @@ public class DataAccess  {
 	 * @param from the depart location of a ride
 	 * @return all the arrival destinations
 	 */
-	public List<String> getDestinationLocations(String from){
+	public List<String> getArrivalCities(String from){
 		TypedQuery<String> query = db.createQuery("SELECT DISTINCT r.to FROM Ride r WHERE r.from=?1 ORDER BY r.to",String.class);
 		query.setParameter(1, from);
 		List<String> arrivingCities = query.getResultList(); 
@@ -143,19 +143,22 @@ public class DataAccess  {
 	 * @throws RideMustBeLaterThanTodayException if the ride date is before today 
  	 * @throws RideAlreadyExistException if the same ride already exists for the driver
 	 */
-	public Ride createRide(String from, String to, Date date, int nPlaces, float price, Driver d) throws  RideAlreadyExistException {
+	public Ride createRide(String from, String to, Date date, int nPlaces, float price, Driver d) throws  RideAlreadyExistException, RideMustBeLaterThanTodayException {
 		System.out.println(">> DataAccess: createRide=> from= "+from+" to= "+to+" driver="+d.getName()+" date "+date);
 		
-
-			Driver driver = db.find(Driver.class, d.getEmail());
+		if(new Date().compareTo(date)>0)
+			throw new RideMustBeLaterThanTodayException(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.ErrorRideMustBeLaterThanToday"));
 			
-			if (driver.DoesRideExists(from, to, date)) throw new RideAlreadyExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.RideAlreadyExist"));
+		Driver driver = db.find(Driver.class, d.getEmail());
 			
-			db.getTransaction().begin();
-			Ride ride = driver.addRide(from, to, date, nPlaces, price);
-			db.persist(driver); 
-			db.getTransaction().commit();
-			return ride;
+		if (driver.doesRideExists(from, to, date)) throw new RideAlreadyExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.RideAlreadyExist"));
+			
+		db.getTransaction().begin();
+		Ride ride = driver.addRide(from, to, date, nPlaces, price);
+		//next instruction can be obviated
+		db.persist(driver); 
+		db.getTransaction().commit();
+		return ride;
 		
 	}
 	
@@ -189,7 +192,7 @@ public class DataAccess  {
 	 * @param date of the month for which days with rides want to be retrieved 
 	 * @return collection of rides
 	 */
-	public List<Date> getDatesWithRides(String from, String to, Date date) {
+	public List<Date> getThisMonthDatesWithRides(String from, String to, Date date) {
 		System.out.println(">> DataAccess: getEventsMonth");
 		List<Date> res = new ArrayList<>();	
 		

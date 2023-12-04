@@ -24,7 +24,7 @@ public class FindRidesGUI extends JFrame {
 	DefaultComboBoxModel<String> originLocations = new DefaultComboBoxModel<String>();
 
 	private JComboBox<String> jComboBoxDestination = new JComboBox<String>();
-	DefaultComboBoxModel<String> destinationLocations = new DefaultComboBoxModel<String>();
+	DefaultComboBoxModel<String> destinationCities = new DefaultComboBoxModel<String>();
 
 	private JLabel jLabelOrigin = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.LeavingFrom"));
 	private JLabel jLabelDestination = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.GoingTo"));
@@ -39,7 +39,7 @@ public class FindRidesGUI extends JFrame {
 	private Calendar calendarAct = null;
 	private JScrollPane scrollPaneEvents = new JScrollPane();
 
-	private List<Date> datesWithEventsCurrentMonth = new Vector<Date>();
+	private List<Date> datesWithRidesCurrentMonth = new Vector<Date>();
 
 	private JTable tableRides= new JTable();
 
@@ -76,7 +76,7 @@ public class FindRidesGUI extends JFrame {
 			}
 		});
 		BLFacade facade = MainGUI.getBusinessLogic();
-		List<String> origins=facade.getSourceLocations();
+		List<String> origins=facade.getDepartCities();
 		
 		for(String location:origins) originLocations.addElement(location);
 		
@@ -90,19 +90,19 @@ public class FindRidesGUI extends JFrame {
 		jComboBoxOrigin.setBounds(new Rectangle(103, 50, 172, 20));
 		
 
-		List<String> aCities=facade.getDestinationLocations((String)jComboBoxOrigin.getSelectedItem());
+		List<String> aCities=facade.getDestinationCities((String)jComboBoxOrigin.getSelectedItem());
 		for(String aciti:aCities) {
-			destinationLocations.addElement(aciti);
+			destinationCities.addElement(aciti);
 		}
 		
 		jComboBoxOrigin.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
-				destinationLocations.removeAllElements();
+				destinationCities.removeAllElements();
 				BLFacade facade = MainGUI.getBusinessLogic();
 
-				List<String> aCities=facade.getDestinationLocations((String)jComboBoxOrigin.getSelectedItem());
+				List<String> aCities=facade.getDestinationCities((String)jComboBoxOrigin.getSelectedItem());
 				for(String aciti:aCities) {
-					destinationLocations.addElement(aciti);
+					destinationCities.addElement(aciti);
 				}
 				tableModelRides.getDataVector().removeAllElements();
 				tableModelRides.fireTableDataChanged();
@@ -112,17 +112,17 @@ public class FindRidesGUI extends JFrame {
 		});
 
 
-		jComboBoxDestination.setModel(destinationLocations);
+		jComboBoxDestination.setModel(destinationCities);
 		jComboBoxDestination.setBounds(new Rectangle(103, 80, 172, 20));
 		jComboBoxDestination.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 
-				paintDaysWithEvents(jCalendar1,datesWithEventsCurrentMonth,	new Color(210,228,238));
+				paintDaysWithEvents(jCalendar1,datesWithRidesCurrentMonth,	new Color(210,228,238));
 
 				BLFacade facade = MainGUI.getBusinessLogic();
 
-				datesWithEventsCurrentMonth=facade.getDatesWithRides((String)jComboBoxOrigin.getSelectedItem(),(String)jComboBoxDestination.getSelectedItem(),jCalendar1.getDate());
-				paintDaysWithEvents(jCalendar1,datesWithEventsCurrentMonth,Color.CYAN);
+				datesWithRidesCurrentMonth=facade.getThisMonthDatesWithRides((String)jComboBoxOrigin.getSelectedItem(),(String)jComboBoxDestination.getSelectedItem(),jCalendar1.getDate());
+				paintDaysWithEvents(jCalendar1,datesWithRidesCurrentMonth,Color.CYAN);
 
 			}
 		});
@@ -142,6 +142,7 @@ public class FindRidesGUI extends JFrame {
 			public void propertyChange(PropertyChangeEvent propertychangeevent)
 			{
 
+				System.out.println(propertychangeevent.getPropertyName());
 				if (propertychangeevent.getPropertyName().equals("locale"))
 				{
 					jCalendar1.setLocale((Locale) propertychangeevent.getNewValue());
@@ -150,6 +151,9 @@ public class FindRidesGUI extends JFrame {
 				{
 					calendarAnt = (Calendar) propertychangeevent.getOldValue();
 					calendarAct = (Calendar) propertychangeevent.getNewValue();
+					
+
+					
 					DateFormat dateformat1 = DateFormat.getDateInstance(1, jCalendar1.getLocale());
 
 					int monthAnt = calendarAnt.get(Calendar.MONTH);
@@ -166,13 +170,12 @@ public class FindRidesGUI extends JFrame {
 						jCalendar1.setCalendar(calendarAct);
 
 					}
-
+					
 					try {
 						tableModelRides.setDataVector(null, columnNamesRides);
 						tableModelRides.setColumnCount(4); // another column added to allocate ride objects
 
-						BLFacade facade=MainGUI.getBusinessLogic();
-
+						BLFacade facade = MainGUI.getBusinessLogic();
 						List<domain.Ride> rides=facade.getRides((String)jComboBoxOrigin.getSelectedItem(),(String)jComboBoxDestination.getSelectedItem(),UtilDate.trim(jCalendar1.getDate()));
 
 						if (rides.isEmpty() ) jLabelEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("FindRidesGUI.NoRides")+ ": "+dateformat1.format(calendarAct.getTime()));
@@ -185,7 +188,8 @@ public class FindRidesGUI extends JFrame {
 							row.add(ride); // ev object added in order to obtain it with tableModelEvents.getValueAt(i,3)
 							tableModelRides.addRow(row);		
 						}
-						paintDaysWithEvents(jCalendar1,datesWithEventsCurrentMonth,Color.CYAN);
+						datesWithRidesCurrentMonth=facade.getThisMonthDatesWithRides((String)jComboBoxOrigin.getSelectedItem(),(String)jComboBoxDestination.getSelectedItem(),jCalendar1.getDate());
+						paintDaysWithEvents(jCalendar1,datesWithRidesCurrentMonth,Color.CYAN);
 
 
 					} catch (Exception e1) {
@@ -221,8 +225,8 @@ public class FindRidesGUI extends JFrame {
 		tableRides.getColumnModel().removeColumn(tableRides.getColumnModel().getColumn(3)); // not shown in JTable
 
 		this.getContentPane().add(scrollPaneEvents, null);
-		datesWithEventsCurrentMonth=facade.getDatesWithRides((String)jComboBoxOrigin.getSelectedItem(),(String)jComboBoxDestination.getSelectedItem(),jCalendar1.getDate());
-		paintDaysWithEvents(jCalendar1,datesWithEventsCurrentMonth,Color.CYAN);
+		datesWithRidesCurrentMonth=facade.getThisMonthDatesWithRides((String)jComboBoxOrigin.getSelectedItem(),(String)jComboBoxDestination.getSelectedItem(),jCalendar1.getDate());
+		paintDaysWithEvents(jCalendar1,datesWithRidesCurrentMonth,Color.CYAN);
 
 	}
 	public static void paintDaysWithEvents(JCalendar jCalendar,List<Date> datesWithEventsCurrentMonth, Color color) {

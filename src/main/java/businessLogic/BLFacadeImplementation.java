@@ -43,27 +43,27 @@ public class BLFacadeImplementation  implements BLFacade {
     /**
      * {@inheritDoc}
      */
-    @WebMethod public List<String> getSourceLocations(){
+    @WebMethod public List<String> getDepartCities(){
     	dbManager.open();	
 		
-		 List<String> sourceLocations=dbManager.getSourceLocations();		
+		 List<String> departLocations=dbManager.getDepartCities();		
 
 		dbManager.close();
 		
-		return sourceLocations;
+		return departLocations;
     	
     }
     /**
      * {@inheritDoc}
      */
-	@WebMethod public List<String> getDestinationLocations(String from){
+	@WebMethod public List<String> getDestinationCities(String from){
 		dbManager.open();	
 		
-		 List<String> targetLocations=dbManager.getDestinationLocations(from);		
+		 List<String> targetCities=dbManager.getArrivalCities(from);		
 
 		dbManager.close();
 		
-		return targetLocations;
+		return targetCities;
 	}
 
 	/**
@@ -72,19 +72,9 @@ public class BLFacadeImplementation  implements BLFacade {
    @WebMethod
    public Ride createRide( String from, String to, Date date, int nPlaces, float price, Driver driver) throws RideMustBeLaterThanTodayException, RideAlreadyExistException{
 	   
-	    //The minimum bed must be greater than 0
 		dbManager.open();
-		Ride ride=null;
-		
-	    
-		if(new Date().compareTo(date)>0)
-			throw new RideMustBeLaterThanTodayException(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.ErrorRideMustBeLaterThanToday"));
-				
-		
-		 ride=dbManager.createRide(from, to, date, nPlaces, price, driver);		
-
+		Ride ride=dbManager.createRide(from, to, date, nPlaces, price, driver);		
 		dbManager.close();
-		
 		return ride;
    };
 	
@@ -104,9 +94,9 @@ public class BLFacadeImplementation  implements BLFacade {
 	 * {@inheritDoc}
 	 */
 	@WebMethod 
-	public List<Date> getDatesWithRides(String from, String to, Date date){
+	public List<Date> getThisMonthDatesWithRides(String from, String to, Date date){
 		dbManager.open();
-		List<Date>  dates=dbManager.getDatesWithRides(from, to, date);
+		List<Date>  dates=dbManager.getThisMonthDatesWithRides(from, to, date);
 		dbManager.close();
 		return dates;
 	}

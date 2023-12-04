@@ -112,7 +112,7 @@ public class CreateRideGUI extends JFrame {
 		
 		
 		BLFacade facade = MainGUI.getBusinessLogic();
-		datesWithEventsCurrentMonth=facade.getDatesWithRides("a","b",jCalendar.getDate());		
+		datesWithEventsCurrentMonth=facade.getThisMonthDatesWithRides("a","b",jCalendar.getDate());		
 		
 		jLabRideDate.setBounds(new Rectangle(40, 15, 140, 25));
 		jLabRideDate.setBounds(298, 16, 140, 25);
@@ -139,8 +139,6 @@ public class CreateRideGUI extends JFrame {
 				} else if (propertychangeevent.getPropertyName().equals("calendar")) {
 					calendarAnt = (Calendar) propertychangeevent.getOldValue();
 					calendarAct = (Calendar) propertychangeevent.getNewValue();
-					System.out.println("calendarAnt: "+calendarAnt.getTime());
-					System.out.println("calendarAct: "+calendarAct.getTime());
 					DateFormat dateformat1 = DateFormat.getDateInstance(1, jCalendar.getLocale());
 					
 					int monthAnt = calendarAnt.get(Calendar.MONTH);
@@ -177,14 +175,11 @@ public class CreateRideGUI extends JFrame {
 			jLabelMsg.setText(error);
 		else
 			try {
-			BLFacade facade = MainGUI.getBusinessLogic();
-			int inputSeats = Integer.parseInt(jTextFieldSeats.getText());
-			float price = Float.parseFloat(jTextFieldPrice.getText());
-
-			System.out.println("Ride sin crear");
+				BLFacade facade = MainGUI.getBusinessLogic();
+				int inputSeats = Integer.parseInt(jTextFieldSeats.getText());
+				float price = Float.parseFloat(jTextFieldPrice.getText());
 
 				Ride r=facade.createRide(fieldOrigin.getText(), fieldDestination.getText(), UtilDate.trim(jCalendar.getDate()), inputSeats, price, driver);
-				System.out.println("Ride "+r);
 				jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.RideCreated"));
 
 			} catch (RideMustBeLaterThanTodayException e1) {
