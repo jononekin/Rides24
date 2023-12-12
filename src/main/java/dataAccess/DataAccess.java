@@ -1,6 +1,7 @@
 package dataAccess;
 
 import java.io.File;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -33,8 +34,6 @@ public class DataAccess  {
 
      public DataAccess()  {
 		
-		System.out.println("Creating DataAccess instance => isDatabaseLocal: "+c.isDatabaseLocal()+" isDatabaseInitialized: "+c.isDatabaseInitialized());
-		
 		if (c.isDatabaseInitialized()) {
 			String fileName=c.getDbFilename();
 
@@ -51,6 +50,10 @@ public class DataAccess  {
 		open();
 		if  (c.isDatabaseInitialized())initializeDB();
 		
+		System.out.println("DataAccess created => isDatabaseLocal: "+c.isDatabaseLocal()+" isDatabaseInitialized: "+c.isDatabaseInitialized());
+
+		close();
+
 	}
 
 	
@@ -62,7 +65,6 @@ public class DataAccess  {
 	public void initializeDB(){
 		
 		db.getTransaction().begin();
-		System.out.println("Initializing db");
 
 		try {
 
@@ -74,7 +76,7 @@ public class DataAccess  {
 	    
 		   
 		    //Create drivers 
-			Driver driver1=new Driver("driver1@gmail.com","Aitor Fernández");
+			Driver driver1=new Driver("driver1@gmail.com","Aitor Fernandez");
 			Driver driver2=new Driver("driver2@gmail.com","Ane Gaztañaga");
 			Driver driver3=new Driver("driver3@gmail.com","Test driver");
 
@@ -137,28 +139,37 @@ public class DataAccess  {
 	 * @param to the destination location of a ride
 	 * @param date the date of the ride 
 	 * @param nPlaces available seats
-	 * @param driver to which ride is added
+	 * @param driverEmail to which ride is added
 	 * 
 	 * @return the created ride, or null, or an exception
 	 * @throws RideMustBeLaterThanTodayException if the ride date is before today 
  	 * @throws RideAlreadyExistException if the same ride already exists for the driver
 	 */
-	public Ride createRide(String from, String to, Date date, int nPlaces, float price, Driver d) throws  RideAlreadyExistException, RideMustBeLaterThanTodayException {
-		System.out.println(">> DataAccess: createRide=> from= "+from+" to= "+to+" driver="+d.getName()+" date "+date);
+	public Ride createRide(String from, String to, Date date, int nPlaces, float price, String driverEmail) throws  RideAlreadyExistException, RideMustBeLaterThanTodayException {
+		System.out.println(">> DataAccess: createRide=> from= "+from+" to= "+to+" driver="+driverEmail+" date "+date);
+		try {
+			if(new Date().compareTo(date)>0) {
+				throw new RideMustBeLaterThanTodayException(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.ErrorRideMustBeLaterThanToday"));
+			}
+			db.getTransaction().begin();
+			
+			Driver driver = db.find(Driver.class, driverEmail);
+			if (driver.doesRideExists(from, to, date)) {
+				db.getTransaction().commit();
+				throw new RideAlreadyExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.RideAlreadyExist"));
+			}
+			Ride ride = driver.addRide(from, to, date, nPlaces, price);
+			//next instruction can be obviated
+			db.persist(driver); 
+			db.getTransaction().commit();
+
+			return ride;
+		} catch (NullPointerException e) {
+			// TODO Auto-generated catch block
+			db.getTransaction().commit();
+			return null;
+		}
 		
-		if(new Date().compareTo(date)>0)
-			throw new RideMustBeLaterThanTodayException(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.ErrorRideMustBeLaterThanToday"));
-			
-		Driver driver = db.find(Driver.class, d.getEmail());
-			
-		if (driver.doesRideExists(from, to, date)) throw new RideAlreadyExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.RideAlreadyExist"));
-			
-		db.getTransaction().begin();
-		Ride ride = driver.addRide(from, to, date, nPlaces, price);
-		//next instruction can be obviated
-		db.persist(driver); 
-		db.getTransaction().commit();
-		return ride;
 		
 	}
 	
@@ -216,8 +227,6 @@ public class DataAccess  {
 
 public void open(){
 		
-		System.out.println("Opening DataAccess instance => isDatabaseLocal: "+c.isDatabaseLocal()+" isDatabaseInitialized: "+c.isDatabaseInitialized());
-
 		String fileName=c.getDbFilename();
 		if (c.isDatabaseLocal()) {
 			emf = Persistence.createEntityManagerFactory("objectdb:"+fileName);
@@ -230,12 +239,14 @@ public void open(){
 			  emf = Persistence.createEntityManagerFactory("objectdb://"+c.getDatabaseNode()+":"+c.getDatabasePort()+"/"+fileName, properties);
 			  db = emf.createEntityManager();
     	   }
+		System.out.println("DataAccess opened => isDatabaseLocal: "+c.isDatabaseLocal());
+
 		
 	}
 
 	public void close(){
 		db.close();
-		System.out.println("DataBase closed");
+		System.out.println("DataAcess closed");
 	}
 	
 }

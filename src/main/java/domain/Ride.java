@@ -26,6 +26,7 @@ public class Ride implements Serializable {
 	private Date date;
 	private float price;
 	
+	@XmlIDREF
 	private Driver driver;  
 	
 	public Ride(){

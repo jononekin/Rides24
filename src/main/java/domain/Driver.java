@@ -2,6 +2,7 @@ package domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Vector;
 
 import javax.persistence.*;
@@ -23,9 +24,8 @@ public class Driver implements Serializable {
 	@Id 
 	private String email;
 	private String name; 
-	@XmlIDREF
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-	private Vector<Ride> rides=new Vector<Ride>();
+	private List<Ride> rides=new Vector<Ride>();
 
 	public Driver() {
 		super();
@@ -56,7 +56,7 @@ public class Driver implements Serializable {
 	
 	
 	public String toString(){
-		return email+";"+name;
+		return email+";"+name+rides;
 	}
 	
 	/**
@@ -67,9 +67,9 @@ public class Driver implements Serializable {
 	 * @return Bet
 	 */
 	public Ride addRide(String from, String to, Date date, int nPlaces, float price)  {
-        Ride q=new Ride(from,to,date,nPlaces,price, this);
-        rides.add(q);
-        return q;
+        Ride ride=new Ride(from,to,date,nPlaces,price, this);
+        rides.add(ride);
+        return ride;
 	}
 
 	/**
@@ -81,12 +81,11 @@ public class Driver implements Serializable {
 	 * @return true if the ride exists and false in other case
 	 */
 	public boolean doesRideExists(String from, String to, Date date)  {	
-		for (Ride r:rides){
-			if ( (r.getFrom().compareTo(from)==0) &&
-				 (r.getTo().compareTo(to)==0) &&
-				 (r.getDate().compareTo(date)==0) )
-				return true;
-		}
+		
+		for (Ride r:rides)
+			if ( (java.util.Objects.equals(r.getFrom(),from)) && (java.util.Objects.equals(r.getTo(),to)) && (java.util.Objects.equals(r.getDate(),date)) )
+			 return true;
+		
 		return false;
 	}
 		
@@ -102,6 +101,22 @@ public class Driver implements Serializable {
 		if (email != other.email)
 			return false;
 		return true;
+	}
+
+	public Ride removeRide(String from, String to, Date date) {
+		boolean found=false;
+		int index=0;
+		Ride r=null;
+		while (!found && index<=rides.size()) {
+			r=rides.get(++index);
+			if ( (java.util.Objects.equals(r.getFrom(),from)) && (java.util.Objects.equals(r.getTo(),to)) && (java.util.Objects.equals(r.getDate(),date)) )
+			found=true;
+		}
+			
+		if (found) {
+			rides.remove(index);
+			return r;
+		} else return null;
 	}
 	
 }
