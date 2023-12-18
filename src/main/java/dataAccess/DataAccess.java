@@ -1,6 +1,7 @@
 package dataAccess;
 
 import java.io.File;
+import java.net.NoRouteToHostException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -33,7 +34,6 @@ public class DataAccess  {
 	ConfigXML c=ConfigXML.getInstance();
 
      public DataAccess()  {
-		
 		if (c.isDatabaseInitialized()) {
 			String fileName=c.getDbFilename();
 
@@ -55,6 +55,11 @@ public class DataAccess  {
 		close();
 
 	}
+     
+    public DataAccess(EntityManager db) {
+    	System.out.println("mocks");
+    	this.db=db;
+    }
 
 	
 	
@@ -154,6 +159,7 @@ public class DataAccess  {
 			db.getTransaction().begin();
 			
 			Driver driver = db.find(Driver.class, driverEmail);
+			System.out.println("driver "+driver);
 			if (driver.doesRideExists(from, to, date)) {
 				db.getTransaction().commit();
 				throw new RideAlreadyExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.RideAlreadyExist"));

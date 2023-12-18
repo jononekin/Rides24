@@ -81,7 +81,7 @@ public class Driver implements Serializable {
 	 * @return true if the ride exists and false in other case
 	 */
 	public boolean doesRideExists(String from, String to, Date date)  {	
-		
+		System.out.println("rides "+this.rides);
 		for (Ride r:rides)
 			if ( (java.util.Objects.equals(r.getFrom(),from)) && (java.util.Objects.equals(r.getTo(),to)) && (java.util.Objects.equals(r.getDate(),date)) )
 			 return true;
