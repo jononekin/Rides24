@@ -151,13 +151,10 @@ public class CreateRideGUI extends JFrame {
 							calendarAct.set(Calendar.DAY_OF_MONTH, 1);
 						}
 						
-						jCalendar.setCalendar(calendarAct);
-						System.out.println("Calendar actualizado "+calendarAct);
-						
+						jCalendar.setCalendar(calendarAct);						
 	
 					}
 					jCalendar.setCalendar(calendarAct);
-					System.out.println("Calendar actualizado "+calendarAct);
 					int offset = jCalendar.getCalendar().get(Calendar.DAY_OF_WEEK);
 					
 						if (Locale.getDefault().equals(new Locale("es")))

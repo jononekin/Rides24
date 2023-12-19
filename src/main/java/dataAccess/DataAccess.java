@@ -57,7 +57,6 @@ public class DataAccess  {
 	}
      
     public DataAccess(EntityManager db) {
-    	System.out.println("mocks");
     	this.db=db;
     }
 
@@ -159,7 +158,6 @@ public class DataAccess  {
 			db.getTransaction().begin();
 			
 			Driver driver = db.find(Driver.class, driverEmail);
-			System.out.println("driver "+driver);
 			if (driver.doesRideExists(from, to, date)) {
 				db.getTransaction().commit();
 				throw new RideAlreadyExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.RideAlreadyExist"));

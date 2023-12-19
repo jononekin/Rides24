@@ -142,7 +142,6 @@ public class FindRidesGUI extends JFrame {
 			public void propertyChange(PropertyChangeEvent propertychangeevent)
 			{
 
-				System.out.println(propertychangeevent.getPropertyName());
 				if (propertychangeevent.getPropertyName().equals("locale"))
 				{
 					jCalendar1.setLocale((Locale) propertychangeevent.getNewValue());
