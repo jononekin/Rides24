@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
-  <businessLogic local="false"> 
+  <businessLogic local="true"> 
 	<businessLogicNode>0.0.0.0</businessLogicNode>
 	<businessLogicPort>1099</businessLogicPort>
 	<businessLogicName>Rides</businessLogicName>
   </businessLogic>
-  <database local="false" initialize="true">
+  <database local="true" initialize="true">
 	<databaseNode>0.0.0.0</databaseNode>
 	<dbFilename>src/main/resources/rides.temp</dbFilename>
 	<databasePort>6136</databasePort>
