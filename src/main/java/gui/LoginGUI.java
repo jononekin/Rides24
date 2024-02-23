@@ -24,7 +24,6 @@ public class LoginGUI extends JFrame {
 	private JPasswordField passwordField;
 
 	
-	
 	/**
 	 * Launch the application.
 	 */
