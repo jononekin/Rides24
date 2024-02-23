@@ -22,7 +22,8 @@ public class LoginGUI extends JFrame {
 	private JTextField textFieldUser;
 	private JPasswordField passwordField;
 	private final JLabel JLabelLogin = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.Login"));
-
+	
+	
 	/**
 	 * Launch the application.
 	 */
