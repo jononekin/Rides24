@@ -46,6 +46,7 @@ public class DiruaSartuGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public DiruaSartuGUI() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
