@@ -19,12 +19,11 @@ public class LoginGUI extends JFrame {
 	private JLabel JLabelEnterUser = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.EnterUser"));
 	private JLabel JLabelEnterPass  = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.EnterPass"));
 	private JButton JButtonLogin = new JButton(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.Login"));
-	private JTextField textFieldUser;
+	private JTextField textFieldUser;	
 	private final JLabel JLabelLogin = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.Login"));
 	private JPasswordField passwordField;
-	private JTextArea erroreaArea;
 
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -41,7 +40,6 @@ public class LoginGUI extends JFrame {
 		});
 	}
 
-	
 	/**
 	 * Create the frame.
 	 */
@@ -52,30 +50,30 @@ public class LoginGUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
+		
 		JLabelEnterUser.setBounds(56, 75, 60, 14);
 		contentPane.add(JLabelEnterUser);
-
+		
 		JLabelEnterPass.setBounds(56, 127, 60, 14);
 		contentPane.add(JLabelEnterPass);
-
+		
 		JButtonLogin.setBounds(172, 170, 89, 23);
 		contentPane.add(JButtonLogin);
-
+		
 		textFieldUser = new JTextField();
 		textFieldUser.setBounds(155, 72, 193, 20);
 		contentPane.add(textFieldUser);
 		textFieldUser.setColumns(10);
-
+		
 		passwordField = new JPasswordField();
 		passwordField.setBounds(155, 124, 193, 20);
 		contentPane.add(passwordField);
-
-		erroreaArea = new JTextArea();
-		erroreaArea.setBounds(93, 216, 255, 22);
-		contentPane.add(erroreaArea);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setBounds(93, 216, 255, 22);
+		contentPane.add(textArea);
 		JLabelLogin.setBounds(172, 22, 125, 23);
-
+		
 		contentPane.add(JLabelLogin);
 	}
 }
