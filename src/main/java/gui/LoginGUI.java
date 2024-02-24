@@ -41,6 +41,7 @@ public class LoginGUI extends JFrame {
 		});
 	}
 
+	
 	/**
 	 * Create the frame.
 	 */
