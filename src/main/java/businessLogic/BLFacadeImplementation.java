@@ -9,9 +9,11 @@ import javax.jws.WebService;
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
 import domain.Ride;
+import domain.User;
 import domain.Driver;
 import exceptions.RideMustBeLaterThanTodayException;
 import exceptions.RideAlreadyExistException;
+import exceptions.UserAlreadyExistException;
 
 /**
  * It implements the business logic as a web service.
@@ -118,6 +120,30 @@ public class BLFacadeImplementation  implements BLFacade {
 		dbManager.initializeDB();
 		dbManager.close();
 	}
-
+    
+    public User isLogged(String user, String password) {
+    	dbManager.open();
+    	User u = dbManager.isLogged(user, password);
+    	dbManager.close();
+    	return u;
+    }
+    
+    public User register(String email, String name, String password, double cash, String type) {
+    	User u = null;
+    	if(type.equals("Driver")) {
+    		u = new Driver(email, name, password, cash);
+    	} else if(type.equals("Traveler")) {
+    		u = new Driver(email, name, password, cash);
+    	}
+    	try {
+    		dbManager.open();
+    		dbManager.storeUser(u);
+        	dbManager.close();
+    		
+    	}
+    	catch(UserAlreadyExistException e) {
+    		System.out.println(e.getMessage());
+    	}
+    	return u;
+    }
 }
-

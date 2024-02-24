@@ -1,5 +1,4 @@
 package gui;
-
 /**
  * @author Software Engineering teachers
  */
@@ -24,11 +23,10 @@ import java.awt.event.ActionEvent;
 
 public class MainGUI extends JFrame {
 	
-    private Driver driver;
 	private static final long serialVersionUID = 1L;
 
 	private JPanel jContentPane = null;
-	private JButton jButtonCreateQuery = null;
+	private JButton jButtonLogin;
 	private JButton jButtonQueryQueries = null;
 
     private static BLFacade appFacadeInterface;
@@ -46,21 +44,16 @@ public class MainGUI extends JFrame {
 	private JRadioButton rdbtnNewRadioButton_2;
 	private JPanel panel;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JButton jButtonRegister;
 	
 	/**
 	 * This is the default constructor
 	 */
-	public MainGUI(Driver d) {
+	public MainGUI() {
 		super();
-
-		driver=d;
 		
 		// this.setSize(271, 295);
 		this.setSize(495, 290);
-		jLabelSelectOption = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.SelectOption"));
-		jLabelSelectOption.setFont(new Font("Tahoma", Font.BOLD, 13));
-		jLabelSelectOption.setForeground(Color.BLACK);
-		jLabelSelectOption.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		rdbtnNewRadioButton = new JRadioButton("English");
 		rdbtnNewRadioButton.addActionListener(new ActionListener() {
@@ -95,11 +88,11 @@ public class MainGUI extends JFrame {
 		panel.add(rdbtnNewRadioButton_2);
 		panel.add(rdbtnNewRadioButton);
 		
-		jButtonCreateQuery = new JButton();
-		jButtonCreateQuery.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.CreateRide"));
-		jButtonCreateQuery.addActionListener(new java.awt.event.ActionListener() {
+		jButtonLogin = new JButton();
+		jButtonLogin.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.Login"));
+		jButtonLogin.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
-				JFrame a = new CreateRideGUI(driver);
+				JFrame a = new LoginGUI();
 				a.setVisible(true);
 			}
 		});
@@ -115,15 +108,23 @@ public class MainGUI extends JFrame {
 		});
 		
 		jContentPane = new JPanel();
-		jContentPane.setLayout(new GridLayout(4, 1, 0, 0));
+		jContentPane.setLayout(new GridLayout(5, 1, 0, 0));
+		jLabelSelectOption = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.SelectOption"));
+		jLabelSelectOption.setFont(new Font("Tahoma", Font.BOLD, 13));
+		jLabelSelectOption.setForeground(Color.BLACK);
+		jLabelSelectOption.setHorizontalAlignment(SwingConstants.CENTER);
+		jLabelSelectOption.setVerticalAlignment(SwingConstants.CENTER);
 		jContentPane.add(jLabelSelectOption);
-		jContentPane.add(jButtonCreateQuery);
+		
+		jButtonRegister = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.Register")); //$NON-NLS-1$ //$NON-NLS-2$
+		jContentPane.add(jButtonRegister);
+		jContentPane.add(jButtonLogin);
 		jContentPane.add(jButtonQueryQueries);
 		jContentPane.add(panel);
 		
 		
 		setContentPane(jContentPane);
-		setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.MainTitle") + " - driver :"+driver.getName());
+		setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.MainTitle"));
 		
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -136,8 +137,9 @@ public class MainGUI extends JFrame {
 	private void paintAgain() {
 		jLabelSelectOption.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.SelectOption"));
 		jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.QueryRides"));
-		jButtonCreateQuery.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.CreateRide"));
-		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.MainTitle")+ " - driver :"+driver.getName());
+		jButtonLogin.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.Login"));
+		jButtonRegister.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.Register"));
+		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.MainTitle"));
 	}
 	
 } // @jve:decl-index=0:visual-constraint="0,0"
