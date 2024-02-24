@@ -1,6 +1,5 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.util.ResourceBundle;
 
@@ -14,6 +13,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 
 public class LoginGUI extends JFrame {
+	private static final long serialVersionUID = 1L;
 
 	private JPanel contentPane;
 	private JLabel JLabelEnterUser = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.EnterUser"));
