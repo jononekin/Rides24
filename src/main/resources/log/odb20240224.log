@@ -1,0 +1,367 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-02-24 13:27:35 #1 store] 
+Database 'C:\Users\Xabi\git\Rides24\src\main\resources\rides.temp' is opened by 6040@DESKTOP-PNFEN4V
+
+[2024-02-24 13:27:35 #2 type.registry] 
+New type domain.Driver
+
+[2024-02-24 13:27:35 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2024-02-24 13:27:35 #4 type.registry] 
+New type domain.Ride
+
+[2024-02-24 13:27:35 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2024-02-24 13:27:35 #6 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2024-02-24 13:27:35 #7 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-02-24 13:28:34 #1 store] 
+Database 'C:\Users\Xabi\git\Rides24\src\main\resources\rides.temp' is opened by 2264@DESKTOP-PNFEN4V
+
+[2024-02-24 13:28:34 #2 type.registry] 
+New type domain.Driver
+
+[2024-02-24 13:28:34 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2024-02-24 13:28:34 #4 type.registry] 
+New type domain.Ride
+
+[2024-02-24 13:28:34 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2024-02-24 13:28:35 #6 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2024-02-24 13:28:35 #7 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-02-24 13:36:22 #1 store] 
+Database 'C:\Users\Xabi\git\Rides24\src\main\resources\rides.temp' is opened by 17140@DESKTOP-PNFEN4V
+
+[2024-02-24 13:36:22 #2 type.registry] 
+New type domain.Driver
+
+[2024-02-24 13:36:22 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2024-02-24 13:36:22 #4 type.registry] 
+New type domain.Ride
+
+[2024-02-24 13:36:22 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2024-02-24 13:36:22 #6 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2024-02-24 13:36:22 #7 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-02-24 13:37:29 #1 store] 
+Database 'C:\Users\Xabi\git\Rides24\src\main\resources\rides.temp' is opened by 10800@DESKTOP-PNFEN4V
+
+[2024-02-24 13:37:29 #2 type.registry] 
+New type domain.Driver
+
+[2024-02-24 13:37:29 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2024-02-24 13:37:29 #4 type.registry] 
+New type domain.Ride
+
+[2024-02-24 13:37:29 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2024-02-24 13:37:29 #6 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2024-02-24 13:37:29 #7 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-02-24 13:38:18 #1 store] 
+Database 'C:\Users\Xabi\git\Rides24\src\main\resources\rides.temp' is opened by 10232@DESKTOP-PNFEN4V
+
+[2024-02-24 13:38:18 #2 type.registry] 
+New type domain.Driver
+
+[2024-02-24 13:38:18 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2024-02-24 13:38:18 #4 type.registry] 
+New type domain.Ride
+
+[2024-02-24 13:38:18 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2024-02-24 13:38:18 #6 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2024-02-24 13:38:18 #7 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-02-24 13:40:24 #1 store] 
+Database 'C:\Users\Xabi\git\Rides24\src\main\resources\rides.temp' is opened by 9924@DESKTOP-PNFEN4V
+
+[2024-02-24 13:40:25 #2 type.registry] 
+New type domain.Driver
+
+[2024-02-24 13:40:25 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2024-02-24 13:40:25 #4 type.registry] 
+New type domain.Ride
+
+[2024-02-24 13:40:25 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2024-02-24 13:40:25 #6 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2024-02-24 13:40:25 #7 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-02-24 15:43:24 #1 store] 
+Database 'C:\Users\Xabi\git\Rides24\src\main\resources\rides.temp' is opened by 7992@DESKTOP-PNFEN4V
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-02-24 15:47:17 #1 store] 
+Database 'C:\Users\Xabi\git\Rides24\src\main\resources\rides.temp' is opened by 13384@DESKTOP-PNFEN4V
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-02-24 15:47:30 #1 store] 
+Database 'C:\Users\Xabi\git\Rides24\src\main\resources\rides.temp' is opened by 2652@DESKTOP-PNFEN4V
+
+[2024-02-24 15:47:35 #2 type.registry] 
+New type domain.User
+
+[2024-02-24 15:47:35 #3 type] 
+Type domain.User is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-02-24 15:49:12 #1 store] 
+Database 'C:\Users\Xabi\git\Rides24\src\main\resources\rides.temp' is opened by 10532@DESKTOP-PNFEN4V
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-02-24 16:41:25 #1 store] 
+Database 'C:\Users\Xabi\git\Rides24\src\main\resources\rides.temp' is opened by 7176@DESKTOP-PNFEN4V
+
+[2024-02-24 16:41:27 #2 type.registry] 
+New type domain.User
+
+[2024-02-24 16:41:27 #3 type] 
+Type domain.User is not enhanced.
+
+[2024-02-24 16:41:27 #4 type.registry] 
+New type domain.Driver
+
+[2024-02-24 16:41:27 #5 type] 
+Type domain.Driver is not enhanced.
+
+[2024-02-24 16:41:27 #6 type.registry] 
+New type domain.Ride
+
+[2024-02-24 16:41:27 #7 type] 
+Type domain.Ride is not enhanced.
+
+[2024-02-24 16:41:27 #8 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2024-02-24 16:41:27 #9 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-02-24 16:42:37 #1 store] 
+Database 'C:\Users\Xabi\git\Rides24\src\main\resources\rides.temp' is opened by 18048@DESKTOP-PNFEN4V
+
+[2024-02-24 16:42:38 #2 type.registry] 
+New type domain.User
+
+[2024-02-24 16:42:38 #3 type] 
+Type domain.User is not enhanced.
+
+[2024-02-24 16:42:38 #4 type.registry] 
+New type domain.Driver
+
+[2024-02-24 16:42:38 #5 type] 
+Type domain.Driver is not enhanced.
+
+[2024-02-24 16:42:38 #6 type.registry] 
+New type domain.Ride
+
+[2024-02-24 16:42:38 #7 type] 
+Type domain.Ride is not enhanced.
+
+[2024-02-24 16:42:38 #8 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2024-02-24 16:42:38 #9 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-02-24 16:59:44 #1 store] 
+Database 'C:\Users\Xabi\git\Rides24\src\main\resources\rides.temp' is opened by 7376@DESKTOP-PNFEN4V
+
+[2024-02-24 16:59:45 #2 type.registry] 
+New type domain.User
+
+[2024-02-24 16:59:45 #3 type] 
+Type domain.User is not enhanced.
+
+[2024-02-24 16:59:46 #4 type.registry] 
+New type domain.Driver
+
+[2024-02-24 16:59:46 #5 type] 
+Type domain.Driver is not enhanced.
+
+[2024-02-24 16:59:46 #6 type.registry] 
+New type domain.Ride
+
+[2024-02-24 16:59:46 #7 type] 
+Type domain.Ride is not enhanced.
+
+[2024-02-24 16:59:46 #8 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2024-02-24 16:59:46 #9 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-02-24 17:02:16 #1 store] 
+Database 'C:\Users\Xabi\git\Rides24\src\main\resources\rides.temp' is opened by 9768@DESKTOP-PNFEN4V
+
+[2024-02-24 17:02:17 #2 type.registry] 
+New type domain.User
+
+[2024-02-24 17:02:17 #3 type] 
+Type domain.User is not enhanced.
+
+[2024-02-24 17:02:17 #4 type.registry] 
+New type domain.Driver
+
+[2024-02-24 17:02:17 #5 type] 
+Type domain.Driver is not enhanced.
+
+[2024-02-24 17:02:17 #6 type.registry] 
+New type domain.Ride
+
+[2024-02-24 17:02:17 #7 type] 
+Type domain.Ride is not enhanced.
+
+[2024-02-24 17:02:17 #8 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2024-02-24 17:02:17 #9 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-02-24 17:02:57 #1 store] 
+Database 'C:\Users\Xabi\git\Rides24\src\main\resources\rides.temp' is opened by 2680@DESKTOP-PNFEN4V
+
+[2024-02-24 17:02:58 #2 type.registry] 
+New type domain.User
+
+[2024-02-24 17:02:58 #3 type] 
+Type domain.User is not enhanced.
+
+[2024-02-24 17:02:58 #4 type.registry] 
+New type domain.Driver
+
+[2024-02-24 17:02:58 #5 type] 
+Type domain.Driver is not enhanced.
+
+[2024-02-24 17:02:58 #6 type.registry] 
+New type domain.Ride
+
+[2024-02-24 17:02:58 #7 type] 
+Type domain.Ride is not enhanced.
+
+[2024-02-24 17:02:58 #8 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2024-02-24 17:02:58 #9 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-02-24 17:03:48 #1 store] 
+Database 'C:\Users\Xabi\git\Rides24\src\main\resources\rides.temp' is opened by 11116@DESKTOP-PNFEN4V
+
+[2024-02-24 17:03:57 #2 type.registry] 
+New type domain.User
+
+[2024-02-24 17:03:57 #3 type] 
+Type domain.User is not enhanced.
+
+[2024-02-24 17:03:57 #4 type.registry] 
+New type domain.Driver
+
+[2024-02-24 17:03:57 #5 type] 
+Type domain.Driver is not enhanced.
+
+[2024-02-24 17:03:57 #6 type.registry] 
+New type domain.Ride
+
+[2024-02-24 17:03:57 #7 type] 
+Type domain.Ride is not enhanced.
+
+[2024-02-24 17:03:57 #8 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2024-02-24 17:03:57 #9 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-02-24 17:05:04 #1 store] 
+Database 'C:\Users\Xabi\git\Rides24\src\main\resources\rides.temp' is opened by 2588@DESKTOP-PNFEN4V
+
+[2024-02-24 17:05:05 #2 type.registry] 
+New type domain.User
+
+[2024-02-24 17:05:05 #3 type] 
+Type domain.User is not enhanced.
+
+[2024-02-24 17:05:05 #4 type.registry] 
+New type domain.Driver
+
+[2024-02-24 17:05:05 #5 type] 
+Type domain.Driver is not enhanced.
+
+[2024-02-24 17:05:05 #6 type.registry] 
+New type domain.Ride
+
+[2024-02-24 17:05:05 #7 type] 
+Type domain.Ride is not enhanced.
+
+[2024-02-24 17:05:05 #8 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2024-02-24 17:05:05 #9 type.registry] 
+New type java.util.Vector<domain.Ride>
+

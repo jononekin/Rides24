@@ -20,8 +20,10 @@ import configuration.ConfigXML;
 import configuration.UtilDate;
 import domain.Driver;
 import domain.Ride;
+import domain.User;
 import exceptions.RideAlreadyExistException;
 import exceptions.RideMustBeLaterThanTodayException;
+import exceptions.UserAlreadyExistException;
 
 /**
  * It implements the data access to the objectDb database
@@ -79,7 +81,7 @@ public class DataAccess  {
 		   if (month==12) { month=1; year+=1;}  
 	    
 		   
-		    //Create drivers 
+		    /*Create drivers 
 			Driver driver1=new Driver("driver1@gmail.com","Aitor Fernandez");
 			Driver driver2=new Driver("driver2@gmail.com","Ane Gaztañaga");
 			Driver driver3=new Driver("driver3@gmail.com","Test driver");
@@ -97,13 +99,13 @@ public class DataAccess  {
 			driver2.addRide("Eibar", "Gasteiz", UtilDate.newDate(year,month,6), 2, 5);
 
 			driver3.addRide("Bilbo", "Donostia", UtilDate.newDate(year,month,14), 1, 3);
-
+			
 			
 						
 			db.persist(driver1);
 			db.persist(driver2);
 			db.persist(driver3);
-
+			*/
 	
 			db.getTransaction().commit();
 			System.out.println("Db initialized");
@@ -226,6 +228,28 @@ public class DataAccess  {
 		   res.add(d);
 		  }
 	 	return res;
+	}
+	
+	public User isLogged(String user, String password) {
+		User u = db.find(User.class, user);
+		if(u.getPassword().equals(password)) {
+			System.out.println(">> DataAccess: isLogged=> erabiltzailea sisteman dago");
+			return u;
+		} else {
+			return null;
+		}
+	}
+	
+	public void storeUser(User u) throws UserAlreadyExistException {
+		System.out.println(">> DataAccess: storeUser=> " + u.toString());
+		User user = db.find(User.class, u.getEmail());
+		if(user == null) {
+			db.getTransaction().begin();
+			db.persist(u); 
+			db.getTransaction().commit();
+		} else {
+			throw new UserAlreadyExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.UserAlreadyExist"));
+		}
 	}
 	
 
