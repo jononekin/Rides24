@@ -117,6 +117,12 @@ public class MainGUI extends JFrame {
 		jContentPane.add(jLabelSelectOption);
 		
 		jButtonRegister = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.Register")); //$NON-NLS-1$ //$NON-NLS-2$
+		jButtonRegister.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrame a = new RegisterGUI();
+				a.setVisible(true);
+			}
+		});
 		jContentPane.add(jButtonRegister);
 		jContentPane.add(jButtonLogin);
 		jContentPane.add(jButtonQueryQueries);

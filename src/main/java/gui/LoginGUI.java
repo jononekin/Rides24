@@ -38,6 +38,8 @@ public class LoginGUI extends JFrame {
 	String password;
 	User u;
 
+	private BLFacade facade;
+
 	
 	/**
 	 * Launch the application.
@@ -60,8 +62,7 @@ public class LoginGUI extends JFrame {
 	 */
 	public LoginGUI() {
 		
-		BLFacade facade = MainGUI.getBusinessLogic();
-		facade.register("xabiaba", "xabi", "1234", 0, "Driver");
+		facade = MainGUI.getBusinessLogic();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
