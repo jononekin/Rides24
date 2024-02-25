@@ -132,13 +132,14 @@ public class RegisterGUI extends JFrame {
 					User u = facade.register(email, name, password, 0.0, type);
 					if(u!=null) {
 						if(u instanceof Driver) {
-							JFrame a = new DriverMainGUI();
+							Driver d = (Driver) u;
+							JFrame a = new DriverMainGUI(d);
 							a.setVisible(true);
 						} else if(u instanceof Traveler) {
 							
 						}
 					} else {
-						textArea.setText(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.UserAlredyExist"));
+						textArea.setText(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.UserAlreadyExist"));
 					}
 				} else {
 					textArea.setText(ResourceBundle.getBundle("Etiquetas").getString("RegisterGUI.IncorrectData"));

@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import domain.Driver;
+
 import java.awt.GridLayout;
 import java.util.ResourceBundle;
 
@@ -20,14 +23,16 @@ public class DriverMainGUI extends JFrame {
 	private JButton jButtonCreateRide = new JButton(ResourceBundle.getBundle("Etiquetas").getString("DriverMainGUI.CreateRide"));
 	private JButton jButtonAcceptReservation = new JButton(ResourceBundle.getBundle("Etiquetas").getString("DriverMainGUI.AcceptReservation"));
 
+	private Driver driver;
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				Driver d = null;
 				try {
-					DriverMainGUI frame = new DriverMainGUI();
+					DriverMainGUI frame = new DriverMainGUI(d);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -39,7 +44,10 @@ public class DriverMainGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public DriverMainGUI() {
+	public DriverMainGUI(Driver d) {
+		
+		this.driver = d;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

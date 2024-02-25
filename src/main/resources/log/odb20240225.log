@@ -284,3 +284,40 @@ New type java.util.Vector<java.lang.Object>
 [2024-02-25 16:26:36 #9 type.registry] 
 New type java.util.Vector<domain.Ride>
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-02-25 16:33:40 #1 store] 
+Database 'C:\Users\Xabi\git\Rides24\src\main\resources\rides.temp' has been recovered (tr. 1-7)
+
+[2024-02-25 16:33:40 #2 store] 
+Database 'C:\Users\Xabi\git\Rides24\src\main\resources\rides.temp' is opened by 10860@DESKTOP-PNFEN4V
+
+[2024-02-25 16:33:40 #3 type] 
+Type domain.User is not enhanced.
+
+[2024-02-25 16:33:40 #4 type] 
+Type domain.Driver is not enhanced.
+
+[2024-02-25 16:33:40 #5 type] 
+Type domain.Ride is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-02-25 16:37:00 #1 store] 
+Database 'C:\Users\Xabi\git\Rides24\src\main\resources\rides.temp' is opened by 5392@DESKTOP-PNFEN4V
+
+[2024-02-25 16:37:00 #2 type] 
+Type domain.User is not enhanced.
+
+[2024-02-25 16:37:00 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2024-02-25 16:37:00 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2024-02-25 16:37:11 #5 type.registry] 
+New type domain.Traveler
+
+[2024-02-25 16:37:11 #6 type] 
+Type domain.Traveler is not enhanced.
+
