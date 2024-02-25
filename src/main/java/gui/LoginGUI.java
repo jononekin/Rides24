@@ -87,7 +87,8 @@ public class LoginGUI extends JFrame {
 					u = facade.isLogged(user, password);
 					if(u != null) {
 						if(u instanceof Driver) {
-							JFrame a = new DriverMainGUI();
+							Driver d = (Driver) u;
+							JFrame a = new DriverMainGUI(d);
 							a.setVisible(true);
 						} else if(u instanceof Traveler) {
 							
