@@ -9,6 +9,7 @@ import javax.jws.WebService;
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
 import domain.Ride;
+import domain.Traveler;
 import domain.User;
 import domain.Driver;
 import exceptions.RideMustBeLaterThanTodayException;
@@ -133,17 +134,16 @@ public class BLFacadeImplementation  implements BLFacade {
     	if(type.equals("Driver")) {
     		u = new Driver(email, name, password, cash);
     	} else if(type.equals("Traveler")) {
-    		u = new Driver(email, name, password, cash);
+    		u = new Traveler(email, name, password, cash);
     	}
     	try {
     		dbManager.open();
     		dbManager.storeUser(u);
         	dbManager.close();
-    		
+        	return u;
     	}
     	catch(UserAlreadyExistException e) {
-    		System.out.println(e.getMessage());
+    		return null;
     	}
-    	return u;
     }
 }
