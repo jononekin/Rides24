@@ -91,7 +91,9 @@ public class LoginGUI extends JFrame {
 							JFrame a = new DriverMainGUI(d);
 							a.setVisible(true);
 						} else if(u instanceof Traveler) {
-							
+							Traveler t = (Traveler) u;
+							JFrame a = new TravelerMainGUI(t);
+							a.setVisible(true);
 						}
 					} else {
 						textArea.setText(ResourceBundle.getBundle("Etiquetas").getString("LoginGUI.WrongUserPass"));
