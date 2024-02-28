@@ -45,7 +45,6 @@ public class DriverMainGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public DriverMainGUI(Driver d) {
-		
 		this.driver = d;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
