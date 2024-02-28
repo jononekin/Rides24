@@ -1,6 +1,7 @@
 package domain;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.persistence.*;
@@ -25,6 +26,7 @@ public class Ride implements Serializable {
 	private int nPlaces;
 	private Date date;
 	private float price;
+	private ArrayList<ReserveStatus> reserveList = new ArrayList<>();
 	
 	private Driver driver;  
 	
