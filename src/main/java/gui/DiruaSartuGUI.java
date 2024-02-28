@@ -21,9 +21,9 @@ public class DiruaSartuGUI extends JFrame {
 	private JRadioButton rdbtnAtera = new JRadioButton(ResourceBundle.getBundle("Etiquetas").getString("DiruaSartuGUI.diruaAtera"));
 	private JLabel JLabelDiruaSartuAtera = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("DiruaSartuGUI.diruaSartuAtera"));
 	private JLabel JLabelSaldoa = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("DiruaSartuGUI.saldoa"));
-	private JTextArea textSaldoa;
 	private JLabel jLabelZenbat = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("DiruaSartuGUI.zenbatDiru"));
 	private JButton btnSartuAtera = new JButton(ResourceBundle.getBundle("Etiquetas").getString("DiruaSartuGUI.diruaSartuAtera"));
+	private JTextField textCash;
 	
 
 	/**
@@ -65,13 +65,10 @@ public class DiruaSartuGUI extends JFrame {
 		contentPane.add(textDirua);
 		textDirua.setColumns(10);
 		
-		JLabelSaldoa.setBounds(87, 62, 45, 13);
+		JLabelSaldoa.setBounds(61, 62, 71, 13);
 		contentPane.add(JLabelSaldoa);
 		
-		textSaldoa.setBounds(200, 56, 103, 22);
-		contentPane.add(textSaldoa);
-		
-		jLabelZenbat.setBounds(178, 113, 45, 13);
+		jLabelZenbat.setBounds(161, 113, 81, 13);
 		contentPane.add(jLabelZenbat);
 		
 		btnSartuAtera.setBounds(161, 208, 103, 31);
@@ -79,5 +76,14 @@ public class DiruaSartuGUI extends JFrame {
 		
 		JLabelDiruaSartuAtera.setBounds(178, 21, 64, 13);
 		contentPane.add(JLabelDiruaSartuAtera);
+		
+		textCash = new JTextField();
+		textCash.setBounds(161, 147, 86, 20);
+		contentPane.add(textCash);
+		textCash.setColumns(10);
+		
+		JTextArea textSaldoa = new JTextArea();
+		textSaldoa.setBounds(171, 56, 138, 22);
+		contentPane.add(textSaldoa);
 	}
 }
