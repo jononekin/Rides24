@@ -239,7 +239,6 @@ public class CreateRideMock {
 		}	
 		Ride ride=null;
 		try {
-			
 			//configure the state through mocks 
 
 			driver=new Driver(driverEmail,driverName, "", 0.0);
