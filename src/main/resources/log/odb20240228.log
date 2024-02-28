@@ -1,0 +1,29 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-02-28 15:29:45 #1 store] 
+Database 'C:\Users\ehu\git\Rides24\src\main\resources\rides.temp' is opened by 1252@U106255
+
+[2024-02-28 15:30:23 #2 type.registry] 
+New type domain.User
+
+[2024-02-28 15:30:23 #3 type] 
+Type domain.User is not enhanced.
+
+[2024-02-28 15:30:23 #4 type.registry] 
+New type domain.Driver
+
+[2024-02-28 15:30:23 #5 type] 
+Type domain.Driver is not enhanced.
+
+[2024-02-28 15:30:24 #6 type.registry] 
+New type domain.Ride
+
+[2024-02-28 15:30:24 #7 type] 
+Type domain.Ride is not enhanced.
+
+[2024-02-28 15:30:24 #8 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2024-02-28 15:30:24 #9 type.registry] 
+New type java.util.Vector<domain.Ride>
+
