@@ -32,6 +32,7 @@ public class FindBookGUI extends JFrame {
 	private JLabel jLabelDestination = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.GoingTo"));
 	private final JLabel jLabelEventDate = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.RideDate"));
 	private final JLabel jLabelEvents = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.Rides")); 
+	private JButton jButtonBook = new JButton(ResourceBundle.getBundle("Etiquetas").getString("FindBookGUI.Book"));
 
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 
@@ -231,7 +232,6 @@ public class FindBookGUI extends JFrame {
 		datesWithRidesCurrentMonth=facade.getThisMonthDatesWithRides((String)jComboBoxOrigin.getSelectedItem(),(String)jComboBoxDestination.getSelectedItem(),jCalendar1.getDate());
 		paintDaysWithEvents(jCalendar1,datesWithRidesCurrentMonth,Color.CYAN);
 		
-		JButton jButtonBook = new JButton(ResourceBundle.getBundle("Etiquetas").getString("FindBookGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
 		jButtonBook.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
