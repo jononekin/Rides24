@@ -252,6 +252,20 @@ public class DataAccess  {
 		}
 	}
 	
+	public User getUserByEmail(String email) {
+		return db.find(User.class,email);
+	}
+	
+	public User updateMoneyByEmail(String email, double cash) {
+		User u = getUserByEmail(email);
+		db.getTransaction().begin();
+		u.setCash(u.getCash() + cash);
+		db.persist(u);
+		db.getTransaction().commit();
+		System.out.println(u + " has been updated");
+		return u;
+	}
+	
 
 public void open(){
 		

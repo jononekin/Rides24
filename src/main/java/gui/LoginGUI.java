@@ -63,6 +63,8 @@ public class LoginGUI extends JFrame {
 	public LoginGUI() {
 		
 		facade = MainGUI.getBusinessLogic();
+		facade.register("xabid", "xabi", "1234", 0, "Driver");
+		facade.register("xabit", "xabi", "1234", 0, "Traveler");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
