@@ -145,5 +145,14 @@ public class BLFacadeImplementation  implements BLFacade {
     	catch(UserAlreadyExistException e) {
     		return null;
     	}
+    	
+    	
+    }
+    
+    public User updateMoneyByEmail(String email, double cash) {
+        dbManager.open();
+        User u = dbManager.updateMoneyByEmail(email, cash);
+        dbManager.close();
+        return u;
     }
 }

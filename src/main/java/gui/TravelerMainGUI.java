@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import domain.Traveler;
+import domain.User;
+
 import java.awt.GridLayout;
 import java.util.ResourceBundle;
 
@@ -20,10 +22,10 @@ public class TravelerMainGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JLabel JlabelAukeratu  = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("TravelerMainGUI.Aukeratu"));
-	private JButton rdbtDiruaSartuAtera  = new JButton(ResourceBundle.getBundle("Etiquetas").getString("TravelerMainGUI.DiruaSartuAtera"));
 	private JButton rdbtBidaiaBilatu  = new JButton(ResourceBundle.getBundle("Etiquetas").getString("TravelerMainGUI.BidaiaBilatu"));
 	
-	private static Traveler traveler;
+	private Traveler traveler;
+	private JButton jButtonDiruaSartu = new JButton(ResourceBundle.getBundle("Etiquetas").getString("TravelerMainGUI.diruaSartuAtera")); //$NON-NLS-1$ //$NON-NLS-2$
 
 	/**
 	 * Launch the application.
@@ -31,8 +33,9 @@ public class TravelerMainGUI extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				Traveler t = null;
 				try {
-					TravelerMainGUI frame = new TravelerMainGUI(traveler);
+					TravelerMainGUI frame = new TravelerMainGUI(t);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -54,13 +57,6 @@ public class TravelerMainGUI extends JFrame {
 		contentPane.setLayout(new GridLayout(3, 1, 0, 0));
 		JlabelAukeratu.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(JlabelAukeratu);
-		rdbtDiruaSartuAtera.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				DiruaSartuGUI frame = new DiruaSartuGUI();
-				frame.setVisible(true);
-			}
-		});
-		contentPane.add(rdbtDiruaSartuAtera);
 		rdbtBidaiaBilatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				FindBookGUI frame = new FindBookGUI(t);
@@ -68,6 +64,14 @@ public class TravelerMainGUI extends JFrame {
 			}
 		});
 		contentPane.add(rdbtBidaiaBilatu);
+		jButtonDiruaSartu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DiruaSartuGUI frame = new DiruaSartuGUI((User)t);
+				frame.setVisible(true);
+			}
+		});
+		
+		contentPane.add(jButtonDiruaSartu);
 	}
 
 }
