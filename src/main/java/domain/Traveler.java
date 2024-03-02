@@ -27,10 +27,8 @@ public class Traveler extends User implements Serializable {
 		super(email, name, password, cash);
 	}
 	
-	public Ride addRide(Ride r)  {
+	public void addRide(Ride r)  {
         rides.add(r);
-        r.setBetMinimum((int) r.getnPlaces()-1);
-        return r;
 	}
 
 	@Override
@@ -49,4 +47,5 @@ public class Traveler extends User implements Serializable {
 		Traveler other = (Traveler) obj;
 		return Objects.equals(rides, other.rides);
 	}
+	
 }

@@ -22,6 +22,7 @@ import domain.Driver;
 import domain.ReserveStatus;
 import domain.Ride;
 import domain.User;
+import domain.Traveler;
 import exceptions.RideAlreadyExistException;
 import exceptions.RideMustBeLaterThanTodayException;
 import exceptions.UserAlreadyExistException;
@@ -275,11 +276,52 @@ public class DataAccess  {
 		Ride ride = this.getRideByRideNumber(rideNumber);
 		db.getTransaction().begin();
 		boolean e = ride.addReserve(rs);
+		ride.setCount(ride.getCount()+1);
 		db.persist(ride);
 		db.getTransaction().commit();
 		System.out.println("Reserve: " + rs.getReserveNumber() + " has been added to: " + ride);
 		return e;
+	}  
+	
+	public void removeReserve(int rideNumber, int reserveNumber) {
+		Ride ride = this.getRideByRideNumber(rideNumber);
+		db.getTransaction().begin();
+		ReserveStatus[] rlist = ride.getReserveList();
+		ReserveStatus rstatus;
+		System.out.println(rlist);
+		for(int i = 0; i < rlist.length; i++) {
+			rstatus = rlist[i];
+			if(rstatus != null && rstatus.getReserveNumber()==reserveNumber) {
+				rlist[i]=null;
+				ride.setCount(ride.getCount()-1);
+			}
+		}
+		DataAccess.moveNullsToRight(rlist);
+		System.out.println(rlist);
+		ride.setReserveList(rlist);
+		db.persist(ride);
+		db.getTransaction().commit();
+		System.out.println("Reserve: " + reserveNumber + " has been removed");
 	}
+	
+	public List<Ride> getAllRidesFromEmail(String email) {
+		List<Ride> rideList = new ArrayList<>();
+		TypedQuery<Ride> query = db.createQuery("SELECT r FROM Ride r WHERE r.driver.email = ?1", Ride.class);
+        query.setParameter(1, email);
+		rideList = query.getResultList();
+	 	return rideList;
+	}
+	
+	public boolean addRideByEmail(String email, int rideNumber) {
+		Ride ride = this.getRideByRideNumber(rideNumber);
+		db.getTransaction().begin();
+		Traveler t = (Traveler)this.getUserByEmail(email);
+		db.persist(t);
+		db.getTransaction().commit();
+		System.out.println("Ride: " + ride + " has been added to: " + t);
+		return true;
+	}  
+	
 	
 
 public void open(){
@@ -305,5 +347,19 @@ public void open(){
 		db.close();
 		System.out.println("DataAcess closed");
 	}
+	
+	 public static void moveNullsToRight(ReserveStatus[] array) {
+	        int writeIndex = array.length - 1;
+
+	        for (int readIndex = array.length - 1; readIndex >= 0; readIndex--) {
+	            if (array[readIndex] != null) {
+	                if (readIndex != writeIndex) {
+	                    array[writeIndex] = array[readIndex];
+	                    array[readIndex] = null;
+	                }
+	                writeIndex--;
+	            }
+	        }
+	    }
 	
 }

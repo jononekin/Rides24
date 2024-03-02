@@ -84,6 +84,12 @@ public interface BLFacade  {
 	public User updateMoneyByEmail(String email, double cash);
 	
 	public boolean addReserve(ReserveStatus rs, int rideNumber);
+	
+	public List<Ride> getAllRidesFromEmail(String email);
+	
+	public void removeReserve(int rideNumber, int reserveNumber);
+	
+	public boolean addRideByEmail(String email, int rideNumber);
 
 	
 }
