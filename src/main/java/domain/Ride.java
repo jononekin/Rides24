@@ -26,7 +26,9 @@ public class Ride implements Serializable {
 	private int nPlaces;
 	private Date date;
 	private float price;
-	private ArrayList<ReserveStatus> reserveList = new ArrayList<>();
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+	private ReserveStatus[] reserveList;
+	private int count;
 	
 	private Driver driver;  
 	
@@ -43,6 +45,8 @@ public class Ride implements Serializable {
 		this.date=date;
 		this.price=price;
 		this.driver = driver;
+		this.count = 0;
+		this.reserveList = new ReserveStatus[nPlaces];
 	}
 
 	
@@ -55,6 +59,8 @@ public class Ride implements Serializable {
 		this.date=date;
 		this.price=price;
 		this.driver = driver;
+		this.count = 0;
+		this.reserveList = new ReserveStatus[nPlaces];
 	}
 	
 	/**
@@ -186,6 +192,16 @@ public class Ride implements Serializable {
 
 	public String toString(){
 		return rideNumber+";"+";"+from+";"+to+";"+date;  
+	}
+	
+	public boolean addReserve(ReserveStatus rs) {
+		if(count < nPlaces) {
+			reserveList[count] = rs;
+			count++;
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 

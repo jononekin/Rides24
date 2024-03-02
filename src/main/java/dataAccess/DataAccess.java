@@ -19,6 +19,7 @@ import javax.persistence.TypedQuery;
 import configuration.ConfigXML;
 import configuration.UtilDate;
 import domain.Driver;
+import domain.ReserveStatus;
 import domain.Ride;
 import domain.User;
 import exceptions.RideAlreadyExistException;
@@ -264,6 +265,20 @@ public class DataAccess  {
 		db.getTransaction().commit();
 		System.out.println(u + " has been updated");
 		return u;
+	}
+	
+	public Ride getRideByRideNumber(int rideNumber) {
+		return db.find(Ride.class,rideNumber);
+	}
+	
+	public boolean addReserve(ReserveStatus rs, int rideNumber) {
+		Ride ride = this.getRideByRideNumber(rideNumber);
+		db.getTransaction().begin();
+		boolean e = ride.addReserve(rs);
+		db.persist(ride);
+		db.getTransaction().commit();
+		System.out.println("Reserve: " + rs.getReserveNumber() + " has been added to: " + ride);
+		return e;
 	}
 	
 

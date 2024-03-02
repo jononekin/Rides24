@@ -6,8 +6,12 @@ import configuration.UtilDate;
 import com.toedter.calendar.JCalendar;
 import domain.Ride;
 import domain.Traveler;
+import domain.ReserveStatus;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.beans.*;
@@ -56,6 +60,8 @@ public class FindBookGUI extends JFrame {
 	};
 	
 	private Traveler traveler;
+	
+	private Ride ride;
 
 
 	public FindBookGUI(Traveler t)
@@ -146,6 +152,7 @@ public class FindBookGUI extends JFrame {
 		{
 			public void propertyChange(PropertyChangeEvent propertychangeevent)
 			{
+				jButtonBook.setEnabled(false);
 
 				if (propertychangeevent.getPropertyName().equals("locale"))
 				{
@@ -176,8 +183,11 @@ public class FindBookGUI extends JFrame {
 					}
 					
 					try {
+						tableModelRides.setRowCount(0);
+						tableRides.clearSelection();
 						tableModelRides.setDataVector(null, columnNamesRides);
 						tableModelRides.setColumnCount(4); // another column added to allocate ride objects
+						jButtonBook.setEnabled(false);
 
 						BLFacade facade = MainGUI.getBusinessLogic();
 						List<domain.Ride> rides=facade.getRides((String)jComboBoxOrigin.getSelectedItem(),(String)jComboBoxDestination.getSelectedItem(),UtilDate.trim(jCalendar1.getDate()));
@@ -225,8 +235,23 @@ public class FindBookGUI extends JFrame {
 		tableRides.getColumnModel().getColumn(0).setPreferredWidth(170);
 		tableRides.getColumnModel().getColumn(1).setPreferredWidth(30);
 		tableRides.getColumnModel().getColumn(1).setPreferredWidth(30);
-
+		
 		tableRides.getColumnModel().removeColumn(tableRides.getColumnModel().getColumn(3)); // not shown in JTable
+		tableRides.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+				if(!e.getValueIsAdjusting()) {
+					int selectedRow = tableRides.getSelectedRow();
+                    int selectedColumn = 3;
+                    try {
+                    	ride = (Ride) tableModelRides.getValueAt(selectedRow, selectedColumn);
+                    } catch(ArrayIndexOutOfBoundsException ex) {
+                    }
+                    
+                    jButtonBook.setEnabled(true);
+				}
+			}
+			
+		});
 
 		this.getContentPane().add(scrollPaneEvents, null);
 		datesWithRidesCurrentMonth=facade.getThisMonthDatesWithRides((String)jComboBoxOrigin.getSelectedItem(),(String)jComboBoxDestination.getSelectedItem(),jCalendar1.getDate());
@@ -234,10 +259,17 @@ public class FindBookGUI extends JFrame {
 		
 		jButtonBook.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ReserveStatus rs = new ReserveStatus(ride.getPrice(), traveler.getEmail());
+				facade.updateMoneyByEmail(traveler.getEmail(), -ride.getPrice());
+				boolean b = facade.addReserve(rs, ride.getRideNumber());
+				if(!b) {
+					jLabelEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("FindBookGUI.ErreserbakBeteta"));
+				}
 			}
 		});
 		jButtonBook.setBounds(300, 420, 130, 30);
 		getContentPane().add(jButtonBook);
+		jButtonBook.setEnabled(false);
 
 	}
 	public static void paintDaysWithEvents(JCalendar jCalendar,List<Date> datesWithEventsCurrentMonth, Color color) {

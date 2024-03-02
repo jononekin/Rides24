@@ -12,6 +12,7 @@ import domain.Ride;
 import domain.Traveler;
 import domain.User;
 import domain.Driver;
+import domain.ReserveStatus;
 import exceptions.RideMustBeLaterThanTodayException;
 import exceptions.RideAlreadyExistException;
 import exceptions.UserAlreadyExistException;
@@ -154,5 +155,12 @@ public class BLFacadeImplementation  implements BLFacade {
         User u = dbManager.updateMoneyByEmail(email, cash);
         dbManager.close();
         return u;
+    }
+    
+    public boolean addReserve(ReserveStatus rs, int rideNumber) {
+    	dbManager.open();
+    	boolean e = dbManager.addReserve(rs, rideNumber);
+    	dbManager.close();
+    	return e;
     }
 }
