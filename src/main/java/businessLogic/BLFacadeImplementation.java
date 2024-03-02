@@ -163,4 +163,24 @@ public class BLFacadeImplementation  implements BLFacade {
     	dbManager.close();
     	return e;
     }
+    
+    public List<Ride> getAllRidesFromEmail(String email) {
+    	dbManager.open();
+    	List<Ride> l = dbManager.getAllRidesFromEmail(email);
+    	dbManager.close();
+    	return l;
+    }
+    
+    public void removeReserve(int rideNumber, int reserveNumber) {
+    	dbManager.open();
+    	dbManager.removeReserve(rideNumber, reserveNumber);
+    	dbManager.close();
+    }
+    
+    public boolean addRideByEmail(String email, int rideNumber) {
+    	dbManager.open();
+    	boolean b = dbManager.addRideByEmail(email, rideNumber);
+    	dbManager.close();
+    	return b;
+    }
 }

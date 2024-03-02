@@ -71,8 +71,28 @@ public class Ride implements Serializable {
 	public Integer getRideNumber() {
 		return rideNumber;
 	}
+	
+	public ReserveStatus[] getReserveList() {
+		return this.reserveList;
+	}
+	
+	public void setReserveList(ReserveStatus[] rl) {
+		this.reserveList=rl;
+	}
 
 	
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public void setnPlaces(int nPlaces) {
+		this.nPlaces = nPlaces;
+	}
+
 	/**
 	 * Set the ride number to a ride
 	 * 
@@ -191,7 +211,7 @@ public class Ride implements Serializable {
 
 
 	public String toString(){
-		return rideNumber+";"+";"+from+";"+to+";"+date;  
+		return from+";"+to+";"+(date.getYear()+1900)+"/"+(date.getMonth()+1)+"/"+(date.getDay()+1);  
 	}
 	
 	public boolean addReserve(ReserveStatus rs) {
@@ -203,6 +223,7 @@ public class Ride implements Serializable {
 			return false;
 		}
 	}
+	
 
 
 
