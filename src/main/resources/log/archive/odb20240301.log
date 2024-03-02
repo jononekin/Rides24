@@ -290,3 +290,47 @@ New type domain.Traveler
 [2024-03-01 17:00:33 #13 type] 
 Type domain.Traveler is not enhanced.
 
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-03-01 17:01:46 #1 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' is opened by 17404@DESKTOP-PNFEN4V
+
+[2024-03-01 17:01:48 #2 type.registry] 
+New type domain.User
+
+[2024-03-01 17:01:48 #3 type] 
+Type domain.User is not enhanced.
+
+[2024-03-01 17:01:48 #4 type.registry] 
+New type domain.Driver
+
+[2024-03-01 17:01:48 #5 type] 
+Type domain.Driver is not enhanced.
+
+[2024-03-01 17:01:48 #6 type.registry] 
+New type domain.Ride
+
+[2024-03-01 17:01:48 #7 type] 
+Type domain.Ride is not enhanced.
+
+[2024-03-01 17:01:48 #8 type.registry] 
+New type domain.ReserveStatus
+
+[2024-03-01 17:01:48 #9 type.registry] 
+New type java.util.ArrayList<domain.ReserveStatus>
+
+[2024-03-01 17:01:48 #10 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2024-03-01 17:01:48 #11 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2024-03-01 17:01:48 #12 type.registry] 
+New type domain.Traveler
+
+[2024-03-01 17:01:48 #13 type] 
+Type domain.Traveler is not enhanced.
+
+[2024-03-01 17:02:13 #14 type.registry] 
+New type java.util.ArrayList<java.lang.Object>
+

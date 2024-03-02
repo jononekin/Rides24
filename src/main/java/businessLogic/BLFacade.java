@@ -7,6 +7,7 @@ import java.util.List;
 import domain.Ride;
 import domain.User;
 import domain.Driver;
+import domain.ReserveStatus;
 import exceptions.RideMustBeLaterThanTodayException;
 import exceptions.RideAlreadyExistException;
 
@@ -81,6 +82,8 @@ public interface BLFacade  {
 	public User register(String email, String name, String password, double cash, String type);
 	
 	public User updateMoneyByEmail(String email, double cash);
+	
+	public boolean addReserve(ReserveStatus rs, int rideNumber);
 
 	
 }

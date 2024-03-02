@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.EventQueue;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import javax.swing.JFrame;
@@ -9,6 +10,8 @@ import javax.swing.border.EmptyBorder;
 
 import businessLogic.BLFacade;
 import domain.User;
+import exceptions.RideAlreadyExistException;
+import exceptions.RideMustBeLaterThanTodayException;
 
 import javax.swing.JLabel;
 import javax.swing.JButton;

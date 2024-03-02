@@ -1,0 +1,641 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-03-02 11:47:31 #1 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' is opened by 8428@DESKTOP-PNFEN4V
+
+[2024-03-02 11:47:45 #2 type.registry] 
+New type domain.User
+
+[2024-03-02 11:47:45 #3 type] 
+Type domain.User is not enhanced.
+
+[2024-03-02 11:47:45 #4 type.registry] 
+New type domain.Driver
+
+[2024-03-02 11:47:45 #5 type] 
+Type domain.Driver is not enhanced.
+
+[2024-03-02 11:47:45 #6 type.registry] 
+New type domain.Ride
+
+[2024-03-02 11:47:45 #7 type] 
+Type domain.Ride is not enhanced.
+
+[2024-03-02 11:47:45 #8 type.registry] 
+New type domain.ReserveStatus
+
+[2024-03-02 11:47:45 #9 type.registry] 
+New type java.util.ArrayList<domain.ReserveStatus>
+
+[2024-03-02 11:47:45 #10 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2024-03-02 11:47:45 #11 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2024-03-02 11:47:45 #12 type.registry] 
+New type domain.Traveler
+
+[2024-03-02 11:47:45 #13 type] 
+Type domain.Traveler is not enhanced.
+
+[2024-03-02 11:48:43 #14 type.registry] 
+New type java.util.ArrayList<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-03-02 12:00:22 #1 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' is opened by 14496@DESKTOP-PNFEN4V
+
+[2024-03-02 12:00:24 #2 type.registry] 
+New type domain.User
+
+[2024-03-02 12:00:24 #3 type] 
+Type domain.User is not enhanced.
+
+[2024-03-02 12:00:24 #4 type.registry] 
+New type domain.Driver
+
+[2024-03-02 12:00:24 #5 type] 
+Type domain.Driver is not enhanced.
+
+[2024-03-02 12:00:24 #6 type.registry] 
+New type domain.Ride
+
+[2024-03-02 12:00:24 #7 type] 
+Type domain.Ride is not enhanced.
+
+[2024-03-02 12:00:24 #8 type.registry] 
+New type domain.ReserveStatus
+
+[2024-03-02 12:00:24 #9 type.registry] 
+New type java.util.ArrayList<domain.ReserveStatus>
+
+[2024-03-02 12:00:24 #10 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2024-03-02 12:00:24 #11 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2024-03-02 12:00:24 #12 type.registry] 
+New type domain.Traveler
+
+[2024-03-02 12:00:24 #13 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-03-02 12:04:35 #1 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' is opened by 8392@DESKTOP-PNFEN4V
+
+[2024-03-02 12:04:39 #2 type.registry] 
+New type domain.User
+
+[2024-03-02 12:04:39 #3 type] 
+Type domain.User is not enhanced.
+
+[2024-03-02 12:04:39 #4 type.registry] 
+New type domain.Driver
+
+[2024-03-02 12:04:39 #5 type] 
+Type domain.Driver is not enhanced.
+
+[2024-03-02 12:04:39 #6 type.registry] 
+New type domain.Ride
+
+[2024-03-02 12:04:39 #7 type] 
+Type domain.Ride is not enhanced.
+
+[2024-03-02 12:04:39 #8 type.registry] 
+New type domain.ReserveStatus
+
+[2024-03-02 12:04:39 #9 type.registry] 
+New type java.util.ArrayList<domain.ReserveStatus>
+
+[2024-03-02 12:04:39 #10 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2024-03-02 12:04:39 #11 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2024-03-02 12:04:39 #12 type.registry] 
+New type domain.Traveler
+
+[2024-03-02 12:04:39 #13 type] 
+Type domain.Traveler is not enhanced.
+
+[2024-03-02 12:04:39 #14 type.registry] 
+New type java.util.ArrayList<java.lang.Object>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-03-02 12:06:30 #1 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' has been recovered (tr. 1-11)
+
+[2024-03-02 12:06:30 #2 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' is opened by 6852@DESKTOP-PNFEN4V
+
+[2024-03-02 12:06:30 #3 type] 
+Type domain.User is not enhanced.
+
+[2024-03-02 12:06:30 #4 type] 
+Type domain.Driver is not enhanced.
+
+[2024-03-02 12:06:30 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2024-03-02 12:06:30 #6 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-03-02 12:07:46 #1 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' is opened by 9728@DESKTOP-PNFEN4V
+
+[2024-03-02 12:07:46 #2 type] 
+Type domain.User is not enhanced.
+
+[2024-03-02 12:07:46 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2024-03-02 12:07:46 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2024-03-02 12:07:46 #5 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-03-02 12:11:35 #1 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' is opened by 11156@DESKTOP-PNFEN4V
+
+[2024-03-02 12:11:35 #2 type] 
+Type domain.User is not enhanced.
+
+[2024-03-02 12:11:35 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2024-03-02 12:11:35 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2024-03-02 12:11:35 #5 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-03-02 12:12:54 #1 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' is opened by 7296@DESKTOP-PNFEN4V
+
+[2024-03-02 12:12:54 #2 type] 
+Type domain.User is not enhanced.
+
+[2024-03-02 12:12:54 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2024-03-02 12:12:54 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2024-03-02 12:12:54 #5 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-03-02 12:15:22 #1 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' is opened by 9172@DESKTOP-PNFEN4V
+
+[2024-03-02 12:15:22 #2 type] 
+Type domain.User is not enhanced.
+
+[2024-03-02 12:15:22 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2024-03-02 12:15:22 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2024-03-02 12:15:22 #5 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-03-02 12:16:04 #1 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' is opened by 12920@DESKTOP-PNFEN4V
+
+[2024-03-02 12:16:04 #2 type] 
+Type domain.User is not enhanced.
+
+[2024-03-02 12:16:04 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2024-03-02 12:16:04 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2024-03-02 12:16:04 #5 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-03-02 12:16:49 #1 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' is opened by 8804@DESKTOP-PNFEN4V
+
+[2024-03-02 12:16:49 #2 type] 
+Type domain.User is not enhanced.
+
+[2024-03-02 12:16:49 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2024-03-02 12:16:49 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2024-03-02 12:16:49 #5 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-03-02 12:21:14 #1 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' is opened by 14120@DESKTOP-PNFEN4V
+
+[2024-03-02 12:21:14 #2 type] 
+Type domain.User is not enhanced.
+
+[2024-03-02 12:21:15 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2024-03-02 12:21:15 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2024-03-02 12:21:15 #5 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-03-02 12:24:05 #1 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' is opened by 7844@DESKTOP-PNFEN4V
+
+[2024-03-02 12:24:05 #2 type] 
+Type domain.User is not enhanced.
+
+[2024-03-02 12:24:05 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2024-03-02 12:24:05 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2024-03-02 12:24:05 #5 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-03-02 12:25:48 #1 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' is opened by 6492@DESKTOP-PNFEN4V
+
+[2024-03-02 12:25:48 #2 type] 
+Type domain.User is not enhanced.
+
+[2024-03-02 12:25:48 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2024-03-02 12:25:48 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2024-03-02 12:25:48 #5 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-03-02 12:28:07 #1 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' is opened by 7136@DESKTOP-PNFEN4V
+
+[2024-03-02 12:28:07 #2 type] 
+Type domain.User is not enhanced.
+
+[2024-03-02 12:28:07 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2024-03-02 12:28:07 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2024-03-02 12:28:07 #5 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-03-02 12:32:09 #1 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' is opened by 5352@DESKTOP-PNFEN4V
+
+[2024-03-02 12:32:09 #2 type] 
+Type domain.User is not enhanced.
+
+[2024-03-02 12:32:09 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2024-03-02 12:32:09 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2024-03-02 12:32:09 #5 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-03-02 12:33:51 #1 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' is opened by 13980@DESKTOP-PNFEN4V
+
+[2024-03-02 12:33:51 #2 type] 
+Type domain.User is not enhanced.
+
+[2024-03-02 12:33:51 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2024-03-02 12:33:51 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2024-03-02 12:33:51 #5 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-03-02 12:35:23 #1 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' is opened by 13588@DESKTOP-PNFEN4V
+
+[2024-03-02 12:35:23 #2 type] 
+Type domain.User is not enhanced.
+
+[2024-03-02 12:35:23 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2024-03-02 12:35:23 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2024-03-02 12:35:23 #5 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-03-02 12:37:40 #1 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' is opened by 5928@DESKTOP-PNFEN4V
+
+[2024-03-02 12:37:40 #2 type] 
+Type domain.User is not enhanced.
+
+[2024-03-02 12:37:40 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2024-03-02 12:37:40 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2024-03-02 12:37:40 #5 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-03-02 12:39:50 #1 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' is opened by 5116@DESKTOP-PNFEN4V
+
+[2024-03-02 12:39:50 #2 type] 
+Type domain.User is not enhanced.
+
+[2024-03-02 12:39:50 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2024-03-02 12:39:50 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2024-03-02 12:39:50 #5 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-03-02 12:40:51 #1 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' is opened by 1712@DESKTOP-PNFEN4V
+
+[2024-03-02 12:40:51 #2 type] 
+Type domain.User is not enhanced.
+
+[2024-03-02 12:40:51 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2024-03-02 12:40:51 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2024-03-02 12:40:51 #5 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-03-02 12:41:17 #1 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' is opened by 10324@DESKTOP-PNFEN4V
+
+[2024-03-02 12:41:17 #2 type] 
+Type domain.User is not enhanced.
+
+[2024-03-02 12:41:17 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2024-03-02 12:41:17 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2024-03-02 12:41:17 #5 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-03-02 12:42:11 #1 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' is opened by 14208@DESKTOP-PNFEN4V
+
+[2024-03-02 12:42:11 #2 type] 
+Type domain.User is not enhanced.
+
+[2024-03-02 12:42:11 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2024-03-02 12:42:11 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2024-03-02 12:42:11 #5 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-03-02 12:43:17 #1 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' is opened by 2268@DESKTOP-PNFEN4V
+
+[2024-03-02 12:43:17 #2 type] 
+Type domain.User is not enhanced.
+
+[2024-03-02 12:43:17 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2024-03-02 12:43:17 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2024-03-02 12:43:17 #5 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-03-02 13:05:48 #1 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' is opened by 13872@DESKTOP-PNFEN4V
+
+[2024-03-02 13:05:48 #2 type] 
+Type domain.User is not enhanced.
+
+[2024-03-02 13:05:48 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2024-03-02 13:05:48 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2024-03-02 13:05:48 #5 type.registry] 
+New type domain.ReserveStatus[]
+
+[2024-03-02 13:05:48 #6 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-03-02 13:07:18 #1 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' has been recovered (tr. 15-16)
+
+[2024-03-02 13:07:18 #2 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' is opened by 17416@DESKTOP-PNFEN4V
+
+[2024-03-02 13:07:18 #3 type] 
+Type domain.User is not enhanced.
+
+[2024-03-02 13:07:18 #4 type] 
+Type domain.Driver is not enhanced.
+
+[2024-03-02 13:07:18 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2024-03-02 13:07:18 #6 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-03-02 13:08:33 #1 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' has been recovered (tr. 17-17)
+
+[2024-03-02 13:08:33 #2 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' is opened by 9028@DESKTOP-PNFEN4V
+
+[2024-03-02 13:08:33 #3 type] 
+Type domain.User is not enhanced.
+
+[2024-03-02 13:08:33 #4 type] 
+Type domain.Driver is not enhanced.
+
+[2024-03-02 13:08:33 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2024-03-02 13:08:33 #6 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-03-02 13:14:03 #1 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' is opened by 18372@DESKTOP-PNFEN4V
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-03-02 13:14:16 #1 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' has been recovered (tr. 1-2)
+
+[2024-03-02 13:14:16 #2 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' is opened by 9872@DESKTOP-PNFEN4V
+
+[2024-03-02 13:14:19 #3 type.registry] 
+New type domain.User
+
+[2024-03-02 13:14:19 #4 type] 
+Type domain.User is not enhanced.
+
+[2024-03-02 13:14:19 #5 type.registry] 
+New type domain.Driver
+
+[2024-03-02 13:14:19 #6 type] 
+Type domain.Driver is not enhanced.
+
+[2024-03-02 13:14:19 #7 type.registry] 
+New type domain.Ride
+
+[2024-03-02 13:14:19 #8 type] 
+Type domain.Ride is not enhanced.
+
+[2024-03-02 13:14:19 #9 type.registry] 
+New type domain.ReserveStatus
+
+[2024-03-02 13:14:19 #10 type.registry] 
+New type domain.ReserveStatus[]
+
+[2024-03-02 13:14:19 #11 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2024-03-02 13:14:19 #12 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+[2024-03-02 13:14:19 #13 type.registry] 
+New type domain.Traveler
+
+[2024-03-02 13:14:19 #14 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-03-02 13:14:48 #1 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' has been recovered (tr. 3-12)
+
+[2024-03-02 13:14:48 #2 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' is opened by 5616@DESKTOP-PNFEN4V
+
+[2024-03-02 13:14:48 #3 type] 
+Type domain.User is not enhanced.
+
+[2024-03-02 13:14:48 #4 type] 
+Type domain.Driver is not enhanced.
+
+[2024-03-02 13:14:48 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2024-03-02 13:14:48 #6 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-03-02 13:14:58 #1 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' is opened by 13272@DESKTOP-PNFEN4V
+
+[2024-03-02 13:14:58 #2 type] 
+Type domain.User is not enhanced.
+
+[2024-03-02 13:14:58 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2024-03-02 13:14:58 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2024-03-02 13:14:58 #5 type] 
+Type domain.Traveler is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2024-03-02 13:19:11 #1 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' has been recovered (tr. 13-13)
+
+[2024-03-02 13:19:11 #2 store] 
+Database 'C:\Users\Xabi\OneDrive\Escritorio\ECLIPSE\Rides24\src\main\resources\rides.temp' is opened by 17292@DESKTOP-PNFEN4V
+
+[2024-03-02 13:19:11 #3 type] 
+Type domain.User is not enhanced.
+
+[2024-03-02 13:19:11 #4 type] 
+Type domain.Driver is not enhanced.
+
+[2024-03-02 13:19:11 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2024-03-02 13:19:11 #6 type] 
+Type domain.ReserveStatus is not enhanced.
+
+[2024-03-02 13:19:11 #7 type] 
+Type domain.Traveler is not enhanced.
+
