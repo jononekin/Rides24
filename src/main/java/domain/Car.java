@@ -20,8 +20,8 @@ public class Car {
 		this.rides = new ArrayList<>();
 	}
 	
-	public Ride addRide(String from, String to,  Date date, int nPlaces, float price, Driver driver) {
-		Ride ride=new Ride(from,to,date,nPlaces,price, driver);
+	public Ride addRide(String from, String to,  Date date, int nPlaces, float price) {
+		Ride ride=new Ride(from,to,date,nPlaces,price, this);
 		rides.add(ride);
 		return ride;
 	}
