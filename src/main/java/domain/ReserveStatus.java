@@ -21,7 +21,7 @@ public class ReserveStatus {
 	private boolean accepted;
 	private boolean answered;
 	private double frozenBalance;
-	private String email;
+	private Traveler traveler;
 	private static int count = 0;
 	
 	public int getReserveNumber() {
@@ -32,11 +32,11 @@ public class ReserveStatus {
 		this.reserveNumber = reserveNumber;
 	}
 
-	public ReserveStatus(double frozenBalance, String email) {
+	public ReserveStatus(Traveler traveler) {
 		this.accepted = false;
 		this.answered = false;
-		this.frozenBalance = frozenBalance;
-		this.email = email;
+		this.frozenBalance = 0;
+		this.traveler = traveler;
 		reserveNumber = count;
 		count++;
 	}
@@ -65,16 +65,16 @@ public class ReserveStatus {
 		this.frozenBalance = frozenBalance;
 	}
 
-	public String getEmail() {
-		return email;
+	public Traveler getTraveler() {
+		return traveler;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmail(Traveler traveler) {
+		this.traveler = traveler;
 	}
 	
 	@Override
 	public String toString() {
-		return reserveNumber+";"+email;
+		return reserveNumber+";"+traveler;
 	}
 }

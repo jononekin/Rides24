@@ -26,17 +26,20 @@ public class Ride implements Serializable {
 	private int nPlaces;
 	private Date date;
 	private float price;
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-	private ReserveStatus[] reserveList;
+	private float jasotakoDirua;
+	private boolean bukatuta;
 	private int count;
 	
-	private Driver driver;  
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+	private ReserveStatus[] reserveList;
+	
+	private Car car;  
 	
 	public Ride(){
 		super();
 	}
 	
-	public Ride(Integer rideNumber, String from, String to, Date date, int nPlaces, float price, Driver driver) {
+	public Ride(Integer rideNumber, String from, String to, Date date, int nPlaces, float price, Car car) {
 		super();
 		this.rideNumber = rideNumber;
 		this.from = from;
@@ -44,25 +47,45 @@ public class Ride implements Serializable {
 		this.nPlaces = nPlaces;
 		this.date=date;
 		this.price=price;
-		this.driver = driver;
+		this.car = car;
 		this.count = 0;
 		this.reserveList = new ReserveStatus[nPlaces];
+		this.jasotakoDirua = 0;
+		this.bukatuta = false;
+		
 	}
 
 	
-
-	public Ride(String from, String to,  Date date, int nPlaces, float price, Driver driver) {
+	public Ride(String from, String to,  Date date, int nPlaces, float price, Car car) {
 		super();
 		this.from = from;
 		this.to = to;
 		this.nPlaces = nPlaces;
 		this.date=date;
 		this.price=price;
-		this.driver = driver;
+		this.car = car;
 		this.count = 0;
 		this.reserveList = new ReserveStatus[nPlaces];
+		this.jasotakoDirua = 0;
+		this.bukatuta = false;
 	}
 	
+	public float getJasotakoDirua() {
+		return jasotakoDirua;
+	}
+
+	public void setJasotakoDirua(float jasotakoDirua) {
+		this.jasotakoDirua = jasotakoDirua;
+	}
+
+	public boolean isBukatuta() {
+		return bukatuta;
+	}
+
+	public void setBukatuta(boolean bukatuta) {
+		this.bukatuta = bukatuta;
+	}
+
 	/**
 	 * Get the  number of the ride
 	 * 
@@ -182,22 +205,12 @@ public class Ride implements Serializable {
 		this.nPlaces = nPlaces;
 	}
 
-	/**
-	 * Get the driver associated to the ride
-	 * 
-	 * @return the associated driver
-	 */
-	public Driver getDriver() {
-		return driver;
+	public Car getCar() {
+		return car;
 	}
 
-	/**
-	 * Set the driver associated to the ride
-	 * 
-	 * @param driver to associate to the ride
-	 */
-	public void setDriver(Driver driver) {
-		this.driver = driver;
+	public void setDriver(Car car) {
+		this.car = car;
 	}
 
 	public float getPrice() {

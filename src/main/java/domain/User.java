@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -19,11 +20,14 @@ public abstract class User {
 	private String password;
 	private Double cash;
 	
+	private ArrayList<Movement> movements;
+	
 	public User(String email, String name, String password, Double cash) {
 		this.email = email;
 		this.name = name;
 		this.password = password;
 		this.cash = cash;
+		this.movements = new ArrayList<Movement>();
 	}
 
 	public String getEmail() {

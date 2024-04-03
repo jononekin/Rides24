@@ -21,14 +21,14 @@ public class Traveler extends User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@XmlIDREF
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-	private List<Ride> rides=new Vector<Ride>();
+	private List<ReserveStatus> reserves=new Vector<ReserveStatus>();
 	
 	public Traveler(String email, String name, String password, Double cash) {
 		super(email, name, password, cash);
 	}
 	
-	public void addRide(Ride r)  {
-        rides.add(r);
+	public void addReserve(ReserveStatus r)  {
+        reserves.add(r);
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class Traveler extends User implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Traveler other = (Traveler) obj;
-		return Objects.equals(rides, other.rides);
+		return Objects.equals(reserves, other.reserves);
 	}
 	
 }
