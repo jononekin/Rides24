@@ -105,7 +105,7 @@ public class ErreserbakOnartuGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				reserve.setAccepted(true);
 				reserve.setAnswered(true);
-				facade.addRideByEmail(reserve.getEmail(), ride.getRideNumber());
+				facade.addRideByEmail(reserve.getTraveler().getEmail(), ride.getRideNumber());
 				facade.removeReserve(ride.getRideNumber(), reserve.getReserveNumber());
 				comboBoxReserves.removeAllItems();
 				
@@ -120,7 +120,7 @@ public class ErreserbakOnartuGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				reserve.setAccepted(false);
 				reserve.setAnswered(true);
-				facade.updateMoneyByEmail(reserve.getEmail(), reserve.getFrozenBalance());
+				facade.updateMoneyByEmail(reserve.getTraveler().getEmail(), reserve.getFrozenBalance());
 				facade.removeReserve(ride.getRideNumber(), reserve.getReserveNumber());
 				comboBoxReserves.removeAllItems();
 			}

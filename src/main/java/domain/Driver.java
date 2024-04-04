@@ -1,6 +1,7 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -24,10 +25,11 @@ public class Driver extends User implements Serializable {
 
 	@XmlIDREF
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-	private List<Car> cars=new Vector<Car>();
+	private ArrayList<Car> cars = new ArrayList<Car>();
 
 	public Driver(String email, String name, String password, double cash) {
 		super(email, name, password, cash);
+		cars = new ArrayList<Car>();
 	}	
 	
 	@Override
@@ -39,6 +41,10 @@ public class Driver extends User implements Serializable {
 		Car car = new Car(this, marka, modeloa, eserlekuKop);
         cars.add(car);
         return car;
+	}
+	
+	public List<Car> getCars() {
+		return this.cars;
 	}
 
 	@Override

@@ -32,10 +32,10 @@ public class ReserveStatus {
 		this.reserveNumber = reserveNumber;
 	}
 
-	public ReserveStatus(Traveler traveler) {
+	public ReserveStatus(float price, Traveler traveler) {
 		this.accepted = false;
 		this.answered = false;
-		this.frozenBalance = 0;
+		this.frozenBalance = price;
 		this.traveler = traveler;
 		reserveNumber = count;
 		count++;

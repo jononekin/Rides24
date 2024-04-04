@@ -18,11 +18,7 @@ import javax.persistence.TypedQuery;
 
 import configuration.ConfigXML;
 import configuration.UtilDate;
-import domain.Driver;
-import domain.ReserveStatus;
-import domain.Ride;
-import domain.User;
-import domain.Traveler;
+import domain.*;
 import exceptions.RideAlreadyExistException;
 import exceptions.RideMustBeLaterThanTodayException;
 import exceptions.UserAlreadyExistException;
@@ -153,7 +149,7 @@ public class DataAccess  {
 	 * @throws RideMustBeLaterThanTodayException if the ride date is before today 
  	 * @throws RideAlreadyExistException if the same ride already exists for the driver
 	 */
-	public Ride createRide(String from, String to, Date date, int nPlaces, float price, String driverEmail) throws  RideAlreadyExistException, RideMustBeLaterThanTodayException {
+	public Ride createRide(String from, String to, Date date, int nPlaces, float price, String driverEmail, Car car) throws  RideAlreadyExistException, RideMustBeLaterThanTodayException {
 		System.out.println(">> DataAccess: createRide=> from= "+from+" to= "+to+" driver="+driverEmail+" date "+date);
 		try {
 			if(new Date().compareTo(date)>0) {
@@ -162,11 +158,11 @@ public class DataAccess  {
 			db.getTransaction().begin();
 			
 			Driver driver = db.find(Driver.class, driverEmail);
-			if (driver.doesRideExists(from, to, date)) {
+			if (car.doesRideExists(from, to, date)) {
 				db.getTransaction().commit();
 				throw new RideAlreadyExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.RideAlreadyExist"));
 			}
-			Ride ride = driver.addRide(from, to, date, nPlaces, price);
+			Ride ride = car.addRide(from, to, date, nPlaces, price);
 			//next instruction can be obviated
 			db.persist(driver); 
 			db.getTransaction().commit();
@@ -321,6 +317,17 @@ public class DataAccess  {
 		System.out.println("Ride: " + ride + " has been added to: " + t);
 		return true;
 	}  
+	
+	 public boolean addCarByEmail(String email, String marka, String modeloa, int eserlekuKop) {
+		 db.getTransaction().begin();
+		 Driver driver = (Driver) this.getUserByEmail(email);
+		 System.out.println(driver.getCars());
+		 driver.addCar(marka, modeloa, eserlekuKop);
+		 db.persist(driver);
+		 db.getTransaction().commit();
+		 System.out.println("Car: " + marka + ", " + modeloa + ", " + eserlekuKop +  " has been added to: " + driver);
+		 return true;
+	 }
 	
 	
 

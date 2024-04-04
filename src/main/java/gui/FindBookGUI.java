@@ -196,7 +196,7 @@ public class FindBookGUI extends JFrame {
 						else jLabelEvents.setText(ResourceBundle.getBundle("Etiquetas").getString("FindRidesGUI.Rides")+ ": "+dateformat1.format(calendarAct.getTime()));
 						for (domain.Ride ride:rides){
 							Vector<Object> row = new Vector<Object>();
-							row.add(ride.getDriver().getName());
+							row.add(ride.getCar().getDriver().getName());
 							row.add(ride.getnPlaces());
 							row.add(ride.getPrice());
 							row.add(ride); // ev object added in order to obtain it with tableModelEvents.getValueAt(i,3)
@@ -259,7 +259,7 @@ public class FindBookGUI extends JFrame {
 		
 		jButtonBook.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ReserveStatus rs = new ReserveStatus(ride.getPrice(), traveler.getEmail());
+				ReserveStatus rs = new ReserveStatus(ride.getPrice(), traveler);
 				facade.updateMoneyByEmail(traveler.getEmail(), -ride.getPrice());
 				boolean b = facade.addReserve(rs, ride.getRideNumber());
 				if(!b) {

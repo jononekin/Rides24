@@ -3,6 +3,9 @@ package domain;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Car {
 
 	private Driver driver;
@@ -20,6 +23,46 @@ public class Car {
 		this.rides = new ArrayList<>();
 	}
 	
+	public Driver getDriver() {
+		return driver;
+	}
+
+	public void setDriver(Driver driver) {
+		this.driver = driver;
+	}
+
+	public ArrayList<Ride> getRides() {
+		return rides;
+	}
+
+	public void setRides(ArrayList<Ride> rides) {
+		this.rides = rides;
+	}
+
+	public String getMarka() {
+		return marka;
+	}
+
+	public void setMarka(String marka) {
+		this.marka = marka;
+	}
+
+	public int getEserlekuKop() {
+		return eserlekuKop;
+	}
+
+	public void setEserlekuKop(int eserlekuKop) {
+		this.eserlekuKop = eserlekuKop;
+	}
+
+	public String getModeloa() {
+		return modeloa;
+	}
+
+	public void setModeloa(String modeloa) {
+		this.modeloa = modeloa;
+	}
+
 	public Ride addRide(String from, String to,  Date date, int nPlaces, float price) {
 		Ride ride=new Ride(from,to,date,nPlaces,price, this);
 		rides.add(ride);

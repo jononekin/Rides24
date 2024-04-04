@@ -28,6 +28,8 @@ public class DriverMainGUI extends JFrame {
 
 	private Driver driver;
 	private final JButton jButtonDiruaSartu = new JButton(ResourceBundle.getBundle("Etiquetas").getString("TravelerMainGUI.diruaSartuAtera")); //$NON-NLS-1$ //$NON-NLS-2$
+	private final JButton jButtonBidaiaKantzelatu = new JButton("Bidaia kantzelatu");
+	private final JButton jButtonKotxeaGehitu = new JButton("Kotxea gehitu");
 	/**
 	 * Launch the application.
 	 */
@@ -57,7 +59,7 @@ public class DriverMainGUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(4, 1, 0, 0));
+		contentPane.setLayout(new GridLayout(6, 1, 0, 0));
 		
 		jLabelSelectOption.setHorizontalAlignment(SwingConstants.CENTER);
 		contentPane.add(jLabelSelectOption);
@@ -85,6 +87,16 @@ public class DriverMainGUI extends JFrame {
 		});
 		
 		contentPane.add(jButtonDiruaSartu);
+		jButtonKotxeaGehitu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AddCarGUI frame = new AddCarGUI(driver);
+				frame.setVisible(true);
+			}
+		});
+		
+		contentPane.add(jButtonKotxeaGehitu);
+		
+		contentPane.add(jButtonBidaiaKantzelatu);
 	}
 
 }

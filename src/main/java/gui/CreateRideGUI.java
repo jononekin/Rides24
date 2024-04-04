@@ -15,6 +15,7 @@ import java.beans.PropertyChangeListener;
 
 import businessLogic.BLFacade;
 import configuration.UtilDate;
+import domain.Car;
 import domain.Driver;
 import domain.Ride;
 import exceptions.RideAlreadyExistException;
@@ -52,6 +53,10 @@ public class CreateRideGUI extends JFrame {
 	
 	private List<Date> datesWithEventsCurrentMonth;
 
+	private JComboBox comboBoxCars = new JComboBox();
+	private DefaultComboBoxModel carComboBoxModel = new DefaultComboBoxModel();
+	
+
 
 	public CreateRideGUI(Driver driver) {
 
@@ -87,7 +92,7 @@ public class CreateRideGUI extends JFrame {
 		jLabelMsg.setBounds(new Rectangle(275, 214, 305, 20));
 		jLabelMsg.setForeground(Color.red);
 
-		jLabelError.setBounds(new Rectangle(6, 191, 320, 20));
+		jLabelError.setBounds(new Rectangle(6, 221, 320, 20));
 		jLabelError.setForeground(Color.red);
 
 		this.getContentPane().add(jLabelMsg, null);
@@ -130,6 +135,22 @@ public class CreateRideGUI extends JFrame {
 		fieldDestination.setBounds(104, 81, 123, 26);
 		getContentPane().add(fieldDestination);
 		fieldDestination.setColumns(10);
+		
+		JLabel jLabelCar = new JLabel("Kotxea aukeratu:"); //$NON-NLS-1$ //$NON-NLS-2$
+		jLabelCar.setBounds(6, 198, 61, 13);
+		getContentPane().add(jLabelCar);
+		
+		comboBoxCars = new JComboBox();
+		comboBoxCars.setBounds(100, 194, 130, 21);
+		if(driver.getCars()!=null) {
+			for(Car c:driver.getCars()) {
+				if(c!=null) {
+					carComboBoxModel.addElement(c);
+				}
+			}
+		}
+		comboBoxCars.setModel(carComboBoxModel);
+		getContentPane().add(comboBoxCars);
 		 //Code for JCalendar
 		this.jCalendar.addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent propertychangeevent) {
@@ -175,10 +196,11 @@ public class CreateRideGUI extends JFrame {
 				BLFacade facade = MainGUI.getBusinessLogic();
 				int inputSeats = Integer.parseInt(jTextFieldSeats.getText());
 				float price = Float.parseFloat(jTextFieldPrice.getText());
-
-				Ride r=facade.createRide(fieldOrigin.getText(), fieldDestination.getText(), UtilDate.trim(jCalendar.getDate()), inputSeats, price, driver.getEmail());
-				jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.RideCreated"));
-
+				Car car = (Car) comboBoxCars.getSelectedItem();
+				if(car != null) {
+					facade.createRide(fieldOrigin.getText(), fieldDestination.getText(), UtilDate.trim(jCalendar.getDate()), inputSeats, price, driver.getEmail(), car);
+					jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.RideCreated"));
+				}
 			} catch (RideMustBeLaterThanTodayException e1) {
 				// TODO Auto-generated catch block
 				jLabelMsg.setText(e1.getMessage());
