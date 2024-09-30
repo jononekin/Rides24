@@ -28,7 +28,7 @@ import domain.Ride;
 import exceptions.RideAlreadyExistException;
 import exceptions.RideMustBeLaterThanTodayException;
 
-public class CreateRideMock {
+public class CreateRideMockTest {
 	
 	static DataAccess sut;
 	

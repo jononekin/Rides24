@@ -17,7 +17,7 @@ import exceptions.RideMustBeLaterThanTodayException;
 import testOperations.TestDataAccess;
 import domain.Driver;
 
-public class CreateRideDAB {
+public class CreateRideTest {
 
 	 //sut:system under test
 	 static DataAccess sut=new DataAccess();
