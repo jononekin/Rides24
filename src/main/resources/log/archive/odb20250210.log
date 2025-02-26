@@ -1,0 +1,92 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-10 10:49:22 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 3996@Itxaso
+
+[2025-02-10 10:49:22 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-10 10:49:22 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-10 10:49:22 #4 type.registry] 
+New type domain.Ride
+
+[2025-02-10 10:49:22 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-10 10:49:22 #6 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-10 10:49:22 #7 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-10 11:09:22 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 9204@Itxaso
+
+[2025-02-10 11:09:23 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-10 11:09:23 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-10 11:09:23 #4 type.registry] 
+New type domain.Ride
+
+[2025-02-10 11:09:23 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-10 11:09:23 #6 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-10 11:09:23 #7 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-10 11:14:17 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 2864@Itxaso
+
+[2025-02-10 11:14:17 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-10 11:14:17 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-10 11:14:17 #4 type.registry] 
+New type domain.Ride
+
+[2025-02-10 11:14:17 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-10 11:14:18 #6 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-10 11:14:18 #7 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-10 11:14:53 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 7524@Itxaso
+
+[2025-02-10 11:14:53 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-10 11:14:53 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-10 11:14:53 #4 type.registry] 
+New type domain.Ride
+
+[2025-02-10 11:14:53 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-10 11:14:53 #6 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-10 11:14:53 #7 type.registry] 
+New type java.util.Vector<domain.Ride>
+

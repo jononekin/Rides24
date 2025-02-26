@@ -28,8 +28,10 @@ public class MainGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private JPanel jContentPane = null;
-	private JButton jButtonCreateQuery = null;
+	//private JButton jButtonCreateQuery = null;
 	private JButton jButtonQueryQueries = null;
+	private JButton jButtonLogin = null;
+	private JButton jButtonSignUp = null;
 
     private static BLFacade appFacadeInterface;
 	
@@ -94,15 +96,7 @@ public class MainGUI extends JFrame {
 		panel.add(rdbtnNewRadioButton_1);
 		panel.add(rdbtnNewRadioButton_2);
 		panel.add(rdbtnNewRadioButton);
-		
-		jButtonCreateQuery = new JButton();
-		jButtonCreateQuery.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.CreateRide"));
-		jButtonCreateQuery.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent e) {
-				JFrame a = new CreateRideGUI(driver);
-				a.setVisible(true);
-			}
-		});
+	
 		
 		jButtonQueryQueries = new JButton();
 		jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.QueryRides"));
@@ -114,11 +108,30 @@ public class MainGUI extends JFrame {
 			}
 		});
 		
+		jButtonLogin= new JButton();
+		jButtonLogin.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.LogIn"));
+		jButtonLogin.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				JFrame a = new LoginGUI();
+				a.setVisible(true);
+			}
+		});
+		
+		jButtonSignUp = new JButton();
+		jButtonSignUp.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.SignUp"));
+		jButtonSignUp.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent e) {
+				JFrame a = new SignUpGUI();
+				a.setVisible(true);
+			}
+		});
+		
 		jContentPane = new JPanel();
-		jContentPane.setLayout(new GridLayout(4, 1, 0, 0));
+		jContentPane.setLayout(new GridLayout(5, 1, 0, 0));
 		jContentPane.add(jLabelSelectOption);
-		jContentPane.add(jButtonCreateQuery);
 		jContentPane.add(jButtonQueryQueries);
+		jContentPane.add(jButtonLogin);
+		jContentPane.add(jButtonSignUp);
 		jContentPane.add(panel);
 		
 		
@@ -136,7 +149,8 @@ public class MainGUI extends JFrame {
 	private void paintAgain() {
 		jLabelSelectOption.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.SelectOption"));
 		jButtonQueryQueries.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.QueryRides"));
-		jButtonCreateQuery.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.CreateRide"));
+		jButtonLogin.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.LogIn"));
+		jButtonSignUp.setText(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.SignUp"));
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.MainTitle")+ " - driver :"+driver.getName());
 	}
 	
