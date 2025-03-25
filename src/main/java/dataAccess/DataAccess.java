@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import javax.jws.WebMethod;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -19,7 +20,10 @@ import javax.persistence.TypedQuery;
 import configuration.ConfigXML;
 import configuration.UtilDate;
 import domain.Driver;
+import domain.Eskaera;
 import domain.Ride;
+import domain.User;
+import domain.Bidaiari;
 import exceptions.RideAlreadyExistException;
 import exceptions.RideMustBeLaterThanTodayException;
 
@@ -29,12 +33,13 @@ import exceptions.RideMustBeLaterThanTodayException;
 public class DataAccess  {
 	private  EntityManager  db;
 	private  EntityManagerFactory emf;
+	
 
 
 	ConfigXML c=ConfigXML.getInstance();
 
      public DataAccess()  {
-		if (c.isDatabaseInitialized()) {
+		/*if (c.isDatabaseInitialized()) {
 			String fileName=c.getDbFilename();
 
 			File fileToDelete= new File(fileName);
@@ -46,7 +51,7 @@ public class DataAccess  {
 				} else {
 				  System.out.println("Operation failed");
 				}
-		}
+		}*/
 		open();
 		if  (c.isDatabaseInitialized())initializeDB();
 		
@@ -79,10 +84,10 @@ public class DataAccess  {
 		   if (month==12) { month=1; year+=1;}  
 	    
 		   
-		    //Create drivers 
-			Driver driver1=new Driver("driver1@gmail.com","Aitor Fernandez");
-			Driver driver2=new Driver("driver2@gmail.com","Ane Gaztañaga");
-			Driver driver3=new Driver("driver3@gmail.com","Test driver");
+		    /*//Create drivers 
+			Driver driver1=new Driver("driver1@gmail.com","Aitor Fernandez", "53256", "7342S", "hfsk");
+			Driver driver2=new Driver("driver2@gmail.com","Ane Gaztañaga", "53256", "7342S", "hfsk");
+			Driver driver3=new Driver("driver3@gmail.com","Test driver", "53256", "7342S", "hfsk");
 
 			
 			//Create rides
@@ -103,7 +108,7 @@ public class DataAccess  {
 			db.persist(driver1);
 			db.persist(driver2);
 			db.persist(driver3);
-
+			*/
 	
 			db.getTransaction().commit();
 			System.out.println("Db initialized");
@@ -173,10 +178,162 @@ public class DataAccess  {
 			db.getTransaction().commit();
 			return null;
 		}
-		
-		
 	}
 	
+	public Eskaera createEskaera(String from, String to, Date date, Bidaiari bidaiari)throws  RideAlreadyExistException, RideMustBeLaterThanTodayException {
+		try {
+			if(new Date().compareTo(date)>0) {
+				throw new RideMustBeLaterThanTodayException(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.ErrorRideMustBeLaterThanToday"));
+			}
+			db.getTransaction().begin();
+			bidaiari = db.merge(bidaiari);
+			if (bidaiari.doesEskaeraExists(from, to, date)) {
+				db.getTransaction().commit();
+				throw new RideAlreadyExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.RideAlreadyExist"));
+			}
+			Eskaera eskaera = bidaiari.addEskaera(from, to, date);
+			//next instruction can be obviated
+			db.persist(eskaera); 
+			db.getTransaction().commit();
+
+			return eskaera;
+		} catch (NullPointerException e) {
+			// TODO Auto-generated catch block
+			db.getTransaction().commit();
+			return null;
+		}
+		
+	}
+		
+		
+		/*
+		public boolean storeRider (Bidaiari rider) {
+			try {
+		        db.getTransaction().begin();
+		        Bidaiari existingRider = db.find(Bidaiari.class, rider.getEmail());
+		        if (existingRider == null) {
+		            db.persist(rider);
+		            db.getTransaction().commit();
+		            System.out.println("Rider stored successfully: " + rider);
+		            return true;
+		        } else {
+		            db.getTransaction().rollback();
+		            System.out.println("Rider already exists with email: " + rider.getEmail());
+		            return false;
+		        }
+		    } catch (Exception e) {
+		        db.getTransaction().rollback();
+		        System.err.println("Error storing rider: " + e.getMessage());
+		        return false;
+		    }*/
+			/*try {
+		        db.getTransaction().begin();
+		        db.persist(rider);
+		        db.getTransaction().commit();
+		        System.out.println("Rider stored successfully: " + rider);
+		    } catch (Exception e) {
+		        db.getTransaction().rollback(); 
+		        System.err.println("Error storing rider: " + e.getMessage());
+		    }*/
+		//}
+		
+		/*public boolean storeDriver (Driver driver) {
+			
+			try {
+		        db.getTransaction().begin();
+		        Driver existingDriver = db.find(Driver.class, driver.getEmail());
+		        if (existingDriver == null) {
+		            db.persist(driver);
+		            db.getTransaction().commit();
+		            System.out.println("Driver stored successfully: " + driver);
+		            return true;
+		        } else {
+		            db.getTransaction().rollback();
+		            System.out.println("Driver already exists with email: " + driver.getEmail());
+		            return false;
+		        }
+		    } catch (Exception e) {
+		        db.getTransaction().rollback();
+		        System.err.println("Error storing driver: " + e.getMessage());
+		        return false;
+		    }*/
+			
+			/*try {
+				db.getTransaction().begin();
+				db.persist(driver);
+			    db.getTransaction().commit();
+			    System.out.println("Driver stored successfully: " + driver);
+			} catch (Exception e) {
+			    db.getTransaction().rollback(); 
+			    System.err.println("Error storing driver: " + e.getMessage());
+			}*/
+		//}
+		public User isRegistered(String email, String password){
+			try {
+				db.getTransaction().begin();
+				User existingUser = db.find(User.class, email);
+				if(existingUser == null) { //Ez dago erregistratuta email hori duen inor
+					db.getTransaction().rollback();//para deshacer una transacción en una base de datos
+					System.out.println("You are not registered yet");
+					return null;
+				}else {
+					if(password.equals(existingUser.getPasahitza())) {//berdinak badira pasahitzak
+						System.out.println("Good");
+						return existingUser;
+					}else {
+						System.out.println("Your password is not correct");
+						return null;
+					}
+				}
+			} catch(Exception e) {
+				db.getTransaction().rollback();
+		        System.out.println("Error while checking registration: " + e.getMessage());
+		        return null;
+			}
+		}
+		
+		public boolean diruaSartu (User user, int diru) {
+			try {
+				db.getTransaction().begin();
+				User existingUser = db.find(User.class, user.getEmail());
+				int diruBerr = ((Bidaiari)existingUser).getDirua() + diru;
+				((Bidaiari)existingUser).setDirua(diruBerr);
+				db.getTransaction().commit();
+				return true;
+			}catch(Exception e) {
+				db.getTransaction().rollback();
+		        System.err.println("Errorea dirua sartzean: " + e.getMessage());
+		        return false;
+			}
+		}
+		
+		public List<Bidaiari> getAllBidaiari() {
+			db.getTransaction().begin();
+			TypedQuery<Bidaiari> query = db.createQuery("SELECT b FROM Bidaiari b", Bidaiari.class);
+		    return query.getResultList();
+		}
+		
+		public boolean storeUser (User user) {
+			try {
+		        db.getTransaction().begin();
+		        User existingUser = db.find(User.class, user.getEmail());
+		        if (existingUser == null) {
+		            db.persist(user);
+		            db.getTransaction().commit();
+		            System.out.println("User stored successfully: " + user);
+		            return true;
+		        } else {
+		            db.getTransaction().rollback();
+		            System.out.println("User already exists with email: " + user.getEmail());
+		            return false;
+		        }
+		    } catch (Exception e) {
+		        db.getTransaction().rollback();
+		        System.err.println("Error storing user: " + e.getMessage());
+		        return false;
+		    }
+	
+		}
 	/**
 	 * This method retrieves the rides from two locations on a given date 
 	 * 
@@ -198,6 +355,11 @@ public class DataAccess  {
 		   res.add(ride);
 		  }
 	 	return res;
+	}
+	public List<String> getEmails() {
+		List<String> emails = new ArrayList<String>();	
+		emails = db.createQuery("SELECT d.email FROM Driver d", String.class).getResultList();
+	 	return emails;
 	}
 	
 	/**

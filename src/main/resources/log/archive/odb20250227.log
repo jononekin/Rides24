@@ -1,0 +1,353 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 10:08:10 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 23244@Itxaso
+
+[2025-02-27 10:08:11 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 10:08:11 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 10:08:11 #4 type.registry] 
+New type domain.Ride
+
+[2025-02-27 10:08:11 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 10:08:11 #6 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 10:08:11 #7 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 10:16:27 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 15116@Itxaso
+
+[2025-02-27 10:16:27 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 10:16:27 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 10:16:27 #4 type.registry] 
+New type domain.Ride
+
+[2025-02-27 10:16:27 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 10:16:27 #6 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 10:16:27 #7 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 10:20:46 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 26916@Itxaso
+
+[2025-02-27 10:20:46 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 10:20:46 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 10:20:46 #4 type.registry] 
+New type domain.Ride
+
+[2025-02-27 10:20:46 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 10:20:46 #6 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 10:20:46 #7 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 10:46:42 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 23816@Itxaso
+
+[2025-02-27 10:46:42 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 10:46:42 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 10:46:42 #4 type.registry] 
+New type domain.Ride
+
+[2025-02-27 10:46:42 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 10:46:42 #6 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 10:46:42 #7 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 11:42:50 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 21780@Itxaso
+
+[2025-02-27 11:42:51 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 11:42:51 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 11:42:51 #4 type.registry] 
+New type domain.Ride
+
+[2025-02-27 11:42:51 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 11:42:51 #6 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 11:42:51 #7 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 11:45:17 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 27376@Itxaso
+
+[2025-02-27 11:45:17 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 11:45:17 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 11:45:17 #4 type.registry] 
+New type domain.Ride
+
+[2025-02-27 11:45:17 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 11:45:17 #6 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 11:45:17 #7 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 11:46:54 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 19124@Itxaso
+
+[2025-02-27 11:46:54 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 11:46:54 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 11:46:54 #4 type.registry] 
+New type domain.Ride
+
+[2025-02-27 11:46:54 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 11:46:54 #6 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 11:46:54 #7 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 21:17:42 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 26352@Itxaso
+
+[2025-02-27 21:17:42 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 21:17:42 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 21:17:42 #4 type.registry] 
+New type domain.Ride
+
+[2025-02-27 21:17:42 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 21:17:42 #6 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 21:17:42 #7 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 21:20:31 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 28180@Itxaso
+
+[2025-02-27 21:20:31 #2 type.registry] 
+New type domain.Driver
+
+[2025-02-27 21:20:31 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 21:20:31 #4 type.registry] 
+New type domain.Ride
+
+[2025-02-27 21:20:31 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-27 21:20:31 #6 type.registry] 
+New type java.util.Vector<java.lang.Object>
+
+[2025-02-27 21:20:31 #7 type.registry] 
+New type java.util.Vector<domain.Ride>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 22:52:57 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' has been recovered (tr. 1-7)
+
+[2025-02-27 22:52:57 #2 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 16236@Itxaso
+
+[2025-02-27 22:52:57 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 22:52:57 #4 type] 
+Type domain.Ride is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 22:55:03 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 15796@Itxaso
+
+[2025-02-27 22:55:03 #2 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 22:55:03 #3 type] 
+Type domain.Ride is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 23:02:13 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 21768@Itxaso
+
+[2025-02-27 23:02:14 #2 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 23:02:14 #3 type] 
+Type domain.Ride is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 23:03:28 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 19240@Itxaso
+
+[2025-02-27 23:03:29 #2 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 23:03:29 #3 type] 
+Type domain.Ride is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 23:04:23 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 9536@Itxaso
+
+[2025-02-27 23:04:23 #2 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 23:04:23 #3 type] 
+Type domain.Ride is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 23:11:35 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 11420@Itxaso
+
+[2025-02-27 23:11:36 #2 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 23:11:36 #3 type] 
+Type domain.Ride is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 23:24:06 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 13940@Itxaso
+
+[2025-02-27 23:24:06 #2 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 23:24:06 #3 type] 
+Type domain.Ride is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 23:24:57 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 11956@Itxaso
+
+[2025-02-27 23:24:58 #2 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 23:24:58 #3 type] 
+Type domain.Ride is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 23:32:21 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 10880@Itxaso
+
+[2025-02-27 23:32:21 #2 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 23:32:21 #3 type] 
+Type domain.Ride is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 23:33:10 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 26324@Itxaso
+
+[2025-02-27 23:33:10 #2 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 23:33:10 #3 type] 
+Type domain.Ride is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 23:34:15 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 12776@Itxaso
+
+[2025-02-27 23:34:15 #2 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 23:34:15 #3 type] 
+Type domain.Ride is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 23:40:26 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 11332@Itxaso
+
+[2025-02-27 23:40:26 #2 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 23:40:26 #3 type] 
+Type domain.Ride is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-27 23:43:41 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 22264@Itxaso
+
+[2025-02-27 23:43:41 #2 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-27 23:43:41 #3 type] 
+Type domain.Ride is not enhanced.
+

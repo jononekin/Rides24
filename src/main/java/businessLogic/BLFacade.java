@@ -1,11 +1,15 @@
 package businessLogic;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 //import domain.Booking;
 import domain.Ride;
+import domain.User;
+import domain.Bidaiari;
 import domain.Driver;
+import domain.Eskaera;
 import exceptions.RideMustBeLaterThanTodayException;
 import exceptions.RideAlreadyExistException;
 
@@ -74,6 +78,26 @@ public interface BLFacade  {
 	 * It is invoked only when the option "initialize" is declared in the tag dataBaseOpenMode of resources/config.xml file
 	 */	
 	@WebMethod public void initializeBD();
+	
+	//@WebMethod public boolean storeDriver(Driver driver);
+	
+	//@WebMethod public boolean storeRider(Bidaiari rider);
+	
+	@WebMethod public List<String> getEmails();
+	
+	@WebMethod public boolean storeUser(User user);
+	
+	@WebMethod public User isRegistered(String email, String password);
+	
+	@WebMethod public boolean diruaSartu(User user, int diru);
+	
+	@WebMethod public List<Bidaiari> getAllBidaiari();
+	
+	@WebMethod public Eskaera createEskaera(String from, String to, Date date, Bidaiari bidaiari)throws 
+	RideMustBeLaterThanTodayException, RideAlreadyExistException;
+	
+	
+	
 
 	
 }

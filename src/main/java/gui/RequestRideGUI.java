@@ -15,7 +15,9 @@ import java.beans.PropertyChangeListener;
 
 import businessLogic.BLFacade;
 import configuration.UtilDate;
+import domain.Bidaiari;
 import domain.Driver;
+import domain.Eskaera;
 import domain.Ride;
 //import domain.Rider;
 import exceptions.RideAlreadyExistException;
@@ -25,7 +27,7 @@ public class RequestRideGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	
-	private Driver driver;
+	private Bidaiari bidaiari;
 	private JTextField fieldOrigin=new JTextField();
 	private JTextField fieldDestination=new JTextField();
 	
@@ -39,10 +41,11 @@ public class RequestRideGUI extends JFrame {
 
 	private JScrollPane scrollPaneEvents = new JScrollPane();
 
-	private JButton jButtonRequest = new JButton(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.CreateRide"));
+	private JButton jButtonRequest = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainBidaiariGUI.RequestRide"));
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 	private JLabel jLabelMsg = new JLabel();
 	private JLabel jLabelError = new JLabel();
+
 	
 	private List<Date> datesWithEventsCurrentMonth;
 
@@ -50,14 +53,14 @@ public class RequestRideGUI extends JFrame {
 	//private Rider rider;
 
 
-	public RequestRideGUI() {
+	public RequestRideGUI(Bidaiari bidaiari) {
 
 		//this.rider=rider;
 		this.getContentPane().setLayout(null);
 		this.setSize(new Dimension(604, 370));
-		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.CreateRide"));
-
-		jLabelOrigin.setBounds(new Rectangle(6, 56, 92, 20));
+		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainBidaiariGUI.RequestRide"));
+		this.bidaiari = bidaiari;
+		jLabelOrigin.setBounds(new Rectangle(6, 56, 151, 26));
 
 		jCalendar.setBounds(new Rectangle(300, 50, 225, 150));
 		scrollPaneEvents.setBounds(new Rectangle(25, 44, 346, 116));
@@ -104,22 +107,21 @@ public class RequestRideGUI extends JFrame {
 		jLabRideDate.setBounds(298, 16, 140, 25);
 		getContentPane().add(jLabRideDate);
 		
-		jLabelDestination.setBounds(6, 81, 61, 16);
+		jLabelDestination.setBounds(6, 81, 151, 26);
 		getContentPane().add(jLabelDestination);
 		
 		
-		fieldOrigin.setBounds(100, 53, 130, 26);
+		fieldOrigin.setBounds(160, 53, 130, 26);
 		getContentPane().add(fieldOrigin);
 		fieldOrigin.setColumns(10);
 		
 		
-		fieldDestination.setBounds(104, 81, 123, 26);
+		fieldDestination.setBounds(160, 81, 130, 26);
 		getContentPane().add(fieldDestination);
 		fieldDestination.setColumns(10);
 		 //Code for JCalendar
 		this.jCalendar.addPropertyChangeListener(new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent propertychangeevent) {
-//			
+			public void propertyChange(PropertyChangeEvent propertychangeevent) {		
 				if (propertychangeevent.getPropertyName().equals("locale")) {
 					jCalendar.setLocale((Locale) propertychangeevent.getNewValue());
 				} else if (propertychangeevent.getPropertyName().equals("calendar")) {
@@ -145,18 +147,30 @@ public class RequestRideGUI extends JFrame {
 					
 						if (Locale.getDefault().equals(new Locale("es")))
 							offset += 4;
-						else
-							offset += 5;
+						//else
+							//offset += 5;
 				Component o = (Component) jCalendar.getDayChooser().getDayPanel().getComponent(jCalendar.getCalendar().get(Calendar.DAY_OF_MONTH) + offset);
 				}}});
 		
 	}	 
 	private void jButtonCreate_actionPerformed(ActionEvent e) {
-		jLabelMsg.setText("");
-		String error=field_Errors();
-		if (error!=null) 
-			jLabelMsg.setText(error);
+		try {
+			jLabelMsg.setText("");
+			BLFacade facade = MainGUI.getBusinessLogic();
+			String from = fieldOrigin.getText().trim();
+			String to = fieldDestination.getText().trim();
+			Date date = jCalendar.getDate();
+			facade.createEskaera(from, to, date, bidaiari);
+			jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("RequestRideGUI.RequestDone"));
+			System.out.println("Eskaera gorde da.");
+		} catch (RideMustBeLaterThanTodayException e1) {
+			// TODO Auto-generated catch block
+			jLabelMsg.setText(e1.getMessage());
+		} catch (RideAlreadyExistException e1) {
+			// TODO Auto-generated catch block
+			jLabelMsg.setText(e1.getMessage());
 		}
+	}
 	
 
 	private void jButtonClose_actionPerformed(ActionEvent e) {

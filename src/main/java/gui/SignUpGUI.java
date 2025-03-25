@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -7,13 +8,26 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
+
+import businessLogic.BLFacade;
+import dataAccess.DataAccess;
+import domain.Driver;
+import domain.Bidaiari;
+
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Rectangle;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.swing.JTextField;
 import javax.swing.JFormattedTextField;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class SignUpGUI extends JFrame {
 
@@ -28,8 +42,8 @@ public class SignUpGUI extends JFrame {
 	private JTextField textField_Tlf;
 	private JTextField textField_Email;
 	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
+	private JLabel jLabelMsg = new JLabel();
 
-	
 	/**
 	 * Launch the application.
 	 */
@@ -55,10 +69,10 @@ public class SignUpGUI extends JFrame {
 	public SignUpGUI() {
 		setTitle(ResourceBundle.getBundle("Etiquetas").getString("SignUpGUI.Title"));
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 649, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
+		
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
@@ -126,8 +140,80 @@ public class SignUpGUI extends JFrame {
 		buttonGroup_1.add(rdbtn_Passenger);
 		contentPane.add(rdbtn_Passenger);
 		
+		jLabelMsg.setBounds(new Rectangle(300, 40, 325, 86));
+		jLabelMsg.setForeground(Color.red);
+		this.getContentPane().add(jLabelMsg, null);
+		
 		JButton btn_SignUp =new JButton(ResourceBundle.getBundle("Etiquetas").getString("SignUpGUI.BtnSignUp"));
+		btn_SignUp.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				jLabelMsg.setText("");
+				BLFacade facade = MainGUI.getBusinessLogic();
+				String nameSur = textField_NameSur.getText().trim();
+				String NAN = textField.getText().trim();
+				String tlf = textField_Tlf.getText().trim();
+				String email = textField_Email.getText().trim();
+				String password = Password.getText().trim();
+				
+				if (nameSur.isEmpty() || NAN.isEmpty() || tlf.isEmpty() || email.isEmpty() || password.isEmpty()) {
+		            jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("Error.FillAllGaps"));
+		            return;
+		        }
+				
+				if (!email.contains("@") || !email.contains(".")) {
+					 jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("Error.EmailFormat"));
+			         return;
+			    }
+				 
+				if (!tlf.matches("\\d+")) {
+					 jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("Error.Tlf"));
+			         return;
+			    }
+				boolean isOndo=true;
+				try {
+					if (rdbtn_Driver.isSelected()) {
+				        Driver driver = new Driver(email, nameSur);
+				        driver.setNanZbk(NAN);
+				        driver.setPasahitza(password);
+				        driver.setTlf(tlf);
+				        isOndo=facade.storeUser(driver);
+				        if(isOndo) {
+				        	System.out.println("Driver registrado correctamente.");
+				        	JFrame d = new MainGidariGUI(driver);
+				        	d.setVisible(true);
+				        	((JFrame) SwingUtilities.getWindowAncestor(btn_SignUp)).dispose(); //Botoia pultsatzean lehio hori itxiko du
+				        } else {
+				        	jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("Error.EmailFormat"));
+				        }
+				    } else if (rdbtn_Passenger.isSelected()) {
+				        Bidaiari bidaiari = new Bidaiari(email, nameSur);
+				        bidaiari.setNanZbk(NAN);
+				        bidaiari.setPasahitza(password);
+				        bidaiari.setTlf(tlf);
+				        bidaiari.setDirua(0);
+				        isOndo=facade.storeUser(bidaiari);
+				        if (isOndo){
+				        	System.out.println("Rider registrado correctamente.");
+				        	JFrame r = new MainBidaiariGUI(bidaiari);
+				        	r.setVisible(true);
+				        	((JFrame) SwingUtilities.getWindowAncestor(btn_SignUp)).dispose(); //Botoia pultsatzean lehio hori itxiko du
+				        } else {
+				        	jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("Error.EmailFormat"));
+				        }
+				    } else {
+				        jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("Error.Click"));
+				    }
+		            
+		        } catch (Exception ex) {
+		            jLabelMsg.setText("Error!");
+		        }
+			
+			}
+		});
+		
 		btn_SignUp.setBounds(175, 230, 89, 23);
 		contentPane.add(btn_SignUp);
 	}
 }
+

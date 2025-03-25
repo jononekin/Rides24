@@ -9,7 +9,10 @@ import javax.jws.WebService;
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
 import domain.Ride;
+import domain.User;
+import domain.Bidaiari;
 import domain.Driver;
+import domain.Eskaera;
 import exceptions.RideMustBeLaterThanTodayException;
 import exceptions.RideAlreadyExistException;
 
@@ -118,6 +121,66 @@ public class BLFacadeImplementation  implements BLFacade {
 		dbManager.initializeDB();
 		dbManager.close();
 	}
+    
+    /*@WebMethod
+    public boolean storeDriver(Driver driver) {
+ 		dbManager.open();
+ 		boolean d = dbManager.storeDriver(driver);	
+ 		dbManager.close();
+ 		return d;
+    };*/
+    
+    /*@WebMethod
+    public boolean storeRider(Bidaiari rider) {
+ 		dbManager.open();
+ 		boolean r= dbManager.storeRider(rider);
+ 		dbManager.close();
+ 		return r;
+    };*/
+    
+    @WebMethod
+    public boolean storeUser(User user) {
+ 		dbManager.open();
+ 		boolean u= dbManager.storeUser(user);
+ 		dbManager.close();
+ 		return u;
+    };
+    @WebMethod
+    public User isRegistered(String email, String password){
+    	dbManager.open();
+    	User u = dbManager.isRegistered(email, password);
+    	dbManager.close();
+    	return u;
+    }
+    @WebMethod
+    public boolean diruaSartu(User user, int diru) {
+    	dbManager.open();
+    	boolean o = dbManager.diruaSartu(user, diru);
+    	dbManager.close();
+    	return o;
+    }
+    @WebMethod
+    public List<Bidaiari> getAllBidaiari() {
+    	dbManager.open();
+    	List<Bidaiari> bidList = dbManager.getAllBidaiari();
+    	dbManager.close();
+    	return bidList;
+    }
+    @WebMethod 
+    public Eskaera createEskaera(String from, String to, Date date, Bidaiari bidaiari) throws RideMustBeLaterThanTodayException, RideAlreadyExistException {
+    	dbManager.open();
+		Eskaera eskaera=dbManager.createEskaera(from, to, date, bidaiari);		
+		dbManager.close();
+		return eskaera;
+    }
+    @WebMethod
+    public List<String> getEmails() {
+ 		dbManager.open();
+ 		List<String>emails=dbManager.getEmails();
+ 		dbManager.close();
+ 		return emails;
+    };
+    
 
 }
 

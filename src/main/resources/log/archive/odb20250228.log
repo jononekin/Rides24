@@ -1,0 +1,318 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-28 10:37:14 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 16112@Itxaso
+
+[2025-02-28 10:37:14 #2 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-28 10:37:14 #3 type] 
+Type domain.Ride is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-28 10:40:29 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 14188@Itxaso
+
+[2025-02-28 10:40:29 #2 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-28 10:40:29 #3 type] 
+Type domain.Ride is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-28 10:41:21 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 12892@Itxaso
+
+[2025-02-28 10:41:22 #2 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-28 10:41:22 #3 type] 
+Type domain.Ride is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-28 10:50:12 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 9752@Itxaso
+
+[2025-02-28 10:50:12 #2 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-28 10:50:12 #3 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-28 10:50:31 #4 type.registry] 
+New type domain.Rider
+
+[2025-02-28 10:50:31 #5 type] 
+Type domain.Rider is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-28 10:54:31 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 2460@Itxaso
+
+[2025-02-28 10:54:31 #2 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-28 10:54:31 #3 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-28 10:54:31 #4 type] 
+Type domain.Rider is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-28 17:04:52 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 25776@Itxaso
+
+[2025-02-28 17:04:52 #2 type.registry] 
+New type domain.User
+
+[2025-02-28 17:04:52 #3 type] 
+Type domain.User is not enhanced.
+
+[2025-02-28 17:04:52 #4 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-28 17:04:52 #5 type] 
+Type domain.Ride is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-28 17:07:18 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 20960@Itxaso
+
+[2025-02-28 17:07:18 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-02-28 17:07:18 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-28 17:07:18 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-28 17:07:32 #5 type.registry] 
+New type domain.Bidaiari
+
+[2025-02-28 17:07:32 #6 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-02-28 17:07:32 #7 type.registry] 
+New type domain.Eskaera
+
+[2025-02-28 17:07:32 #8 type] 
+Type domain.Eskaera is not enhanced.
+
+[2025-02-28 17:07:32 #9 type.registry] 
+New type java.util.Vector<domain.Eskaera>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-28 21:03:56 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 10776@Itxaso
+
+[2025-02-28 21:03:56 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-02-28 21:03:56 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-28 21:03:56 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-28 21:03:56 #5 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-02-28 21:03:56 #6 type] 
+Type domain.Eskaera is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-28 23:28:33 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 2512@Itxaso
+
+[2025-02-28 23:28:33 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-02-28 23:28:33 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-28 23:28:33 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-28 23:28:33 #5 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-02-28 23:28:33 #6 type] 
+Type domain.Eskaera is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-28 23:45:10 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 13360@Itxaso
+
+[2025-02-28 23:45:10 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-02-28 23:45:10 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-28 23:45:10 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-28 23:45:10 #5 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-02-28 23:45:10 #6 type] 
+Type domain.Eskaera is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-28 23:48:00 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 22772@Itxaso
+
+[2025-02-28 23:48:00 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-02-28 23:48:00 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-28 23:48:00 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-28 23:48:00 #5 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-02-28 23:48:00 #6 type] 
+Type domain.Eskaera is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-28 23:49:40 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 1068@Itxaso
+
+[2025-02-28 23:49:40 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-02-28 23:49:40 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-28 23:49:40 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-28 23:49:40 #5 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-02-28 23:49:40 #6 type] 
+Type domain.Eskaera is not enhanced.
+
+[2025-02-28 23:50:11 #7 load] 
+[ObjectDB 2.6.9_09] Unexpected exception (Error 990)
+  Generated by OpenJDK 64-Bit Server VM 23.0.1 (on Windows 11 10.0).
+Please report this error on http://www.objectdb.com/database/issue/new
+com.objectdb.o.InternalException: Unexpected request domain.Bidaiari:'itxaso@gmail.com'
+com.objectdb.o.InternalException: Unexpected request domain.Bidaiari:'itxaso@gmail.com'
+	at com.objectdb.o.LDR.Vz(LDR.java:1030)
+	at com.objectdb.o.RTT.G(RTT.java:267)
+	at com.objectdb.o.RTT.F(RTT.java:249)
+	at com.objectdb.o.RRT.C(RRT.java:288)
+	at com.objectdb.o.RTT.l(RTT.java:134)
+	at com.objectdb.o.RRT.l(RRT.java:32)
+	at com.objectdb.o.TSK.i(TSK.java:145)
+	at com.objectdb.o.TSK.f(TSK.java:95)
+	at com.objectdb.o.TSM.e(TSM.java:86)
+	at com.objectdb.o.MST.a1(MST.java:707)
+	at com.objectdb.o.MST.aY(MST.java:476)
+	at com.objectdb.o.MST.U6(MST.java:442)
+	at com.objectdb.o.WRA.U6(WRA.java:266)
+	at com.objectdb.o.LDR.G(LDR.java:556)
+	at com.objectdb.o.LDR.F(LDR.java:473)
+	at com.objectdb.o.LDR.A(LDR.java:272)
+	at com.objectdb.o.OBC.aO(OBC.java:1061)
+	at com.objectdb.o.OBC.aM(OBC.java:979)
+	at com.objectdb.jpa.EMImpl.find(EMImpl.java:599)
+	at com.objectdb.jpa.EMImpl.find(EMImpl.java:519)
+	at dataAccess.DataAccess.isRegistered(DataAccess.java:246)
+	at businessLogic.BLFacadeImplementation.isRegistered(BLFacadeImplementation.java:151)
+	at gui.LoginGUI$2.actionPerformed(LoginGUI.java:110)
+	at java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972)
+	at java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2314)
+	at java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:407)
+	at java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+	at java.desktop/javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:279)
+	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6621)
+	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3404)
+	at java.desktop/java.awt.Component.processEvent(Component.java:6386)
+	at java.desktop/java.awt.Container.processEvent(Container.java:2266)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4996)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575)
+	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:775)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:98)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:747)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:745)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:744)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+
+[2025-02-28 23:50:11 #8 load] 
+Request set: {}
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-28 23:52:06 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 27528@Itxaso
+
+[2025-02-28 23:52:06 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-02-28 23:52:06 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-28 23:52:06 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-28 23:52:06 #5 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-02-28 23:52:06 #6 type] 
+Type domain.Eskaera is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-02-28 23:53:26 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 20508@Itxaso
+
+[2025-02-28 23:53:26 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-02-28 23:53:26 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-02-28 23:53:26 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-02-28 23:53:26 #5 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-02-28 23:53:27 #6 type] 
+Type domain.Eskaera is not enhanced.
+
