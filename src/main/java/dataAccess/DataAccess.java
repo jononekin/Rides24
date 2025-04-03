@@ -313,6 +313,13 @@ public class DataAccess  {
 			TypedQuery<Bidaiari> query = db.createQuery("SELECT b FROM Bidaiari b", Bidaiari.class);
 		    return query.getResultList();
 		}
+		public List<Eskaera> getAllEskaera() {
+			db.getTransaction().begin();
+			TypedQuery<Eskaera> query = db.createQuery("SELECT b FROM Eskaera b", Eskaera.class);
+		    return query.getResultList();
+		}
+		
+		
 		public List<Ride> getAllRides() {
 			db.getTransaction().begin();
 			TypedQuery<Ride> query = db.createQuery("SELECT b FROM Ride b", Ride.class);
@@ -322,6 +329,19 @@ public class DataAccess  {
 			try {
 				db.getTransaction().begin();
 				db.remove(ride);
+				db.getTransaction().commit();
+				return true;
+			} catch (Exception e) {
+				db.getTransaction().rollback();
+		        System.err.println("Error deleting ride: " + e.getMessage());
+		        return false;
+			}
+		}
+		
+		public boolean ezabatuEskaera(Eskaera esk) {
+			try {
+				db.getTransaction().begin();
+				db.remove(esk);
 				db.getTransaction().commit();
 				return true;
 			} catch (Exception e) {

@@ -109,6 +109,7 @@ public class OnartuGUI extends JFrame {
 				try {
 				    String preziotext = textField_prezioa.getText().trim();
 				    Eskaera selectedEskaera = (Eskaera) comboBox.getSelectedItem();
+				    selectedEskaera.setBaieztatuta(true);
 				    
 				    if (preziotext.isEmpty() || (comboBox_1.getSelectedItem() != null)) {
 				        System.out.println("Error: uno de los campos está vacío.");
@@ -116,9 +117,10 @@ public class OnartuGUI extends JFrame {
 				    }
 
 				    float prezioa = Float.parseFloat(preziotext);
-				    Car selectedCar = (Car) comboBox.getSelectedItem();
+				    Car selectedCar = (Car) comboBox_1.getSelectedItem();
 					int inputSeats = selectedCar.getPlaces();
 				    try {
+				    	
 				    	facade.createRide(selectedEskaera.getFrom(), selectedEskaera.getTo(),selectedEskaera.getDate(), inputSeats, prezioa, driver.getEmail());
 				    	jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("OnartuGUI.Accepted"));
 				    }catch(RideMustBeLaterThanTodayException e1){

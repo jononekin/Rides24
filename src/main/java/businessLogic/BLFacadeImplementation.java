@@ -186,6 +186,18 @@ public class BLFacadeImplementation  implements BLFacade {
     	dbManager.close();
     	return ondo;
     }
+    @WebMethod public boolean ezabatuEskaera(Eskaera eskaera) {
+    	dbManager.open();
+    	boolean ondo = dbManager.ezabatuEskaera(eskaera);
+    	dbManager.close();
+    	return ondo;
+    }
+    @WebMethod public List<Eskaera> getAllEskaera(){
+    	dbManager.open();
+    	List<Eskaera> eskList = dbManager.getAllEskaera();
+    	dbManager.close();
+    	return eskList;
+    }
     @WebMethod 
     public Eskaera createEskaera(String from, String to, Date date, Bidaiari bidaiari) throws RideMustBeLaterThanTodayException, RideAlreadyExistException {
     	dbManager.open();

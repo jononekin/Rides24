@@ -20,7 +20,16 @@ public class Eskaera implements Serializable {
 	private String from;
 	private String to;
 	private Date date;
+	private boolean baieztatuta;
 	
+	public boolean isBaieztatuta() {
+		return baieztatuta;
+	}
+
+	public void setBaieztatuta(boolean baieztatuta) {
+		this.baieztatuta = baieztatuta;
+	}
+
 	private Bidaiari bidaiari;  
 	
 	public Eskaera(){

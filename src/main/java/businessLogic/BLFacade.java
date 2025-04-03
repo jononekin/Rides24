@@ -94,13 +94,13 @@ public interface BLFacade  {
 	
 	@WebMethod public List<Bidaiari> getAllBidaiari();
 	@WebMethod public List<Ride> getAllRides();
-	
+	@WebMethod public List<Eskaera> getAllEskaera();
 	@WebMethod public Eskaera createEskaera(String from, String to, Date date, Bidaiari bidaiari)throws 
 	RideMustBeLaterThanTodayException, RideAlreadyExistException;
 	
 	@WebMethod public Car addCar(String licensePlate, int places, String model, String color);
 	
 	@WebMethod public boolean ezabatuRide(Ride ride);
-
+	@WebMethod public boolean ezabatuEskaera(Eskaera eskaera);
 	
 }
