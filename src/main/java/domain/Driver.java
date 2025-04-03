@@ -23,7 +23,8 @@ public class Driver extends User implements Serializable {
 	@XmlIDREF
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private List<Ride> rides=new Vector<Ride>();
-	
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+	private List<Car> cars=new Vector<Car>();
 
 	public Driver(String email, String name) {
 		super(email, name);
@@ -57,7 +58,21 @@ public class Driver extends User implements Serializable {
         rides.add(ride);
         return ride;
 	}
+	
+	public List<Car> getCars() {
+		return cars;
+	}
 
+	public void setCars(List<Car> cars) {
+		this.cars = cars;
+	}
+
+	public Car addCar(String licensePlate, int places, String model, String color)  {
+        Car car=new Car(licensePlate, places, model, color);
+        cars.add(car);
+        return car;
+	}
+	
 	public boolean doesRideExists(String from, String to, Date date)  {	
 		for (Ride r:rides)
 			if ( (java.util.Objects.equals(r.getFrom(),from)) && (java.util.Objects.equals(r.getTo(),to)) && (java.util.Objects.equals(r.getDate(),date)) )
@@ -65,7 +80,13 @@ public class Driver extends User implements Serializable {
 		
 		return false;
 	}
-	
+	public boolean doesCarExist(String licensePlate)  {	
+		for (Car c:cars)
+			if ( (java.util.Objects.equals(c.getLicensePlate(),licensePlate)))
+			 return true;
+		
+		return false;
+	}
 	
 	
 }

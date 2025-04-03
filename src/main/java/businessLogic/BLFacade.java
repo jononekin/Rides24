@@ -8,6 +8,7 @@ import java.util.List;
 import domain.Ride;
 import domain.User;
 import domain.Bidaiari;
+import domain.Car;
 import domain.Driver;
 import domain.Eskaera;
 import exceptions.RideMustBeLaterThanTodayException;
@@ -92,12 +93,14 @@ public interface BLFacade  {
 	@WebMethod public boolean diruaSartu(User user, int diru);
 	
 	@WebMethod public List<Bidaiari> getAllBidaiari();
+	@WebMethod public List<Ride> getAllRides();
 	
 	@WebMethod public Eskaera createEskaera(String from, String to, Date date, Bidaiari bidaiari)throws 
 	RideMustBeLaterThanTodayException, RideAlreadyExistException;
 	
+	@WebMethod public Car addCar(String licensePlate, int places, String model, String color);
 	
-	
+	@WebMethod public boolean ezabatuRide(Ride ride);
 
 	
 }

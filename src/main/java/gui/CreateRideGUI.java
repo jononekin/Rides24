@@ -15,7 +15,10 @@ import java.beans.PropertyChangeListener;
 
 import businessLogic.BLFacade;
 import configuration.UtilDate;
+import domain.Bidaiari;
+import domain.Car;
 import domain.Driver;
+import domain.Eskaera;
 import domain.Ride;
 import exceptions.RideAlreadyExistException;
 import exceptions.RideMustBeLaterThanTodayException;
@@ -33,10 +36,6 @@ public class CreateRideGUI extends JFrame {
 	private JLabel jLabelSeats = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.NumberOfSeats"));
 	private JLabel jLabRideDate = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.RideDate"));
 	private JLabel jLabelPrice = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.Price"));
-
-	
-	
-	private JTextField jTextFieldSeats = new JTextField();
 	private JTextField jTextFieldPrice = new JTextField();
 
 	private JCalendar jCalendar = new JCalendar();
@@ -49,6 +48,7 @@ public class CreateRideGUI extends JFrame {
 	private JButton jButtonClose = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 	private JLabel jLabelMsg = new JLabel();
 	private JLabel jLabelError = new JLabel();
+	private JComboBox comboBox = new JComboBox();
 	
 	private List<Date> datesWithEventsCurrentMonth;
 
@@ -62,7 +62,6 @@ public class CreateRideGUI extends JFrame {
 
 		jLabelOrigin.setBounds(new Rectangle(6, 56, 92, 20));
 		jLabelSeats.setBounds(new Rectangle(6, 119, 173, 20));
-		jTextFieldSeats.setBounds(new Rectangle(139, 119, 60, 20));
 		
 		jLabelPrice.setBounds(new Rectangle(6, 159, 173, 20));
 		jTextFieldPrice.setBounds(new Rectangle(139, 159, 60, 20));
@@ -95,7 +94,6 @@ public class CreateRideGUI extends JFrame {
 
 		this.getContentPane().add(jButtonClose, null);
 		this.getContentPane().add(jButtonCreate, null);
-		this.getContentPane().add(jTextFieldSeats, null);
 
 		this.getContentPane().add(jLabelSeats, null);
 		this.getContentPane().add(jLabelOrigin, null);
@@ -130,6 +128,15 @@ public class CreateRideGUI extends JFrame {
 		fieldDestination.setBounds(104, 81, 123, 26);
 		getContentPane().add(fieldDestination);
 		fieldDestination.setColumns(10);
+		
+		comboBox.setBounds(100, 118, 130, 22);
+		getContentPane().add(comboBox);
+		List<Car> cars = driver.getCars();
+		for(Car c : cars) {
+			comboBox.addItem(c);
+		}
+		
+		
 		 //Code for JCalendar
 		this.jCalendar.addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent propertychangeevent) {
@@ -173,7 +180,8 @@ public class CreateRideGUI extends JFrame {
 		else
 			try {
 				BLFacade facade = MainGUI.getBusinessLogic();
-				int inputSeats = Integer.parseInt(jTextFieldSeats.getText());
+				Car selectedCar = (Car) comboBox.getSelectedItem();
+				int inputSeats = selectedCar.getPlaces();
 				float price = Float.parseFloat(jTextFieldPrice.getText());
 
 				Ride r=facade.createRide(fieldOrigin.getText(), fieldDestination.getText(), UtilDate.trim(jCalendar.getDate()), inputSeats, price, driver.getEmail());
@@ -196,13 +204,11 @@ public class CreateRideGUI extends JFrame {
 	private String field_Errors() {
 		
 		try {
-			if ((fieldOrigin.getText().length()==0) || (fieldDestination.getText().length()==0) || (jTextFieldSeats.getText().length()==0) || (jTextFieldPrice.getText().length()==0))
+			if ((fieldOrigin.getText().length()==0) || (fieldDestination.getText().length()==0) || (comboBox.getSelectedItem() != null) || (jTextFieldPrice.getText().length()==0))
 				return ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.ErrorQuery");
 			else {
-
-				// trigger an exception if the introduced string is not a number
-				int inputSeats = Integer.parseInt(jTextFieldSeats.getText());
-
+				Car selectedCar = (Car) comboBox.getSelectedItem();
+				int inputSeats = selectedCar.getPlaces();
 				if (inputSeats <= 0) {
 					return ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.SeatsMustBeGreaterThan0");
 				}

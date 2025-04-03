@@ -24,6 +24,7 @@ import domain.Eskaera;
 import domain.Ride;
 import domain.User;
 import domain.Bidaiari;
+import domain.Car;
 import exceptions.RideAlreadyExistException;
 import exceptions.RideMustBeLaterThanTodayException;
 
@@ -312,6 +313,23 @@ public class DataAccess  {
 			TypedQuery<Bidaiari> query = db.createQuery("SELECT b FROM Bidaiari b", Bidaiari.class);
 		    return query.getResultList();
 		}
+		public List<Ride> getAllRides() {
+			db.getTransaction().begin();
+			TypedQuery<Ride> query = db.createQuery("SELECT b FROM Ride b", Ride.class);
+		    return query.getResultList();
+		}
+		public boolean ezabatuRide(Ride ride) {
+			try {
+				db.getTransaction().begin();
+				db.remove(ride);
+				db.getTransaction().commit();
+				return true;
+			} catch (Exception e) {
+				db.getTransaction().rollback();
+		        System.err.println("Error deleting ride: " + e.getMessage());
+		        return false;
+			}
+		}
 		
 		public boolean storeUser (User user) {
 			try {
@@ -389,6 +407,27 @@ public class DataAccess  {
 		  }
 	 	return res;
 	}
+	
+	public Car addCar(String licensePlate, int places, String model, String color) {
+		try {
+			db.getTransaction().begin();
+			Driver driver = db.find(Driver.class, licensePlate);
+			if (driver.doesCarExist(licensePlate)) {
+				db.getTransaction().commit();
+			}
+			Car car = driver.addCar(licensePlate,  places,  model,  color);
+			//next instruction can be obviated
+			db.persist(driver); 
+			db.getTransaction().commit();
+
+			return car;
+		} catch (NullPointerException e) {
+			// TODO Auto-generated catch block
+			db.getTransaction().commit();
+			return null;
+		}
+	}
+
 	
 
 public void open(){

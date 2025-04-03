@@ -11,6 +11,7 @@ import dataAccess.DataAccess;
 import domain.Ride;
 import domain.User;
 import domain.Bidaiari;
+import domain.Car;
 import domain.Driver;
 import domain.Eskaera;
 import exceptions.RideMustBeLaterThanTodayException;
@@ -80,7 +81,13 @@ public class BLFacadeImplementation  implements BLFacade {
 		dbManager.close();
 		return ride;
    };
-	
+   @WebMethod
+   public Car addCar(String licensePlate, int places, String model, String color) {
+   	dbManager.open();
+   	Car car = dbManager.addCar(licensePlate, places, model, color);
+   	dbManager.close();
+   	return car;
+   }
    /**
     * {@inheritDoc}
     */
@@ -166,6 +173,19 @@ public class BLFacadeImplementation  implements BLFacade {
     	dbManager.close();
     	return bidList;
     }
+    @WebMethod
+    public List<Ride> getAllRides() {
+    	dbManager.open();
+    	List<Ride> ridList = dbManager.getAllRides();
+    	dbManager.close();
+    	return ridList;
+    }
+    @WebMethod public boolean ezabatuRide(Ride ride) {
+    	dbManager.open();
+    	boolean ondo = dbManager.ezabatuRide(ride);
+    	dbManager.close();
+    	return ondo;
+    }
     @WebMethod 
     public Eskaera createEskaera(String from, String to, Date date, Bidaiari bidaiari) throws RideMustBeLaterThanTodayException, RideAlreadyExistException {
     	dbManager.open();
@@ -180,6 +200,9 @@ public class BLFacadeImplementation  implements BLFacade {
  		dbManager.close();
  		return emails;
     };
+    
+    
+    
     
 
 }

@@ -12,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 
 import businessLogic.BLFacade;
 import domain.Bidaiari;
+import domain.Car;
 import domain.Driver;
 import domain.Eskaera;
 import exceptions.RideAlreadyExistException;
@@ -30,8 +31,8 @@ public class OnartuGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField_prezioa;
-	private JTextField textField_numSeat;
 	private JLabel jLabelMsg = new JLabel();
+	private JComboBox comboBox = new JComboBox();
 
 	/**
 	 * Launch the application.
@@ -57,7 +58,15 @@ public class OnartuGUI extends JFrame {
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
+		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setBounds(322, 139, 104, 22);
+		contentPane.add(comboBox_1);
+		List<Car> cars = driver.getCars();
+		for(Car c : cars) {
+			comboBox_1.addItem(c);
+		}
+		
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
@@ -90,12 +99,6 @@ public class OnartuGUI extends JFrame {
 		lbl_numSeat.setBounds(216, 143, 96, 14);
 		contentPane.add(lbl_numSeat);
 		
-		textField_numSeat = new JTextField();
-		//textField_numSeat.setText(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.NumberOfSeats")); //$NON-NLS-1$ //$NON-NLS-2$
-		textField_numSeat.setBounds(315, 140, 96, 20);
-		contentPane.add(textField_numSeat);
-		textField_numSeat.setColumns(10);
-		
 		JLabel lbl_Title = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("OnartuGUI.Title"));
 		lbl_Title.setBounds(49, 35, 335, 32);
 		contentPane.add(lbl_Title);
@@ -105,18 +108,18 @@ public class OnartuGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 				    String preziotext = textField_prezioa.getText().trim();
-				    String numSeatText = textField_numSeat.getText().trim();
 				    Eskaera selectedEskaera = (Eskaera) comboBox.getSelectedItem();
 				    
-				    if (preziotext.isEmpty() || numSeatText.isEmpty()) {
+				    if (preziotext.isEmpty() || (comboBox_1.getSelectedItem() != null)) {
 				        System.out.println("Error: uno de los campos está vacío.");
 				        return;
 				    }
 
 				    float prezioa = Float.parseFloat(preziotext);
-				    int numSeat = Integer.parseInt(numSeatText);
+				    Car selectedCar = (Car) comboBox.getSelectedItem();
+					int inputSeats = selectedCar.getPlaces();
 				    try {
-				    	facade.createRide(selectedEskaera.getFrom(), selectedEskaera.getTo(),selectedEskaera.getDate(), numSeat, prezioa, driver.getEmail());
+				    	facade.createRide(selectedEskaera.getFrom(), selectedEskaera.getTo(),selectedEskaera.getDate(), inputSeats, prezioa, driver.getEmail());
 				    	jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("OnartuGUI.Accepted"));
 				    }catch(RideMustBeLaterThanTodayException e1){
 				    	System.out.println("Error: La fecha del viaje debe ser posterior a hoy.");
@@ -152,6 +155,8 @@ public class OnartuGUI extends JFrame {
 		});
 		btnOnartu.setBounds(177, 171, 89, 23);
 		contentPane.add(btnOnartu);
+		
+		
 		
 		
 	}

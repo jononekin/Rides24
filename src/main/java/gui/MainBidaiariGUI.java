@@ -13,6 +13,8 @@ import javax.swing.border.EmptyBorder;
 
 import businessLogic.BLFacade;
 import domain.Bidaiari;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 //import domain.Rider;
 
 public class MainBidaiariGUI extends JFrame {
@@ -49,7 +51,7 @@ public class MainBidaiariGUI extends JFrame {
 		jLabelSelectOption.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		jButtonWallet = new JButton();
-		jButtonWallet.setBounds(0, 84, 481, 84);
+		jButtonWallet.setBounds(0, 76, 481, 60);
 		jButtonWallet.setText(ResourceBundle.getBundle("Etiquetas").getString("MainBidaiariGUI.Wallet"));
 		jButtonWallet.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -59,7 +61,7 @@ public class MainBidaiariGUI extends JFrame {
 		});
 		
 		jButtonRequestRide = new JButton();
-		jButtonRequestRide.setBounds(0, 168, 481, 84);
+		jButtonRequestRide.setBounds(0, 135, 481, 60);
 		jButtonRequestRide.setText(ResourceBundle.getBundle("Etiquetas").getString("MainBidaiariGUI.RequestRide"));
 		jButtonRequestRide.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -75,7 +77,19 @@ public class MainBidaiariGUI extends JFrame {
 		contentPane.add(jButtonRequestRide);
 		
 		setContentPane(contentPane);
+		
+		/*JButton ErreserbenEgoeraKon = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainBidaiariGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		ErreserbenEgoeraKon.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrame a= new ErrEgKonGUI(bidaiari);
+				a.setVisible(true);
+			}
+		});
+		ErreserbenEgoeraKon.setBounds(0, 193, 481, 60);
+		contentPane.add(ErreserbenEgoeraKon);
 		setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainBidaiariGUI.Title"));
+		*/
+		
 		
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -85,6 +99,4 @@ public class MainBidaiariGUI extends JFrame {
 		});
 
 	}
-
-	
 }
