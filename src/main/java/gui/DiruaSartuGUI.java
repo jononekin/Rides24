@@ -10,6 +10,8 @@ import javax.swing.border.EmptyBorder;
 
 import businessLogic.BLFacade;
 import domain.Bidaiari;
+import domain.Movement;
+import domain.User;
 
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -30,24 +32,18 @@ public class DiruaSartuGUI extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DiruaSartuGUI frame = new DiruaSartuGUI(bidaiari);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
+	/*
+	 * public static void main(String[] args) { EventQueue.invokeLater(new
+	 * Runnable() { public void run() { try { DiruaSartuGUI frame = new
+	 * DiruaSartuGUI(bidaiari); frame.setVisible(true); } catch (Exception e) {
+	 * e.printStackTrace(); } } }); }
+	 */
 
 	/**
 	 * Create the frame.
 	 */
 	public DiruaSartuGUI(Bidaiari bidaiari) {
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle(ResourceBundle.getBundle("Etiquetas").getString("DiruaSartuGUI.Title"));
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -55,11 +51,11 @@ public class DiruaSartuGUI extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		jLabelMsg.setBounds(new Rectangle(61, 148, 325, 47));
 		jLabelMsg.setForeground(Color.red);
 		this.getContentPane().add(jLabelMsg, null);
-		
+
 		JButton btnNewButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("DiruaSartuGUI.Deposit"));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -67,37 +63,36 @@ public class DiruaSartuGUI extends JFrame {
 				BLFacade facade = MainGUI.getBusinessLogic();
 				String diru = textField.getText().trim();
 				try {
-				    int diruZenb = Integer.parseInt(diru);
+					int diruZenb = Integer.parseInt(diru);
 					boolean ondo = facade.diruaSartu(bidaiari, diruZenb);
-					if(ondo) {
+					if (ondo) {
+						facade.addMovement(bidaiari.getEmail(), diruZenb, "Sartu da", bidaiari);
 						((JFrame) SwingUtilities.getWindowAncestor(btnNewButton)).dispose();
-					}else {
+					} else {
 						jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("Error"));
 					}
 				} catch (NumberFormatException i) {
 					jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("Error"));
 				}
-				
+
 			}
 		});
 		btnNewButton.setBounds(174, 200, 89, 23);
 		contentPane.add(btnNewButton);
-		
+
 		textField = new JTextField();
 		textField.setBounds(269, 117, 96, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
-		
+
 		JLabel lbl_Title = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("DiruaSartuGUI.Title"));
 		lbl_Title.setBounds(77, 120, 114, 14);
 		contentPane.add(lbl_Title);
-		
-		JLabel lbl_Text= new JLabel(ResourceBundle.getBundle("Etiquetas").getString("DiruaSartuGUI.Text"));
+
+		JLabel lbl_Text = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("DiruaSartuGUI.Text"));
 		lbl_Text.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl_Text.setBounds(77, 36, 288, 23);
 		contentPane.add(lbl_Text);
-		
-		
-		
+
 	}
 }

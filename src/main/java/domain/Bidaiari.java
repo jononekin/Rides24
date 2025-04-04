@@ -20,37 +20,11 @@ public class Bidaiari extends User {
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private List<Eskaera> eskaerak=new Vector<Eskaera>();
 
-	private Integer dirua;
 
 	public Bidaiari(String email, String name) {
 		super(email, name);
 	}
 
-	public Integer getDirua() {
-		return dirua;
-	}
-	public void setDirua(Integer dirua) {
-		this.dirua = dirua;
-	}
-	@Override
-	public String toString() {
-		return super.toString() + ", dirua=" + dirua + "]";
-	}
-	@Override
-	public int hashCode() {
-	    return Objects.hash(super.hashCode(), dirua);
-	}
-	@Override
-	public boolean equals(Object obj) {
-	    if (this == obj)
-	        return true;
-	    if (obj == null || getClass() != obj.getClass())
-	        return false;
-	    if (!super.equals(obj))
-	        return false;
-	    Bidaiari other = (Bidaiari) obj;
-	    return Objects.equals(dirua, other.dirua);
-	}
 	
 	public Eskaera removeEskaera(String from, String to, Date date) {
 		boolean found=false;
@@ -68,8 +42,8 @@ public class Bidaiari extends User {
 		} else return null;
 	}
 	
-	public Eskaera addEskaera(String from, String to, Date date)  {
-        Eskaera eskaera=new Eskaera(from,to,date,this);
+	public Eskaera addEskaera(String from, String to, Date date, float prez)  {
+        Eskaera eskaera=new Eskaera(from,to,date,this, prez);
         eskaerak.add(eskaera);
         return eskaera;
 	}

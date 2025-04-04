@@ -48,6 +48,7 @@ public class RequestRideGUI extends JFrame {
 
 	
 	private List<Date> datesWithEventsCurrentMonth;
+	private JTextField prezioa;
 
 
 	//private Rider rider;
@@ -119,6 +120,17 @@ public class RequestRideGUI extends JFrame {
 		fieldDestination.setBounds(160, 81, 130, 26);
 		getContentPane().add(fieldDestination);
 		fieldDestination.setColumns(10);
+		
+		JLabel lblNewLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("RequestRideGUI.lblNewLabel.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		lblNewLabel.setBounds(6, 118, 86, 14);
+		getContentPane().add(lblNewLabel);
+		
+		prezioa = new JTextField();
+		prezioa.setText(ResourceBundle.getBundle("Etiquetas").getString("RequestRideGUI.textField.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		prezioa.setBounds(160, 115, 130, 20);
+		getContentPane().add(prezioa);
+		prezioa.setColumns(10);
+		
 		 //Code for JCalendar
 		this.jCalendar.addPropertyChangeListener(new PropertyChangeListener() {
 			public void propertyChange(PropertyChangeEvent propertychangeevent) {		
@@ -160,11 +172,16 @@ public class RequestRideGUI extends JFrame {
 			String from = fieldOrigin.getText().trim();
 			String to = fieldDestination.getText().trim();
 			Date date = jCalendar.getDate();
-			facade.createEskaera(from, to, date, bidaiari);
-			jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("RequestRideGUI.RequestDone"));
-			System.out.println("Eskaera gorde da.");
-		} catch (RideMustBeLaterThanTodayException e1) {
-			// TODO Auto-generated catch block
+			int prez = Integer.parseInt(prezioa.getText());
+			if(bidaiari.getDirua()<prez) {
+				jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString(""));//poner la etiqueta
+			}else {
+				facade.createEskaera(from, to, date, bidaiari, prez);
+				jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("RequestRideGUI.RequestDone"));
+				System.out.println("Eskaera gorde da.");
+			}
+			} catch (RideMustBeLaterThanTodayException e1) {
+					// TODO Auto-generated catch block
 			jLabelMsg.setText(e1.getMessage());
 		} catch (RideAlreadyExistException e1) {
 			// TODO Auto-generated catch block

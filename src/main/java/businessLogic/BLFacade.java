@@ -11,6 +11,7 @@ import domain.Bidaiari;
 import domain.Car;
 import domain.Driver;
 import domain.Eskaera;
+import domain.Movement;
 import exceptions.RideMustBeLaterThanTodayException;
 import exceptions.RideAlreadyExistException;
 
@@ -90,16 +91,15 @@ public interface BLFacade  {
 	
 	@WebMethod public User isRegistered(String email, String password);
 	
-	@WebMethod public boolean diruaSartu(User user, int diru);
-	
+	@WebMethod public boolean diruaSartu(User user, float diru);
 	@WebMethod public List<Bidaiari> getAllBidaiari();
 	@WebMethod public List<Ride> getAllRides();
 	@WebMethod public List<Eskaera> getAllEskaera();
-	@WebMethod public Eskaera createEskaera(String from, String to, Date date, Bidaiari bidaiari)throws 
+	@WebMethod public Eskaera createEskaera(String from, String to, Date date, Bidaiari bidaiari, float prez)throws 
 	RideMustBeLaterThanTodayException, RideAlreadyExistException;
 	
 	@WebMethod public Car addCar(String licensePlate, int places, String model, String color);
-	
+	@WebMethod public Movement addMovement(String usrEmail, float diruKantitatea, String mota, User user);
 	@WebMethod public boolean ezabatuRide(Ride ride);
 	@WebMethod public boolean ezabatuEskaera(Eskaera eskaera);
 	

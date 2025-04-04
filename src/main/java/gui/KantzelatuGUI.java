@@ -25,19 +25,12 @@ public class KantzelatuGUI extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					KantzelatuGUI frame = new KantzelatuGUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
-	
+	/*
+	 * public static void main(String[] args) { EventQueue.invokeLater(new
+	 * Runnable() { public void run() { try { KantzelatuGUI frame = new
+	 * KantzelatuGUI(); frame.setVisible(true); } catch (Exception e) {
+	 * e.printStackTrace(); } } }); }
+	 */
 
 	/**
 	 * Create the frame.
@@ -50,7 +43,7 @@ public class KantzelatuGUI extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(82, 115, 262, 22);
 		contentPane.add(comboBox);
@@ -58,15 +51,15 @@ public class KantzelatuGUI extends JFrame {
 		List<Ride> rideList = facade.getAllRides();
 		comboBox.removeAllItems();
 		for (Ride ride : rideList) {
-		   comboBox.addItem(ride);
+			comboBox.addItem(ride);
 		}
-		
+
 		JButton btnNewButton = new JButton("New button");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				BLFacade facade = MainGUI.getBusinessLogic();
-				boolean ondo = facade.ezabatuRide((Ride)comboBox.getSelectedItem());
-				
+				boolean ondo = facade.ezabatuRide((Ride) comboBox.getSelectedItem());
+
 			}
 		});
 		btnNewButton.setBounds(170, 185, 89, 23);

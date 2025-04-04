@@ -21,7 +21,16 @@ public class Eskaera implements Serializable {
 	private String to;
 	private Date date;
 	private boolean baieztatuta;
+	private float prez;
 	
+	public float getPrez() {
+		return prez;
+	}
+
+	public void setPrez(float prez) {
+		this.prez = prez;
+	}
+
 	public boolean isBaieztatuta() {
 		return baieztatuta;
 	}
@@ -36,12 +45,13 @@ public class Eskaera implements Serializable {
 		super();
 	}
 	
-	public Eskaera(String from, String to, Date date, Bidaiari bidaiari) {
+	public Eskaera(String from, String to, Date date, Bidaiari bidaiari, float prez) {
 		super();
 		this.from = from;
 		this.to = to;
 		this.date=date;
 		this.bidaiari = bidaiari;
+		this.prez=prez;
 	}
 
 	public String getFrom() {
