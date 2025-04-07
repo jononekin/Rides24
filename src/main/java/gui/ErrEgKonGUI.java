@@ -100,7 +100,7 @@ public class ErrEgKonGUI extends JFrame {
 				}
 				if (ride != null) {
 					facade.diruaSartu(ride.getDriver(), prez);
-					facade.addMovement(ride.getDriver().getEmail(), prez, "+", ride.getDriver());
+					facade.addMovement(prez, "+", ride.getDriver());
 					jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("ErrEgKon.Accepted"));
 				}
 				

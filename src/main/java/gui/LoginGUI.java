@@ -78,6 +78,7 @@ public class LoginGUI extends JFrame {
 		contentPane.add(lbl_Email);
 		
 		textField_Email = new JTextField();
+		textField_Email.setText("d1@gmail.com");
 		textField_Email.setBounds(194, 95, 96, 20);
 		contentPane.add(textField_Email);
 		textField_Email.setColumns(10);

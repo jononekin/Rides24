@@ -32,6 +32,7 @@ public class ApplicationLauncher {
 
 		
 		MainGUI a=new MainGUI(driver);
+	    //MainGidariGUI a = new MainGidariGUI(driver);
 		a.setVisible(true);
 
 

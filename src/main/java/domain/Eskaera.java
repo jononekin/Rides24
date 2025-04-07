@@ -16,7 +16,19 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @Entity
 public class Eskaera implements Serializable {
 	@XmlID
+	@Id 
 	@XmlJavaTypeAdapter(IntegerAdapter.class)
+	@GeneratedValue
+	private Integer eskaeraNumber;
+	
+	public Integer getEskaeraNumber() {
+		return eskaeraNumber;
+	}
+
+	public void setEskaeraNumber(Integer eskaeraNumber) {
+		this.eskaeraNumber = eskaeraNumber;
+	}
+
 	private String from;
 	private String to;
 	private Date date;

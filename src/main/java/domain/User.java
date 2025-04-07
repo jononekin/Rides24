@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-public abstract class User {
+public abstract class User implements Serializable{
 
 	@XmlID
 	@Id
@@ -26,7 +26,8 @@ public abstract class User {
 	private String pasahitza;
 	private float dirua;
 	private List<Movement> mugimenduak = new Vector<Movement>();
-
+	
+	public User() {}
 	public List<Movement> getMugimenduak() {
 		return mugimenduak;
 	}
@@ -122,8 +123,8 @@ public abstract class User {
 		return false;
 	}
 
-	public Movement addMovement(String usrEmail, float diruKantitatea, String mota) {
-		Movement mov = new Movement(usrEmail, diruKantitatea, mota);
+	public Movement addMovement( float diruKantitatea, String mota) {
+		Movement mov = new Movement(this, diruKantitatea, mota);
 		mugimenduak.add(mov);
 		return mov;
 	}

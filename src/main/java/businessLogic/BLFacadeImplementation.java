@@ -95,9 +95,9 @@ public class BLFacadeImplementation implements BLFacade {
 	
 
 	@WebMethod
-	public Movement addMovement(String usrEmail, float diruKantitatea, String mota, User user) {
+	public Movement addMovement( float diruKantitatea, String mota, User user) {
 		dbManager.open();
-		Movement mov = dbManager.addMovement(usrEmail, diruKantitatea, mota, user);
+		Movement mov = dbManager.addMovement( diruKantitatea, mota, user);
 		dbManager.close();
 		return mov;
 	}

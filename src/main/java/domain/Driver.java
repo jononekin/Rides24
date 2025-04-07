@@ -25,23 +25,34 @@ public class Driver extends User implements Serializable {
 	private List<Ride> rides=new Vector<Ride>();
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private List<Car> cars=new Vector<Car>();
-
+	
+	public Driver() {}
 	public Driver(String email, String name) {
 		super(email, name);
 	}
 
-	public Ride removeRide(String from, String to, Date date) {
+	public Ride removeRide(Integer rideId) {
 		boolean found=false;
 		int index=0;
 		Ride r=null;
-		while (!found && index<=rides.size()) {
-			r=rides.get(++index);
-			if ( (java.util.Objects.equals(r.getFrom(),from)) && (java.util.Objects.equals(r.getTo(),to)) && (java.util.Objects.equals(r.getDate(),date)) )
-			found=true;
+		while (!found && index<rides.size()) {
+			r=rides.get(index);
+			//if ( (java.util.Objects.equals(r.getFrom(),from)) && (java.util.Objects.equals(r.getTo(),to)) && (java.util.Objects.equals(r.getDate(),date)) )
+			if(r.getRideNumber()==rideId) {
+				found=true;
+			}else {
+				index++;
+			}
+			
 		}
 			
 		if (found) {
 			rides.remove(index);
+			System.out.print(rides.toString());
+			return r;
+		}else if (index==0) {
+			rides.remove(index);
+			System.out.print(rides.toString());
 			return r;
 		} else return null;
 	}

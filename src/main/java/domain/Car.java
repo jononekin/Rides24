@@ -9,9 +9,11 @@ import java.util.Vector;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlIDREF;
 
 
@@ -21,14 +23,15 @@ import javax.xml.bind.annotation.XmlIDREF;
 public class Car implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	@XmlIDREF
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+	@XmlID
+	@Id 
 	private String licensePlate;
 	private int places;
 	private String model;
 	private String color;
+	@XmlIDREF
 	private Driver driver;
-	
+	public Car() {}
 	public Driver getDriver() {
 		return driver;
 	}

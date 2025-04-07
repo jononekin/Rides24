@@ -90,7 +90,7 @@ public class KantzelatuGUI extends JFrame {
 			    }
 			}
 		});
-		btnNewButton.setBounds(170, 185, 89, 23);
+		btnNewButton.setBounds(118, 185, 190, 23);
 		contentPane.add(btnNewButton);
 		
 		JLabel lblNewLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("KantzelatuGUI.Title"));

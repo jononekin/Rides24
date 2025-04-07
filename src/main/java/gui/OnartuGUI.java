@@ -67,18 +67,29 @@ public class OnartuGUI extends JFrame {
 		contentPane.setLayout(null);
 
 		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(49, 80, 335, 22);
+		comboBox.setBounds(34, 78, 392, 22);
 		BLFacade facade = MainGUI.getBusinessLogic();
-		List<Bidaiari> bidaiariList = facade.getAllBidaiari();
+		//List<Bidaiari> bidaiariList = facade.getAllBidaiari();
 		comboBox.removeAllItems();
-		for (Bidaiari bidaiari : bidaiariList) {
+		List<Eskaera> eskaeraList = facade.getAllEskaera();
+		for (Eskaera eskaera : eskaeraList) {
+			System.out.println(eskaera);
+			if(!eskaera.isBaieztatuta()) {
+				comboBox.addItem(eskaera);
+			}
+		}
+		
+		/*for (Bidaiari bidaiari : bidaiariList) {
+			System.out.println(bidaiari);
 			for (Eskaera eskaera : bidaiari.getEskaerak()) {
+				System.out.println(eskaera);
 				if(!eskaera.isBaieztatuta()) {
 					comboBox.addItem(eskaera);
 				}
 				
 			}
 		}
+		*/
 		contentPane.add(comboBox);
 
 		jLabelMsg.setBounds(new Rectangle(81, 214, 305, 20));
@@ -111,7 +122,7 @@ public class OnartuGUI extends JFrame {
 					    fechaRide.set(Calendar.SECOND, 0);
 					    fechaRide.set(Calendar.MILLISECOND, 0);
 					    if((gaur.equals(fechaRide)||gaur.before(fechaRide)) && facade.diruaSartu(selectedEskaera.getBidaiari(), selectedEskaera.getPrez()*(-1))) {
-					    	facade.addMovement(selectedEskaera.getBidaiari().getEmail(), selectedEskaera.getPrez(), "-", selectedEskaera.getBidaiari());
+					    	facade.addMovement( selectedEskaera.getPrez(), "-", selectedEskaera.getBidaiari());
 					    	facade.jarri(true, selectedEskaera);
 							float prezioa = selectedEskaera.getPrez();
 							Car selectedCar = (Car) comboBox_1.getSelectedItem();

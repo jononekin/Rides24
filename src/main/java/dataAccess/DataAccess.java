@@ -188,11 +188,11 @@ public class DataAccess {
 			return null;
 		}
 	}
-	public Movement addMovement(String usrEmail, float diruKantitatea, String mota, User user) {
+	public Movement addMovement( float diruKantitatea, String mota, User user) {
 		try {
 			db.getTransaction().begin();
 			User existingUser = db.find(User.class, user.getEmail());
-			Movement mov = existingUser.addMovement(usrEmail, diruKantitatea, mota);
+			Movement mov = existingUser.addMovement( diruKantitatea, mota);
 			db.persist(mov);
 			
 			db.getTransaction().commit();
@@ -375,16 +375,20 @@ public class DataAccess {
 		Driver existingDriver = db.find(Driver.class, driver.getEmail());
 		return existingDriver.getCars();
 	}
-	public boolean ezabatuRide(Ride ride) {
+	public boolean ezabatuRide(Ride ride1) {
+		System.out.println("Dalete :"+ride1.toString());
 		try {
 			db.getTransaction().begin();
+			Ride ride = db.find(Ride.class, ride1.getRideNumber());
+
 			 if (ride.getDriver() != null) {
 				 Driver driver = ride.getDriver();
-		         driver.getRides().remove(ride);
+				 driver.removeRide(ride.getRideNumber());
+		         //driver.getRides().remove(ride);
 		         ride.setDriver(null);
 		         db.merge(driver);
 			 }
-			db.remove(db.contains(ride) ? ride : db.merge(ride));
+			//db.remove(db.contains(ride) ? ride : db.merge(ride));
 			db.getTransaction().commit();
 			return true;
 		} catch (Exception e) {
@@ -500,13 +504,16 @@ public class DataAccess {
 	
 			db.getTransaction().begin();
 			Driver driver = db.find(Driver.class, driverEmail);
-			if (driver.doesCarExist(licensePlate)) {
+			/*if (driver.doesCarExist(licensePlate)) {
 				db.getTransaction().commit();
 				System.out.println("car already exists");
 				return false;
-			}
+			}*/
+			System.out.println(licensePlate);
 			Car car = driver.addCar(licensePlate,  places,  model,  color);
-			db.persist(driver);
+			System.out.println(car.toString());
+
+			//db.persist(driver);
 			db.getTransaction().commit();
 			return true;
 		

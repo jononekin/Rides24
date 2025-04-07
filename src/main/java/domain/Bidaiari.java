@@ -15,12 +15,13 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-public class Bidaiari extends User {
+public class Bidaiari extends User implements Serializable{
 	@XmlIDREF
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private List<Eskaera> eskaerak=new Vector<Eskaera>();
 
-
+	public Bidaiari() {}
+	
 	public Bidaiari(String email, String name) {
 		super(email, name);
 	}

@@ -1,5 +1,7 @@
 package domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,7 +13,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-public class Movement {
+public class Movement implements Serializable{
 
 	@Id
 	@XmlID
@@ -21,7 +23,7 @@ public class Movement {
 	private float diruKantitatea;
 	private String mota;
 	@XmlIDREF
-	private String usrEmail;
+	private User usrEmail;
 
 	public String getMota() {
 		return mota;
@@ -31,13 +33,13 @@ public class Movement {
 		this.mota = mota;
 	}
 
-	public Movement(Integer movementNumber, String usrEmail, float diruKantitatea, String mota) {
+	public Movement(Integer movementNumber, User usrEmail, float diruKantitatea, String mota) {
 		this.diruKantitatea = diruKantitatea;
 		this.mota = mota;
 		this.usrEmail = usrEmail;
 	}
 
-	public Movement(String usrEmail, float diruKantitatea, String mota) {
+	public Movement(User usrEmail, float diruKantitatea, String mota) {
 		this.diruKantitatea = diruKantitatea;
 		this.mota = mota;
 		this.usrEmail = usrEmail;
@@ -63,11 +65,11 @@ public class Movement {
 		this.movementNumber = movementNumber;
 	}
 
-	public String getUsrEmail() {
+	public User getUsrEmail() {
 		return usrEmail;
 	}
 
-	public void setUsrEmail(String usrEmail) {
+	public void setUsrEmail(User usrEmail) {
 		this.usrEmail = usrEmail;
 	}
 

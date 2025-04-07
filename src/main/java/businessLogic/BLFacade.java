@@ -103,7 +103,7 @@ public interface BLFacade  {
 	RideMustBeLaterThanTodayException, RideAlreadyExistException;
 	
 	@WebMethod public boolean addCar(String licensePlate, int places, String model, String color, String driverEmail);
-	@WebMethod public Movement addMovement(String usrEmail, float diruKantitatea, String mota, User user);
+	@WebMethod public Movement addMovement(float diruKantitatea, String mota, User user);
 	@WebMethod public boolean ezabatuRide(Ride ride);
 	@WebMethod public boolean ezabatuEskaera(Eskaera eskaera);
 	
