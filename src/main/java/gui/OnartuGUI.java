@@ -71,6 +71,7 @@ public class OnartuGUI extends JFrame {
 		BLFacade facade = MainGUI.getBusinessLogic();
 		//List<Bidaiari> bidaiariList = facade.getAllBidaiari();
 		comboBox.removeAllItems();
+		
 		List<Eskaera> eskaeraList = facade.getAllEskaera();
 		for (Eskaera eskaera : eskaeraList) {
 			System.out.println(eskaera);

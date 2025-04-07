@@ -32,7 +32,18 @@ public class Driver extends User implements Serializable {
 	}
 
 	public Ride removeRide(Integer rideId) {
-		boolean found=false;
+		for (int i = 0; i < rides.size(); i++) {
+            if (rides.get(i).getRideNumber().equals(rideId)) {
+                Ride removedRide = rides.get(i);
+                rides.remove(i);
+                return removedRide;
+            }
+        }
+        return null;
+		
+		
+		
+		/*boolean found=false;
 		int index=0;
 		Ride r=null;
 		while (!found && index<rides.size()) {
@@ -44,9 +55,9 @@ public class Driver extends User implements Serializable {
 				index++;
 			}
 			
-		}
+		}*/
 			
-		if (found) {
+		/*if (found) {
 			rides.remove(index);
 			System.out.print(rides.toString());
 			return r;
@@ -54,7 +65,9 @@ public class Driver extends User implements Serializable {
 			rides.remove(index);
 			System.out.print(rides.toString());
 			return r;
-		} else return null;
+		} else return null;*/
+		
+		
 	}
 	
 	/**

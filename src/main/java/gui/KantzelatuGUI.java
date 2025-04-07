@@ -58,6 +58,7 @@ public class KantzelatuGUI extends JFrame {
 		BLFacade facade = MainGUI.getBusinessLogic();
 		List<Ride> rideList = facade.getDriverRides(driver);
 		comboBox.removeAllItems();
+		comboBox.addItem(null);
 		for (Ride ride : rideList) {
 			comboBox.addItem(ride);
 		}
