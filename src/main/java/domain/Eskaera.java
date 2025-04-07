@@ -87,7 +87,12 @@ public class Eskaera implements Serializable {
 	}
 
 	public String toString(){
-		return from + ";" +to+";"+date;  
+		if(baieztatuta) {
+			return from + ";" +to+";"+date + " Ride accepted";  
+		}else {
+			return from + ";" +to+";"+date + " Ride pending";  
+		}
+		
 	}
 
 

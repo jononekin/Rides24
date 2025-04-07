@@ -71,8 +71,10 @@ public class ErrEgKonGUI extends JFrame {
 			    fechaRide.set(Calendar.MINUTE, 0);
 			    fechaRide.set(Calendar.SECOND, 0);
 			    fechaRide.set(Calendar.MILLISECOND, 0);
-				if (gaur.equals(fechaRide)||gaur.after(fechaRide)) {
+				if (gaur.after(fechaRide) && eskaera.isBaieztatuta()) { //gaur.equals(fechaRide)||
 					btnNewButton.setVisible(true);
+				}else {
+					btnNewButton.setVisible(false);
 				}
 			}
 		});
@@ -109,9 +111,7 @@ public class ErrEgKonGUI extends JFrame {
 		BLFacade facade = MainGUI.getBusinessLogic();
 		List<Eskaera> eskaerak = facade.getAllEskaera();
 		for (Eskaera esk : eskaerak) {
-			if (esk.isBaieztatuta()) {
 				Erreserbak.addItem(esk);
-			}
 		}
 
 		/*
