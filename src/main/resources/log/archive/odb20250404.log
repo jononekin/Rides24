@@ -1,0 +1,682 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-04 10:25:26 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 16668@Itxaso
+
+[2025-04-04 10:25:26 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-04-04 10:25:26 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-04 10:25:26 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-04 10:25:26 #5 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-04-04 10:25:26 #6 type] 
+Type domain.Eskaera is not enhanced.
+
+[2025-04-04 10:25:26 #7 type] 
+Type domain.Car is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-04 10:38:47 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' has been recovered (tr. 47-47)
+
+[2025-04-04 10:38:47 #2 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 20408@Itxaso
+
+[2025-04-04 10:38:47 #3 type] 
+Type domain.User is not enhanced.
+
+[2025-04-04 10:38:47 #4 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-04 10:38:47 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-04 10:38:47 #6 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-04-04 10:38:47 #7 type] 
+Type domain.Eskaera is not enhanced.
+
+[2025-04-04 10:38:47 #8 type] 
+Type domain.Car is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-04 17:36:44 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 18412@Itxaso
+
+[2025-04-04 17:36:44 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-04-04 17:36:44 #3 type.registry] 
+New type domain.Movement
+
+[2025-04-04 17:36:44 #4 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-04 17:36:44 #5 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-04 17:36:44 #6 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-04-04 17:36:44 #7 type] 
+Type domain.Eskaera is not enhanced.
+
+[2025-04-04 17:36:44 #8 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-04 17:36:44 #9 type] 
+Type domain.Movement is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-04 17:38:58 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 21552@Itxaso
+
+[2025-04-04 17:38:58 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-04-04 17:38:58 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-04 17:38:58 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-04 17:38:58 #5 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-04-04 17:38:58 #6 type] 
+Type domain.Eskaera is not enhanced.
+
+[2025-04-04 17:38:58 #7 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-04 17:38:58 #8 type] 
+Type domain.Movement is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-04 18:15:59 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 6672@Itxaso
+
+[2025-04-04 18:15:59 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-04-04 18:15:59 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-04 18:15:59 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-04 18:15:59 #5 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-04-04 18:15:59 #6 type] 
+Type domain.Eskaera is not enhanced.
+
+[2025-04-04 18:15:59 #7 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-04 18:15:59 #8 type] 
+Type domain.Movement is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-04 18:16:31 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 21100@Itxaso
+
+[2025-04-04 18:16:31 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-04-04 18:16:31 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-04 18:16:31 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-04 18:16:31 #5 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-04-04 18:16:31 #6 type] 
+Type domain.Eskaera is not enhanced.
+
+[2025-04-04 18:16:31 #7 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-04 18:16:31 #8 type] 
+Type domain.Movement is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-04 18:22:42 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 15888@Itxaso
+
+[2025-04-04 18:22:42 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-04-04 18:22:42 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-04 18:22:42 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-04 18:22:42 #5 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-04-04 18:22:42 #6 type] 
+Type domain.Eskaera is not enhanced.
+
+[2025-04-04 18:22:42 #7 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-04 18:22:42 #8 type] 
+Type domain.Movement is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-04 18:46:58 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 25196@Itxaso
+
+[2025-04-04 18:46:58 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-04-04 18:46:58 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-04 18:46:58 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-04 18:46:58 #5 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-04-04 18:46:58 #6 type] 
+Type domain.Eskaera is not enhanced.
+
+[2025-04-04 18:46:58 #7 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-04 18:46:58 #8 type] 
+Type domain.Movement is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-04 19:03:14 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 10060@Itxaso
+
+[2025-04-04 19:03:14 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-04-04 19:03:14 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-04 19:03:14 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-04 19:03:14 #5 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-04-04 19:03:14 #6 type] 
+Type domain.Eskaera is not enhanced.
+
+[2025-04-04 19:03:14 #7 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-04 19:03:14 #8 type] 
+Type domain.Movement is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-04 19:03:28 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 13084@Itxaso
+
+[2025-04-04 19:03:28 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-04-04 19:03:28 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-04 19:03:28 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-04 19:03:28 #5 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-04-04 19:03:28 #6 type] 
+Type domain.Eskaera is not enhanced.
+
+[2025-04-04 19:03:28 #7 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-04 19:03:28 #8 type] 
+Type domain.Movement is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-04 19:07:10 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 25044@Itxaso
+
+[2025-04-04 19:07:10 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-04-04 19:07:10 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-04 19:07:10 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-04 19:07:10 #5 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-04-04 19:07:10 #6 type] 
+Type domain.Eskaera is not enhanced.
+
+[2025-04-04 19:07:10 #7 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-04 19:07:10 #8 type] 
+Type domain.Movement is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-04 19:13:33 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 23692@Itxaso
+
+[2025-04-04 19:13:33 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-04-04 19:13:33 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-04 19:13:33 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-04 19:13:33 #5 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-04-04 19:13:33 #6 type] 
+Type domain.Eskaera is not enhanced.
+
+[2025-04-04 19:13:33 #7 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-04 19:13:33 #8 type] 
+Type domain.Movement is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-04 19:25:55 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 26832@Itxaso
+
+[2025-04-04 19:25:55 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-04-04 19:25:55 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-04 19:25:55 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-04 19:25:55 #5 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-04-04 19:25:55 #6 type] 
+Type domain.Eskaera is not enhanced.
+
+[2025-04-04 19:25:55 #7 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-04 19:25:55 #8 type] 
+Type domain.Movement is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-04 19:27:42 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 15664@Itxaso
+
+[2025-04-04 19:27:42 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-04-04 19:27:42 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-04 19:27:42 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-04 19:27:42 #5 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-04-04 19:27:42 #6 type] 
+Type domain.Eskaera is not enhanced.
+
+[2025-04-04 19:27:42 #7 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-04 19:27:42 #8 type] 
+Type domain.Movement is not enhanced.
+
+[2025-04-04 19:28:15 #9 type.registry] 
+New type java.util.Vector<domain.Movement>
+
+[2025-04-04 19:28:15 #10 type.registry] 
+New type java.util.Vector<domain.Car>
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-04 19:31:05 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 16964@Itxaso
+
+[2025-04-04 19:31:06 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-04-04 19:31:06 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-04 19:31:06 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-04 19:31:06 #5 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-04-04 19:31:06 #6 type] 
+Type domain.Eskaera is not enhanced.
+
+[2025-04-04 19:31:06 #7 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-04 19:31:06 #8 type] 
+Type domain.Movement is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-04 19:43:20 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 25224@Itxaso
+
+[2025-04-04 19:43:21 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-04-04 19:43:21 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-04 19:43:21 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-04 19:43:21 #5 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-04-04 19:43:21 #6 type] 
+Type domain.Eskaera is not enhanced.
+
+[2025-04-04 19:43:21 #7 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-04 19:43:21 #8 type] 
+Type domain.Movement is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-04 19:45:56 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 12264@Itxaso
+
+[2025-04-04 19:45:56 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-04-04 19:45:56 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-04 19:45:56 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-04 19:45:56 #5 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-04-04 19:45:56 #6 type] 
+Type domain.Eskaera is not enhanced.
+
+[2025-04-04 19:45:56 #7 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-04 19:45:56 #8 type] 
+Type domain.Movement is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-04 19:49:50 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 17256@Itxaso
+
+[2025-04-04 19:49:51 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-04-04 19:49:51 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-04 19:49:51 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-04 19:49:51 #5 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-04-04 19:49:51 #6 type] 
+Type domain.Eskaera is not enhanced.
+
+[2025-04-04 19:49:51 #7 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-04 19:49:51 #8 type] 
+Type domain.Movement is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-04 19:53:33 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 24620@Itxaso
+
+[2025-04-04 19:53:33 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-04-04 19:53:33 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-04 19:53:33 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-04 19:53:33 #5 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-04-04 19:53:33 #6 type] 
+Type domain.Eskaera is not enhanced.
+
+[2025-04-04 19:53:33 #7 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-04 19:53:33 #8 type] 
+Type domain.Movement is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-04 19:58:31 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 27740@Itxaso
+
+[2025-04-04 19:58:32 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-04-04 19:58:32 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-04 19:58:32 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-04 19:58:32 #5 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-04-04 19:58:32 #6 type] 
+Type domain.Eskaera is not enhanced.
+
+[2025-04-04 19:58:32 #7 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-04 19:58:32 #8 type] 
+Type domain.Movement is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-04 20:01:48 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 27936@Itxaso
+
+[2025-04-04 20:01:49 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-04-04 20:01:49 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-04 20:01:49 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-04 20:01:49 #5 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-04-04 20:01:49 #6 type] 
+Type domain.Eskaera is not enhanced.
+
+[2025-04-04 20:01:49 #7 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-04 20:01:49 #8 type] 
+Type domain.Movement is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-04 20:08:01 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 5264@Itxaso
+
+[2025-04-04 20:08:01 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-04-04 20:08:01 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-04 20:08:01 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-04 20:08:01 #5 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-04-04 20:08:01 #6 type] 
+Type domain.Eskaera is not enhanced.
+
+[2025-04-04 20:08:01 #7 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-04 20:08:01 #8 type] 
+Type domain.Movement is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-04 20:12:48 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 24104@Itxaso
+
+[2025-04-04 20:12:48 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-04-04 20:12:48 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-04 20:12:48 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-04 20:12:48 #5 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-04-04 20:12:48 #6 type] 
+Type domain.Eskaera is not enhanced.
+
+[2025-04-04 20:12:48 #7 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-04 20:12:48 #8 type] 
+Type domain.Movement is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-04 20:14:03 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 25120@Itxaso
+
+[2025-04-04 20:14:03 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-04-04 20:14:03 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-04 20:14:03 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-04 20:14:03 #5 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-04-04 20:14:03 #6 type] 
+Type domain.Eskaera is not enhanced.
+
+[2025-04-04 20:14:03 #7 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-04 20:14:03 #8 type] 
+Type domain.Movement is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-04 20:16:18 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 17380@Itxaso
+
+[2025-04-04 20:16:18 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-04-04 20:16:18 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-04 20:16:18 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-04 20:16:18 #5 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-04-04 20:16:18 #6 type] 
+Type domain.Eskaera is not enhanced.
+
+[2025-04-04 20:16:18 #7 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-04 20:16:18 #8 type] 
+Type domain.Movement is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-04 20:19:39 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 11288@Itxaso
+
+[2025-04-04 20:19:39 #2 type] 
+Type domain.User is not enhanced.
+
+[2025-04-04 20:19:39 #3 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-04 20:19:39 #4 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-04 20:19:39 #5 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-04-04 20:19:39 #6 type] 
+Type domain.Eskaera is not enhanced.
+
+[2025-04-04 20:19:39 #7 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-04 20:19:39 #8 type] 
+Type domain.Movement is not enhanced.
+

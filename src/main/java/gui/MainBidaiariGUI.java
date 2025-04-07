@@ -27,6 +27,7 @@ public class MainBidaiariGUI extends JFrame {
 	private JButton jButtonRequestRide = null;
 
     private static BLFacade appFacadeInterface;
+    private JButton mugimendu;
 	
 	public static BLFacade getBusinessLogic(){
 		return appFacadeInterface;
@@ -43,15 +44,15 @@ public class MainBidaiariGUI extends JFrame {
 	    setBounds(100, 100, 495, 290);
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		this.setSize(495, 290);
+		this.setSize(495, 356);
 		jLabelSelectOption = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.SelectOption"));
-		jLabelSelectOption.setBounds(0, 0, 481, 84);
+		jLabelSelectOption.setBounds(0, 11, 481, 60);
 		jLabelSelectOption.setFont(new Font("Tahoma", Font.BOLD, 13));
 		jLabelSelectOption.setForeground(Color.BLACK);
 		jLabelSelectOption.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		jButtonWallet = new JButton();
-		jButtonWallet.setBounds(0, 76, 481, 60);
+		jButtonWallet.setBounds(0, 68, 481, 60);
 		jButtonWallet.setText(ResourceBundle.getBundle("Etiquetas").getString("MainBidaiariGUI.Wallet"));
 		jButtonWallet.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -61,7 +62,7 @@ public class MainBidaiariGUI extends JFrame {
 		});
 		
 		jButtonRequestRide = new JButton();
-		jButtonRequestRide.setBounds(0, 135, 481, 60);
+		jButtonRequestRide.setBounds(0, 128, 481, 60);
 		jButtonRequestRide.setText(ResourceBundle.getBundle("Etiquetas").getString("MainBidaiariGUI.RequestRide"));
 		jButtonRequestRide.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -78,17 +79,26 @@ public class MainBidaiariGUI extends JFrame {
 		
 		setContentPane(contentPane);
 		
-		/*JButton ErreserbenEgoeraKon = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainBidaiariGUI.btnNewButton.text")); //$NON-NLS-1$ //$NON-NLS-2$
-		ErreserbenEgoeraKon.addActionListener(new ActionListener() {
+		JButton ErrEgKon = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainBidaiariGUI.TravelStatus")); //$NON-NLS-1$ //$NON-NLS-2$
+		ErrEgKon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JFrame a= new ErrEgKonGUI(bidaiari);
+				JFrame a = new ErrEgKonGUI(bidaiari);
 				a.setVisible(true);
 			}
 		});
-		ErreserbenEgoeraKon.setBounds(0, 193, 481, 60);
-		contentPane.add(ErreserbenEgoeraKon);
-		setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainBidaiariGUI.Title"));
-		*/
+		ErrEgKon.setBounds(0, 188, 481, 60);
+		contentPane.add(ErrEgKon);
+		
+		mugimendu = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainBidaiariGUI.SeeMovements")); //$NON-NLS-1$ //$NON-NLS-2$
+		mugimendu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrame a = new MugimenduakGUI(bidaiari);
+				a.setVisible(true);
+			}
+		});
+		mugimendu.setBounds(0, 248, 481, 60);
+		contentPane.add(mugimendu);
+		
 		
 		
 		addWindowListener(new WindowAdapter() {

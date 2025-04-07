@@ -73,6 +73,14 @@ public class Driver extends User implements Serializable {
         return car;
 	}
 	
+	public List<Ride> getRides() {
+		return rides;
+	}
+
+	public void setRides(List<Ride> rides) {
+		this.rides = rides;
+	}
+
 	public boolean doesRideExists(String from, String to, Date date)  {	
 		for (Ride r:rides)
 			if ( (java.util.Objects.equals(r.getFrom(),from)) && (java.util.Objects.equals(r.getTo(),to)) && (java.util.Objects.equals(r.getDate(),date)) )
@@ -81,10 +89,9 @@ public class Driver extends User implements Serializable {
 		return false;
 	}
 	public boolean doesCarExist(String licensePlate)  {	
-		for (Car c:cars)
-			if ( (java.util.Objects.equals(c.getLicensePlate(),licensePlate)))
-			 return true;
-		
+			for (Car c:cars)
+				if ( (java.util.Objects.equals(c.getLicensePlate(),licensePlate)))
+					return true;
 		return false;
 	}
 	

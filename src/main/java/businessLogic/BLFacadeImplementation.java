@@ -86,12 +86,13 @@ public class BLFacadeImplementation implements BLFacade {
 	};
 
 	@WebMethod
-	public Car addCar(String licensePlate, int places, String model, String color) {
+	public boolean addCar(String licensePlate, int places, String model, String color, String driverEmail) {
 		dbManager.open();
-		Car car = dbManager.addCar(licensePlate, places, model, color);
+		boolean car = dbManager.addCar(licensePlate, places, model, color, driverEmail);
 		dbManager.close();
 		return car;
 	}
+	
 
 	@WebMethod
 	public Movement addMovement(String usrEmail, float diruKantitatea, String mota, User user) {
@@ -139,6 +140,13 @@ public class BLFacadeImplementation implements BLFacade {
 		dbManager.initializeDB();
 		dbManager.close();
 	}
+	@WebMethod 
+	public boolean jarri(boolean jarri, Eskaera eskaera) {
+		dbManager.open();
+		boolean ondo=dbManager.jarri(jarri, eskaera);
+		dbManager.close();
+		return ondo;
+	}
 
 	/*
 	 * @WebMethod public boolean storeDriver(Driver driver) { dbManager.open();
@@ -181,13 +189,37 @@ public class BLFacadeImplementation implements BLFacade {
 		dbManager.close();
 		return bidList;
 	}
+	
+	@WebMethod 
+	public List<Ride> getAllRides(){
+		dbManager.open();
+		List<Ride> rideList = dbManager.getAllRides();
+		dbManager.close();
+		return rideList;
+	}
+	
+	@WebMethod 
+	public List<Movement> getUserMugimenduak(User user){
+		dbManager.open();
+		List<Movement> movList = dbManager.getUserMugimenduak(user);
+		dbManager.close();
+		return movList;
+	}
+
 
 	@WebMethod
-	public List<Ride> getAllRides() {
+	public List<Ride> getDriverRides(Driver driver) {
 		dbManager.open();
-		List<Ride> ridList = dbManager.getAllRides();
+		List<Ride> ridList = dbManager.getDriverRides(driver);
 		dbManager.close();
 		return ridList;
+	}
+	@WebMethod
+	public List<Car> getDriverCars(Driver driver) {
+		dbManager.open();
+		List<Car> carList = dbManager.getDriverCars(driver);
+		dbManager.close();
+		return carList;
 	}
 
 	@WebMethod

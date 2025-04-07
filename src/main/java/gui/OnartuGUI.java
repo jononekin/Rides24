@@ -3,6 +3,7 @@ package gui;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Rectangle;
+import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -53,7 +54,7 @@ public class OnartuGUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(215, 139, 104, 22);
+		comboBox_1.setBounds(110, 139, 316, 22);
 		contentPane.add(comboBox_1);
 		if (driver.getCars() != null) {
 			List<Car> cars = driver.getCars();
@@ -72,7 +73,10 @@ public class OnartuGUI extends JFrame {
 		comboBox.removeAllItems();
 		for (Bidaiari bidaiari : bidaiariList) {
 			for (Eskaera eskaera : bidaiari.getEskaerak()) {
-				comboBox.addItem(eskaera);
+				if(!eskaera.isBaieztatuta()) {
+					comboBox.addItem(eskaera);
+				}
+				
 			}
 		}
 		contentPane.add(comboBox);
@@ -81,7 +85,7 @@ public class OnartuGUI extends JFrame {
 		jLabelMsg.setForeground(Color.red);
 		contentPane.add(jLabelMsg);
 
-		JLabel lbl_numSeat = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.NumberOfSeats")); //$NON-NLS-1$ //$NON-NLS-2$
+		JLabel lbl_numSeat = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("OnartuGUI.ChooseCar")); //$NON-NLS-1$ //$NON-NLS-2$
 		lbl_numSeat.setBounds(34, 143, 143, 14);
 		contentPane.add(lbl_numSeat);
 
@@ -92,35 +96,47 @@ public class OnartuGUI extends JFrame {
 		JButton btnOnartu = new JButton(ResourceBundle.getBundle("Etiquetas").getString("OnartuGUI.Accept"));
 		btnOnartu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					Eskaera selectedEskaera = (Eskaera) comboBox.getSelectedItem();
-					selectedEskaera.setBaieztatuta(true);
-
-					if ((comboBox_1.getSelectedItem() != null)) {
-						System.out.println("Error: uno de los campos está vacío.");
-						return;
-					}
-
-					float prezioa = selectedEskaera.getPrez();
-					Car selectedCar = (Car) comboBox_1.getSelectedItem();
-					int inputSeats = selectedCar.getPlaces();
+				if ((comboBox_1.getSelectedItem() != null) && (comboBox.getSelectedItem() != null)) {
 					try {
+						Eskaera selectedEskaera = (Eskaera) comboBox.getSelectedItem();
+						Calendar gaur = Calendar.getInstance();
+						gaur.set(Calendar.HOUR_OF_DAY, 0);
+						gaur.set(Calendar.MINUTE, 0);
+						gaur.set(Calendar.SECOND, 0);
+					    gaur.set(Calendar.MILLISECOND, 0);
+						Calendar fechaRide = Calendar.getInstance();
+						fechaRide.setTime(selectedEskaera.getDate());
+						fechaRide.set(Calendar.HOUR_OF_DAY, 0);
+					    fechaRide.set(Calendar.MINUTE, 0);
+					    fechaRide.set(Calendar.SECOND, 0);
+					    fechaRide.set(Calendar.MILLISECOND, 0);
+					    if((gaur.equals(fechaRide)||gaur.before(fechaRide)) && facade.diruaSartu(selectedEskaera.getBidaiari(), selectedEskaera.getPrez()*(-1))) {
+					    	facade.addMovement(selectedEskaera.getBidaiari().getEmail(), selectedEskaera.getPrez(), "-", selectedEskaera.getBidaiari());
+					    	facade.jarri(true, selectedEskaera);
+							float prezioa = selectedEskaera.getPrez();
+							Car selectedCar = (Car) comboBox_1.getSelectedItem();
+							int inputSeats = selectedCar.getPlaces();
+							try {
 
-						facade.createRide(selectedEskaera.getFrom(), selectedEskaera.getTo(), selectedEskaera.getDate(),
-								inputSeats, prezioa, driver.getEmail());
-						jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("OnartuGUI.Accepted"));
-					} catch (RideMustBeLaterThanTodayException e1) {
-						System.out.println("Error: La fecha del viaje debe ser posterior a hoy.");
-						jLabelMsg.setText(e1.getMessage());
-					} catch (RideAlreadyExistException e2) {
-						System.out.println("Error: Ya existe un viaje con esos datos.");
-						jLabelMsg.setText(e2.getMessage());
+								facade.createRide(selectedEskaera.getFrom(), selectedEskaera.getTo(), selectedEskaera.getDate(),
+									inputSeats, prezioa, driver.getEmail());
+								jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("OnartuGUI.Accepted"));
+							} catch (RideMustBeLaterThanTodayException e1) {
+								System.out.println("Error: La fecha del viaje debe ser posterior a hoy.");
+								jLabelMsg.setText(e1.getMessage());
+							} catch (RideAlreadyExistException e2) {
+								System.out.println("Error: Ya existe un viaje con esos datos.");
+								jLabelMsg.setText(e2.getMessage());
+							}
+					    }else {
+					    	jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("Error"));
+					    }
+					} catch (NumberFormatException o) {
+						System.out.println("Error: el texto del JLabel no es un número válido.");
 					}
-
-				} catch (NumberFormatException o) {
-					System.out.println("Error: el texto del JLabel no es un número válido.");
+				}else {
+					jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("Error"));
 				}
-
 				/*
 				 * try { BLFacade facade = MainGUI.getBusinessLogic(); Eskaera selectedEskaera =
 				 * (Eskaera) comboBox.getSelectedItem(); try { float prezioa =

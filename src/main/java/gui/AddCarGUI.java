@@ -1,6 +1,8 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Rectangle;
 import java.util.ResourceBundle;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -9,6 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.border.EmptyBorder;
 
+import businessLogic.BLFacade;
 import domain.Car;
 import domain.Driver;
 
@@ -23,7 +26,7 @@ public class AddCarGUI extends JFrame {
     private JTextField model;
     private JTextField places;
     private JTextField color;
-
+    private JLabel jLabelMsg = new JLabel(); 
     /**
      * Create the frame.
      */
@@ -37,35 +40,35 @@ public class AddCarGUI extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JLabel lblNewLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("AddCarGUI.AddCar"));
-        lblNewLabel.setBounds(113, 10, 233, 50);
-        contentPane.add(lblNewLabel);
+        JLabel titulo = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("AddCarGUI.AddCar"));
+        titulo.setBounds(113, 10, 233, 50);
+        contentPane.add(titulo);
 
         licensePlate = new JTextField();
         licensePlate.setBounds(178, 85, 168, 19);
         contentPane.add(licensePlate);
         licensePlate.setColumns(10);
 
-        JLabel lblNewLabel_1 = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("AddCarGUI.licensePlate"));
-        lblNewLabel_1.setBounds(46, 88, 104, 13);
-        contentPane.add(lblNewLabel_1);
+        JLabel matrik = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("AddCarGUI.LicensePlate"));
+        matrik.setBounds(46, 88, 104, 13);
+        contentPane.add(matrik);
 
-        JLabel lblNewLabel_2 = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("AddCarGUI.model"));
-        lblNewLabel_2.setBounds(46, 117, 104, 13);
-        contentPane.add(lblNewLabel_2);
+        JLabel modelo = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("AddCarGUI.Model"));
+        modelo.setBounds(46, 117, 104, 13);
+        contentPane.add(modelo);
 
         model = new JTextField();
         model.setBounds(178, 114, 168, 19);
         contentPane.add(model);
         model.setColumns(10);
 
-        JLabel lblNewLabel_3 = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("AddCarGUI.places"));
-        lblNewLabel_3.setBounds(46, 152, 104, 13);
-        contentPane.add(lblNewLabel_3);
+        JLabel lekuak = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("AddCarGUI.Places"));
+        lekuak.setBounds(46, 152, 104, 13);
+        contentPane.add(lekuak);
 
-        JLabel lblNewLabel_4 = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("AddCarGUI.color"));
-        lblNewLabel_4.setBounds(46, 185, 104, 13);
-        contentPane.add(lblNewLabel_4);
+        JLabel kolore = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("AddCarGUI.Color"));
+        kolore.setBounds(46, 185, 104, 13);
+        contentPane.add(kolore);
 
         places = new JTextField();
         places.setBounds(178, 149, 168, 19);
@@ -76,14 +79,23 @@ public class AddCarGUI extends JFrame {
         color.setBounds(178, 182, 168, 19);
         contentPane.add(color);
         color.setColumns(10);
+        
+        jLabelMsg.setBounds(new Rectangle(56, 209, 305, 20));
+		jLabelMsg.setForeground(Color.red);
+		
+		this.getContentPane().add(jLabelMsg, null);
 
         JButton btnNewButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("AddCarGUI.AddCar"));
         btnNewButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		jLabelMsg.setText("");
+        		BLFacade facade = MainGUI.getBusinessLogic();
         		if(!licensePlate.getText().isBlank() && !places.getText().isBlank() && !model.getText().isBlank() && !color.getText().isBlank()) {
 					int placeNum = Integer.parseInt(places.getText());
-        			Car car = new Car(licensePlate.getText(), placeNum, model.getText(), color.getText());
-        			
+        			boolean ondo = facade.addCar(licensePlate.getText(), placeNum, model.getText(), color.getText(), driver.getEmail());
+        			if(!ondo) {
+        				jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("Error"));
+        			}
         		}
         	}
         });

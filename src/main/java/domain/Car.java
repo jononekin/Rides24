@@ -1,6 +1,7 @@
 package domain;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -17,7 +18,7 @@ import javax.xml.bind.annotation.XmlIDREF;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-public class Car {
+public class Car implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@XmlIDREF
@@ -27,6 +28,7 @@ public class Car {
 	private String model;
 	private String color;
 	private Driver driver;
+	
 	public Driver getDriver() {
 		return driver;
 	}
@@ -69,8 +71,7 @@ public class Car {
 	}
 	@Override
 	public String toString() {
-		return "Car [licensePlate=" + licensePlate + ", places=" + places + ", model=" + model + ", color=" + color
-				+ "]";
+		return "[licensePlate=" + licensePlate + ", places=" + places + ", model=" + model + "]";
 	}
 	
 	

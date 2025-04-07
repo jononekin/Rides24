@@ -188,6 +188,23 @@ public class DataAccess {
 			return null;
 		}
 	}
+	public Movement addMovement(String usrEmail, float diruKantitatea, String mota, User user) {
+		try {
+			db.getTransaction().begin();
+			User existingUser = db.find(User.class, user.getEmail());
+			Movement mov = existingUser.addMovement(usrEmail, diruKantitatea, mota);
+			db.persist(mov);
+			
+			db.getTransaction().commit();
+			return mov;
+		} catch (NullPointerException e) {
+			// TODO Auto-generated catch block
+			db.getTransaction().commit();
+			return null;
+		}
+	}
+
+
 
 	public Eskaera createEskaera(String from, String to, Date date, Bidaiari bidaiari, float prez)
 			throws RideAlreadyExistException, RideMustBeLaterThanTodayException {
@@ -197,15 +214,17 @@ public class DataAccess {
 						ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.ErrorRideMustBeLaterThanToday"));
 			}
 			db.getTransaction().begin();
-			bidaiari = db.merge(bidaiari);
-			if (bidaiari.doesEskaeraExists(from, to, date)) {
+			//bidaiari = db.merge(bidaiari);
+			Bidaiari bidaiaria = db.find(Bidaiari.class, bidaiari.getEmail());
+			if (bidaiaria.doesEskaeraExists(from, to, date)) {
 				db.getTransaction().commit();
 				throw new RideAlreadyExistException(
 						ResourceBundle.getBundle("Etiquetas").getString("DataAccess.RideAlreadyExist"));
 			}
-			Eskaera eskaera = bidaiari.addEskaera(from, to, date, prez);
+			Eskaera eskaera = bidaiaria.addEskaera(from, to, date, prez);
 			// next instruction can be obviated
-			db.persist(eskaera);
+			//db.persist(eskaera);
+			db.persist(bidaiaria);
 			db.getTransaction().commit();
 
 			return eskaera;
@@ -287,10 +306,16 @@ public class DataAccess {
 		try {
 			db.getTransaction().begin();
 			User existingUser = db.find(User.class, user.getEmail());
-			float diruBerr = ((Bidaiari) existingUser).getDirua() + diru;
-			((Bidaiari) existingUser).setDirua(diruBerr);
-			db.getTransaction().commit();
-			return true;
+			float diruBerr = existingUser.getDirua() + diru;
+			if (diruBerr>0) {
+				existingUser.setDirua(diruBerr);
+				db.getTransaction().commit();
+				return true;
+			}else {
+				db.getTransaction().rollback();
+				return false;
+			}
+			
 		} catch (Exception e) {
 			db.getTransaction().rollback();
 			System.err.println("Errorea dirua sartzean: " + e.getMessage());
@@ -309,17 +334,57 @@ public class DataAccess {
 		TypedQuery<Eskaera> query = db.createQuery("SELECT b FROM Eskaera b", Eskaera.class);
 		return query.getResultList();
 	}
-
-	public List<Ride> getAllRides() {
+	
+	public List<Ride> getAllRides(){
 		db.getTransaction().begin();
 		TypedQuery<Ride> query = db.createQuery("SELECT b FROM Ride b", Ride.class);
 		return query.getResultList();
 	}
+	public List<Movement> getUserMugimenduak(User user) {
+		try {
+			db.getTransaction().begin();
+			User existingUser = db.find(User.class, user.getEmail());
+			return existingUser.getMugimenduak();
+		} catch (Exception e) {
+			db.getTransaction().rollback();
+			System.err.println("Errorea: " + e.getMessage());
+			return null;
+		}
+	}
+	public boolean jarri(boolean jarri, Eskaera eskaera) {
+		try {
+			db.getTransaction().begin();
+			eskaera.setBaieztatuta(jarri);
+			db.merge(eskaera);
+			db.getTransaction().commit();
+			return true;
+		}catch (Exception e) {
+			db.getTransaction().rollback();
+			System.err.println("Error eskaera onartzean: " + e.getMessage());
+			return false;
+		}
+	}
 
+	public List<Ride> getDriverRides(Driver driver) {
+		db.getTransaction().begin();
+		Driver existingDriver = db.find(Driver.class, driver.getEmail());
+		return existingDriver.getRides();
+	}
+	public List<Car> getDriverCars(Driver driver) {
+		db.getTransaction().begin();
+		Driver existingDriver = db.find(Driver.class, driver.getEmail());
+		return existingDriver.getCars();
+	}
 	public boolean ezabatuRide(Ride ride) {
 		try {
 			db.getTransaction().begin();
-			db.remove(ride);
+			 if (ride.getDriver() != null) {
+				 Driver driver = ride.getDriver();
+		         driver.getRides().remove(ride);
+		         ride.setDriver(null);
+		         db.merge(driver);
+			 }
+			db.remove(db.contains(ride) ? ride : db.merge(ride));
 			db.getTransaction().commit();
 			return true;
 		} catch (Exception e) {
@@ -332,7 +397,13 @@ public class DataAccess {
 	public boolean ezabatuEskaera(Eskaera esk) {
 		try {
 			db.getTransaction().begin();
-			db.remove(esk);
+			if(esk.getBidaiari() !=null) {
+				Bidaiari bidaiari = esk.getBidaiari();
+				bidaiari.getEskaerak().remove(esk);
+				esk.setBidaiari(null);
+				db.merge(bidaiari);
+			}
+			db.remove(db.contains(esk) ? esk : db.merge(esk));
 			db.getTransaction().commit();
 			return true;
 		} catch (Exception e) {
@@ -425,41 +496,23 @@ public class DataAccess {
 		return res;
 	}
 
-	public Car addCar(String licensePlate, int places, String model, String color) {
-		try {
+	public boolean addCar(String licensePlate, int places, String model, String color, String driverEmail) {
+	
 			db.getTransaction().begin();
-			Driver driver = db.find(Driver.class, licensePlate);
+			Driver driver = db.find(Driver.class, driverEmail);
 			if (driver.doesCarExist(licensePlate)) {
 				db.getTransaction().commit();
+				System.out.println("car already exists");
+				return false;
 			}
-			Car car = driver.addCar(licensePlate, places, model, color);
-			// next instruction can be obviated
+			Car car = driver.addCar(licensePlate,  places,  model,  color);
 			db.persist(driver);
 			db.getTransaction().commit();
-
-			return car;
-		} catch (NullPointerException e) {
-			// TODO Auto-generated catch block
-			db.getTransaction().commit();
-			return null;
-		}
+			return true;
+		
 	}
 
-	public Movement addMovement(String usrEmail, float diruKantitatea, String mota, User user) {
-		try {
-			db.getTransaction().begin();
-			User existingUser = db.find(User.class, user.getEmail());
-			Movement mov = existingUser.addMovement(usrEmail, diruKantitatea, mota);
-			db.persist(user);
-			db.getTransaction().commit();
-			return mov;
-		} catch (NullPointerException e) {
-			// TODO Auto-generated catch block
-			db.getTransaction().commit();
-			return null;
-		}
-	}
-
+	
 	public void open() {
 
 		String fileName = c.getDbFilename();

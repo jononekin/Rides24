@@ -33,7 +33,7 @@ public class CreateRideGUI extends JFrame {
 	
 	private JLabel jLabelOrigin = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.LeavingFrom"));
 	private JLabel jLabelDestination = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.GoingTo")); 
-	private JLabel jLabelSeats = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.NumberOfSeats"));
+	private JLabel jLabelSeats = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("OnartuGUI.ChooseCar"));
 	private JLabel jLabRideDate = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.RideDate"));
 	private JLabel jLabelPrice = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.Price"));
 	private JTextField jTextFieldPrice = new JTextField();
@@ -61,12 +61,12 @@ public class CreateRideGUI extends JFrame {
 		this.setTitle(ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.CreateRide"));
 
 		jLabelOrigin.setBounds(new Rectangle(6, 56, 92, 20));
-		jLabelSeats.setBounds(new Rectangle(6, 119, 173, 20));
+		jLabelSeats.setBounds(new Rectangle(114, 118, 173, 20));
 		
-		jLabelPrice.setBounds(new Rectangle(6, 159, 173, 20));
-		jTextFieldPrice.setBounds(new Rectangle(139, 159, 60, 20));
+		jLabelPrice.setBounds(new Rectangle(6, 191, 173, 20));
+		jTextFieldPrice.setBounds(new Rectangle(140, 191, 60, 20));
 
-		jCalendar.setBounds(new Rectangle(300, 50, 225, 150));
+		jCalendar.setBounds(new Rectangle(355, 53, 225, 150));
 		scrollPaneEvents.setBounds(new Rectangle(25, 44, 346, 116));
 
 		jButtonCreate.setBounds(new Rectangle(100, 263, 130, 30));
@@ -113,10 +113,10 @@ public class CreateRideGUI extends JFrame {
 		datesWithEventsCurrentMonth=facade.getThisMonthDatesWithRides("a","b",jCalendar.getDate());		
 		
 		jLabRideDate.setBounds(new Rectangle(40, 15, 140, 25));
-		jLabRideDate.setBounds(298, 16, 140, 25);
+		jLabRideDate.setBounds(402, 17, 140, 25);
 		getContentPane().add(jLabRideDate);
 		
-		jLabelDestination.setBounds(6, 81, 61, 16);
+		jLabelDestination.setBounds(6, 81, 92, 16);
 		getContentPane().add(jLabelDestination);
 		
 		
@@ -129,9 +129,9 @@ public class CreateRideGUI extends JFrame {
 		getContentPane().add(fieldDestination);
 		fieldDestination.setColumns(10);
 		
-		comboBox.setBounds(100, 118, 130, 22);
+		comboBox.setBounds(6, 149, 339, 22);
 		getContentPane().add(comboBox);
-		List<Car> cars = driver.getCars();
+		List<Car> cars=facade.getDriverCars(driver);
 		for(Car c : cars) {
 			comboBox.addItem(c);
 		}
@@ -204,7 +204,7 @@ public class CreateRideGUI extends JFrame {
 	private String field_Errors() {
 		
 		try {
-			if ((fieldOrigin.getText().length()==0) || (fieldDestination.getText().length()==0) || (comboBox.getSelectedItem() != null) || (jTextFieldPrice.getText().length()==0))
+			if ((fieldOrigin.getText().length()==0) || (fieldDestination.getText().length()==0) || (comboBox.getSelectedItem() == null) || (jTextFieldPrice.getText().length()==0))
 				return ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.ErrorQuery");
 			else {
 				Car selectedCar = (Car) comboBox.getSelectedItem();

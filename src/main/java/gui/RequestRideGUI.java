@@ -1,6 +1,7 @@
 package gui;
 
 import java.text.DateFormat;
+
 import java.util.*;
 import java.util.List;
 
@@ -121,12 +122,11 @@ public class RequestRideGUI extends JFrame {
 		getContentPane().add(fieldDestination);
 		fieldDestination.setColumns(10);
 		
-		JLabel lblNewLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("RequestRideGUI.lblNewLabel.text")); //$NON-NLS-1$ //$NON-NLS-2$
-		lblNewLabel.setBounds(6, 118, 86, 14);
-		getContentPane().add(lblNewLabel);
+		JLabel prez = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("FindRidesGUI.Price")); //$NON-NLS-1$ //$NON-NLS-2$
+		prez.setBounds(6, 118, 86, 14);
+		getContentPane().add(prez);
 		
 		prezioa = new JTextField();
-		prezioa.setText(ResourceBundle.getBundle("Etiquetas").getString("RequestRideGUI.textField.text")); //$NON-NLS-1$ //$NON-NLS-2$
 		prezioa.setBounds(160, 115, 130, 20);
 		getContentPane().add(prezioa);
 		prezioa.setColumns(10);
@@ -174,7 +174,7 @@ public class RequestRideGUI extends JFrame {
 			Date date = jCalendar.getDate();
 			int prez = Integer.parseInt(prezioa.getText());
 			if(bidaiari.getDirua()<prez) {
-				jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString(""));//poner la etiqueta
+				jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("Error.NoMoney"));//poner la etiqueta
 			}else {
 				facade.createEskaera(from, to, date, bidaiari, prez);
 				jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("RequestRideGUI.RequestDone"));

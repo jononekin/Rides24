@@ -55,6 +55,7 @@ public interface BLFacade  {
    @WebMethod
    public Ride createRide( String from, String to, Date date, int nPlaces, float price, String driverEmail) throws RideMustBeLaterThanTodayException, RideAlreadyExistException;
 	
+   
 	
 	/**
 	 * This method retrieves the rides from two locations on a given date 
@@ -86,19 +87,22 @@ public interface BLFacade  {
 	//@WebMethod public boolean storeRider(Bidaiari rider);
 	
 	@WebMethod public List<String> getEmails();
-	
+	@WebMethod public boolean jarri(boolean jarri, Eskaera eskaera);
 	@WebMethod public boolean storeUser(User user);
 	
 	@WebMethod public User isRegistered(String email, String password);
 	
 	@WebMethod public boolean diruaSartu(User user, float diru);
 	@WebMethod public List<Bidaiari> getAllBidaiari();
-	@WebMethod public List<Ride> getAllRides();
+	@WebMethod public List<Ride> getDriverRides(Driver driver);
 	@WebMethod public List<Eskaera> getAllEskaera();
+	@WebMethod public List<Ride> getAllRides();
+	@WebMethod public List<Movement> getUserMugimenduak(User user);
+	@WebMethod public List<Car> getDriverCars(Driver driver);
 	@WebMethod public Eskaera createEskaera(String from, String to, Date date, Bidaiari bidaiari, float prez)throws 
 	RideMustBeLaterThanTodayException, RideAlreadyExistException;
 	
-	@WebMethod public Car addCar(String licensePlate, int places, String model, String color);
+	@WebMethod public boolean addCar(String licensePlate, int places, String model, String color, String driverEmail);
 	@WebMethod public Movement addMovement(String usrEmail, float diruKantitatea, String mota, User user);
 	@WebMethod public boolean ezabatuRide(Ride ride);
 	@WebMethod public boolean ezabatuEskaera(Eskaera eskaera);
