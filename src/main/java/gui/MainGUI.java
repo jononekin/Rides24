@@ -28,7 +28,7 @@ public class MainGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 	private JPanel jContentPane = null;
-	//private JButton jButtonCreateQuery = null;
+	private JButton jButtonCreateQuery = null;
 	private JButton jButtonQueryQueries = null;
 	private JButton jButtonLogin = null;
 	private JButton jButtonSignUp = null;

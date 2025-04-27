@@ -66,7 +66,7 @@ public class DiruaSartuGUI extends JFrame {
 					int diruZenb = Integer.parseInt(diru);
 					boolean ondo = facade.diruaSartu(bidaiari, diruZenb);
 					if (ondo) {
-						facade.addMovement( diruZenb, "+", bidaiari);
+						facade.addMovement(diruZenb, "+", bidaiari);
 						((JFrame) SwingUtilities.getWindowAncestor(btnNewButton)).dispose();
 					} else {
 						jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("Error"));

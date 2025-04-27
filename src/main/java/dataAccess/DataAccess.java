@@ -1,6 +1,8 @@
 package dataAccess;
 
 import java.io.File;
+
+
 import java.net.NoRouteToHostException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -21,13 +23,15 @@ import configuration.ConfigXML;
 import configuration.UtilDate;
 import domain.Driver;
 import domain.Eskaera;
+import domain.Eskaera.EskaeraEgoera;
+import domain.Ride.RideEgoera;
 import domain.Movement;
 import domain.Ride;
 import domain.User;
 import domain.Bidaiari;
 import domain.Car;
-import exceptions.RideAlreadyExistException;
-import exceptions.RideMustBeLaterThanTodayException;
+import exceptions.*;
+
 
 /**
  * It implements the data access to the objectDb database
@@ -177,7 +181,6 @@ public class DataAccess {
 						ResourceBundle.getBundle("Etiquetas").getString("DataAccess.RideAlreadyExist"));
 			}
 			Ride ride = driver.addRide(from, to, date, nPlaces, price);
-			// next instruction can be obviated
 			db.persist(driver);
 			db.getTransaction().commit();
 
@@ -190,50 +193,84 @@ public class DataAccess {
 	}
 	public Movement addMovement( float diruKantitatea, String mota, User user) {
 		try {
-			db.getTransaction().begin();
+			//db.getTransaction().begin();
 			User existingUser = db.find(User.class, user.getEmail());
 			Movement mov = existingUser.addMovement( diruKantitatea, mota);
 			db.persist(mov);
 			
-			db.getTransaction().commit();
+			//db.getTransaction().commit();
 			return mov;
 		} catch (NullPointerException e) {
 			// TODO Auto-generated catch block
-			db.getTransaction().commit();
+			//db.getTransaction().rollback();
 			return null;
 		}
 	}
 
-
-
-	public Eskaera createEskaera(String from, String to, Date date, Bidaiari bidaiari, float prez)
-			throws RideAlreadyExistException, RideMustBeLaterThanTodayException {
-		try {
-			if (new Date().compareTo(date) > 0) {
-				throw new RideMustBeLaterThanTodayException(
-						ResourceBundle.getBundle("Etiquetas").getString("CreateRideGUI.ErrorRideMustBeLaterThanToday"));
+/*
+ * public RideRequest requestRide(User user, Ride ride, int seatQuantity) throws RequestAlreadyExistsException {
+		open();
+		db.getTransaction().begin();
+		ArrayList<RideRequest> rRs = ((Traveler)user).getRideRequests();
+		RideRequest newRequest = new RideRequest(RideRequest.RequestState.PENDING, seatQuantity, ride, (Traveler)user);;
+		
+		boolean alreadyHasReq = false;
+		
+		for (RideRequest rr: rRs) {
+			if (rr.getRide().equals(ride)) {
+				alreadyHasReq = true;
+				break;
 			}
-			db.getTransaction().begin();
-			//bidaiari = db.merge(bidaiari);
-			Bidaiari bidaiaria = db.find(Bidaiari.class, bidaiari.getEmail());
-			if (bidaiaria.doesEskaeraExists(from, to, date)) {
-				db.getTransaction().commit();
-				throw new RideAlreadyExistException(
-						ResourceBundle.getBundle("Etiquetas").getString("DataAccess.RideAlreadyExist"));
-			}
-			Eskaera eskaera = bidaiaria.addEskaera(from, to, date, prez);
-			// next instruction can be obviated
-			//db.persist(eskaera);
-			db.persist(bidaiaria);
-			db.getTransaction().commit();
-
-			return eskaera;
-		} catch (NullPointerException e) {
-			// TODO Auto-generated catch block
-			db.getTransaction().commit();
-			return null;
 		}
+		if (alreadyHasReq == false) {
+			db.persist(newRequest);
 
+			Ride rideDB = db.find(Ride.class, ride.getRideNumber());
+			rideDB.addRequest(newRequest);
+			
+			System.out.println(newRequest);
+			
+			Alert alert = new Alert("Traveler batek bidaia eskatu du"+user.getEmail(),"",rideDB.getDriver());
+			db.persist(alert);
+			registerAlert(alert);
+
+		} else throw new RequestAlreadyExistsException();
+
+		db.getTransaction().commit();
+		close();
+		
+		return newRequest;
+
+	}
+
+ */
+
+	public Eskaera createEskaera(User user, Ride ride, int nPlaces)throws RequestAlreadyExistException{
+		db.getTransaction().begin();
+		Bidaiari bidaiari = ((Bidaiari)user);
+		Bidaiari bidaiariDB = db.find(Bidaiari.class, bidaiari.getEmail());
+		Ride rideDB = db.find(Ride.class, ride.getRideNumber());
+		Eskaera eskBerr = new Eskaera(Eskaera.EskaeraEgoera.PENDING, nPlaces, rideDB, bidaiariDB);
+		ArrayList<Eskaera> eskaeraListDB = bidaiariDB.getEskaerak();
+		boolean exisDa = false;
+		for (Eskaera eskDB : eskaeraListDB) {
+			if (eskDB.getRide().equals(ride)) {
+				exisDa=true;
+				break;
+			}
+		}
+		if (exisDa==false) {
+			eskaeraListDB.add(eskBerr);
+		} else {
+			db.getTransaction().rollback();
+			throw new RequestAlreadyExistException();
+		}
+		ArrayList<Eskaera> rideEskaeraListDB = rideDB.getEskaerenList();
+		rideEskaeraListDB.add(eskBerr);
+		
+		db.getTransaction().commit();
+			
+		return eskBerr;
 	}
 
 	/*
@@ -289,9 +326,12 @@ public class DataAccess {
 			} else {
 				if (password.equals(existingUser.getPasahitza())) {// berdinak badira pasahitzak
 					System.out.println("Good");
+					db.getTransaction().commit();
 					return existingUser;
 				} else {
+					
 					System.out.println("Your password is not correct");
+					db.getTransaction().rollback();
 					return null;
 				}
 			}
@@ -322,28 +362,35 @@ public class DataAccess {
 			return false;
 		}
 	}
+	
+	
 
 	public List<Bidaiari> getAllBidaiari() {
 		db.getTransaction().begin();
 		TypedQuery<Bidaiari> query = db.createQuery("SELECT b FROM Bidaiari b", Bidaiari.class);
+		db.getTransaction().commit();
 		return query.getResultList();
+		
 	}
 
 	public List<Eskaera> getAllEskaera() {
 		db.getTransaction().begin();
 		TypedQuery<Eskaera> query = db.createQuery("SELECT b FROM Eskaera b", Eskaera.class);
+		db.getTransaction().commit();
 		return query.getResultList();
 	}
 	
 	public List<Ride> getAllRides(){
 		db.getTransaction().begin();
 		TypedQuery<Ride> query = db.createQuery("SELECT b FROM Ride b", Ride.class);
+		db.getTransaction().commit();
 		return query.getResultList();
 	}
 	public List<Movement> getUserMugimenduak(User user) {
 		try {
 			db.getTransaction().begin();
 			User existingUser = db.find(User.class, user.getEmail());
+			db.getTransaction().commit();
 			return existingUser.getMugimenduak();
 		} catch (Exception e) {
 			db.getTransaction().rollback();
@@ -351,7 +398,7 @@ public class DataAccess {
 			return null;
 		}
 	}
-	public boolean jarri(boolean jarri, Eskaera eskaera) {
+	/*public boolean jarri(boolean jarri, Eskaera eskaera) {
 		try {
 			db.getTransaction().begin();
 			eskaera.setBaieztatuta(jarri);
@@ -363,42 +410,49 @@ public class DataAccess {
 			System.err.println("Error eskaera onartzean: " + e.getMessage());
 			return false;
 		}
-	}
+	}*/
 
 	public List<Ride> getDriverRides(Driver driver) {
 		db.getTransaction().begin();
 		Driver existingDriver = db.find(Driver.class, driver.getEmail());
+		db.getTransaction().commit();
 		return existingDriver.getRides();
 	}
 	public List<Car> getDriverCars(Driver driver) {
 		db.getTransaction().begin();
 		Driver existingDriver = db.find(Driver.class, driver.getEmail());
+		db.getTransaction().commit();
 		return existingDriver.getCars();
 	}
-	public boolean ezabatuRide(Ride ride1) {
-		System.out.println("Dalete :"+ride1.toString());
-		try {
-			db.getTransaction().begin();
-			Ride ride = db.find(Ride.class, ride1.getRideNumber());
-
-			 if (ride.getDriver() != null) {
-				 Driver driver = ride.getDriver();
-				 driver.removeRide(ride.getRideNumber());
-		         //driver.getRides().remove(ride);
-		         ride.setDriver(null);
-		         db.merge(driver);
-			 }
-			//db.remove(db.contains(ride) ? ride : db.merge(ride));
-			db.getTransaction().commit();
-			return true;
-		} catch (Exception e) {
-			db.getTransaction().rollback();
-			System.err.println("Error deleting ride: " + e.getMessage());
-			return false;
+	public void kantzelatuRide(Ride ride) {
+		db.getTransaction().begin();
+		Ride rideDB = db.find(Ride.class, ride.getRideNumber());
+		rideDB.setEgoera(RideEgoera.CANCELLED);
+		for(Eskaera esk: rideDB.getEskaerenList()) {
+			if (esk.getEgoera()==EskaeraEgoera.ACCEPTED) {
+				esk.getBidaiari().setDirua(esk.getBidaiari().getDirua()+esk.getPrez());
+				addMovement(esk.getPrez(), "+", esk.getBidaiari());
+				esk.setEgoera(EskaeraEgoera.CANCELLED);
+			}
 		}
+		db.getTransaction().commit();
+		
+	}
+	
+	
+	public void amaituRide(Ride ride) {
+		db.getTransaction().begin();
+		Ride rideDB = db.find(Ride.class, ride.getRideNumber());
+		rideDB.setEgoera(RideEgoera.FINISHED);
+		for(Eskaera esk: rideDB.getEskaerenList()) {
+			if(esk.getEgoera()==EskaeraEgoera.ACCEPTED) {
+				esk.setEgoera(EskaeraEgoera.FINISHED);
+			}
+		}
+		db.getTransaction().commit();
 	}
 
-	public boolean ezabatuEskaera(Eskaera esk) {
+	/*public boolean ezabatuEskaera(Eskaera esk) {
 		try {
 			db.getTransaction().begin();
 			if(esk.getBidaiari() !=null) {
@@ -415,7 +469,7 @@ public class DataAccess {
 			System.err.println("Error deleting ride: " + e.getMessage());
 			return false;
 		}
-	}
+	}*/
 
 	public boolean storeUser(User user) {
 		try {
@@ -504,18 +558,24 @@ public class DataAccess {
 	
 			db.getTransaction().begin();
 			Driver driver = db.find(Driver.class, driverEmail);
-			/*if (driver.doesCarExist(licensePlate)) {
-				db.getTransaction().commit();
-				System.out.println("car already exists");
-				return false;
-			}*/
-			System.out.println(licensePlate);
-			Car car = driver.addCar(licensePlate,  places,  model,  color);
-			System.out.println(car.toString());
+			if(driver!=null) {
+				if (driver.doesCarExist(licensePlate)) {
+					db.getTransaction().commit();
+					System.out.println("car already exists");
+					return false;
+				}
+				System.out.println(licensePlate);
+				Car car = driver.addCar(licensePlate,  places,  model,  color);
+				System.out.println(car.toString());
 
-			//db.persist(driver);
-			db.getTransaction().commit();
-			return true;
+				//db.persist(driver);
+				db.getTransaction().commit();
+				return true;
+			}else {
+				db.getTransaction().rollback();
+				return false;
+			}
+			
 		
 	}
 
@@ -542,6 +602,70 @@ public class DataAccess {
 	public void close() {
 		db.close();
 		System.out.println("DataAcess closed");
+	}
+	
+	
+	public List<Eskaera> getEskaerakRide(Ride ride) {
+		
+		db.getTransaction().begin();
+	    Ride rideDB = db.find(Ride.class, ride.getRideNumber());
+	    TypedQuery<Eskaera> query = db.createQuery("SELECT DISTINCT esk FROM Eskaera esk WHERE esk.ride = :ride", Eskaera.class);
+	    query.setParameter("ride", rideDB);
+	    List<Eskaera> eskaerak = query.getResultList();
+	    db.getTransaction().commit();
+	    return eskaerak;
+	}
+	
+	
+	public void acceptEskaera(Eskaera eskaera) throws NotEnoughPlacesException, NotEnoughMoneyException{
+		db.getTransaction().begin();
+
+		Eskaera eskaeraDB = db.find(Eskaera.class, eskaera.getEskaeraNumber());
+		Bidaiari bidaiariDB = db.find(Bidaiari.class, eskaera.getBidaiari());
+		Ride ride = eskaeraDB.getRide();
+		int lekuLibre = ride.getnPlaces();
+		int lekuEskatu = eskaeraDB.getNPlaces();
+		float daukanDiru = bidaiariDB.getDirua();
+		float balioDuena = ride.getPrice();
+		
+		if(daukanDiru<balioDuena) {
+			db.getTransaction().rollback();
+			throw new NotEnoughMoneyException();
+		}
+		
+		db.persist(bidaiariDB);
+
+		if(lekuLibre<lekuEskatu) {
+			db.getTransaction().rollback();
+			throw new NotEnoughPlacesException();
+		}
+		
+		eskaeraDB.acceptRequest();
+		ride.setnPlaces(lekuLibre-lekuEskatu);
+		addMovement(eskaeraDB.getPrez(), "-", bidaiariDB);
+		db.getTransaction().commit();
+	}
+	
+	public void ezOnartuEskaera(Eskaera eskaera) {
+		db.getTransaction().begin();
+		Eskaera eskaeraDB = db.find(Eskaera.class, eskaera.getEskaeraNumber());
+		eskaeraDB.ezeztatuEskaera();
+		db.getTransaction().commit();
+	}
+	public void konfirmatuEskaera(Eskaera eskaera) {
+		db.getTransaction().begin();
+		Eskaera eskaeraDB = db.find(Eskaera.class, eskaera.getEskaeraNumber());
+		eskaeraDB.konfirmatuEskaera();
+		eskaeraDB.getRide().getDriver().diruSartuDri(eskaeraDB.getNPlaces()*eskaeraDB.getRide().getPrice());
+		addMovement(eskaeraDB.getRide().getPrice(), "+", eskaeraDB.getRide().getDriver());
+		db.getTransaction().commit();
+	}
+	
+	@WebMethod public List<Eskaera> getEskaerakBidaiari(Bidaiari bidaiari){
+		db.getTransaction().begin();
+		Bidaiari bidaiariDB = db.find(Bidaiari.class, bidaiari.getEmail());
+		db.getTransaction().commit();
+		return bidaiariDB.getEskaerak();
 	}
 
 }

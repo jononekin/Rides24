@@ -1,19 +1,21 @@
 package businessLogic;
 
 import java.util.ArrayList;
+
 import java.util.Date;
 import java.util.List;
 
 //import domain.Booking;
 import domain.Ride;
 import domain.User;
+import domain.Eskaera.EskaeraEgoera;
 import domain.Bidaiari;
 import domain.Car;
 import domain.Driver;
 import domain.Eskaera;
 import domain.Movement;
-import exceptions.RideMustBeLaterThanTodayException;
-import exceptions.RideAlreadyExistException;
+import exceptions.*;
+
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -87,7 +89,7 @@ public interface BLFacade  {
 	//@WebMethod public boolean storeRider(Bidaiari rider);
 	
 	@WebMethod public List<String> getEmails();
-	@WebMethod public boolean jarri(boolean jarri, Eskaera eskaera);
+	//@WebMethod public boolean jarri(boolean jarri, Eskaera eskaera);
 	@WebMethod public boolean storeUser(User user);
 	
 	@WebMethod public User isRegistered(String email, String password);
@@ -95,16 +97,20 @@ public interface BLFacade  {
 	@WebMethod public boolean diruaSartu(User user, float diru);
 	@WebMethod public List<Bidaiari> getAllBidaiari();
 	@WebMethod public List<Ride> getDriverRides(Driver driver);
-	@WebMethod public List<Eskaera> getAllEskaera();
+	//@WebMethod public List<Eskaera> getAllEskaera();
 	@WebMethod public List<Ride> getAllRides();
 	@WebMethod public List<Movement> getUserMugimenduak(User user);
-	@WebMethod public List<Car> getDriverCars(Driver driver);
-	@WebMethod public Eskaera createEskaera(String from, String to, Date date, Bidaiari bidaiari, float prez)throws 
-	RideMustBeLaterThanTodayException, RideAlreadyExistException;
-	
+	@WebMethod public List<Car> getDriverCars(Driver driver); 
+	@WebMethod public Eskaera createEskaera(User user, Ride ride, int nPlaces) throws RequestAlreadyExistException;
 	@WebMethod public boolean addCar(String licensePlate, int places, String model, String color, String driverEmail);
 	@WebMethod public Movement addMovement(float diruKantitatea, String mota, User user);
-	@WebMethod public boolean ezabatuRide(Ride ride);
-	@WebMethod public boolean ezabatuEskaera(Eskaera eskaera);
+	@WebMethod public void kantzelatuRide(Ride ride);
+	//@WebMethod public boolean ezabatuEskaera(Eskaera eskaera);
 	
+	@WebMethod public List<Eskaera> getEskaerakRide(Ride ride);
+	@WebMethod public void acceptEskaera(Eskaera eskaera) throws NotEnoughPlacesException, NotEnoughMoneyException;
+	@WebMethod public void ezOnartuEskaera(Eskaera eskaera);
+	@WebMethod public void amaituRide(Ride ride);
+	@WebMethod public List<Eskaera> getEskaerakBidaiari(Bidaiari bidaiari);
+	@WebMethod public void konfirmatuEskaera(Eskaera eskaera);
 }

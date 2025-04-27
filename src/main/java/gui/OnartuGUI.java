@@ -16,6 +16,8 @@ import domain.Bidaiari;
 import domain.Car;
 import domain.Driver;
 import domain.Eskaera;
+import domain.Ride;
+import domain.Ride.RideEgoera;
 import exceptions.RideAlreadyExistException;
 import exceptions.RideMustBeLaterThanTodayException;
 
@@ -49,68 +51,57 @@ public class OnartuGUI extends JFrame {
 	 */
 	public OnartuGUI(Driver driver) {
 		setTitle(ResourceBundle.getBundle("Etiquetas").getString("OnartuGUI.Title"));
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 614, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(110, 139, 316, 22);
-		contentPane.add(comboBox_1);
-		if (driver.getCars() != null) {
-			List<Car> cars = driver.getCars();
-			for (Car c : cars) {
-				comboBox_1.addItem(c);
-			}
-		}
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(34, 78, 392, 22);
+		JComboBox rides = new JComboBox();
+		rides.setBounds(10, 78, 580, 22);
 		BLFacade facade = MainGUI.getBusinessLogic();
 		//List<Bidaiari> bidaiariList = facade.getAllBidaiari();
-		comboBox.removeAllItems();
+		rides.removeAllItems();
 		
-		List<Eskaera> eskaeraList = facade.getAllEskaera();
-		for (Eskaera eskaera : eskaeraList) {
-			System.out.println(eskaera);
-			if(!eskaera.isBaieztatuta()) {
-				comboBox.addItem(eskaera);
+		List<Ride> rideList = facade.getDriverRides(driver);
+		for (Ride ride : rideList) {
+			if (ride.getEgoera()==RideEgoera.PENDING) {
+				rides.addItem(ride);
 			}
 		}
 		
-		/*for (Bidaiari bidaiari : bidaiariList) {
-			System.out.println(bidaiari);
-			for (Eskaera eskaera : bidaiari.getEskaerak()) {
-				System.out.println(eskaera);
-				if(!eskaera.isBaieztatuta()) {
-					comboBox.addItem(eskaera);
-				}
-				
-			}
-		}
-		*/
-		contentPane.add(comboBox);
+		contentPane.add(rides);
 
 		jLabelMsg.setBounds(new Rectangle(81, 214, 305, 20));
 		jLabelMsg.setForeground(Color.red);
 		contentPane.add(jLabelMsg);
 
-		JLabel lbl_numSeat = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("OnartuGUI.ChooseCar")); //$NON-NLS-1$ //$NON-NLS-2$
-		lbl_numSeat.setBounds(34, 143, 143, 14);
-		contentPane.add(lbl_numSeat);
-
 		JLabel lbl_Title = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("OnartuGUI.Title"));
 		lbl_Title.setBounds(49, 35, 335, 32);
 		contentPane.add(lbl_Title);
 
-		JButton btnOnartu = new JButton(ResourceBundle.getBundle("Etiquetas").getString("OnartuGUI.Accept"));
-		btnOnartu.addActionListener(new ActionListener() {
+		JButton btnSHesk = new JButton(ResourceBundle.getBundle("Etiquetas").getString("OnartuGUI.Accept"));
+		btnSHesk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if ((comboBox_1.getSelectedItem() != null) && (comboBox.getSelectedItem() != null)) {
+				Ride selectedRide = (Ride) rides.getSelectedItem();
+				if(selectedRide!=null) {
+					JFrame a = new OnartuGUI2(selectedRide);
+					a.setVisible(true);
+				}
+				
+			}
+
+		});
+		btnSHesk.setBounds(244, 180, 89, 23);
+		contentPane.add(btnSHesk);
+	}
+}
+
+/*
+ * if ((comboBox_1.getSelectedItem() != null) && (rides.getSelectedItem() != null)) {
 					try {
-						Eskaera selectedEskaera = (Eskaera) comboBox.getSelectedItem();
+						Eskaera selectedEskaera = (Eskaera) rides.getSelectedItem();
 						Calendar gaur = Calendar.getInstance();
 						gaur.set(Calendar.HOUR_OF_DAY, 0);
 						gaur.set(Calendar.MINUTE, 0);
@@ -163,11 +154,5 @@ public class OnartuGUI extends JFrame {
 				 * e1) { // TODO Auto-generated catch block jLabelMsg.setText(e1.getMessage());
 				 * }
 				 */
-			}
+ 
 
-		});
-		btnOnartu.setBounds(177, 171, 89, 23);
-		contentPane.add(btnOnartu);
-
-	}
-}

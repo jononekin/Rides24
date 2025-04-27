@@ -1,6 +1,9 @@
 package businessLogic;
 
+import java.util.ArrayList;
 import java.util.Date;
+
+
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -11,13 +14,14 @@ import configuration.ConfigXML;
 import dataAccess.DataAccess;
 import domain.Ride;
 import domain.User;
+import domain.Eskaera.EskaeraEgoera;
 import domain.Bidaiari;
 import domain.Car;
 import domain.Driver;
 import domain.Eskaera;
 import domain.Movement;
-import exceptions.RideMustBeLaterThanTodayException;
-import exceptions.RideAlreadyExistException;
+import exceptions.*;
+
 
 /**
  * It implements the business logic as a web service.
@@ -140,13 +144,13 @@ public class BLFacadeImplementation implements BLFacade {
 		dbManager.initializeDB();
 		dbManager.close();
 	}
-	@WebMethod 
+	/*@WebMethod 
 	public boolean jarri(boolean jarri, Eskaera eskaera) {
 		dbManager.open();
 		boolean ondo=dbManager.jarri(jarri, eskaera);
 		dbManager.close();
 		return ondo;
-	}
+	}*/
 
 	/*
 	 * @WebMethod public boolean storeDriver(Driver driver) { dbManager.open();
@@ -222,20 +226,11 @@ public class BLFacadeImplementation implements BLFacade {
 		return carList;
 	}
 
-	@WebMethod
-	public boolean ezabatuRide(Ride ride) {
-		dbManager.open();
-		boolean ondo = dbManager.ezabatuRide(ride);
-		dbManager.close();
-		return ondo;
-	}
 
-	@WebMethod
-	public boolean ezabatuEskaera(Eskaera eskaera) {
+	@WebMethod public void kantzelatuRide(Ride ride) { 
 		dbManager.open();
-		boolean ondo = dbManager.ezabatuEskaera(eskaera);
+		dbManager.kantzelatuRide(ride);
 		dbManager.close();
-		return ondo;
 	}
 
 	@WebMethod
@@ -247,10 +242,9 @@ public class BLFacadeImplementation implements BLFacade {
 	}
 
 	@WebMethod
-	public Eskaera createEskaera(String from, String to, Date date, Bidaiari bidaiari, float prez)
-			throws RideMustBeLaterThanTodayException, RideAlreadyExistException {
+	public Eskaera createEskaera(User user, Ride ride, int nPlaces) throws RequestAlreadyExistException {
 		dbManager.open();
-		Eskaera eskaera = dbManager.createEskaera(from, to, date, bidaiari, prez);
+		Eskaera eskaera = dbManager.createEskaera(user, ride, nPlaces);
 		dbManager.close();
 		return eskaera;
 	}
@@ -262,5 +256,47 @@ public class BLFacadeImplementation implements BLFacade {
 		dbManager.close();
 		return emails;
 	};
+	
+	@WebMethod 
+	public List<Eskaera> getEskaerakRide(Ride ride){
+		dbManager.open();
+		List<Eskaera> eskaerak = dbManager.getEskaerakRide(ride);
+		dbManager.close();
+		return eskaerak;
+	}
+	
+	@WebMethod 
+	public void acceptEskaera(Eskaera eskaera) throws NotEnoughPlacesException, NotEnoughMoneyException{
+		dbManager.open();
+	    dbManager.acceptEskaera(eskaera);
+		dbManager.close();
+	}
+	
+	@WebMethod public void ezOnartuEskaera(Eskaera eskaera) {
+		dbManager.open();
+	    dbManager.ezOnartuEskaera(eskaera);
+		dbManager.close();
+	}
+
+	@WebMethod public void amaituRide(Ride ride) {
+		dbManager.open();
+	    dbManager.amaituRide(ride);
+		dbManager.close();
+	}
+	
+	@WebMethod public List<Eskaera> getEskaerakBidaiari(Bidaiari bidaiari){
+		dbManager.open();
+		List<Eskaera> eskaerak = dbManager.getEskaerakBidaiari(bidaiari);
+		dbManager.close();
+		return eskaerak;
+	}
+	@WebMethod 
+	public void konfirmatuEskaera(Eskaera eskaera) {
+		dbManager.open();
+	    dbManager.konfirmatuEskaera(eskaera);
+		dbManager.close();
+	}
+	
+	
 
 }

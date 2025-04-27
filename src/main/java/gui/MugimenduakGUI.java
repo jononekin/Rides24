@@ -62,26 +62,15 @@ public class MugimenduakGUI extends JFrame {
 			}
 		});
 		btnNewButton.setBounds(177, 233, 89, 23);
-		
 		DefaultListModel<String> listModel = new DefaultListModel<>();
 		JList<String> movListView = new JList<>(listModel);
-		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(71, 47, 305, 78);
 		scrollPane.setViewportView(movListView);
 		contentPane.add(scrollPane);
-		
 		movListView.setBounds(71, 47, 305, 175);
-		
-		
-		
-		
-		
 		BLFacade facade = MainGUI.getBusinessLogic();
 		List<Movement> movList = facade.getUserMugimenduak(user);
-		
-		
-
 		for (Movement mov : movList) {
 		    listModel.addElement(mov.toString()); 
 		}

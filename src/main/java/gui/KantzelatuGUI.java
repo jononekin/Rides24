@@ -17,6 +17,7 @@ import domain.Bidaiari;
 import domain.Driver;
 import domain.Eskaera;
 import domain.Ride;
+import domain.Ride.RideEgoera;
 
 import javax.swing.JComboBox;
 import javax.swing.JButton;
@@ -52,50 +53,63 @@ public class KantzelatuGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(27, 115, 384, 22);
-		contentPane.add(comboBox);
+		JComboBox rides = new JComboBox();
+		rides.setBounds(27, 115, 384, 22);
+		contentPane.add(rides);
 		BLFacade facade = MainGUI.getBusinessLogic();
 		List<Ride> rideList = facade.getDriverRides(driver);
-		comboBox.removeAllItems();
-		comboBox.addItem(null);
+		rides.removeAllItems();
+		rides.addItem(null);
 		for (Ride ride : rideList) {
-			comboBox.addItem(ride);
+			rides.addItem(ride);
 		}
 		jLabelMsg.setBounds(new Rectangle(27, 219, 399, 20));
 		jLabelMsg.setForeground(Color.red);
 		contentPane.add(jLabelMsg);
 		jLabelMsg.setText("");
-		JButton btnNewButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("KantzelatuGUI.Title"));
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnCanceled = new JButton(ResourceBundle.getBundle("Etiquetas").getString("KantzelatuGUI.Title"));
+		btnCanceled.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				BLFacade facade = MainGUI.getBusinessLogic();
-				Ride ride = (Ride) comboBox.getSelectedItem();
-				Calendar gaur = Calendar.getInstance();
-				gaur.set(Calendar.HOUR_OF_DAY, 0);
-				gaur.set(Calendar.MINUTE, 0);
-				gaur.set(Calendar.SECOND, 0);
-			    gaur.set(Calendar.MILLISECOND, 0);
-				Calendar fechaRide = Calendar.getInstance();
-				fechaRide.setTime(ride.getDate());
-				fechaRide.set(Calendar.HOUR_OF_DAY, 0);
-			    fechaRide.set(Calendar.MINUTE, 0);
-			    fechaRide.set(Calendar.SECOND, 0);
-			    fechaRide.set(Calendar.MILLISECOND, 0);
-			    fechaRide.add(Calendar.DAY_OF_YEAR, -2);
-			    if(gaur.before(fechaRide)) {
-			    	jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("KantzelatuGUI.Canceled"));
-			    	boolean ondo = facade.ezabatuRide(ride);
-			    }else {
-			    	jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("KantzelatuGUI.DateError"));
-			    }
+				Ride rideSelect = (Ride) rides.getSelectedItem();
+				if(rideSelect != null) {
+					Calendar gaur = Calendar.getInstance();
+					gaur.set(Calendar.HOUR_OF_DAY, 0);
+					gaur.set(Calendar.MINUTE, 0);
+					gaur.set(Calendar.SECOND, 0);
+				    gaur.set(Calendar.MILLISECOND, 0);
+					Calendar fechaRide = Calendar.getInstance();
+					fechaRide.setTime(rideSelect.getDate());
+					fechaRide.set(Calendar.HOUR_OF_DAY, 0);
+				    fechaRide.set(Calendar.MINUTE, 0);
+				    fechaRide.set(Calendar.SECOND, 0);
+				    fechaRide.set(Calendar.MILLISECOND, 0);
+				    fechaRide.add(Calendar.DAY_OF_YEAR, -2);
+				    if(gaur.before(fechaRide) && rideSelect.getEgoera()==RideEgoera.PENDING) {
+				    	jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("KantzelatuGUI.Canceled"));
+				    	facade.kantzelatuRide(rideSelect);
+				    }else {
+				    	jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("KantzelatuGUI.DateError"));
+				    }
+				}
+				
 			}
 		});
-		btnNewButton.setBounds(118, 185, 190, 23);
-		contentPane.add(btnNewButton);
+		btnCanceled.setBounds(221, 182, 190, 23);
+		contentPane.add(btnCanceled);
 		
 		JLabel lblNewLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("KantzelatuGUI.Title"));
 		lblNewLabel.setBounds(82, 53, 242, 14);
 		contentPane.add(lblNewLabel);
+		
+		JButton btnFinished = new JButton((String) null);
+		btnFinished.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Ride rideSelect = (Ride) rides.getSelectedItem();
+				facade.amaituRide(rideSelect);
+			}
+		});
+		btnFinished.setBounds(21, 182, 190, 23);
+		contentPane.add(btnFinished);
 	}
 }

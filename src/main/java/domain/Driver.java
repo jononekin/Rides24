@@ -27,8 +27,8 @@ public class Driver extends User implements Serializable {
 	private List<Car> cars=new Vector<Car>();
 	
 	public Driver() {}
-	public Driver(String email, String name) {
-		super(email, name);
+	public Driver(String name, String pasahitza, String email, String nanZbk) {
+		super(name, pasahitza, email, nanZbk);
 	}
 
 	public Ride removeRide(Integer rideId) {
@@ -119,5 +119,11 @@ public class Driver extends User implements Serializable {
 		return false;
 	}
 	
+	
+	public void diruSartuDri (float diru) {
+		super.setDirua(super.getDirua() + diru);
+
+	}
+
 	
 }

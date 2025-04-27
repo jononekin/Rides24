@@ -173,7 +173,7 @@ public class SignUpGUI extends JFrame {
 				boolean isOndo=true;
 				try {
 					if (rdbtn_Driver.isSelected()) {
-				        Driver driver = new Driver(email, nameSur);
+				        Driver driver = new Driver(nameSur, password, email, NAN);
 				        driver.setNanZbk(NAN);
 				        driver.setPasahitza(password);
 				        driver.setTlf(tlf);
@@ -187,7 +187,7 @@ public class SignUpGUI extends JFrame {
 				        	jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("Error.EmailFormat"));
 				        }
 				    } else if (rdbtn_Passenger.isSelected()) {
-				        Bidaiari bidaiari = new Bidaiari(email, nameSur);
+				        Bidaiari bidaiari = new Bidaiari(nameSur, password, email, NAN);
 				        bidaiari.setNanZbk(NAN);
 				        bidaiari.setPasahitza(password);
 				        bidaiari.setTlf(tlf);

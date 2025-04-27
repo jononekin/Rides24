@@ -23,7 +23,7 @@ public class Movement implements Serializable{
 	private float diruKantitatea;
 	private String mota;
 	@XmlIDREF
-	private User usrEmail;
+	private User usr;
 
 	public String getMota() {
 		return mota;
@@ -33,16 +33,16 @@ public class Movement implements Serializable{
 		this.mota = mota;
 	}
 
-	public Movement(Integer movementNumber, User usrEmail, float diruKantitatea, String mota) {
+	public Movement(Integer movementNumber, User user, float diruKantitatea, String mota) {
 		this.diruKantitatea = diruKantitatea;
 		this.mota = mota;
-		this.usrEmail = usrEmail;
+		this.usr = user;
 	}
 
-	public Movement(User usrEmail, float diruKantitatea, String mota) {
+	public Movement(User user, float diruKantitatea, String mota) {
 		this.diruKantitatea = diruKantitatea;
 		this.mota = mota;
-		this.usrEmail = usrEmail;
+		this.usr = user;
 	}
 
 	public Movement() {
@@ -65,12 +65,12 @@ public class Movement implements Serializable{
 		this.movementNumber = movementNumber;
 	}
 
-	public User getUsrEmail() {
-		return usrEmail;
+	public User getUsr() {
+		return usr;
 	}
 
-	public void setUsrEmail(User usrEmail) {
-		this.usrEmail = usrEmail;
+	public void setUsrEmail(User usr) {
+		this.usr = usr;
 	}
 
 	@Override

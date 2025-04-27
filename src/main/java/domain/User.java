@@ -1,6 +1,7 @@
 package domain;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -25,23 +26,28 @@ public abstract class User implements Serializable{
 	private String tlf;
 	private String pasahitza;
 	private float dirua;
-	private List<Movement> mugimenduak = new Vector<Movement>();
+	@XmlIDREF
+	@OneToMany (fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	private ArrayList<Movement> mugimenduak = new ArrayList<Movement>();
 	
 	public User() {}
-	public List<Movement> getMugimenduak() {
+	
+
+	public User(String name, String pasahitza, String email, String nanZbk) {
+		this.email = email;
+		this.name = name;
+		this.pasahitza=pasahitza;
+		this.nanZbk=nanZbk;
+		this.mugimenduak = new ArrayList<Movement>();
+		
+	}
+	public ArrayList<Movement> getMugimenduak() {
 		return mugimenduak;
 	}
 
-	public void setMugimenduak(List<Movement> mugimenduak) {
+	public void setMugimenduak(ArrayList<Movement> mugimenduak) {
 		this.mugimenduak = mugimenduak;
 	}
-
-	public User(String email, String name) {
-		super();
-		this.email = email;
-		this.name = name;
-	}
-
 	public float getDirua() {
 		return dirua;
 	}
@@ -104,10 +110,9 @@ public abstract class User implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		return Float.floatToIntBits(dirua) == Float.floatToIntBits(other.dirua) && Objects.equals(email, other.email)
-				&& Objects.equals(name, other.name) && Objects.equals(nanZbk, other.nanZbk)
-				&& Objects.equals(pasahitza, other.pasahitza) && Objects.equals(tlf, other.tlf);
+		return Objects.equals(email, other.email);
 	}
+
 
 	@Override
 	public String toString() {

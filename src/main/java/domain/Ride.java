@@ -1,6 +1,7 @@
 package domain;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.persistence.*;
@@ -10,11 +11,20 @@ import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlIDREF;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import domain.Eskaera.EskaeraEgoera;
+
 
 @SuppressWarnings("serial")
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 public class Ride implements Serializable {
+	public enum RideEgoera{
+		PENDING,
+		//ONGOING,
+		FINISHED,
+		CANCELLED,
+	}
+
 	@XmlID
 	@Id 
 	@XmlJavaTypeAdapter(IntegerAdapter.class)
@@ -25,13 +35,19 @@ public class Ride implements Serializable {
 	private int nPlaces;
 	private Date date;
 	private float price;
+	private RideEgoera egoera;
+	
+	@XmlIDREF
+	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.PERSIST)
+	private ArrayList<Eskaera>  eskaerenList= new ArrayList<Eskaera>();
+
 	
 	private Driver driver;  
 	
 	public Ride(){
 		super();
+		this.setEgoera(RideEgoera.PENDING);
 	}
-	
 	public Ride(Integer rideNumber, String from, String to, Date date, int nPlaces, float price, Driver driver) {
 		super();
 		this.rideNumber = rideNumber;
@@ -41,6 +57,7 @@ public class Ride implements Serializable {
 		this.date=date;
 		this.price=price;
 		this.driver = driver;
+		this.setEgoera(RideEgoera.PENDING);
 	}
 
 	
@@ -53,7 +70,46 @@ public class Ride implements Serializable {
 		this.date=date;
 		this.price=price;
 		this.driver = driver;
+		this.setEgoera(RideEgoera.PENDING);
 	}
+	
+	public RideEgoera getEgoera() {
+		return egoera;
+	}
+
+	public void setEgoera(RideEgoera egoera) {
+		this.egoera = egoera;
+	}
+
+	public ArrayList<Eskaera> getEskaerenList() {
+		return eskaerenList;
+	}
+	
+
+	public void setEskaerenList(ArrayList<Eskaera> eskaerenList) {
+		this.eskaerenList = eskaerenList;
+	}
+
+	public void addEskaera(Eskaera eskBerr) {
+		eskaerenList.add(eskBerr);
+	}
+	public ArrayList<Eskaera>  amaituBidaia() {
+		ArrayList<Eskaera> eskList = new ArrayList<Eskaera>();
+		this.egoera = RideEgoera.FINISHED;
+		for (Eskaera esk : eskList) {
+			if (esk.getEgoera() == EskaeraEgoera.ACCEPTED) {
+				esk.setEgoera(EskaeraEgoera.FINISHED);
+				eskList.add(esk);
+			}
+		}
+		return eskList;
+	}
+	
+	public void setnPlaces(int nPlaces) {
+		this.nPlaces = nPlaces;
+	}
+
+	
 	
 	/**
 	 * Get the  number of the ride
@@ -140,7 +196,7 @@ public class Ride implements Serializable {
 	}
 
 	
-	public float getnPlaces() {
+	public int getnPlaces() {
 		return nPlaces;
 	}
 
@@ -183,10 +239,12 @@ public class Ride implements Serializable {
 
 
 	public String toString(){
-		return rideNumber+";"+";"+from+";"+to+";"+date;  
+		return " Nondik: "+from+" Nora: "+to+/*" Eguna: "+date+*/" Leku kopurua: "+nPlaces+" Prezioa: "+price+" Egoera: "+egoera;  
 	}
 
-
+	public float guztiraBalioa (Eskaera esk) {
+		return esk.getRide().getPrice()*esk.getNPlaces();
+	}
 
 
 	

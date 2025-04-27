@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Color;
+import domain.Eskaera.EskaeraEgoera;
 import java.awt.EventQueue;
 import java.awt.Rectangle;
 import java.util.Calendar;
@@ -15,6 +16,7 @@ import javax.swing.border.EmptyBorder;
 import businessLogic.BLFacade;
 import domain.Bidaiari;
 import domain.Car;
+import domain.Driver;
 import domain.Eskaera;
 import domain.Ride;
 
@@ -47,7 +49,7 @@ public class ErrEgKonGUI extends JFrame {
 	 */
 	public ErrEgKonGUI(Bidaiari bidaiari) {
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 604, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -59,19 +61,19 @@ public class ErrEgKonGUI extends JFrame {
 		JComboBox Erreserbak = new JComboBox();
 		Erreserbak.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Eskaera eskaera = (Eskaera) Erreserbak.getSelectedItem();
+				Eskaera selectedEskaera = (Eskaera) Erreserbak.getSelectedItem();
 				Calendar gaur = Calendar.getInstance();
 				gaur.set(Calendar.HOUR_OF_DAY, 0);
 				gaur.set(Calendar.MINUTE, 0);
 				gaur.set(Calendar.SECOND, 0);
 			    gaur.set(Calendar.MILLISECOND, 0);
 				Calendar fechaRide = Calendar.getInstance();
-				fechaRide.setTime(eskaera.getDate());
+				fechaRide.setTime(selectedEskaera.getRide().getDate());
 				fechaRide.set(Calendar.HOUR_OF_DAY, 0);
 			    fechaRide.set(Calendar.MINUTE, 0);
 			    fechaRide.set(Calendar.SECOND, 0);
 			    fechaRide.set(Calendar.MILLISECOND, 0);
-				if (gaur.after(fechaRide) && eskaera.isBaieztatuta()) { //gaur.equals(fechaRide)||
+				if (gaur.after(fechaRide) && (selectedEskaera.getEgoera() == EskaeraEgoera.FINISHED)) { //gaur.equals(fechaRide)||
 					btnNewButton.setVisible(true);
 				}else {
 					btnNewButton.setVisible(false);
@@ -86,30 +88,14 @@ public class ErrEgKonGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				jLabelMsg.setText("");
 				BLFacade facade = MainGUI.getBusinessLogic();
-				Eskaera eskaera = (Eskaera) Erreserbak.getSelectedItem();
-				float prez = eskaera.getPrez();
-				facade.ezabatuEskaera(eskaera);
-				List<Ride> ridesList = facade.getAllRides();
-				Ride ride = null;
-				for (Ride r : ridesList) {
-					if (r.getFrom().equals(eskaera.getFrom()) && r.getTo().equals(eskaera.getTo())
-							&& r.getDate().equals(eskaera.getDate())) {
-						ride = r;
-						break;
-					}
-				}
-				if (ride != null) {
-					facade.diruaSartu(ride.getDriver(), prez);
-					facade.addMovement(prez, "+", ride.getDriver());
-					jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("ErrEgKon.Accepted"));
-				}
-				
+				Eskaera selectedEskaera = (Eskaera) Erreserbak.getSelectedItem();
+				facade.konfirmatuEskaera(selectedEskaera);
 			}
 		});
 
-		Erreserbak.setBounds(10, 85, 416, 33);
+		Erreserbak.setBounds(10, 85, 570, 28);
 		BLFacade facade = MainGUI.getBusinessLogic();
-		List<Eskaera> eskaerak = facade.getAllEskaera();
+		List<Eskaera> eskaerak = facade.getEskaerakBidaiari(bidaiari);
 		for (Eskaera esk : eskaerak) {
 				Erreserbak.addItem(esk);
 		}
@@ -122,10 +108,10 @@ public class ErrEgKonGUI extends JFrame {
 		contentPane.add(Erreserbak);
 
 		JLabel Erreserbak_txt = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("ErrEgKon.Title"));
-		Erreserbak_txt.setBounds(82, 36, 282, 14);
+		Erreserbak_txt.setBounds(140, 36, 282, 14);
 		contentPane.add(Erreserbak_txt);
 
-		btnNewButton.setBounds(57, 201, 292, 23);
+		btnNewButton.setBounds(163, 200, 292, 23);
 		contentPane.add(btnNewButton);
 	}
 }

@@ -34,7 +34,7 @@ public class LoginGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane = null;
 	private JTextField textField_Email;
-	private JTextField textFiel_Password;
+	private JFormattedTextField textField_Password;
 	private JButton btn_LogIn;
 	private JLabel jLabelMsg = new JLabel();
 	
@@ -87,9 +87,9 @@ public class LoginGUI extends JFrame {
 		lbl_Password.setBounds(50, 135, 106, 20);
 		contentPane.add(lbl_Password);
 		
-		JFormattedTextField Password = new JFormattedTextField();
-		Password.setBounds(194, 135, 96, 20);
-		contentPane.add(Password);
+		textField_Password = new JFormattedTextField();
+		textField_Password.setBounds(194, 135, 96, 20);
+		contentPane.add(textField_Password);
 		
 		jLabelMsg.setBounds(new Rectangle(300, 40, 325, 86));
 		jLabelMsg.setForeground(Color.red);
@@ -101,7 +101,7 @@ public class LoginGUI extends JFrame {
 				jLabelMsg.setText("");
 				BLFacade facade = MainGUI.getBusinessLogic();
 				String email = textField_Email.getText().trim();
-				String password = Password.getText().trim();
+				String password = textField_Password.getText().trim();
 				
 				if (email.isEmpty() || password.isEmpty()) {
 		            jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("Error.FillAllGaps"));

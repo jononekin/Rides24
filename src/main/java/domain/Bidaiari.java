@@ -1,6 +1,7 @@
 package domain;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -13,37 +14,35 @@ import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlIDREF;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import domain.Eskaera.EskaeraEgoera;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 public class Bidaiari extends User implements Serializable{
 	@XmlIDREF
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-	private List<Eskaera> eskaerak=new Vector<Eskaera>();
+	private ArrayList<Eskaera> eskaerak=new ArrayList<Eskaera>();
 
 	public Bidaiari() {}
 	
-	public Bidaiari(String email, String name) {
-		super(email, name);
+	public Bidaiari(String name, String pasahitza, String email, String nanZbk) {
+		super(name, pasahitza, email, nanZbk);
+		eskaerak = new ArrayList<Eskaera>();
 	}
 
 	
-	public Eskaera removeEskaera(String from, String to, Date date) {
-		boolean found=false;
-		int index=0;
-		Eskaera e=null;
-		while (!found && index<=eskaerak.size()) {
-			e=eskaerak.get(++index);
-			if ( (java.util.Objects.equals(e.getFrom(),from)) && (java.util.Objects.equals(e.getTo(),to)) && (java.util.Objects.equals(e.getDate(),date)) )
-			found=true;
+	public void removeEskaera() {
+		for (Eskaera esk: eskaerak) {
+			if(esk.getEgoera() == EskaeraEgoera.ACCEPTED) {
+				float itzuliDiruDriver = esk.getRide().getPrice()*esk.getNPlaces();
+				esk.getRide().getDriver().diruSartuDri(itzuliDiruDriver);
+			}
+			esk.setEgoera(EskaeraEgoera.CANCELLED);
 		}
-			
-		if (found) {
-			eskaerak.remove(index);
-			return e;
-		} else return null;
+				
 	}
 	
-	public Eskaera addEskaera(String from, String to, Date date, float prez)  {
+	/*public Eskaera addEskaera(String from, String to, Date date, float prez)  {
         Eskaera eskaera=new Eskaera(from,to,date,this, prez);
         eskaerak.add(eskaera);
         return eskaera;
@@ -54,9 +53,18 @@ public class Bidaiari extends User implements Serializable{
 			 return true;
 		
 		return false;
+	}*/
+	
+	public void ordaindu(float diru) {
+		super.setDirua(super.getDirua()-diru);
 	}
 	
-	public List<Eskaera> getEskaerak() {
+	public void diruSartuBid (float diru) {
+		super.setDirua(super.getDirua()+diru);		
+	}
+ 
+	
+	public ArrayList<Eskaera> getEskaerak() {
         return eskaerak;
     }
 }

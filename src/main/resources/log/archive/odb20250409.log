@@ -1,0 +1,29 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2025-04-09 09:55:33 #1 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' has been recovered (tr. 136-136)
+
+[2025-04-09 09:55:33 #2 store] 
+Database 'C:\Users\itxas\git\Rides24\src\main\resources\rides.temp' is opened by 14228@Itxaso
+
+[2025-04-09 09:55:33 #3 type] 
+Type domain.User is not enhanced.
+
+[2025-04-09 09:55:33 #4 type] 
+Type domain.Movement is not enhanced.
+
+[2025-04-09 09:55:33 #5 type] 
+Type domain.Driver is not enhanced.
+
+[2025-04-09 09:55:33 #6 type] 
+Type domain.Car is not enhanced.
+
+[2025-04-09 09:55:33 #7 type] 
+Type domain.Ride is not enhanced.
+
+[2025-04-09 09:55:33 #8 type] 
+Type domain.Bidaiari is not enhanced.
+
+[2025-04-09 09:55:33 #9 type] 
+Type domain.Eskaera is not enhanced.
+
