@@ -9,9 +9,12 @@ import java.util.List;
 import domain.Ride;
 import domain.User;
 import domain.Eskaera.EskaeraEgoera;
+import domain.Alerta;
+import domain.Balorazio;
 import domain.Bidaiari;
 import domain.Car;
 import domain.Driver;
+import domain.Erreklamazioa;
 import domain.Eskaera;
 import domain.Movement;
 import exceptions.*;
@@ -113,4 +116,15 @@ public interface BLFacade  {
 	@WebMethod public void amaituRide(Ride ride);
 	@WebMethod public List<Eskaera> getEskaerakBidaiari(Bidaiari bidaiari);
 	@WebMethod public void konfirmatuEskaera(Eskaera eskaera);
+	@WebMethod public void kantzelatuEskaera(Eskaera eskaera);
+	@WebMethod public boolean ezabatuUser(User user);
+	@WebMethod public User bilatuUserEmail(String email);
+	@WebMethod public List<Alerta> getUserAlertak(User user);
+	@WebMethod public void ezabatuAlertakUser(User user);
+	@WebMethod public void addBalorazioa(Balorazio balorazio);
+	@WebMethod public List<Balorazio> getUserBalorazioa(User user);
+	@WebMethod public List<Erreklamazioa> getUserErrek(User user);
+	@WebMethod public List<Erreklamazioa> getAllErrek();
+	@WebMethod public void acceptErrek(Erreklamazioa selectRk);
+	
 }

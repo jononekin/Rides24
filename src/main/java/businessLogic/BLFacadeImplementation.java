@@ -15,9 +15,12 @@ import dataAccess.DataAccess;
 import domain.Ride;
 import domain.User;
 import domain.Eskaera.EskaeraEgoera;
+import domain.Alerta;
+import domain.Balorazio;
 import domain.Bidaiari;
 import domain.Car;
 import domain.Driver;
+import domain.Erreklamazioa;
 import domain.Eskaera;
 import domain.Movement;
 import exceptions.*;
@@ -297,6 +300,66 @@ public class BLFacadeImplementation implements BLFacade {
 		dbManager.close();
 	}
 	
+	@WebMethod public void kantzelatuEskaera(Eskaera eskaera) {
+		dbManager.open();
+	    dbManager.kantzelatuEskaera(eskaera);
+		dbManager.close();
+	}
 	
+	@WebMethod public boolean ezabatuUser(User user) {
+		dbManager.open();
+	    boolean ondo = dbManager.ezabatuUser(user);
+		dbManager.close();
+		return ondo;
+	}
+	@WebMethod public User bilatuUserEmail(String email) {
+		dbManager.open();
+		User user = dbManager.bilatuUserEmail(email);
+		dbManager.close();
+		return user;
+	}
+	@WebMethod public List<Alerta> getUserAlertak(User user){
+		dbManager.open();
+		List<Alerta> alk = dbManager.getUserAlertak(user);
+		dbManager.close();
+		return alk;
+	}
+	
+	@WebMethod public void ezabatuAlertakUser(User user) {
+		dbManager.open();
+	    dbManager.ezabatuAlertakUser(user);
+		dbManager.close();
+	}
+	
+	@WebMethod public void addBalorazioa(Balorazio balorazio) {
+		dbManager.open();
+	    dbManager.addBalorazioa(balorazio);
+		dbManager.close();
+	}
+	
+	@WebMethod public List<Balorazio> getUserBalorazioa(User user){
+		dbManager.open();
+		List<Balorazio> alk = dbManager.getUserBalorazioa(user);
+		dbManager.close();
+		return alk;
+	}
+	@WebMethod public List<Erreklamazioa> getUserErrek(User user){
+		dbManager.open();
+		List<Erreklamazioa> errek = dbManager.getUserErrek(user);
+		dbManager.close();
+		return errek;
+	}
+	@WebMethod public List<Erreklamazioa> getAllErrek(){
+		dbManager.open();
+		List<Erreklamazioa> errek = dbManager.getAllErrek();
+		dbManager.close();
+		return errek;
+	}
+	
+	@WebMethod public void acceptErrek(Erreklamazioa selectRk) {
+		dbManager.open();
+	    dbManager.acceptErrek(selectRk);
+		dbManager.close();
+	}
 
 }

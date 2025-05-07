@@ -14,9 +14,11 @@ import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlIDREF;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import domain.Alerta.AlertMota;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-public abstract class User implements Serializable{
+public abstract class User implements Serializable {
 
 	@XmlID
 	@Id
@@ -26,21 +28,44 @@ public abstract class User implements Serializable{
 	private String tlf;
 	private String pasahitza;
 	private float dirua;
+	private int ezIrakAlertak;
+
 	@XmlIDREF
-	@OneToMany (fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private ArrayList<Movement> mugimenduak = new ArrayList<Movement>();
+
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private ArrayList<Alerta> alertak = new ArrayList<Alerta>();
+
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private ArrayList<Balorazio> balorazioak = new ArrayList<Balorazio>();
 	
-	public User() {}
-	
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private ArrayList<Erreklamazioa> errek = new ArrayList<Erreklamazioa>();
+
+	public ArrayList<Erreklamazioa> getErrek() {
+		return errek;
+	}
+
+	public void setErrek(ArrayList<Erreklamazioa> errek) {
+		this.errek = errek;
+	}
+
+	public User() {
+	}
 
 	public User(String name, String pasahitza, String email, String nanZbk) {
 		this.email = email;
 		this.name = name;
-		this.pasahitza=pasahitza;
-		this.nanZbk=nanZbk;
+		this.pasahitza = pasahitza;
+		this.nanZbk = nanZbk;
 		this.mugimenduak = new ArrayList<Movement>();
-		
+		this.alertak = new ArrayList<Alerta>();
+		this.balorazioak = new ArrayList<Balorazio>();
+		this.errek = new ArrayList<Erreklamazioa>();
+
 	}
+
 	public ArrayList<Movement> getMugimenduak() {
 		return mugimenduak;
 	}
@@ -48,12 +73,29 @@ public abstract class User implements Serializable{
 	public void setMugimenduak(ArrayList<Movement> mugimenduak) {
 		this.mugimenduak = mugimenduak;
 	}
+
 	public float getDirua() {
 		return dirua;
 	}
 
 	public void setDirua(float dirua) {
 		this.dirua = dirua;
+	}
+
+	public int getEzIrakAlertak() {
+		return ezIrakAlertak;
+	}
+
+	public void setEzIrakAlertak(int ezIrakAlertak) {
+		this.ezIrakAlertak = ezIrakAlertak;
+	}
+
+	public ArrayList<Alerta> getAlertak() {
+		return alertak;
+	}
+
+	public void setAlertak(ArrayList<Alerta> alertak) {
+		this.alertak = alertak;
 	}
 
 	public String getEmail() {
@@ -113,7 +155,6 @@ public abstract class User implements Serializable{
 		return Objects.equals(email, other.email);
 	}
 
-
 	@Override
 	public String toString() {
 		return "User [email=" + email + ", name=" + name + ", nanZbk=" + nanZbk + ", tlf=" + tlf + ", pasahitza="
@@ -128,10 +169,33 @@ public abstract class User implements Serializable{
 		return false;
 	}
 
-	public Movement addMovement( float diruKantitatea, String mota) {
+	public Movement addMovement(float diruKantitatea, String mota) {
 		Movement mov = new Movement(this, diruKantitatea, mota);
 		mugimenduak.add(mov);
 		return mov;
+	}
+
+	public Balorazio addBalorazioa(Balorazio balorazio) {
+		balorazioak.add(balorazio);
+		return balorazio;
+	}
+
+	public ArrayList<Balorazio> getBalorazioak() {
+		return balorazioak;
+	}
+
+	public void setBalorazioak(ArrayList<Balorazio> balorazioak) {
+		this.balorazioak = balorazioak;
+	}
+
+	public Alerta addAlert(User user, AlertMota mota) {
+		Alerta ale = new Alerta(this, mota);
+		alertak.add(ale);
+		return ale;
+	}
+
+	public void ezabatuAlertakUser() {
+		mugimenduak.clear();
 	}
 
 }

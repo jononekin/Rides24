@@ -20,7 +20,6 @@ import domain.Eskaera.EskaeraEgoera;
 public class Ride implements Serializable {
 	public enum RideEgoera{
 		PENDING,
-		//ONGOING,
 		FINISHED,
 		CANCELLED,
 	}

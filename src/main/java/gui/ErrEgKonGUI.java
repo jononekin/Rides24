@@ -55,8 +55,10 @@ public class ErrEgKonGUI extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		JButton btnNewButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ErrEgKon.Confirm"));
-		btnNewButton.setVisible(false);
+		JButton konfirmatu = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ErrEgKon.Confirm"));
+		konfirmatu.setVisible(false);
+		JButton kantzelatu = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ErrEgKonGUI.btnNewButton_1.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		kantzelatu.setVisible(false);
 		
 		JComboBox Erreserbak = new JComboBox();
 		Erreserbak.addActionListener(new ActionListener() {
@@ -74,9 +76,14 @@ public class ErrEgKonGUI extends JFrame {
 			    fechaRide.set(Calendar.SECOND, 0);
 			    fechaRide.set(Calendar.MILLISECOND, 0);
 				if (gaur.after(fechaRide) && (selectedEskaera.getEgoera() == EskaeraEgoera.FINISHED)) { //gaur.equals(fechaRide)||
-					btnNewButton.setVisible(true);
+					konfirmatu.setVisible(true);
 				}else {
-					btnNewButton.setVisible(false);
+					konfirmatu.setVisible(false);
+				}
+				if ((selectedEskaera.getEgoera() == EskaeraEgoera.PENDING) || (selectedEskaera.getEgoera() == EskaeraEgoera.ACCEPTED)) {
+					kantzelatu.setVisible(true);
+				}else {
+					kantzelatu.setVisible(false);
 				}
 			}
 		});
@@ -84,12 +91,14 @@ public class ErrEgKonGUI extends JFrame {
 		jLabelMsg.setForeground(Color.red);
 		
 		this.getContentPane().add(jLabelMsg, null);
-		btnNewButton.addActionListener(new ActionListener() {
+		konfirmatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				jLabelMsg.setText("");
 				BLFacade facade = MainGUI.getBusinessLogic();
 				Eskaera selectedEskaera = (Eskaera) Erreserbak.getSelectedItem();
 				facade.konfirmatuEskaera(selectedEskaera);
+				JFrame a = new BalorazioaGUI(bidaiari, selectedEskaera.getRide().getDriver());
+				a.setVisible(true);
 			}
 		});
 
@@ -111,7 +120,17 @@ public class ErrEgKonGUI extends JFrame {
 		Erreserbak_txt.setBounds(140, 36, 282, 14);
 		contentPane.add(Erreserbak_txt);
 
-		btnNewButton.setBounds(163, 200, 292, 23);
-		contentPane.add(btnNewButton);
+		konfirmatu.setBounds(163, 185, 292, 23);
+		contentPane.add(konfirmatu);
+		
+		kantzelatu.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			BLFacade facade = MainGUI.getBusinessLogic();
+			Eskaera selectedEskaera = (Eskaera) Erreserbak.getSelectedItem();
+			facade.kantzelatuEskaera(selectedEskaera);
+		}
+		});
+		kantzelatu.setBounds(163, 229, 292, 23);
+		contentPane.add(kantzelatu);
 	}
 }
