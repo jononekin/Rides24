@@ -64,13 +64,9 @@ public class DiruaSartuGUI extends JFrame {
 				String diru = textField.getText().trim();
 				try {
 					int diruZenb = Integer.parseInt(diru);
-					boolean ondo = facade.diruaSartu(bidaiari, diruZenb);
-					if (ondo) {
-						facade.addMovement(diruZenb, "+", bidaiari);
-						((JFrame) SwingUtilities.getWindowAncestor(btnNewButton)).dispose();
-					} else {
-						jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("Error"));
-					}
+					facade.diruaSartu(bidaiari, diruZenb);
+					
+					((JFrame) SwingUtilities.getWindowAncestor(btnNewButton)).dispose();
 				} catch (NumberFormatException i) {
 					jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("Error"));
 				}

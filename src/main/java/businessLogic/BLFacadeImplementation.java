@@ -101,13 +101,6 @@ public class BLFacadeImplementation implements BLFacade {
 	}
 	
 
-	@WebMethod
-	public Movement addMovement( float diruKantitatea, String mota, User user) {
-		dbManager.open();
-		Movement mov = dbManager.addMovement( diruKantitatea, mota, user);
-		dbManager.close();
-		return mov;
-	}
 
 	/**
 	 * {@inheritDoc}
@@ -359,6 +352,30 @@ public class BLFacadeImplementation implements BLFacade {
 	@WebMethod public void acceptErrek(Erreklamazioa selectRk) {
 		dbManager.open();
 	    dbManager.acceptErrek(selectRk);
+		dbManager.close();
+	}
+	
+	@WebMethod public void rejectErrekUser(Erreklamazioa selectRk) {
+		dbManager.open();
+	    dbManager.rejectErrekUser(selectRk);
+		dbManager.close();
+	}
+	
+	@WebMethod public void rejectErrekAdmin(Erreklamazioa selectRk) {
+		dbManager.open();
+	    dbManager.rejectErrekAdmin(selectRk);
+		dbManager.close();
+	}
+	
+	@WebMethod public void AcceptWithChange(Erreklamazioa erreklamazio, int num) {
+		dbManager.open();
+	    dbManager.AcceptWithChange(erreklamazio, num);
+		dbManager.close();
+	}
+	
+	@WebMethod public void addErreklamazio(Erreklamazioa errekJarri) {
+		dbManager.open();
+	    dbManager.addErreklamazio(errekJarri);
 		dbManager.close();
 	}
 

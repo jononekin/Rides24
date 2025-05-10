@@ -40,8 +40,8 @@ public class MainGidariGUI extends JFrame {
 		super();
 		setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainGidariGUI.Title"));
 	    setBounds(100, 100, 495, 290);
-		
-		this.setSize(495, 415);
+	    setTitle(driver.getEmail());
+		this.setSize(495, 649);
 		jLabelSelectOption = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("MainGidariGUI.Title"));
 		jLabelSelectOption.setBounds(0, 11, 481, 60);
 		jLabelSelectOption.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -102,6 +102,65 @@ public class MainGidariGUI extends JFrame {
 				a.setVisible(true);
 			}
 		});
+		
+		
+		JButton deletUser = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.DeleteUser"));
+		deletUser.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrame a = new DeleteUserGUI(driver);
+				a.setVisible(true);
+			}
+		});
+		deletUser.setBounds(0, 368, 481, 60);
+		contentPane.add(deletUser);
+		
+		JButton notifikazioak = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.Notifications") +" " /*+ driver.getAlertak().size()*/);
+		notifikazioak.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					System.out.println("in aurretik lo de visible ta new");
+					JFrame a = new AlertaGUI(driver);
+					System.out.println(" new in ostian");
+					a.setVisible(true);
+				}catch(Exception ex) {
+					System.err.println("Error al llamar a AlertaGUI:");
+		            ex.printStackTrace();
+				}
+			}
+		});
+		notifikazioak.setBounds(0, 428, 481, 60);
+		contentPane.add(notifikazioak);
+		
+		JButton jarriErrek = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.MakeReclamation"));
+		jarriErrek.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrame a = new JarriErreklamGUI(driver);
+				a.setVisible(true);
+			}
+		});
+		jarriErrek.setBounds(0, 488, 240, 60);
+		contentPane.add(jarriErrek);
+		
+		JButton kontsultatuErrek = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.Kontsultatu"));
+		kontsultatuErrek.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrame a = new KontsultatuErrekGUI(driver);
+				a.setVisible(true);
+			}
+		});
+		kontsultatuErrek.setBounds(241, 488, 240, 60);
+		contentPane.add(kontsultatuErrek);
+		
+		JButton nireBalor = new JButton(ResourceBundle.getBundle("Etiquetas").getString("OnartuGUI.See"));
+		nireBalor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrame a = new ProfilaGUI(driver);
+				a.setVisible(true);
+			}
+		});
+		nireBalor.setBounds(0, 548, 481, 60);
+		contentPane.add(nireBalor);
+		
 		jButtonMugimenduak.setBounds(0, 308, 481, 60);
 		contentPane.add(jButtonMugimenduak);
 		addWindowListener(new WindowAdapter() {

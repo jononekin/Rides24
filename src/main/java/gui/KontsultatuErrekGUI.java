@@ -78,6 +78,12 @@ public class KontsultatuErrekGUI extends JFrame {
 		contentPane.add(Acept);
 		
 		JButton reject = new JButton("New button");
+		reject.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Erreklamazioa selectRk = (Erreklamazioa) jasoDituzunak.getSelectedItem();
+				facade.rejectErrekUser(selectRk);
+			}
+		});
 		reject.setBounds(243, 136, 89, 23);
 		contentPane.add(reject);
 		

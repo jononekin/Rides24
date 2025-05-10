@@ -12,6 +12,9 @@ import businessLogic.BLFacade;
 import domain.Balorazio;
 import domain.Bidaiari;
 import domain.Driver;
+import domain.Eskaera;
+import domain.Eskaera.EskaeraEgoera;
+import domain.Ride;
 import domain.User;
 
 import javax.swing.JRadioButton;
@@ -19,8 +22,10 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
 
 public class BalorazioaGUI extends JFrame {
 
@@ -35,7 +40,7 @@ public class BalorazioaGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public BalorazioaGUI(User userJarri, User userJaso) {
+	public BalorazioaGUI(User userJarri, User userJaso, Ride ride) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 413, 300);
 		contentPane = new JPanel();
@@ -53,7 +58,7 @@ public class BalorazioaGUI extends JFrame {
 		contentPane.add(a2);
 		
 		JLabel Baloratu = new JLabel("New label");
-		Baloratu.setBounds(132, 48, 115, 14);
+		Baloratu.setBounds(132, 33, 115, 14);
 		contentPane.add(Baloratu);
 		
 		JRadioButton a3 = new JRadioButton("3");
@@ -76,14 +81,32 @@ public class BalorazioaGUI extends JFrame {
 		lblNewLabel.setBounds(132, 138, 49, 14);
 		contentPane.add(lblNewLabel);
 		
-		jLabelMsg.setBounds(new Rectangle(34, 73, 305, 20));
+		jLabelMsg.setBounds(new Rectangle(41, 118, 305, 20));
 		jLabelMsg.setForeground(Color.red);
 		
 		this.getContentPane().add(jLabelMsg, null);
 		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.addActionListener(new ActionListener() {
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(36, 58, 310, 22);
+		contentPane.add(comboBox);
+		if(userJarri instanceof Driver) {
+			comboBox.setVisible(true);
+		}else{
+			comboBox.setVisible(false);
+		}
+		
+		
+		
+		JButton baloratu = new JButton("New button");
+		baloratu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ArrayList<Eskaera> eskList = ride.getEskaerenList();
+				for(Eskaera eska:eskList) {
+					if(eska.getEgoera() != EskaeraEgoera.VALUED) {
+						comboBox.addItem(eska);
+					}
+					
+				}
 				BLFacade facade = MainGUI.getBusinessLogic();
 				String deskribapena = textArea.getText();
 				int nota = 0;
@@ -98,15 +121,14 @@ public class BalorazioaGUI extends JFrame {
 				}else {
 					nota=5;
 				}
-				if(!a1.isSelected() || !a2.isSelected() || !a3.isSelected() || !a4.isSelected()|| !a5.isSelected()) {
+				if(!a1.isSelected() || !a2.isSelected() || !a3.isSelected() || !a4.isSelected()|| !a5.isSelected() || (comboBox.getSelectedItem() == null)) {                         
 					jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("Error"));
 				}else {
-					Balorazio balorazio = new Balorazio(userJarri, userJaso, deskribapena, nota);
+					Balorazio balorazio = new Balorazio(userJarri, userJaso, deskribapena, nota, (Eskaera) comboBox.getSelectedItem());
 					if (userJarri instanceof Driver) {
 						facade.addBalorazioa(balorazio);
-						JFrame a = new MainGidariGUI((Driver) userJarri);
-						a.setVisible(true);
 					}else {
+						facade.addBalorazioa(balorazio);
 						JFrame a = new MainBidaiariGUI((Bidaiari) userJarri);
 						a.setVisible(true);
 					}	
@@ -115,7 +137,21 @@ public class BalorazioaGUI extends JFrame {
 				
 			}
 		});
-		btnNewButton.setBounds(133, 229, 89, 23);
-		contentPane.add(btnNewButton);
+		baloratu.setBounds(257, 229, 89, 23);
+		contentPane.add(baloratu);
+		
+		JButton itxi = new JButton("New button");
+		itxi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		itxi.setBounds(53, 229, 89, 23);
+		contentPane.add(itxi);
+		
+		
+		
+		
+		
 	}
 }

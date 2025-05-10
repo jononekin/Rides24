@@ -1,9 +1,15 @@
 package domain;
 
+import java.io.Serializable;
+
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-public class Erreklamazioa {
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+@XmlAccessorType(XmlAccessType.FIELD)
+@Entity
+public class Erreklamazioa implements Serializable{
 	@Id 
 	@GeneratedValue
 	private Integer id;
@@ -17,6 +23,7 @@ public class Erreklamazioa {
 		PENDING,
 		REJECTED,
 		ACCEPTED,
+		ADMIN
 	}
 	private ErrekLarri larri;
 	public enum ErrekLarri{
@@ -25,24 +32,24 @@ public class Erreklamazioa {
 		HANDIA,
 	}
 	
-	public Erreklamazioa(User errekJarri, User errekJaso, Eskaera eskaera, String deskribapena, ErrekMota mota,
-			float diru, ErrekLarri larri) {
+	public Erreklamazioa(User errekJarri, User errekJaso, Eskaera eskaera, String deskribapena,
+			float diru, ErrekLarri larri) { //Erreklamazioa(User, Driver, Eskaera, String, float)
 		super();
 		this.errekJarri = errekJarri;
 		this.errekJaso = errekJaso;
 		this.eskaera = eskaera;
 		this.deskribapena = deskribapena;
-		this.mota = mota;
+		this.mota = ErrekMota.PENDING;
 		this.diru = diru;
 		this.larri=larri;
 	}
-	public Erreklamazioa(User errekJarri, User errekJaso, Eskaera eskaera, String deskribapena, ErrekMota mota) {
+	public Erreklamazioa(User errekJarri, User errekJaso, Eskaera eskaera, String deskribapena, float diru) {
 		super();
 		this.errekJarri = errekJarri;
 		this.errekJaso = errekJaso;
 		this.eskaera = eskaera;
 		this.deskribapena = deskribapena;
-		this.mota = mota;
+		this.mota = ErrekMota.PENDING;
 	}
 	public Integer getId() {
 		return id;
@@ -76,6 +83,12 @@ public class Erreklamazioa {
 	}
 	public ErrekMota getMota() {
 		return mota;
+	}
+	public ErrekLarri getLarri() {
+		return larri;
+	}
+	public void setLarri(ErrekLarri larri) {
+		this.larri = larri;
 	}
 	public void setMota(ErrekMota mota) {
 		this.mota = mota;

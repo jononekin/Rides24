@@ -42,18 +42,6 @@ public class Bidaiari extends User implements Serializable{
 				
 	}
 	
-	/*public Eskaera addEskaera(String from, String to, Date date, float prez)  {
-        Eskaera eskaera=new Eskaera(from,to,date,this, prez);
-        eskaerak.add(eskaera);
-        return eskaera;
-	}
-	public boolean doesEskaeraExists(String from, String to, Date date)  {	
-		for (Eskaera e:eskaerak)
-			if ( (java.util.Objects.equals(e.getFrom(),from)) && (java.util.Objects.equals(e.getTo(),to)) && (java.util.Objects.equals(e.getDate(),date)) )
-			 return true;
-		
-		return false;
-	}*/
 	
 	public void ordaindu(float diru) {
 		super.setDirua(super.getDirua()-diru);

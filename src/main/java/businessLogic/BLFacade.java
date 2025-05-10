@@ -106,7 +106,6 @@ public interface BLFacade  {
 	@WebMethod public List<Car> getDriverCars(Driver driver); 
 	@WebMethod public Eskaera createEskaera(User user, Ride ride, int nPlaces) throws RequestAlreadyExistException;
 	@WebMethod public boolean addCar(String licensePlate, int places, String model, String color, String driverEmail);
-	@WebMethod public Movement addMovement(float diruKantitatea, String mota, User user);
 	@WebMethod public void kantzelatuRide(Ride ride);
 	//@WebMethod public boolean ezabatuEskaera(Eskaera eskaera);
 	
@@ -126,5 +125,10 @@ public interface BLFacade  {
 	@WebMethod public List<Erreklamazioa> getUserErrek(User user);
 	@WebMethod public List<Erreklamazioa> getAllErrek();
 	@WebMethod public void acceptErrek(Erreklamazioa selectRk);
+	@WebMethod public void rejectErrekUser(Erreklamazioa selectRk);
+	@WebMethod public void rejectErrekAdmin(Erreklamazioa selectRk);
+	@WebMethod public void AcceptWithChange(Erreklamazioa erreklamazio, int num);
+	@WebMethod public void addErreklamazio(Erreklamazioa errekJarri);
+	
 	
 }

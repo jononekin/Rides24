@@ -15,6 +15,9 @@ import domain.User;
 
 import javax.swing.JScrollPane;
 import javax.swing.JList;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ProfilaGUI extends JFrame {
 
@@ -46,6 +49,15 @@ public class ProfilaGUI extends JFrame {
 		scrollPane.setViewportView(movListView);
 		contentPane.add(scrollPane);
 		movListView.setBounds(71, 47, 305, 175);
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnNewButton.setBounds(172, 212, 89, 23);
+		contentPane.add(btnNewButton);
 		BLFacade facade = MainGUI.getBusinessLogic();
 		List<Balorazio> movList = facade.getUserBalorazioa(user);
 		for (Balorazio mov : movList) {

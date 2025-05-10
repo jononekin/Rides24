@@ -10,6 +10,7 @@ import javax.xml.ws.Service;
 
 import configuration.ConfigXML;
 import dataAccess.DataAccess;
+import domain.Admin;
 import domain.Driver;
 import businessLogic.BLFacade;
 import businessLogic.BLFacadeImplementation;
@@ -29,8 +30,8 @@ public class ApplicationLauncher {
 		System.out.println("Locale: "+Locale.getDefault());
 		
 	    Driver driver=new Driver("driver3@gmail.com", "Test Driver", "0","0");
-
-		
+	    
+	    
 		MainGUI a=new MainGUI(driver);
 	    //MainGidariGUI a = new MainGidariGUI(driver);
 		a.setVisible(true);

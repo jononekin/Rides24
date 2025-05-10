@@ -107,6 +107,7 @@ public class KantzelatuGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Ride rideSelect = (Ride) rides.getSelectedItem();
 				facade.amaituRide(rideSelect);
+				
 			}
 		});
 		btnFinished.setBounds(21, 182, 190, 23);

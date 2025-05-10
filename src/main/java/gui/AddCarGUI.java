@@ -20,7 +20,7 @@ import java.awt.event.ActionEvent;
 
 public class AddCarGUI extends JFrame {
 
-    //private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     private JTextField licensePlate;
     private JTextField model;
@@ -59,6 +59,7 @@ public class AddCarGUI extends JFrame {
 
         model = new JTextField();
         model.setBounds(178, 114, 168, 19);
+        model.setText("a");
         contentPane.add(model);
         model.setColumns(10);
 
@@ -72,11 +73,13 @@ public class AddCarGUI extends JFrame {
 
         places = new JTextField();
         places.setBounds(178, 149, 168, 19);
+        places.setText("3");
         contentPane.add(places);
         places.setColumns(10);
 
         color = new JTextField();
         color.setBounds(178, 182, 168, 19);
+        color.setText("black");
         contentPane.add(color);
         color.setColumns(10);
         

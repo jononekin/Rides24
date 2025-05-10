@@ -81,7 +81,6 @@ public class RequestRideGUI extends JFrame {
 				rides.addItem(ride);
 			}
 		}
-		
 		lekuKop = new JTextField();
 		lekuKop.setBounds(219, 183, 96, 20);
 		getContentPane().add(lekuKop);
@@ -96,19 +95,35 @@ public class RequestRideGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Ride selectedRide = (Ride) rides.getSelectedItem();
+					System.out.println("Null da ride?" + selectedRide.getPrice());
+					System.out.println("Null da bidaiari?" + bidaiari.getEmail());
 					int lekuKopuru = Integer.parseInt(lekuKop.getText());
+					System.out.println("createEskaera Aurretik----------------------");
 					facade.createEskaera(bidaiari, selectedRide, lekuKopuru);
 				}catch (RequestAlreadyExistException a) {
 					jLabelMsg.setText(a.getMessage());
-				}
+				}catch (Exception ex) {
+		            System.err.println("Error al llamar a createEskaera:");
+		            ex.printStackTrace();
+		        }
 			}
 
 		});
-		request.setBounds(179, 263, 193, 23);
+		request.setBounds(354, 263, 193, 23);
 		getContentPane().add(request);
 		
-	}	 
+		JButton seeProfile = new JButton(ResourceBundle.getBundle("Etiquetas").getString("OnartuGUI.See")); //$NON-NLS-1$ //$NON-NLS-2$
+		seeProfile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Ride selectedRide = (Ride) rides.getSelectedItem();
+				JFrame a = new ProfilaGUI(selectedRide.getDriver());
+				a.setVisible(true);
+			}
+		});
+		seeProfile.setBounds(58, 263, 89, 23);
+		getContentPane().add(seeProfile);
 		
+	}	 
 }		
 		
 		

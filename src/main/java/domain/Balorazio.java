@@ -2,27 +2,39 @@ package domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-
+@XmlAccessorType(XmlAccessType.FIELD)
+@Entity
 public class Balorazio implements Serializable {
 	@Id @XmlID
 	@XmlJavaTypeAdapter(IntegerAdapter.class)
 	@GeneratedValue
-	private int ID;
+	private Integer ID;
 	private User userJarri;
 	private User userJaso;
 	private String deskribapena;
 	private int nota;
+	private Eskaera eskaera;
 	
-	public Balorazio(User userJarri, User userJaso, String deskribapena, int nota) {
+	public Balorazio(User userJarri, User userJaso, String deskribapena, int nota, Eskaera eskaera) {
 		super();
 		this.userJarri = userJarri;
 		this.userJaso = userJaso;
 		this.deskribapena = deskribapena;
 		this.nota = nota;
+		this.eskaera = eskaera;
+	}
+	public Eskaera getEskaera() {
+		return eskaera;
+	}
+	public void setEskaera(Eskaera eskaera) {
+		this.eskaera = eskaera;
 	}
 	@Override
 	public String toString() {

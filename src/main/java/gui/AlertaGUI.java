@@ -36,6 +36,7 @@ public class AlertaGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public AlertaGUI(User user) {
+		System.out.println("AlertaGUI-an nago");
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

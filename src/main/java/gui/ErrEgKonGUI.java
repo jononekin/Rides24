@@ -57,7 +57,7 @@ public class ErrEgKonGUI extends JFrame {
 		contentPane.setLayout(null);
 		JButton konfirmatu = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ErrEgKon.Confirm"));
 		konfirmatu.setVisible(false);
-		JButton kantzelatu = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ErrEgKonGUI.btnNewButton_1.text")); //$NON-NLS-1$ //$NON-NLS-2$
+		JButton kantzelatu = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ErrEgKonGUI.Cancel")); 
 		kantzelatu.setVisible(false);
 		
 		JComboBox Erreserbak = new JComboBox();
@@ -97,7 +97,7 @@ public class ErrEgKonGUI extends JFrame {
 				BLFacade facade = MainGUI.getBusinessLogic();
 				Eskaera selectedEskaera = (Eskaera) Erreserbak.getSelectedItem();
 				facade.konfirmatuEskaera(selectedEskaera);
-				JFrame a = new BalorazioaGUI(bidaiari, selectedEskaera.getRide().getDriver());
+				JFrame a = new BalorazioaGUI(bidaiari, selectedEskaera.getRide().getDriver(), selectedEskaera.getRide());
 				a.setVisible(true);
 			}
 		});

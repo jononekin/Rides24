@@ -75,7 +75,7 @@ public class OnartuGUI2 extends JFrame {
 		
 		contentPane.add(eskaerak);
 
-		jLabelMsg.setBounds(new Rectangle(81, 214, 305, 20));
+		jLabelMsg.setBounds(new Rectangle(147, 137, 305, 20));
 		jLabelMsg.setForeground(Color.red);
 		contentPane.add(jLabelMsg);
 
@@ -112,6 +112,17 @@ public class OnartuGUI2 extends JFrame {
 		});
 		reject.setBounds(363, 180, 89, 23);
 		contentPane.add(reject);
+		
+		JButton seeProfile = new JButton(ResourceBundle.getBundle("Etiquetas").getString("OnartuGUI.See")); //$NON-NLS-1$ //$NON-NLS-2$
+		seeProfile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Eskaera selectedEskaera = (Eskaera) eskaerak.getSelectedItem();
+				JFrame a = new ProfilaGUI(selectedEskaera.getBidaiari());
+				a.setVisible(true);
+			}
+		});
+		seeProfile.setBounds(255, 214, 89, 23);
+		contentPane.add(seeProfile);
 	}
 }
 

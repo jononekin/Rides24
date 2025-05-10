@@ -30,7 +30,8 @@ public class Eskaera implements Serializable{
 		CANCELLED,
 		FINISHED,
 		COMPLAINED,
-		CONFIRMED
+		CONFIRMED,
+		VALUED
 	}
 	
 	@XmlID

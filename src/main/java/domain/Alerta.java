@@ -2,16 +2,17 @@ package domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-
+@XmlAccessorType(XmlAccessType.FIELD)
+@Entity
 public class Alerta implements Serializable{
-	@Id @XmlID
-	@XmlJavaTypeAdapter(IntegerAdapter.class)
-	@GeneratedValue
-	private int ID;	
+	
 	public enum AlertMota{
 		DIRUA_SARTU,
 		DIRUA_ATERA,
@@ -21,11 +22,21 @@ public class Alerta implements Serializable{
 		ESKAERA_EGIN, //Gidari
 		ESKAERA_EZONARTUA, //Bidaiari
 		BIDAIA_AMAITUTA, //Bidaiari
-		BALORATUTA
+		BALORATUTA,
+		ERREKLAMATUTA,
+		ERREKLAMAZIOA_ONARTUTA,
+		ERREKLAMAZIOA_DEUSESTATUTA,
+		ADMINAK_ERREKLAMAZIOA_DEUSESTATU,
+		ADMINAK_ERREKLAMAZIOA_ONARTU
 	}
+	
+	@Id @XmlID
+	@XmlJavaTypeAdapter(IntegerAdapter.class)
+	@GeneratedValue
+	private Integer ID;	
 	private AlertMota mota; 
 	private User user;
-
+	
 	public Alerta(User user, AlertMota mota ) {	
 		this.user=user;
 		this.mota=mota;

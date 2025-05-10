@@ -88,6 +88,7 @@ public class SignUpGUI extends JFrame {
 		
 		textField_NameSur = new JTextField();
 		textField_NameSur.setBounds(194, 42, 96, 20);
+		textField_NameSur.setText("a");
 		contentPane.add(textField_NameSur);
 		textField_NameSur.setColumns(10);
 		
@@ -97,6 +98,7 @@ public class SignUpGUI extends JFrame {
 		
 		textField = new JTextField();
 		textField.setBounds(194, 74, 96, 20);
+		textField.setText("1");
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
@@ -106,6 +108,7 @@ public class SignUpGUI extends JFrame {
 		
 		textField_Tlf = new JTextField();
 		textField_Tlf.setBounds(194, 106, 96, 20);
+		textField_Tlf.setText("1");
 		contentPane.add(textField_Tlf);
 		textField_Tlf.setColumns(10);
 		
@@ -115,6 +118,7 @@ public class SignUpGUI extends JFrame {
 		
 		textField_Email = new JTextField();
 		textField_Email.setBounds(194, 138, 96, 20);
+		textField_Email.setText("@gmail.com");
 		contentPane.add(textField_Email);
 		textField_Email.setColumns(10);
 		

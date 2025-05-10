@@ -28,7 +28,6 @@ public abstract class User implements Serializable {
 	private String tlf;
 	private String pasahitza;
 	private float dirua;
-	private int ezIrakAlertak;
 
 	@XmlIDREF
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -82,13 +81,6 @@ public abstract class User implements Serializable {
 		this.dirua = dirua;
 	}
 
-	public int getEzIrakAlertak() {
-		return ezIrakAlertak;
-	}
-
-	public void setEzIrakAlertak(int ezIrakAlertak) {
-		this.ezIrakAlertak = ezIrakAlertak;
-	}
 
 	public ArrayList<Alerta> getAlertak() {
 		return alertak;
@@ -169,8 +161,7 @@ public abstract class User implements Serializable {
 		return false;
 	}
 
-	public Movement addMovement(float diruKantitatea, String mota) {
-		Movement mov = new Movement(this, diruKantitatea, mota);
+	public Movement addMovement(Movement mov) {
 		mugimenduak.add(mov);
 		return mov;
 	}
@@ -188,14 +179,17 @@ public abstract class User implements Serializable {
 		this.balorazioak = balorazioak;
 	}
 
-	public Alerta addAlert(User user, AlertMota mota) {
-		Alerta ale = new Alerta(this, mota);
-		alertak.add(ale);
-		return ale;
+	public Alerta addAlert(Alerta alert) {
+		alertak.add(alert);
+		System.out.println("User-eko addAlert metodora iritsi da");
+		return alert;
 	}
-
+	public Erreklamazioa addErrek(Erreklamazioa errek1) {
+		errek.add(errek1);
+		return errek1;
+	}
 	public void ezabatuAlertakUser() {
-		mugimenduak.clear();
+		alertak.clear();
 	}
 
 }
