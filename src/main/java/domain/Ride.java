@@ -44,8 +44,7 @@ public class Ride implements Serializable {
 	private Driver driver;  
 	
 	public Ride(){
-		super();
-		this.setEgoera(RideEgoera.PENDING);
+		
 	}
 	public Ride(Integer rideNumber, String from, String to, Date date, int nPlaces, float price, Driver driver) {
 		super();

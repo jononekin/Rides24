@@ -23,6 +23,7 @@ import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -57,25 +58,21 @@ public class JarriErreklamGUI extends JFrame {
 		contentPane.add(textArea);
 		String sartutakoTxt = textArea.getText();
 		
-		JRadioButton leve = new JRadioButton("New radio button");
+		JRadioButton leve = new JRadioButton(ResourceBundle.getBundle("Etiquetas").getString("AWC.Leve"));
 		leve.setBounds(29, 179, 111, 23);
 		contentPane.add(leve);
 		
-		JRadioButton intermedio = new JRadioButton("New radio button");
+		JRadioButton intermedio = new JRadioButton(ResourceBundle.getBundle("Etiquetas").getString("AWC.Mediano"));
 		intermedio.setBounds(169, 179, 111, 23);
 		contentPane.add(intermedio);
 		
-		JRadioButton grave = new JRadioButton("New radio button");
+		JRadioButton grave = new JRadioButton(ResourceBundle.getBundle("Etiquetas").getString("AWC.Grave"));
 		grave.setBounds(308, 179, 111, 23);
 		contentPane.add(grave);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(29, 68, 390, 22);
+		comboBox.setBounds(29, 58, 390, 22);
 		contentPane.add(comboBox);
-		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(93, 29, 281, 14);
-		contentPane.add(lblNewLabel);
 		
 		Eskaera eskSelect = (Eskaera) comboBox.getSelectedItem();
 		
@@ -113,13 +110,13 @@ public class JarriErreklamGUI extends JFrame {
 			}
 			
 		}
-		JButton btnNewButton = new JButton("Boton");
+		JButton btnNewButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Accept"));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				facade.addErreklamazio(errekJarri);
 			}
 		});
-		btnNewButton.setBounds(183, 216, 61, 23);
+		btnNewButton.setBounds(169, 216, 89, 23);
 		contentPane.add(btnNewButton);
 		
 	}

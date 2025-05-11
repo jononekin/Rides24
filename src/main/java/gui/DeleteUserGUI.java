@@ -16,6 +16,7 @@ import domain.User;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
 import java.awt.event.ActionEvent;
 
 public class DeleteUserGUI extends JFrame {
@@ -42,11 +43,11 @@ public class DeleteUserGUI extends JFrame {
 		jLabelMsg.setForeground(Color.red);
 		contentPane.add(jLabelMsg);
 		
-		JLabel sure = new JLabel("New label");
-		sure.setBounds(179, 66, 49, 14);
+		JLabel sure = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Delete.USure"));
+		sure.setBounds(66, 66, 305, 14);
 		contentPane.add(sure);
 		
-		JButton yes = new JButton("New button");
+		JButton yes = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Delete.Yes"));
 		yes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				BLFacade facade = MainGUI.getBusinessLogic();
@@ -56,7 +57,7 @@ public class DeleteUserGUI extends JFrame {
 		yes.setBounds(289, 167, 89, 23);
 		contentPane.add(yes);
 		
-		JButton cancel = new JButton("New button");
+		JButton cancel = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Delete.No"));
 		cancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(user instanceof Bidaiari) {

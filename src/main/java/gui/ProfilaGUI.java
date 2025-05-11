@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.EventQueue;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
@@ -33,7 +34,7 @@ public class ProfilaGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public ProfilaGUI(User user) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -50,7 +51,7 @@ public class ProfilaGUI extends JFrame {
 		contentPane.add(scrollPane);
 		movListView.setBounds(71, 47, 305, 175);
 		
-		JButton btnNewButton = new JButton("New button");
+		JButton btnNewButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();

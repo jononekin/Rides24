@@ -121,9 +121,11 @@ public class DataAccess {
 			 * db.persist(driver1); db.persist(driver2); db.persist(driver3);
 			 */
 			Admin admin=new Admin("a@gmail.com", "admin", "0","0");
+			System.out.println("Admin creado" + admin);
 		    db.persist(admin);
-
+		    System.out.println("añadido" + admin);
 			db.getTransaction().commit();
+			System.out.println("comit" + admin);
 			System.out.println("Db initialized");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -254,9 +256,9 @@ public class DataAccess {
 
 	public Eskaera createEskaera(User user, Ride ride, int nPlaces)throws RequestAlreadyExistException{
 		db.getTransaction().begin();
-		Bidaiari bidaiari = ((Bidaiari)user);
-		Bidaiari bidaiariDB = db.find(Bidaiari.class, bidaiari.getEmail());
+		User userDB = db.find(User.class, user.getEmail());
 		Ride rideDB = db.find(Ride.class, ride.getRideNumber());
+		Bidaiari bidaiariDB = ((Bidaiari)userDB);
 		Eskaera eskBerr = new Eskaera(Eskaera.EskaeraEgoera.PENDING, nPlaces, rideDB, bidaiariDB);
 		ArrayList<Eskaera> eskaeraListDB = bidaiariDB.getEskaerak();
 		boolean exisDa = false;
@@ -284,6 +286,9 @@ public class DataAccess {
 			
 		return eskBerr;
 	}
+
+
+	
 
 	/*
 	 * public boolean storeRider (Bidaiari rider) { try {
@@ -361,7 +366,7 @@ public class DataAccess {
 			float diruBerr = existingUser.getDirua() + diru;
 			if (diruBerr>0) {
 				existingUser.setDirua(diruBerr);
-				Movement mov = new Movement (user, diru, "+");
+				Movement mov = new Movement (existingUser, diru, "+");
 				addMovement(mov);
 				db.persist(mov);
 				db.getTransaction().commit();
@@ -643,9 +648,10 @@ public class DataAccess {
 		
 		db.getTransaction().begin();
 	    Ride rideDB = db.find(Ride.class, ride.getRideNumber());
-	    TypedQuery<Eskaera> query = db.createQuery("SELECT DISTINCT esk FROM Eskaera esk WHERE esk.ride = :ride", Eskaera.class);
-	    query.setParameter("ride", rideDB);
-	    List<Eskaera> eskaerak = query.getResultList();
+	    //TypedQuery<Eskaera> query = db.createQuery("SELECT DISTINCT esk FROM Eskaera esk WHERE esk.ride = :ride", Eskaera.class);
+	    //query.setParameter("ride", rideDB);
+	    //List<Eskaera> eskaerak = query.getResultList();
+	    List<Eskaera> eskaerak = rideDB.getEskaerenList();
 	    db.getTransaction().commit();
 	    return eskaerak;
 	}
@@ -655,7 +661,7 @@ public class DataAccess {
 		db.getTransaction().begin();
 
 		Eskaera eskaeraDB = db.find(Eskaera.class, eskaera.getEskaeraNumber());
-		Bidaiari bidaiariDB = db.find(Bidaiari.class, eskaera.getBidaiari());
+		Bidaiari bidaiariDB = eskaeraDB.getBidaiari();
 		Ride ride = eskaeraDB.getRide();
 		int lekuLibre = ride.getnPlaces();
 		int lekuEskatu = eskaeraDB.getNPlaces();
@@ -691,7 +697,7 @@ public class DataAccess {
 		db.getTransaction().begin();
 		Eskaera eskaeraDB = db.find(Eskaera.class, eskaera.getEskaeraNumber());
 		eskaeraDB.ezeztatuEskaera();
-		Alerta alert = new Alerta(eskaera.getBidaiari(), AlertMota.ESKAERA_EZONARTUA);
+		Alerta alert = new Alerta(eskaeraDB.getBidaiari(), AlertMota.ESKAERA_EZONARTUA);
 		
 		addAlert(alert);
 		db.persist(alert);
@@ -729,7 +735,7 @@ public class DataAccess {
 			eskaeraDB.getRide().setnPlaces(lekuLibre+eskatutakoak);
 			eskaeraDB.setEgoera(EskaeraEgoera.CANCELLED);	
 		}
-		Alerta alert = new Alerta(eskaera.getRide().getDriver(), AlertMota.ESKAERA_KANTZELATU);
+		Alerta alert = new Alerta(eskaeraDB.getRide().getDriver(), AlertMota.ESKAERA_KANTZELATU);
 		
 		addAlert(alert);
 		db.persist(alert);
@@ -741,13 +747,13 @@ public class DataAccess {
 		boolean ondo = true;
 		User ezabUserDB = bilatuUserEmail(user.getEmail());
 		if (ezabUserDB instanceof Driver) {
-			Driver ezabDriverDB = (Driver) user;
+			Driver ezabDriverDB = (Driver) ezabUserDB;
 			List<Ride> rideList = ezabDriverDB.getRides();
 			for(Ride ride : rideList) {
 				kantzelatuRide(ride);
 			}
 		}else {
-			Bidaiari ezabBidDB = (Bidaiari) user;
+			Bidaiari ezabBidDB = (Bidaiari) ezabUserDB;
 			List<Eskaera> eskList = ezabBidDB.getEskaerak();
 			for(Eskaera esk : eskList) {
 				if(esk.getEgoera() == EskaeraEgoera.FINISHED) {
@@ -836,7 +842,7 @@ public class DataAccess {
 	public ArrayList<Erreklamazioa> getAllErrek() {
 		db.getTransaction().begin();
 		ArrayList<Erreklamazioa> errek = new ArrayList<>();	
-		TypedQuery<Erreklamazioa> query = db.createQuery("SELECT c FROM Complaint c",Erreklamazioa.class);   
+		TypedQuery<Erreklamazioa> query = db.createQuery("SELECT c FROM Erreklamazioa c",Erreklamazioa.class);   
 		List<Erreklamazioa> errekList = query.getResultList();
 		for (Erreklamazioa e :errekList){
 			errek.add(e);
@@ -937,7 +943,7 @@ public class DataAccess {
 	 public void addAdminErrek(Erreklamazioa selectRk) {
 		 try {
 			
-			User existingUser = db.find(User.class, "a@admin.com");
+			User existingUser = db.find(User.class, "a@gmail.com");
 			Erreklamazioa gehitutakoa = existingUser.addErrek(selectRk);
 			db.persist(gehitutakoa);
 			
@@ -1006,11 +1012,11 @@ public class DataAccess {
 		 
 	 }
 	 
-	 public void addErreklamazio(Erreklamazioa errekJarri) {
+	 public void addErreklamazio(Erreklamazioa jarritakoErrek) {
 		 try {
 				db.getTransaction().begin();
-				User existingUser = db.find(User.class, errekJarri.getErrekJaso().getEmail());
-				Erreklamazioa errek = existingUser.addErrek(errekJarri);
+				User existingUser = db.find(User.class, jarritakoErrek.getErrekJaso().getEmail());
+				Erreklamazioa errek = existingUser.addErrek(jarritakoErrek);
 				db.persist(errek);
 				Alerta alert = new Alerta(errek.getErrekJaso(), AlertMota.ERREKLAMATUTA);
 				

@@ -41,7 +41,9 @@ public class Alerta implements Serializable{
 		this.user=user;
 		this.mota=mota;
 	}
-
+	public Alerta( ) {	
+		
+	}
 	public int getID() {
 		return ID;
 	}

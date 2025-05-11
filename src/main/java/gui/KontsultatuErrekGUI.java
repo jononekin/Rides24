@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.EventQueue;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -36,7 +37,7 @@ public class KontsultatuErrekGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public KontsultatuErrekGUI(User user) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 482, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -67,7 +68,7 @@ public class KontsultatuErrekGUI extends JFrame {
 			}
 		     
 		}
-		JButton Acept = new JButton("New button");
+		JButton Acept = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Accept"));
 		Acept.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Erreklamazioa selectRk = (Erreklamazioa) jasoDituzunak.getSelectedItem();
@@ -77,7 +78,7 @@ public class KontsultatuErrekGUI extends JFrame {
 		Acept.setBounds(369, 136, 89, 23);
 		contentPane.add(Acept);
 		
-		JButton reject = new JButton("New button");
+		JButton reject = new JButton(ResourceBundle.getBundle("Etiquetas").getString("OnartuGUI.Reject"));
 		reject.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Erreklamazioa selectRk = (Erreklamazioa) jasoDituzunak.getSelectedItem();
@@ -87,7 +88,7 @@ public class KontsultatuErrekGUI extends JFrame {
 		reject.setBounds(243, 136, 89, 23);
 		contentPane.add(reject);
 		
-		JButton close = new JButton("New button");
+		JButton close = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 		close.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();

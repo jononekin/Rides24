@@ -43,6 +43,9 @@ public class Erreklamazioa implements Serializable{
 		this.diru = diru;
 		this.larri=larri;
 	}
+	public Erreklamazioa() {
+		
+	}
 	public Erreklamazioa(User errekJarri, User errekJaso, Eskaera eskaera, String deskribapena, float diru) {
 		super();
 		this.errekJarri = errekJarri;

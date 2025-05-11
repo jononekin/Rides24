@@ -57,7 +57,7 @@ public class BalorazioaGUI extends JFrame {
 		a2.setBounds(118, 94, 53, 23);
 		contentPane.add(a2);
 		
-		JLabel Baloratu = new JLabel("New label");
+		JLabel Baloratu = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Baloratu.Baloratu"));
 		Baloratu.setBounds(132, 33, 115, 14);
 		contentPane.add(Baloratu);
 		
@@ -77,8 +77,8 @@ public class BalorazioaGUI extends JFrame {
 		textArea.setBounds(90, 163, 179, 50);
 		contentPane.add(textArea);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(132, 138, 49, 14);
+		JLabel lblNewLabel = new JLabel(ResourceBundle.getBundle("Etiquetas").getString("Baloratu.Idatzi"));
+		lblNewLabel.setBounds(90, 138, 179, 14);
 		contentPane.add(lblNewLabel);
 		
 		jLabelMsg.setBounds(new Rectangle(41, 118, 305, 20));
@@ -97,7 +97,7 @@ public class BalorazioaGUI extends JFrame {
 		
 		
 		
-		JButton baloratu = new JButton("New button");
+		JButton baloratu = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Baloratu.Baloratu"));
 		baloratu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<Eskaera> eskList = ride.getEskaerenList();
@@ -140,7 +140,7 @@ public class BalorazioaGUI extends JFrame {
 		baloratu.setBounds(257, 229, 89, 23);
 		contentPane.add(baloratu);
 		
-		JButton itxi = new JButton("New button");
+		JButton itxi = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 		itxi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();

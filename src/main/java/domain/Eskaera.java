@@ -61,7 +61,6 @@ public class Eskaera implements Serializable{
 		this.eskaeraNumber = hashCode();	
 	}
 	public Eskaera(){
-		super();
 	}
 	
 	

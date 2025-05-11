@@ -30,6 +30,7 @@ public class Balorazio implements Serializable {
 		this.nota = nota;
 		this.eskaera = eskaera;
 	}
+	public Balorazio() {}
 	public Eskaera getEskaera() {
 		return eskaera;
 	}

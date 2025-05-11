@@ -102,7 +102,7 @@ public class KantzelatuGUI extends JFrame {
 		lblNewLabel.setBounds(82, 53, 242, 14);
 		contentPane.add(lblNewLabel);
 		
-		JButton btnFinished = new JButton((String) null);
+		JButton btnFinished = new JButton(ResourceBundle.getBundle("Etiquetas").getString("KantzelatuGUI.Finish"));
 		btnFinished.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Ride rideSelect = (Ride) rides.getSelectedItem();

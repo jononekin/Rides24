@@ -13,7 +13,9 @@ import domain.Erreklamazioa;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
 
 public class AcceptWhithChangeGUI extends JFrame {
 
@@ -48,19 +50,20 @@ public class AcceptWhithChangeGUI extends JFrame {
 		textArea.setText(erreklamazio.getDeskribapena());
 		scrollPane.setViewportView(textArea);
 		
-		JRadioButton leve = new JRadioButton("New radio button");
+		
+		JRadioButton leve = new JRadioButton(ResourceBundle.getBundle("Etiquetas").getString("AWC.Leve"));
 		leve.setBounds(29, 179, 111, 23);
 		contentPane.add(leve);
 		
-		JRadioButton intermedio = new JRadioButton("New radio button");
+		JRadioButton intermedio = new JRadioButton(ResourceBundle.getBundle("Etiquetas").getString("AWC.Mediano"));
 		intermedio.setBounds(169, 179, 111, 23);
 		contentPane.add(intermedio);
 		
-		JRadioButton grave = new JRadioButton("New radio button");
+		JRadioButton grave = new JRadioButton(ResourceBundle.getBundle("Etiquetas").getString("AWC.Grave"));
 		grave.setBounds(308, 179, 111, 23);
 		contentPane.add(grave);
 		BLFacade facade = MainGUI.getBusinessLogic();
-		JButton btnNewButton = new JButton("New button");
+		JButton btnNewButton = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Accept"));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(leve.isSelected()) {

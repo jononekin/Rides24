@@ -57,7 +57,7 @@ public class ErrEgKonGUI extends JFrame {
 		contentPane.setLayout(null);
 		JButton konfirmatu = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ErrEgKon.Confirm"));
 		konfirmatu.setVisible(false);
-		JButton kantzelatu = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ErrEgKonGUI.Cancel")); 
+		JButton kantzelatu = new JButton(ResourceBundle.getBundle("Etiquetas").getString("ErrEgKon.Cancel")); 
 		kantzelatu.setVisible(false);
 		
 		JComboBox Erreserbak = new JComboBox();

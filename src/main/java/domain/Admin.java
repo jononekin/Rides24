@@ -19,4 +19,6 @@ public class Admin extends User implements Serializable{
 		super(name, pasahitza, email, nanZbk);
 	}
 	
+	public Admin() {}
+	
 }
