@@ -120,7 +120,7 @@ public class RequestRideGUI extends JFrame {
 				a.setVisible(true);
 			}
 		});
-		seeProfile.setBounds(58, 263, 89, 23);
+		seeProfile.setBounds(58, 263, 122, 23);
 		getContentPane().add(seeProfile);
 		
 	}	 

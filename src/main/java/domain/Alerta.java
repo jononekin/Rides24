@@ -68,7 +68,10 @@ public class Alerta implements Serializable{
 	public void setUser(User user) {
 		this.user = user;
 	}
+	@Override
+	public String toString() {
+		return "Alerta [ID=" + ID + ", mota=" + mota + ", user=" + user + "]";
+	}
 
-	
 
 }
