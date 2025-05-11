@@ -41,6 +41,8 @@ public class Ride implements Serializable {
 	private ArrayList<Eskaera>  eskaerenList= new ArrayList<Eskaera>();
 
 	
+	@XmlIDREF
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Driver driver;  
 	
 	public Ride(){

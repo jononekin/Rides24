@@ -3,6 +3,7 @@ package domain;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Iterator;
 import java.util.Vector;
 
 import javax.persistence.*;
@@ -27,10 +28,35 @@ public class Driver extends User implements Serializable {
 	private List<Car> cars=new Vector<Car>();
 	
 	public Driver() {}
+	
+	
+	
 	public Driver(String name, String pasahitza, String email, String nanZbk) {
 		super(name, pasahitza, email, nanZbk);
 	}
 
+	public Driver(String driverEmail, String driverName) {
+		super(driverName, "1", driverEmail, "123");
+	}
+
+
+
+	public Ride removeRide(String from, String to, Date targetDate) {
+	    Iterator<Ride> iterator = rides.iterator();
+        while (iterator.hasNext()) {
+            Ride ride = iterator.next();
+            if (ride.getFrom().equals(from) &&
+                ride.getTo().equals(to) &&
+                ride.getDate().equals(targetDate)) {
+
+                iterator.remove();
+                return ride;
+            }
+        }
+        return null;
+       }
+	
+	
 	public Ride removeRide(Integer rideId) {
 		for (int i = 0; i < rides.size(); i++) {
             if (rides.get(i).getRideNumber().equals(rideId)) {

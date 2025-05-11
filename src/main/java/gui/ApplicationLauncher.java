@@ -29,10 +29,14 @@ public class ApplicationLauncher {
 		
 		System.out.println("Locale: "+Locale.getDefault());
 		
-	    Driver driver=new Driver("driver3@gmail.com", "Test Driver", "0","0");
+		
+		// System.setProperty("objectdb.conf", "/Users/oihane/git/Rides24ok/objectdb.conf");
+
+		
+	   //  Driver driver=new Driver("driver3@gmail.com", "Test Driver", "0","0");
 	    
 	    
-		MainGUI a=new MainGUI(driver);
+		MainGUI a=new MainGUI();
 	    //MainGidariGUI a = new MainGidariGUI(driver);
 		a.setVisible(true);
 

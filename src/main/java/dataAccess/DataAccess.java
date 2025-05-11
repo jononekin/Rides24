@@ -95,31 +95,23 @@ public class DataAccess {
 				year += 1;
 			}
 
-			/*
-			 * //Create drivers Driver driver1=new
-			 * Driver("driver1@gmail.com","Aitor Fernandez", "53256", "7342S", "hfsk");
-			 * Driver driver2=new Driver("driver2@gmail.com","Ane Gaztañaga", "53256",
-			 * "7342S", "hfsk"); Driver driver3=new
-			 * Driver("driver3@gmail.com","Test driver", "53256", "7342S", "hfsk");
-			 * 
-			 * 
-			 * //Create rides driver1.addRide("Donostia", "Bilbo",
-			 * UtilDate.newDate(year,month,15), 4, 7); driver1.addRide("Donostia",
-			 * "Gazteiz", UtilDate.newDate(year,month,6), 4, 8); driver1.addRide("Bilbo",
-			 * "Donostia", UtilDate.newDate(year,month,25), 4, 4);
-			 * 
-			 * driver1.addRide("Donostia", "Iruña", UtilDate.newDate(year,month,7), 4, 8);
-			 * 
-			 * driver2.addRide("Donostia", "Bilbo", UtilDate.newDate(year,month,15), 3, 3);
-			 * driver2.addRide("Bilbo", "Donostia", UtilDate.newDate(year,month,25), 2, 5);
-			 * driver2.addRide("Eibar", "Gasteiz", UtilDate.newDate(year,month,6), 2, 5);
-			 * 
-			 * driver3.addRide("Bilbo", "Donostia", UtilDate.newDate(year,month,14), 1, 3);
-			 * 
-			 * 
-			 * 
-			 * db.persist(driver1); db.persist(driver2); db.persist(driver3);
-			 */
+			
+			 //Create drivers Driver driver1=new
+			//Driver driver1 = new Driver("Aitor Fernandez", "1", "d1@gmail.com", "7342S");
+
+			  //Create rides driver1.addRide("Donostia", "Bilbo",
+			 // UtilDate.newDate(year,month,15); driver1.addRide("Donostia",
+			  //"Gasteiz", UtilDate.newDate(year,month,6), 4, 8); driver1.addRide("Bilbo",
+			  //"Donostia", UtilDate.newDate(year,month,25), 4, 4);
+			  
+			  //driver1.addRide("Donostia", "Iruña", UtilDate.newDate(year,month,7), 4, 8);
+			  
+			 // driver3.addRide("Bilbo", "Donostia", UtilDate.newDate(year,month,14), 1, 3);
+			  
+			  
+			 
+			 // db.persist(driver1); db.persist(driver2); db.persist(driver3);
+			 
 			Admin admin=new Admin("a@gmail.com", "admin", "0","0");
 			System.out.println("Admin creado" + admin);
 		    db.persist(admin);

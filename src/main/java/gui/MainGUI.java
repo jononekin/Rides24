@@ -52,10 +52,8 @@ public class MainGUI extends JFrame {
 	/**
 	 * This is the default constructor
 	 */
-	public MainGUI(Driver d) {
+	public MainGUI() {
 		super();
-
-		driver=d;
 		
 		// this.setSize(271, 295);
 		this.setSize(495, 290);
@@ -136,7 +134,7 @@ public class MainGUI extends JFrame {
 		
 		
 		setContentPane(jContentPane);
-		setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.MainTitle") + " - driver :"+driver.getName());
+		setTitle(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.MainTitle")); // + " - driver :"+driver.getName());
 		
 		addWindowListener(new WindowAdapter() {
 			@Override
