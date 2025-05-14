@@ -75,7 +75,7 @@ public class ErrEgKonGUI extends JFrame {
 			    fechaRide.set(Calendar.MINUTE, 0);
 			    fechaRide.set(Calendar.SECOND, 0);
 			    fechaRide.set(Calendar.MILLISECOND, 0);
-				if (gaur.after(fechaRide) && (selectedEskaera.getEgoera() == EskaeraEgoera.FINISHED)) { //gaur.equals(fechaRide)||
+				if ( /* gaur.after(fechaRide) && */ (selectedEskaera.getEgoera() == EskaeraEgoera.FINISHED)) { //gaur.equals(fechaRide)||
 					konfirmatu.setVisible(true);
 				}else {
 					konfirmatu.setVisible(false);

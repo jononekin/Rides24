@@ -121,7 +121,7 @@ public class BalorazioaGUI extends JFrame {
 				}else {
 					nota=5;
 				}
-				if(!a1.isSelected() || !a2.isSelected() || !a3.isSelected() || !a4.isSelected()|| !a5.isSelected() || (comboBox.getSelectedItem() == null)) {                         
+				if(! ( a1.isSelected() || a2.isSelected() || a3.isSelected() || a4.isSelected()|| a5.isSelected() /*|| (comboBox.getSelectedItem() == null)*/ )) {                         
 					jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("Error"));
 				}else {
 					Balorazio balorazio = new Balorazio(userJarri, userJaso, deskribapena, nota, (Eskaera) comboBox.getSelectedItem());

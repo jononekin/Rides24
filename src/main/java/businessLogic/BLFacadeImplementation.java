@@ -21,6 +21,7 @@ import domain.Bidaiari;
 import domain.Car;
 import domain.Driver;
 import domain.Erreklamazioa;
+import domain.Erreklamazioa.ErrekLarri;
 import domain.Eskaera;
 import domain.Movement;
 import exceptions.*;
@@ -373,9 +374,9 @@ public class BLFacadeImplementation implements BLFacade {
 		dbManager.close();
 	}
 	
-	@WebMethod public void addErreklamazio(Erreklamazioa errekJarri) {
+	@WebMethod public void addErreklamazio(User userJarri, User userJaso, Eskaera eskSelect, String sartutakoTxt, float prez, ErrekLarri lar) {
 		dbManager.open();
-	    dbManager.addErreklamazio(errekJarri);
+	    dbManager.addErreklamazio( userJarri,  userJaso,  eskSelect,  sartutakoTxt,  prez,  lar);
 		dbManager.close();
 	}
 

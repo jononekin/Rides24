@@ -15,6 +15,7 @@ import domain.Bidaiari;
 import domain.Car;
 import domain.Driver;
 import domain.Erreklamazioa;
+import domain.Erreklamazioa.ErrekLarri;
 import domain.Eskaera;
 import domain.Movement;
 import exceptions.*;
@@ -128,7 +129,7 @@ public interface BLFacade  {
 	@WebMethod public void rejectErrekUser(Erreklamazioa selectRk);
 	@WebMethod public void rejectErrekAdmin(Erreklamazioa selectRk);
 	@WebMethod public void AcceptWithChange(Erreklamazioa erreklamazio, int num);
-	@WebMethod public void addErreklamazio(Erreklamazioa errekJarri);
+	@WebMethod public void addErreklamazio(User userJarri, User userJaso, Eskaera eskSelect, String sartutakoTxt, float prez, ErrekLarri lar);
 	
 	
 }

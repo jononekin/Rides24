@@ -134,7 +134,7 @@ public class MainGidariGUI extends JFrame {
 		JButton jarriErrek = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.MakeReclamation"));
 		jarriErrek.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JFrame a = new JarriErreklamGUI(driver);
+				JFrame a = new JarriErreklamGUI(driver, driver, null);
 				a.setVisible(true);
 			}
 		});
