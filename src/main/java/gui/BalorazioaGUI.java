@@ -40,7 +40,7 @@ public class BalorazioaGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public BalorazioaGUI(User userJarri, User userJaso, Ride ride) {
+	public BalorazioaGUI(User userJarri, User userJaso, Eskaera eskaera) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 413, 300);
 		contentPane = new JPanel();
@@ -85,28 +85,20 @@ public class BalorazioaGUI extends JFrame {
 		jLabelMsg.setForeground(Color.red);
 		
 		this.getContentPane().add(jLabelMsg, null);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(36, 58, 310, 22);
-		contentPane.add(comboBox);
-		if(userJarri instanceof Driver) {
+		/*if(userJarri instanceof Driver) {
 			comboBox.setVisible(true);
 		}else{
 			comboBox.setVisible(false);
-		}
+		}*/
 		
 		
 		
 		JButton baloratu = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Baloratu.Baloratu"));
 		baloratu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ArrayList<Eskaera> eskList = ride.getEskaerenList();
-				for(Eskaera eska:eskList) {
-					if(eska.getEgoera() != EskaeraEgoera.VALUED) {
-						comboBox.addItem(eska);
-					}
+				
 					
-				}
+			
 				BLFacade facade = MainGUI.getBusinessLogic();
 				String deskribapena = textArea.getText();
 				int nota = 0;
@@ -124,7 +116,7 @@ public class BalorazioaGUI extends JFrame {
 				if(! ( a1.isSelected() || a2.isSelected() || a3.isSelected() || a4.isSelected()|| a5.isSelected() /*|| (comboBox.getSelectedItem() == null)*/ )) {                         
 					jLabelMsg.setText(ResourceBundle.getBundle("Etiquetas").getString("Error"));
 				}else {
-					Balorazio balorazio = new Balorazio(userJarri, userJaso, deskribapena, nota, (Eskaera) comboBox.getSelectedItem());
+					Balorazio balorazio = new Balorazio(userJarri, userJaso, deskribapena, nota, eskaera);
 					if (userJarri instanceof Driver) {
 						facade.addBalorazioa(balorazio);
 					}else {

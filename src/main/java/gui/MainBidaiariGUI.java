@@ -119,16 +119,6 @@ public class MainBidaiariGUI extends JFrame {
 		notifikazioak.setBounds(0, 368, 481, 60);
 		contentPane.add(notifikazioak);
 		
-		JButton jarriErrek = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.MakeReclamation"));
-		jarriErrek.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JFrame a = new JarriErreklamGUI(bidaiari, bidaiari, null);
-				a.setVisible(true);
-			}
-		});
-		jarriErrek.setBounds(0, 428, 240, 60);
-		contentPane.add(jarriErrek);
-		
 		JButton kontsultatuErrek = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.Kontsultatu"));
 		kontsultatuErrek.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

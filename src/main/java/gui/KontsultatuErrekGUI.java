@@ -13,6 +13,7 @@ import businessLogic.BLFacade;
 import domain.Bidaiari;
 import domain.Driver;
 import domain.Erreklamazioa;
+import domain.Erreklamazioa.ErrekMota;
 import domain.Eskaera;
 import domain.Movement;
 import domain.User;
@@ -37,23 +38,25 @@ public class KontsultatuErrekGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public KontsultatuErrekGUI(User user) {
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 482, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JComboBox jasoDituzunak = new JComboBox();
 		jasoDituzunak.setBounds(243, 91, 215, 22);
 		contentPane.add(jasoDituzunak);
 		BLFacade facade = MainGUI.getBusinessLogic();
 		List<Erreklamazioa> errekList = facade.getUserErrek(user);
 		for (Erreklamazioa errek : errekList) {
-			jasoDituzunak.addItem(errek); 
+			if (errek.getMota().equals(ErrekMota.PENDING)) {
+				jasoDituzunak.addItem(errek);
+			}
 		}
-		
+
 		DefaultListModel<String> listModel = new DefaultListModel<>();
 		JList<String> eginDituzunak = new JList<>(listModel);
 		JScrollPane scrollPane = new JScrollPane();
@@ -63,10 +66,13 @@ public class KontsultatuErrekGUI extends JFrame {
 		eginDituzunak.setBounds(71, 47, 305, 175);
 		List<Erreklamazioa> errekList1 = facade.getAllErrek();
 		for (Erreklamazioa errek : errekList1) {
-			if(errek.getErrekJarri().equals(user)) {
+			System.out.println(errek.getErrekJarri().getEmail().equals(user.getEmail()));
+			System.out.println(!(errek.getMota().equals(ErrekMota.PENDING)));
+
+			if (errek.getErrekJarri().getEmail().equals(user.getEmail()) && !(errek.getMota().equals(ErrekMota.PENDING))) {
 				listModel.addElement(errek.toString());
 			}
-		     
+
 		}
 		JButton Acept = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Accept"));
 		Acept.addActionListener(new ActionListener() {
@@ -77,7 +83,7 @@ public class KontsultatuErrekGUI extends JFrame {
 		});
 		Acept.setBounds(369, 136, 89, 23);
 		contentPane.add(Acept);
-		
+
 		JButton reject = new JButton(ResourceBundle.getBundle("Etiquetas").getString("OnartuGUI.Reject"));
 		reject.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -87,7 +93,7 @@ public class KontsultatuErrekGUI extends JFrame {
 		});
 		reject.setBounds(243, 136, 89, 23);
 		contentPane.add(reject);
-		
+
 		JButton close = new JButton(ResourceBundle.getBundle("Etiquetas").getString("Close"));
 		close.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -96,6 +102,6 @@ public class KontsultatuErrekGUI extends JFrame {
 		});
 		close.setBounds(201, 210, 89, 23);
 		contentPane.add(close);
-		
+
 	}
 }

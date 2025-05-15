@@ -149,8 +149,7 @@ public abstract class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [email=" + email + ", name=" + name + ", nanZbk=" + nanZbk + ", tlf=" + tlf + ", pasahitza="
-				+ pasahitza + ", dirua=" + dirua + "]";
+		return "User [email=" + email + ", name=" + name + ", nanZbk=" + nanZbk + ", tlf=" + tlf + "dirua=" + dirua + "]";
 	}
 
 	public boolean doesMovementExist(Integer movementNumber) {

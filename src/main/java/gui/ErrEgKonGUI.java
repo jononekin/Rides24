@@ -75,7 +75,7 @@ public class ErrEgKonGUI extends JFrame {
 			    fechaRide.set(Calendar.MINUTE, 0);
 			    fechaRide.set(Calendar.SECOND, 0);
 			    fechaRide.set(Calendar.MILLISECOND, 0);
-				if ( /* gaur.after(fechaRide) && */ (selectedEskaera.getEgoera() == EskaeraEgoera.FINISHED)) { //gaur.equals(fechaRide)||
+				if ( /* gaur.after(fechaRide) && */ (selectedEskaera.getEgoera() == EskaeraEgoera.FINISHED || selectedEskaera.getEgoera() == EskaeraEgoera.VALUED )) { //gaur.equals(fechaRide)||
 					konfirmatu.setVisible(true);
 				}else {
 					konfirmatu.setVisible(false);
@@ -97,7 +97,7 @@ public class ErrEgKonGUI extends JFrame {
 				BLFacade facade = MainGUI.getBusinessLogic();
 				Eskaera selectedEskaera = (Eskaera) Erreserbak.getSelectedItem();
 				facade.konfirmatuEskaera(selectedEskaera);
-				JFrame a = new BalorazioaGUI(bidaiari, selectedEskaera.getRide().getDriver(), selectedEskaera.getRide());
+				JFrame a = new ErrekETaBaloBidGUI(bidaiari, selectedEskaera.getRide().getDriver(), selectedEskaera);
 				a.setVisible(true);
 			}
 		});

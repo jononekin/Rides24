@@ -131,16 +131,6 @@ public class MainGidariGUI extends JFrame {
 		notifikazioak.setBounds(0, 428, 481, 60);
 		contentPane.add(notifikazioak);
 		
-		JButton jarriErrek = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.MakeReclamation"));
-		jarriErrek.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JFrame a = new JarriErreklamGUI(driver, driver, null);
-				a.setVisible(true);
-			}
-		});
-		jarriErrek.setBounds(0, 488, 240, 60);
-		contentPane.add(jarriErrek);
-		
 		JButton kontsultatuErrek = new JButton(ResourceBundle.getBundle("Etiquetas").getString("MainGUI.Kontsultatu"));
 		kontsultatuErrek.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -148,7 +138,7 @@ public class MainGidariGUI extends JFrame {
 				a.setVisible(true);
 			}
 		});
-		kontsultatuErrek.setBounds(241, 488, 240, 60);
+		kontsultatuErrek.setBounds(0, 488, 481, 60);
 		contentPane.add(kontsultatuErrek);
 		
 		JButton nireBalor = new JButton(ResourceBundle.getBundle("Etiquetas").getString("OnartuGUI.See"));

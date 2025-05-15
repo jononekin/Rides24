@@ -10,6 +10,12 @@ import javax.xml.bind.annotation.XmlAccessorType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 public class Erreklamazioa implements Serializable{
+	@Override
+	public String toString() {
+		return "Erreklamazioa [id=" + id + ", errekJarri=" + errekJarri + ", errekJaso=" + errekJaso + ", eskaera="
+				+ eskaera + ", deskribapena=" + deskribapena + ", mota=" + mota + ", diru=" + diru + ", larri=" + larri
+				+ "]";
+	}
 	@Id 
 	@GeneratedValue
 	private Integer id;

@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import businessLogic.BLFacade;
+import domain.Admin;
 import domain.Bidaiari;
 import domain.Driver;
 import domain.User;
@@ -116,8 +117,12 @@ public class LoginGUI extends JFrame {
 						JFrame d = new MainBidaiariGUI((Bidaiari)u);
 			        	d.setVisible(true);
 			        	((JFrame) SwingUtilities.getWindowAncestor(btn_LogIn)).dispose();
-					}else {
+					}else if(u instanceof Driver) {
 						JFrame d = new MainGidariGUI((Driver)u);
+			        	d.setVisible(true);
+			        	((JFrame) SwingUtilities.getWindowAncestor(btn_LogIn)).dispose();
+					}else {
+						JFrame d = new AdminGUI((Admin)u);
 			        	d.setVisible(true);
 			        	((JFrame) SwingUtilities.getWindowAncestor(btn_LogIn)).dispose();
 					}
