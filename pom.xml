@@ -134,7 +134,7 @@
 			<groupId>org.objenesis</groupId>
 			<artifactId>objenesis-tck</artifactId>
 			<version>3.0.1</version>
-		</dependency>
+		</dependency> 
 
 
 		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
