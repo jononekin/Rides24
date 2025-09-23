@@ -28,16 +28,16 @@ public class CreateRideTest {
 	private Driver driver; 
 
 	@Test
-	//sut.createRide:  The Driver("iker driver", "driver1@gmail.com") HAS one ride "from" "to" in that "date". 
+	//sut.createRide:  The Driver("Aitor Fernandez", "driver11@gmail.com") HAS one ride "from" "to" in that "date". 
 	public void test1() {
-		String driverEmail="driver1@gmail.com";
+		String driverEmail="driver14@gmail.com";
 		String driverName="Aitor Fernandez";
 
 		String rideFrom="Donostia";
 		String rideTo="Zarautz";
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		Date rideDate=null;;
+		Date rideDate=null;
 		try {
 			rideDate = sdf.parse("05/10/2025");
 		} catch (ParseException e) {
@@ -55,6 +55,7 @@ public class CreateRideTest {
 			 existDriver=testDA.existDriver(driverEmail);
 			testDA.addDriverWithRide(driverEmail, driverName, rideFrom, rideTo, rideDate, 0, 0);
 			testDA.close();			
+			
 			
 			//invoke System Under Test (sut)  
 			sut.open();
@@ -80,12 +81,14 @@ public class CreateRideTest {
 		          testDA.close();
 		        }
 		   } 
+	
+	
 	@Test
-	//sut.createRide:  The Driver("Aitor Fernandez", "driver1@gmail.com") HAS NOT one ride "from" "to" in that "date". 
+	//sut.createRide:  The Driver("Aitor Fernandez", "driver11@gmail.com") HAS NOT one ride "from" "to" in that "date". 
 	public void test2() {
 		//define paramaters
-		String driverName="Aitor Fernandez";
-		String driverEmail="driver1@gmail.com";
+		String driverName="Aitor Fernandez2";
+		String driverEmail="driver11@gmail.com";
 
 		String rideFrom="Donostia";
 		String rideTo="Zarautz";
@@ -103,8 +106,7 @@ public class CreateRideTest {
 			//Check if exist this ride for this driver, and if exist, remove it.
 			
 			testDA.open();
-			boolean b=testDA.existRide(driverEmail,rideFrom, rideTo, rideDate);
-			if (b) testDA.removeRide(driverEmail, rideFrom, rideTo, rideDate);
+			testDA.createDriver(driverEmail,driverName);
 			testDA.close();
 			
 			
@@ -128,25 +130,19 @@ public class CreateRideTest {
 		   } catch (RideAlreadyExistException e) {
 			// if the program goes to this point fail  
 			fail();
-			//redone state of the system (create object in the database)
-			testDA.open();
-			driver = testDA.addDriverWithRide(driverEmail, driverName, rideFrom, rideTo, rideDate, 0, 0);
-			testDA.close();	
 			
 			} catch (RideMustBeLaterThanTodayException e) {
 				// if the program goes to this point fail  
 
 			fail();
-			//redone state of the system (create object in the database)
-			testDA.open();
-			driver = testDA.addDriverWithRide(driverEmail, driverName, rideFrom, rideTo, rideDate, 0, 0);
-			testDA.close();	
+			
 		} finally {
-				      
+			
+			testDA.open();
+			testDA.removeDriver(driverEmail);
+			testDA.close();     
 		        }
 		   } 
-	
-	
 	@Test
 	//sut.createRide:  The Driver is null. The test must return null. If  an Exception is returned the createRide method is not well implemented.
 		public void test3() {
@@ -203,7 +199,9 @@ public class CreateRideTest {
 	//This method detects a fail in createRide method because the method does not check if the parameters are null, and the ride is created.
 	
 	public void test4() {
-		String driverEmail="driver1@gmail.com";
+		String driverEmail="driver11@gmail.com";
+		String driverName="Aitor Fernandez2";
+
 		String rideFrom=null;
 		String rideTo="Zarautz";
 		
@@ -217,12 +215,19 @@ public class CreateRideTest {
 		}	
 		Ride ride=null;
 		try {
+			
+			testDA.open();
+			testDA.createDriver(driverEmail,driverName);
+			testDA.close();
+			
 			//invoke System Under Test (sut)  
 			sut.open();
 			 ride=sut.createRide(rideFrom, rideTo, rideDate, 0, 0, driverEmail);
 			sut.close();			
 			
 			//verify the results
+			System.out.println("Ride: "+ride);
+
 			assertNull(ride);
 			
 			//q datubasean dago
@@ -249,8 +254,7 @@ public class CreateRideTest {
 		finally {   
 
 			testDA.open();
-			if (testDA.existRide(driverEmail,rideFrom, rideTo, rideDate))
-				testDA.removeRide(driverEmail, rideFrom, rideTo, rideDate);
+			testDA.removeDriver(driverEmail);
 			testDA.close();
 			
 		        }

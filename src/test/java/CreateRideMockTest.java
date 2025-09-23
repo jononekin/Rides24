@@ -66,7 +66,7 @@ public class CreateRideMockTest {
 	
 	
 	Driver driver;
-	
+
 	@Test
 	//sut.createRide:  The Driver("iker driver", "driver1@gmail.com") HAS one ride "from" "to" in that "date". 
 	public void test1() {
@@ -249,6 +249,7 @@ public class CreateRideMockTest {
 			 ride=sut.createRide(rideFrom, rideTo, rideDate, 0, 0, driverEmail);
 			sut.close();			
 			//verify the results
+			System.out.println("Ride: "+ride);
 			assertNull(ride);
 			
 		   } catch (RideAlreadyExistException e) {

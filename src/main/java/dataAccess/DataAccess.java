@@ -162,6 +162,7 @@ public class DataAccess  {
 				db.getTransaction().commit();
 				throw new RideAlreadyExistException(ResourceBundle.getBundle("Etiquetas").getString("DataAccess.RideAlreadyExist"));
 			}
+			System.out.println("crea addRide");
 			Ride ride = driver.addRide(from, to, date, nPlaces, price);
 			//next instruction can be obviated
 			db.persist(driver); 
