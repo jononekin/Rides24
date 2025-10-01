@@ -38,6 +38,6 @@
 			<attribute name="optional" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/itxas/Downloads/objectdb-2.6.9/objectdb-2.6.9/bin/objectdb.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Desktop/Eclipse/objectdb-2.6.9/bin/objectdb.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
